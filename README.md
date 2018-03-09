@@ -23,4 +23,6 @@ Look into Timely app. What I like is that it combines a report and adding tasks 
 As for budget: I mentioned today about due dates. How about we implement that through budget. Time can be your budget. Suppose you have 40 working hours in a week, and you are given 30 to complete a task. You log 15 hours, and it would show you have 50% of your budget left. 
 With any feature we try to add we need to think about whether or not it is reasonably doable for us in the time we have, so let’s not go crazy with new features.
 
+Add something here.
+
 
