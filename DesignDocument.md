@@ -36,9 +36,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Use case UC-1             | Name: Start task              |
 |---------------------------|-------------------------------|
 | Related requirements      |                               |
-| Initiating actor          |                               |
+| Initiating actor          | Developer,                    |
 | Actor's goal              |                               |
-| Participating actors      |                               |
+| Participating actors      | Developer,                    |
 | Preconditions             |                               |
 | Postconditions            |                               |
 
