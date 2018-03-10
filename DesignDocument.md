@@ -22,7 +22,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Requirement name | Requirement description |
 |------------------|-------------------------|
 |   REQ1           |  The program will create and keep a record of the time a task was started.    |
-|                  |                                                                  |
+|   REQ2           |  The program will create and keep a record of the time a task was stopped.     |
 |                  |                                                                  |
 |                  |                                                                  |
 |                  |                                                                  |
@@ -35,7 +35,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Use case UC-1             | Name: Start task              |
 |---------------------------|-------------------------------|
-| Related requirements      |                               |
+| Related requirements      | REQ1                            |
 | Initiating actor          | Developer                     |
 | Actor's goal              |                               |
 | Participating actors      |                               |
@@ -44,7 +44,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Use case UC-2             | Name: Stop task               |
 |---------------------------|-------------------------------|
-| Related requirements      |                               |
+| Related requirements      | REQ2                          |
 | Initiating actor          | Developer                     |
 | Actor's goal              |                               |
 | Participating actors      |                               |
