@@ -21,10 +21,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 ## Requirements
 | Requirement name | Requirement description |
 |------------------|-------------------------|
-|   REQ1           |  The program will create and keep a record of the time a task was started.    |
-|   REQ2           |  The program will create and keep a record of the time a task was stopped.     |
-|                  |                                                                  |
-|                  |                                                                  |
+|   REQ1           |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
+|   REQ2           |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
+|   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
+|   REQ4           |  The program shall describe a task with a description given by the user                              |
 |                  |                                                                  |
 |                  |                                                                  |
 |                  |                                                                  |
