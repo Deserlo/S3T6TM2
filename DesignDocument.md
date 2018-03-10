@@ -42,15 +42,6 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Preconditions             |                               |
 | Postconditions            |                               |
 
-| Use case UC-2             | Name: Stop task               |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ2                          |
-| Initiating actor          | Developer                     |
-| Actor's goal              |                               |
-| Participating actors      |                               |
-| Preconditions             |                               |
-| Postconditions            |                               |
-
 #### Flow of evetns for main success scenario:
 
 | Number |    Description          |
@@ -64,5 +55,14 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 7      |                         |
 | 8      |                         |
 
+
+| Use case UC-2             | Name: Stop task               |
+|---------------------------|-------------------------------|
+| Related requirements      | REQ2                          |
+| Initiating actor          | Developer                     |
+| Actor's goal              |                               |
+| Participating actors      |                               |
+| Preconditions             |                               |
+| Postconditions            |                               |
 
 
