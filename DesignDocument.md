@@ -6,7 +6,7 @@ Time Management application TM is created mainly for developers and managers of 
 
 ## Product Reviews
 
-We have looked into two applications for research purposes: Timely and GetHarvest. Timely app is a simple application that helps track time, profit and efficiency. They also implement an idea of time as budget for each project, which gave us the idea of adding budget to TM.
+We have looked into two applications for research purposes: Timely and GetHarvest. The Timely application is a simple application that helps track time, profit and efficiency. They also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
 GetHarvest is a more complex application, that can not only track time, but also estimate how much time a future project may take. Although this is an interesting and useful feature, it is out of the scope of our project.
 
 
@@ -24,7 +24,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ1           |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
 |   REQ2           |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
 |   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
-|   REQ4           |  The program shall describe a task with a description given by the user.                              |
+|   REQ4           |  The program shall describe what a task is about with a description given by the user.                |
 |                  |                                                                  |
 |                  |                                                                  |
 |                  |                                                                  |
