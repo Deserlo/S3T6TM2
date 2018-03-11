@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Time Management application TM is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity and possibly grow the revenue.
+Our Time Management application TM is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Increased productivity brings increased revenue.
 
 ## Product Reviews
 
@@ -12,7 +12,7 @@ GetHarvest is a more complex application, that can not only track time, but also
 
 ## Project Overview
 
-TM is a Time Management GUI application, that will help teams track time spent on projects with a purpose of increasing efficiency of a team or of a single developer who would like to maximise his time to increase profits.
+TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or of a single developer who would like to maximize his time to increase profits. TM is a desktop application.
 
 
 ## Project Architecture
