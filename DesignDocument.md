@@ -49,20 +49,29 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 1      | **Developer** names the task to be started.                   |
 | 2      | **Developer** then selects the option "Start Task".                       |
 | 3      | **System** signals that there is a task name, and the "Start Task" option was chosen.              |
-| 4      |                         |
+| 4      | **File Writer** then writes the time to a file.                        |
+
+
+| Use case UC-2             | Name: Stop task              |
+|---------------------------|-------------------------------|
+| Related requirements      | REQ2                            |
+| Initiating actor          | Developer                     |
+| Actor's goal              | To stop a task at the current time.                    |
+| Participating actors      | System, File Writer                              |
+| Preconditions             | The task is named. The task has started.                             |
+| Postconditions            | The time when the task was stopped is now stored.                              |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description          |
+|--------|-------------------------|
+| 1      | **Developer** names the task to be stopped.                   |
+| 2      | **Developer** then selects the option "Stop Task".                       |
+| 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen.              |
+| 4      | **File Writer** then writes the time to a file.                        |
 | 5      |                         |
 | 6      |                         |
 | 7      |                         |
 | 8      |                         |
-
-
-| Use case UC-2             | Name: Stop task               |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ2                          |
-| Initiating actor          | Developer                     |
-| Actor's goal              |                               |
-| Participating actors      |                               |
-| Preconditions             |                               |
-| Postconditions            |                               |
 
 
