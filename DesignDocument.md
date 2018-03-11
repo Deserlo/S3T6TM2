@@ -37,10 +37,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |---------------------------|-------------------------------|
 | Related requirements      | REQ1                            |
 | Initiating actor          | Developer                     |
-| Actor's goal              |                               |
-| Participating actors      |                               |
-| Preconditions             |                               |
-| Postconditions            |                               |
+| Actor's goal              | To start a task at the current time.                    |
+| Participating actors      | System, File Writer                              |
+| Preconditions             | The task is named.                              |
+| Postconditions            | The time when the task was started is now stored.                              |
 
 #### Flow of events for main success scenario:
 
