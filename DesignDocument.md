@@ -24,7 +24,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ1           |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
 |   REQ2           |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
 |   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
-|   REQ4           |  The program shall describe a task with a description given by the user                              |
+|   REQ4           |  The program shall describe a task with a description given by the user.                              |
 |                  |                                                                  |
 |                  |                                                                  |
 |                  |                                                                  |
@@ -42,13 +42,13 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Preconditions             |                               |
 | Postconditions            |                               |
 
-#### Flow of evetns for main success scenario:
+#### Flow of events for main success scenario:
 
 | Number |    Description          |
 |--------|-------------------------|
-| 1      |                         |
-| 2      |                         |
-| 3      |                         |
+| 1      | **Developer** names the task to be started.                   |
+| 2      | **Developer** then selects the option "Start Task".                       |
+| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen.              |
 | 4      |                         |
 | 5      |                         |
 | 6      |                         |
