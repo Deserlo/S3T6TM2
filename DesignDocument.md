@@ -12,7 +12,7 @@ GetHarvest is a more complex application, that can not only track time, but also
 
 ## Project Overview
 
-TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or of a single developer who would like to maximize his time to increase profits. TM is a desktop application.
+TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or of a single developer who would like to maximize his/her time to increase profits. TM is a desktop application.
 
 
 ## Project Architecture
@@ -73,5 +73,48 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 6      |                         |
 | 7      |                         |
 | 8      |                         |
+
+
+| Use case UC-3             | Name:   Calculate Duration           |
+|---------------------------|-------------------------------|
+| Related requirements      | REQ3,                             |
+| Initiating actor          | Developer                     |
+| Actor's goal              | To calculate duration between a task start and stop times.                   |
+| Participating actors      | System, FileWriter                             |
+| Preconditions             | The task is named. The task has started and stopped.                             |
+| Postconditions            | The elapsed time from when a task has started and stopped is now stored.                            |
+#### Flow of events for main success scenario:
+| Number |    Description          |
+|--------|-------------------------|
+| 1      |                 |
+| 2      |                      |
+| 3      |            |
+| 4      |                      |
+| 5      |                         |
+| 6      |                         |
+| 7      |                         |
+| 8      |                         |
+
+| Use case UC-4             | Name: Describe task              |
+|---------------------------|-------------------------------|
+| Related requirements      | REQ4                            |
+| Initiating actor          | Developer                     |
+| Actor's goal              | To add a description to a named task.                    |
+| Participating actors      | System, File Writer                              |
+| Preconditions             | The task is named. The task has started.                             |
+| Postconditions            | The description provided is now stored                              |
+#### Flow of events for main success scenario:
+| Number |    Description          |
+|--------|-------------------------|
+| 1      | **Developer** names the task to be described.                   |
+| 2      | **Developer** then selects the option "Describe Task".|
+| 3      |  **Developer** enters a description for named task             |
+| 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen.                          |
+| 5      | **File Writer** then writes either a new description to file or appends to existing description                      |
+| 6      |                        |
+| 7      |                         |
+| 8      |                         |
+
+
 
 
