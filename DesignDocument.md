@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted time will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find use out of this application. This application will help anyone and their team stay focused on whatever project they are working on.
+Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application ueful: it will help anyone and their team stay focused on whatever project they are working on.
 
 ## Product Reviews
 
