@@ -76,11 +76,11 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 4      | **File Writer** then writes the time to a file.                        |
 
 
-| Use case UC-3             | Name:   Calculate Duration           |
+| Use case UC-3             | Name:   Summarize           |
 |---------------------------|-------------------------------|
 | Related requirements      | REQ3,                             |
 | Initiating actor          | Developer                     |
-| Actor's goal              | To calculate duration between a task start and stop times.                   |
+| Actor's goal              | Get summary on projects/tasks                   |
 | Participating actors      | System, FileWriter                             |
 | Preconditions             | The task has name. The task has started and stopped.                             |
 | Postconditions            | The elapsed time from when a task has started and stopped is now stored.                            |
