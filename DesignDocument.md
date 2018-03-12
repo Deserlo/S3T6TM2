@@ -21,19 +21,19 @@ TM is a Time Management GUI application, that will help teams track time spent o
 ## Requirements
 | Requirement name | Requirement description |
 |------------------|-------------------------|
-|   REQ1           |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
-|   REQ2           |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
-|   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
-|   REQ4           |  The program shall describe what a task is about with a description given by the user.                |
-|   REQ5           |  Developers shall be able to view a summary of the tasks created by them, and be able to create a clean spreadsheet of the summary data.    |
-|   REQ6           |   Developers shall be able to easily pause a task that is currently running.           |
-|   REQ7           |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
-|   REQ8           |  Managers shall be able to set notes on tasks Developers are working on.            |
-|   REQ9           |  Both manages and developers shall be able to set a time budget for each task.  |                         
-|   REQ10          | Managers shall be able to set due date on a task.   |
-|   REQ11          | Managers shall be able to assign a task to a particular developer.         |
-|   REQ12          | The program shall notify the user of the upcoming due date or budget limit.  |
-|   REQ13          |                                                                  |
+|   REQ1      x     |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
+|   REQ2       x    |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
+|   REQ3     E      |  The program shall find the time elapsed between the time a task was started and stopped.            |
+|   REQ4        x   |  The program shall describe what a task is about with a description given by the user.                |
+|   REQ5    E       |  Users shall be able to view a summary of the tasks created by them, and be able to create and download a clean spreadsheet of the summary data.    |
+|   REQ6        J   |   Developers shall be able to easily pause a task that is currently running.           |
+|   REQ7        M   |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
+|   REQ8      M     |  Managers shall be able to set notes on tasks Developers are working on.            |
+|   REQ9        M  | Both manages and developers shall be able to set a time budget for each task.  |                         
+|   REQ10        A  | Managers shall be able to set due date on a task.   |
+|   REQ11       b   | Managers shall be able to assign a task to a particular developer.         |
+|   REQ12         A | The program shall notify the user of the upcoming due date or budget limit.  |
+|   REQ13         b | Each task shall be categorized under a project, thus to organize the workflow   |
 |   REQ14          |                                                                  |
 
 ## Use cases
