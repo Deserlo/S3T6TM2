@@ -25,11 +25,16 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ2           |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
 |   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
 |   REQ4           |  The program shall describe what a task is about with a description given by the user.                |
-|                  |                                                                  |
-|                  |                                                                  |
-|                  |                                                                  |
-|                  |                                                                  |
-|                  |                                                                  |
+|   REQ5           |  Developers shall be able to view a summary of the tasks created by them, and be able to create a clean spreadsheet of the summary data.    |
+|   REQ6               |   Developers shall be able to easily pause a task that is currently running.           |
+|   REQ7               |  Developers shall be able to set notes for the task they currently working on, seperate from describing the task.     |
+|   REQ8               |  Managers shall be able to set notes on tasks Developers are working on.            |
+|   REQ9               |                                                                  |
+|   REQ10               |                                                                  |
+|   REQ11               |                                                                  |
+|   REQ12              |                                                                  |
+|   REQ13              |                                                                  |
+|   REQ14              |                                                                  |
 
 ## Use cases
 
