@@ -26,15 +26,15 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped.            |
 |   REQ4           |  The program shall describe what a task is about with a description given by the user.                |
 |   REQ5           |  Developers shall be able to view a summary of the tasks created by them, and be able to create a clean spreadsheet of the summary data.    |
-|   REQ6               |   Developers shall be able to easily pause a task that is currently running.           |
-|   REQ7               |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
-|   REQ8               |  Managers shall be able to set notes on tasks Developers are working on.            |
-|   REQ9               |                                                                  |
-|   REQ10               |                                                                  |
-|   REQ11               |                                                                  |
-|   REQ12              |                                                                  |
-|   REQ13              |                                                                  |
-|   REQ14              |                                                                  |
+|   REQ6           |   Developers shall be able to easily pause a task that is currently running.           |
+|   REQ7           |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
+|   REQ8           |  Managers shall be able to set notes on tasks Developers are working on.            |
+|   REQ9           |  Both manages and developers shall be able to set a time budget for each task   |                         
+|   REQ10          | Managers shall be able to set due date on a task   |
+|   REQ11          | Managers shall be able to assign a task to a particular developer         |
+|   REQ12          | The program shall noity the user of the upcoming due date or budget limit  |
+|   REQ13          |                                                                  |
+|   REQ14          |                                                                  |
 
 ## Use cases
 
@@ -86,7 +86,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Initiating actor          | Developer                     |
 | Actor's goal              | To calculate duration between a task start and stop times.                   |
 | Participating actors      | System, FileWriter                             |
-| Preconditions             | The task is named. The task has started and stopped.                             |
+| Preconditions             | The task has name. The task has started and stopped.                             |
 | Postconditions            | The elapsed time from when a task has started and stopped is now stored.                            |
 #### Flow of events for main success scenario:
 | Number |    Description          |
