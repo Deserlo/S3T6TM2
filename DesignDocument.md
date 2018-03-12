@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application ueful: it will help anyone and their team stay focused on whatever project they are working on.
+Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application useful: it will help anyone and their team stay focused on whatever project they are working on.
 
 ## Product Reviews
 
@@ -29,10 +29,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ6           |   Developers shall be able to easily pause a task that is currently running.           |
 |   REQ7           |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
 |   REQ8           |  Managers shall be able to set notes on tasks Developers are working on.            |
-|   REQ9           |  Both manages and developers shall be able to set a time budget for each task   |                         
-|   REQ10          | Managers shall be able to set due date on a task   |
-|   REQ11          | Managers shall be able to assign a task to a particular developer         |
-|   REQ12          | The program shall noity the user of the upcoming due date or budget limit  |
+|   REQ9           |  Both manages and developers shall be able to set a time budget for each task.  |                         
+|   REQ10          | Managers shall be able to set due date on a task.   |
+|   REQ11          | Managers shall be able to assign a task to a particular developer.         |
+|   REQ12          | The program shall notify the user of the upcoming due date or budget limit.  |
 |   REQ13          |                                                                  |
 |   REQ14          |                                                                  |
 
@@ -74,10 +74,6 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Developer** then selects the option "Stop Task".                       |
 | 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen.              |
 | 4      | **File Writer** then writes the time to a file.                        |
-| 5      |                         |
-| 6      |                         |
-| 7      |                         |
-| 8      |                         |
 
 
 | Use case UC-3             | Name:   Calculate Duration           |
@@ -107,7 +103,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Actor's goal              | To add a description to a named task.                    |
 | Participating actors      | System, File Writer                              |
 | Preconditions             | The task is named. The task has started.                             |
-| Postconditions            | The description provided is now stored                              |
+| Postconditions            | The description provided is now stored.                              |
 #### Flow of events for main success scenario:
 | Number |    Description          |
 |--------|-------------------------|
@@ -115,7 +111,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Developer** then selects the option "Describe Task".|
 | 3      |  **Developer** enters a description for named task             |
 | 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen.                          |
-| 5      | **File Writer** then writes either a new description to file or appends to existing description                      |
+| 5      | **File Writer** then writes either a new description to file or appends to existing description.                      |
 | 6      |                        |
 | 7      |                         |
 | 8      |                         |
