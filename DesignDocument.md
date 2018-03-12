@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Our Time Management application TM is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Increased productivity brings increased revenue.
+Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted time will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find use out of this application. This application will help anyone and their team stay focused on whatever project they are working on.
 
 ## Product Reviews
 
@@ -27,7 +27,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ4           |  The program shall describe what a task is about with a description given by the user.                |
 |   REQ5           |  Developers shall be able to view a summary of the tasks created by them, and be able to create a clean spreadsheet of the summary data.    |
 |   REQ6               |   Developers shall be able to easily pause a task that is currently running.           |
-|   REQ7               |  Developers shall be able to set notes for the task they currently working on, seperate from describing the task.     |
+|   REQ7               |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
 |   REQ8               |  Managers shall be able to set notes on tasks Developers are working on.            |
 |   REQ9               |                                                                  |
 |   REQ10               |                                                                  |
