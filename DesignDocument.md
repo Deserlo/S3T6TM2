@@ -2,17 +2,17 @@
 
 ## Introduction
 
-Our Time Management application "TM" is created mainly for developers and managers of small teams to help them start tracking time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will bring increased revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application useful: it will help anyone and their team stay focused on whatever project they are working on.
+Our Time Management application "TM" is created mainly for developers and managers of small teams to help them track time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will increase revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application useful: it will help anyone and their team stay focused on whatever project they are working on.
 
 ## Product Reviews
 
-We have looked into two applications for research purposes: Timely and GetHarvest. The Timely application is a simple application that helps track time, profit and efficiency. They also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
-GetHarvest is a more complex application, that can not only track time, but also estimate how much time a future project may take. Although this is an interesting and useful feature, it is out of the scope of our project.
+We have looked into two applications for research purposes: Timely and GetHarvest. The Timely application is a simple application that helps track time, profit, and efficiency. They also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
+GetHarvest is a more complex application, that not only track time, but also estimate how much time a future project may take. Although this is an interesting and useful feature, it is out of the scope of our project.
 
 
 ## Project Overview
 
-TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or of a single developer who would like to maximize his/her time to increase profits. TM is a desktop application.
+TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or a single developer who would like to maximize his/her time to increase profits. TM is a desktop application.
 
 
 ## Project Architecture
