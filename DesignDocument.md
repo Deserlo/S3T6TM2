@@ -169,3 +169,20 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen.              |
 | 4      | **File Writer** then writes the time that the task is unpaused to a file.   |
 
+| Use case UC-8             | Name: Set Notes                                                           |
+|---------------------------|---------------------------------------------------------------------------|
+| Related requirements      | REQ7                                                                      |
+| Initiating actor          | Manager                                                                   |
+| Actor's goal              | Set notes on a task developer(s) are working on                           |
+| Participating actors      | System, File Writer                                                       |
+| Preconditions             | The task is named. The task has started, and a developer has been assigned|
+| Postconditions            | The developer is notified                                                 |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                   |
+|--------|----------------------------------------------------------------------------------|
+| 1      | **Manager** names the task to set notes on                                       |
+| 2      | **Manager** then selects the option "Comment"                                    |
+| 3      | **System** signals that there is a task name, and the "Comment" option was chosen|
+| 4      | **File Writer** then writes the the task name and the notes to a file            |
