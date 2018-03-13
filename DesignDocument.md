@@ -133,7 +133,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 4      | **File Writer** then writes the time to a file.   |
 
 
-| Use case UC-6             | Name: Pause/Unpause Task              |
+| Use case UC-6             | Name: Pause Task              |
 |---------------------------|-------------------------------|
 | Related requirements      | REQ6                            |
 | Initiating actor          | Developer                     |
