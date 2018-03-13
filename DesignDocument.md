@@ -21,19 +21,20 @@ TM is a Time Management GUI application, that will help teams track time spent o
 ## Requirements
 | Requirement name | Requirement description |
 |------------------|-------------------------|
-|   REQ1       x   | The program shall create and keep a record of the time a task was started when commanded by the user    |
-|   REQ2       x   | The program shall create and keep a record of the time a task was stopped when commanded by the user    |
-|   REQ3      E    | The program shall find the time elapsed between the time a task was started and stopped                 |
-|   REQ4       x   | The program shall describe what a task is about with a description given by the user                    |
-|   REQ5      E    | Users shall be able to view a summary of the tasks created by them, and create and download a spreadsheet of the summary data|
-|   REQ6      Jx   | Developers shall be able to easily pause a task that is currently running                               |
-|   REQ7      Mx   | Developers shall be able to comment on the task they currently working on                               |
-|   REQ8        M x  | Manager(s) shall be able to set a time budget for each task.  |                         
-|   REQ9        A  | Managers shall be able to set due date on a task.   |
-|   REQ10       b   | Managers shall be able to assign a task to a particular developer.         |
-|   REQ11         A | The program shall notify the user of the upcoming due date or budget limit.  |
-|   REQ12         b | Each task shall be categorized under a project, thus to organize the workflow   |
-|   REQ13         b | A user shall be able to log on as a manager or developer, allowing different functions    |
+|   REQ1      x     |  The program shall create and keep a record of the time a task was started when commanded by the user.    |
+|   REQ2       x    |  The program shall create and keep a record of the time a task was stopped when commanded by the user.     |
+|   REQ3     E      |  The program shall find the time elapsed between the time a task was started and stopped.            |
+|   REQ4        x   |  The program shall describe what a task is about with a description given by the user.                |
+|   REQ5    E       |  Users shall be able to view a summary of the tasks created by them, and be able to create and download a clean spreadsheet of the summary data.    |
+|   REQ6        J   |   Developers shall be able to easily pause a task that is currently running.           |
+|   REQ7        M   |  Developers shall be able to set notes for the task they currently working on, separate from describing the task.     |
+|   REQ8      M     |  Managers shall be able to set notes on tasks developers are working on.            |
+|   REQ9        M  | Both managers and developers shall be able to set a time budget for each task.  |                         
+|   REQ10        A  | Managers shall be able to set due date on a task.   |
+|   REQ11       b   | Managers shall be able to assign a task to a particular developer.         |
+|   REQ12         A | The program shall notify the user of the upcoming due date or budget limit.  |
+|   REQ13         b | Each task shall be categorized under a project, thus to organize the workflow   |
+|   REQ14         b | A user shall be able to log on as a manager or developer, allowing different functions    |
 
 ## Use cases
 
@@ -77,23 +78,22 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Use case UC-3             | Name:   Summarize           |
 |---------------------------|-------------------------------|
-| Related requirements      | REQ3,                             |
-| Initiating actor          | Developer                     |
-| Actor's goal              | Get summary on projects/tasks                   |
+| Related requirements      | REQ2, REQ3**, REQ5                             |
+| Initiating actor          | Any of: Developer or Manager                     |
+| Actor's goal              | To get printable summary on projects/tasks                   |
 | Participating actors      | System, FileWriter                             |
-| Preconditions             | The task has name. The task has started and stopped.                             |
-| Postconditions            | The elapsed time from when a task has started and stopped is now stored.                            |
+| Preconditions             | The Project(s)/task(s) have a name. The task(s) have started but not necessarily stopped.    |
+| Postconditions            | Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file       
 #### Flow of events for main success scenario:
 | Number |    Description          |
 |--------|-------------------------|
-| 1      |                 |
-| 2      |                      |
-| 3      |            |
-| 4      |                      |
+| 1      | **Developer/Manager** selects option to "Summarize"                |
+| 2      | **System** gathers all summarized data as it relates to a particular manager or developer  |
+| 3      | **FileWriter** writes summarized data to downloadable file           |
+| 4      |                         |
 | 5      |                         |
 | 6      |                         |
 | 7      |                         |
-| 8      |                         |
 
 | Use case UC-4             | Name: Describe task              |
 |---------------------------|-------------------------------|
@@ -168,7 +168,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen.              |
 | 4      | **File Writer** then writes the time that the task is unpaused to a file.   |
 
-| Use case UC-8             | Name: Comment                                                           |
+| Use case UC-8             | Name: Set Notes                                                           |
 |---------------------------|---------------------------------------------------------------------------|
 | Related requirements      | REQ7                                                                      |
 | Initiating actor          | Manager                                                                   |
@@ -185,22 +185,3 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Manager** then selects the option "Comment"                                    |
 | 3      | **System** signals that there is a task name, and the "Comment" option was chosen|
 | 4      | **File Writer** then writes the the task name and the notes to a file            |
-
-| Use case UC-9             | Name: Set Budget                                                                   |
-|---------------------------|------------------------------------------------------------------------------------|
-| Related requirements      | REQ8                                                                               |
-| Initiating actor          | Manager                                                                            |
-| Actor's goal              | Set time budget to complete a task                                                 |
-| Participating actors      | System, File Writer                                                                |
-| Preconditions             | A project is created and named. The task within has a name. A developer is assigned|
-| Postconditions            | The developer is notified of a task assignment and budget                          |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                   |
-|--------|----------------------------------------------------------------------------------|
-| 1      | **Manager** creates a project with tasks within                                  |
-| 2      | **Manager** then selects the option "Budget"                                     |
-| 3      | **System** signals that there is a task name, and the "Budget" option was chosen |
-| 4      | **File Writer** then writes the the project and task name and the budget         |
-
