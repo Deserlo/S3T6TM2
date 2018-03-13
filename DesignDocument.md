@@ -116,6 +116,15 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 7      |                         |
 | 8      |                         |
 
+ 
+| Use case UC-5             | Name: Log in                    |
+|---------------------------|---------------------------------|
+| Related requirements      | REQ 14                          |
+| Initiating actor          |                                 |
+| Actor's goal              |                                 |
+| Participating actors      |                                 |
+| Preconditions             |                                 |
+| Postconditions            |                                 |   
 
 
 
