@@ -187,7 +187,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Use case UC-9                | Name: Due Date                                                         |
 |-------------------------------------------------------------------------------------------------------|
-| Related requirements         | REQ 10                                                                 |
+| Related requirements         | REQ 9                                                                 |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | A due date is made for a particular task                               |
 | Participating actors         | System, File Writer                                                    |
@@ -205,7 +205,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Use case UC-10               | Name: Notifications                                                      |
 |---------------------------------------------------------------------------------------------------------|
-| Related requirements         | REQ 12                                                                   |
+| Related requirements         | REQ 11                                                                   |
 | Initiating actor             | Developer                                                                |
 | Actor's goal                 | To have a reminder for the user of upcoming due dates or budget limits   |
 | Participating actors         | System, File Writer                                                      |
