@@ -185,3 +185,38 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Manager** then selects the option "Comment"                                    |
 | 3      | **System** signals that there is a task name, and the "Comment" option was chosen|
 | 4      | **File Writer** then writes the the task name and the notes to a file            |
+
+| Use case UC-9                | Name: Due Date                                                         |
+|-------------------------------------------------------------------------------------------------------|
+| Related requirements         | REQ 10                                                                 |
+| Initiating actor             | Manager                                                                |
+| Actor's goal                 | A due date is made for a particular task                               |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | Task is already created                                                |
+| Postconditions               | A task has been given a due date                                       |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | **Manager** picks a task to create a due date for                                    |
+| 2      | **Manager** then selects the option "Due Date"                                       |
+| 3      | **System** signals that there is a task name, and the "Due Date" option was chosen   |
+| 4      | **File Writer** then writes the task name and the given due date                     |
+
+| Use case UC-10               | Name: Notifications                                                      |
+|---------------------------------------------------------------------------------------------------------|
+| Related requirements         | REQ 12                                                                   |
+| Initiating actor             | Developer                                                                |
+| Actor's goal                 | To have a reminder for the user of upcoming due dates or budget limits   |
+| Participating actors         | System, File Writer                                                      |
+| Preconditions                | Task is already created                                                  |
+| Postconditions               | User has been notified                                                   |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                   |
+|--------|----------------------------------------------------------------------------------|
+| 1      | **Developer** sets a time for user to be notified                                |
+| 2      | **System** signals that the timer is done                                        |
+| 3      | **File Writer** then displays the upcoming dates                                 |
