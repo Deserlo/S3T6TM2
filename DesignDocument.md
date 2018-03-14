@@ -28,7 +28,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ5    E  x     |  Users shall be able to view a summary of the tasks created by them, and be able to create and download a clean spreadsheet of the summary data.    |
 |   REQ6      x  J   |   Developers shall be able to easily pause a task that is currently running.           |
 |   REQ7     x M     |  Managers shall be able to set notes on tasks developers are working on.            |
-|   REQ8        M  | Both managers and developers shall be able to set a time budget for each task.  |                         
+|   REQ8       x M  | Both managers and developers shall be able to set a time budget for each task.  |                         
 |   REQ9     x   A  | Managers shall be able to set due date on a task.   |
 |   REQ10       b   | Managers shall be able to assign a task to a particular developer.         |
 |   REQ11      x   A | The program shall notify the user of the upcoming due date or budget limit.  |
@@ -37,79 +37,80 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 ## Use cases
 
-| Use case UC-1             | Name: Start task              |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ1                            |
-| Initiating actor          | Developer                     |
-| Actor's goal              | To start a task at the current time.                    |
-| Participating actors      | System, File Writer                              |
-| Preconditions             | The task is named.                              |
-| Postconditions            | The time when the task was started is now stored.                              |
+| Use case UC-1             | Name: Start task                                   |
+|---------------------------|----------------------------------------------------|
+| Related requirements      | REQ1                                               |
+| Initiating actor          | Developer                                          |
+| Actor's goal              | To start a task at the current time                |
+| Participating actors      | System, File Writer                                |
+| Preconditions             | The task is named                                  |
+| Postconditions            | The time when the task was started is now stored   |
 
 #### Flow of events for main success scenario:
 
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be started.                   |
-| 2      | **Developer** then selects the option "Start Task".                       |
-| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen.              |
-| 4      | **File Writer** then writes the time to a file.                        |
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be started                                           |
+| 2      | **Developer** then selects the option "Start Task"                                   |
+| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen |
+| 4      | **File Writer** then writes the time to a file                                       |
 
 
-| Use case UC-2             | Name: Stop task              |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ2                            |
-| Initiating actor          | Developer                     |
-| Actor's goal              | To stop a task at the current time.                    |
-| Participating actors      | System, File Writer                              |
-| Preconditions             | The task is named. The task has started.                             |
-| Postconditions            | The time when the task was stopped is now stored.                              |
+| Use case UC-2             | Name: Stop task                                    |
+|---------------------------|----------------------------------------------------|
+| Related requirements      | REQ2                                               |
+| Initiating actor          | Developer                                          |
+| Actor's goal              | To stop a task at the current time                 |
+| Participating actors      | System, File Writer                                |
+| Preconditions             | The task is named. The task has started            |
+| Postconditions            | The time when the task was stopped is now stored   |
 
 #### Flow of events for main success scenario:
 
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be stopped.                   |
-| 2      | **Developer** then selects the option "Stop Task".                       |
-| 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen.              |
-| 4      | **File Writer** then writes the time to a file.                        |
+| Number |    Description                                                                      |
+|--------|-------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be stopped                                          |
+| 2      | **Developer** then selects the option "Stop Task"                                   |
+| 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen |
+| 4      | **File Writer** then writes the time to a file                                      |
 
 
-| Use case UC-3             | Name:   Summarize           |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ2, REQ3**, REQ5                             |
-| Initiating actor          | Any of: Developer or Manager                     |
-| Actor's goal              | To get printable summary on projects/tasks                   |
-| Participating actors      | System, FileWriter                             |
-| Preconditions             | The Project(s)/task(s) have a name. The task(s) have started but not necessarily stopped.    |
-| Postconditions            | Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file       
+| Use case UC-3             | Name:   Summarize                                                                              |
+|---------------------------|------------------------------------------------------------------------------------------------|
+| Related requirements      | REQ2, REQ3**, REQ5                                                                             |
+| Initiating actor          | Developer/Manager                                                                              |
+| Actor's goal              | To get printable summary on projects/tasks                                                     |
+| Participating actors      | System, FileWriter                                                                             |
+| Preconditions             | The Project(s)/task(s) have a name. The task(s) have started but not necessarily stopped       |
+| Postconditions            | Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file      
+
 #### Flow of events for main success scenario:
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer/Manager** selects option to "Summarize"                |
+
+| Number |    Description                                                                             |
+|--------|--------------------------------------------------------------------------------------------|
+| 1      | **Developer/Manager** selects option to "Summarize"                                        |
 | 2      | **System** gathers all summarized data as it relates to a particular manager or developer  |
-| 3      | **FileWriter** writes summarized data to downloadable file           |
-| 4      |                         |
-| 5      |                         |
-| 6      |                         |
-| 7      |                         |
+| 3      | **FileWriter** writes summarized data to downloadable file                                 |
 
-| Use case UC-4             | Name: Describe task              |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ4                            |
-| Initiating actor          | Developer                     |
-| Actor's goal              | To add a description to a named task.                    |
-| Participating actors      | System, File Writer                              |
-| Preconditions             | The task is named. The task has started.                             |
-| Postconditions            | The description provided is now stored.                              |
+
+| Use case UC-4             | Name: Describe task                     |
+|---------------------------|-----------------------------------------|
+| Related requirements      | REQ4                                    |
+| Initiating actor          | Developer                               |
+| Actor's goal              | To add a description to a named task    |
+| Participating actors      | System, File Writer                     |
+| Preconditions             | The task is named. The task has started |
+| Postconditions            | The description provided is now stored  |
+
 #### Flow of events for main success scenario:
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be described.                   |
-| 2      | **Developer** then selects the option "Describe Task".|
-| 3      |  **Developer** enters a description for named task             |
-| 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen.                          |
-| 5      | **File Writer** then writes either a new description to file or appends to existing description.                      |
+
+| Number |    Description                                                                                  |
+|--------|-------------------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be described                                                    |
+| 2      | **Developer** then selects the option "Describe Task"                                           |
+| 3      |  **Developer** enters a description for named task                                              |
+| 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen         |
+| 5      | **File Writer** then writes either a new description to file or appends to existing description |                      
 
  
 | Use case UC-5             | Name: Log in                    |
@@ -123,49 +124,50 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 #### Flow of events for main success scenario:
 
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be started.                   |
-| 2      | **Developer** then selects the option "Start Task".                       |
-| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen.              |
-| 4      | **File Writer** then writes the time to a file.   |
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be started                                           |
+| 2      | **Developer** then selects the option "Start Task"                                   |
+| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen |
+| 4      | **File Writer** then writes the time to a file                                       |
 
 
-| Use case UC-6             | Name: Pause Task              |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ6                            |
-| Initiating actor          | Developer                     |
-| Actor's goal              | To start a task at the current time.                    |
-| Participating actors      | System, File Writer                              |
-| Preconditions             | The task is named. The task has started, and is not stopped.                  |
-| Postconditions            | The task is paused.                             |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be paused.                   |
-| 2      | **Developer** then selects the option "Pause Task".                       |
-| 3      | **System** signals that there is a task name, and the "Pause Task" option was chosen.              |
-| 4      | **File Writer** then writes the time paused to a file.   |
-
-| Use case UC-7             | Name: Unpause Task              |
-|---------------------------|-------------------------------|
-| Related requirements      | REQ6                            |
-| Initiating actor          | Developer                     |
-| Actor's goal              | To start a task at the current time.                    |
-| Participating actors      | System, File Writer                              |
-| Preconditions             | The task is named. The task has started, and is not stopped.                  |
-| Postconditions            | The task is unpaused.                             |
+| Use case UC-6             | Name: Pause Task                                            |
+|---------------------------|-------------------------------------------------------------|
+| Related requirements      | REQ6                                                        |
+| Initiating actor          | Developer                                                   |
+| Actor's goal              | To start a task at the current time                         |
+| Participating actors      | System, File Writer                                         |
+| Preconditions             | The task is named. The task has started, and is not stopped |
+| Postconditions            | The task is paused                                          |
 
 #### Flow of events for main success scenario:
 
-| Number |    Description          |
-|--------|-------------------------|
-| 1      | **Developer** names the task to be unpaused.                   |
-| 2      | **Developer** then selects the option "Unpause Task".                       |
-| 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen.              |
-| 4      | **File Writer** then writes the time that the task is unpaused to a file.   |
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be paused                                            |
+| 2      | **Developer** then selects the option "Pause Task"                                   |
+| 3      | **System** signals that there is a task name, and the "Pause Task" option was chosen |
+| 4      | **File Writer** then writes the time paused to a file                                |
+
+
+| Use case UC-7             | Name: Unpause Task                                           |
+|---------------------------|--------------------------------------------------------------|
+| Related requirements      | REQ6                                                         |
+| Initiating actor          | Developer                                                    |
+| Actor's goal              | To start a task at the current time                          |
+| Participating actors      | System, File Writer                                          |
+| Preconditions             | The task is named. The task has started, and is not stopped  |
+| Postconditions            | The task is unpaused                                         |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                         |
+|--------|----------------------------------------------------------------------------------------|
+| 1      | **Developer** names the task to be unpaused                                            |
+| 2      | **Developer** then selects the option "Unpause Task"                                   |
+| 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen |
+| 4      | **File Writer** then writes the time that the task is unpaused to a file               |
 
 | Use case UC-8             | Name: Set Notes                                                           |
 |---------------------------|---------------------------------------------------------------------------|
