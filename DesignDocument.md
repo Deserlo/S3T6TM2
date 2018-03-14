@@ -35,14 +35,14 @@ Server side:
 |   REQ5           |  Users shall be able to view a summary of the tasks created by them, and be able to create and download a clean spreadsheet of the summary data    |
 |   REQ6           |   Developers shall be able to easily pause a task that is currently running                             |
 |   REQ7           |  Managers shall be able to set notes on tasks developers are working on                                 |
-|   REQ8           | Both managers and developers shall be able to set a time budget for each task                           |                         
+|   REQ8           | Both managers and developers shall be able to set a time budget for each task                           |             
 |   REQ9           | Managers shall be able to set due date on a task                                                        |
-|   REQ10       b  | Managers shall be able to assign a task to a particular developer                                       |
+|   REQ10          | Managers shall be able to assign a task to a particular developer                                       |
 |   REQ11          | The program shall notify the user of the upcoming due date or budget limit                              |
-|   REQ12       b  | Each task shall be categorized under a project, thus to organize the workflow                           |
+|   REQ12          | Each task shall be categorized under a project, thus to organize the workflow                           |
 |   REQ13          | A user shall be able to log on as a manager or developer, allowing different functions                  |
 |   REQ14          | A user shall be able to create an account with their own username, password, and user tyoe (manager or developer) |
-|   REQ15       b  | A user shall be able to change the password associated with their username                              |
+|   REQ15          | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
 
@@ -333,7 +333,7 @@ Server side:
 
 | Use case  UC - 14            | Name: Assign Task                                                      |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 10,                                                                |
+| Related requirements         | REQ 10                                                                 |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | Assign a task to a specific developer                                  |
 | Participating actors         | System, File Writer                                                    |
@@ -347,6 +347,29 @@ Server side:
 | 1  ->  | **Manager** Selects a task and a developer                                           |
 | 2  <-  | **System** verify that the task and the developer exist                              |
 | 3  <-  | **File Writer** writes the associated developer to the task                          |
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+| Use case  UC - 15            | Name: Assign Project                                                   |
+|------------------------------|------------------------------------------------------------------------|
+| Related requirements         | REQ 12                                                                 |
+| Initiating actor             | User                                                                   |
+| Actor's goal                 | Assign Task to be associated with a project                            |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | Task is already created                                                |
+| Postconditions               | Task is associated with the project specified                          |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1  ->  | **User** enters a task name and project name                                         |
+| 2  <-  | **System** verify that the task exist                                                |
+| 3  <-  | **File Writer** writes the associated project name to the task                       |
+
+
 
 
 
