@@ -32,10 +32,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ9           | Managers shall be able to set due date on a task                                                        |
 |   REQ10       b  | Managers shall be able to assign a task to a particular developer                                       |
 |   REQ11          | The program shall notify the user of the upcoming due date or budget limit                              |
-|   REQ12        b | Each task shall be categorized under a project, thus to organize the workflow                           |
-|   REQ13        b | A user shall be able to log on as a manager or developer, allowing different functions                  |
+|   REQ12       b  | Each task shall be categorized under a project, thus to organize the workflow                           |
+|   REQ13          | A user shall be able to log on as a manager or developer, allowing different functions                  |
 |   REQ14          | A user shall be able to create an account with their own username, password, and user tyoe (manager or developer) |
-|   REQ15          | A user shall be able to change the password associated with their username                              |
+|   REQ15       b  | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
 
@@ -253,3 +253,20 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Budget" option was chosen     |
 | 4      | **File Writer** then writes the task name and the given budget                       |
 
+| Use case UC-12               | Name: Create Account                                                   |
+|------------------------------|------------------------------------------------------------------------|
+| Related requirements         | REQ 14                                                                 |
+| Initiating actor             | Manager, Developer                                                     |
+| Actor's goal                 | Create an account with their log in credentials                        |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | Account is not already create                                          |
+| Postconditions               | None worth mentioning                                                  |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1  ->  | **User** Enter in a username and password                                            |
+| 2  ->  | **User** selects a user type (manager or developer)                                  |
+| 3  <-  | **System** verify that the username does not already exist                           |
+| 4  <-  | **File Writer** writes the username and its associated password and user type        |
