@@ -115,14 +115,18 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 5      | **File Writer** then writes either a new description to file or appends to existing description |                      
 
  
-| Use case UC-5             | Name: Log in                    |
-|---------------------------|---------------------------------|
-| Related requirements      | REQ 14                          |
-| Initiating actor          |                                 |
-| Actor's goal              |                                 |
-| Participating actors      |                                 |
-| Preconditions             |                                 |
-| Postconditions            |                                 |   
+| Use case UC-5             | Name: Log in                                                  |
+|---------------------------|---------------------------------------------------------------|
+| Related requirements      | REQ 14                                                        |
+| Initiating actor          | Manager or Developer                                          |
+| Actor's goal              | To log into their account to be able to use the application   |
+| Participating actors      | System, Username Checker, Password Checker                    |
+| Preconditions             | Username exist in the system files                            |
+| Postconditions            | User is logged in with approriate functions avaliable         |
+|-------------------------------------------------------------------------------------------|
+|Flow of events for main succes scenario:                     |
+|Number| Description |
+|------|-------------|
 
 #### Flow of events for main success scenario:
 
