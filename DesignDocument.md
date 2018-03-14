@@ -19,6 +19,8 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with he use of a remote database.
 
+![Architecture](Pic1.png)
+
 Client side:
 
 
