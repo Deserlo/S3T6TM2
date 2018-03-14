@@ -59,10 +59,10 @@ Server side:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be started                                           |
-| 2      | **Developer** then selects the option "Start Task"                                   |
-| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen |
-| 4      | **File Writer** then writes the time to a file                                       |
+| 1  ->  | **Developer** names the task to be started                                           |
+| 2  ->  | **Developer** then selects the option "Start Task"                                   |
+| 3  <-  | **System** signals that there is a task name, and the "Start Task" option was chosen |
+| 4  <-  | **File Writer** then writes the time to a file                                       |
 
 &nbsp;
 &nbsp;
@@ -81,10 +81,10 @@ Server side:
 
 | Number |    Description                                                                      |
 |--------|-------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be stopped                                          |
-| 2      | **Developer** then selects the option "Stop Task"                                   |
-| 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen |
-| 4      | **File Writer** then writes the time to a file                                      |
+| 1  ->  | **Developer** names the task to be stopped                                          |
+| 2  ->  | **Developer** then selects the option "Stop Task"                                   |
+| 3  <-  | **System** signals that there is a task name, and the "Stop Task" option was chosen |
+| 4  <-  | **File Writer** then writes the time to a file                                      |
 
 &nbsp;
 &nbsp;
@@ -103,9 +103,9 @@ Server side:
 
 | Number |    Description                                                                             |
 |--------|--------------------------------------------------------------------------------------------|
-| 1      | **Developer/Manager** selects option to "Summarize"                                        |
-| 2      | **System** gathers all summarized data as it relates to a particular manager or developer  |
-| 3      | **FileWriter** writes summarized data to downloadable file                                 |
+| 1 ->   | **Developer/Manager** selects option to "Summarize"                                        |
+| 2 <-   | **System** gathers all summarized data as it relates to a particular manager or developer  |
+| 3 <-   | **FileWriter** writes summarized data to downloadable file                                 |
 
 &nbsp;
 &nbsp;
@@ -124,11 +124,11 @@ Server side:
 
 | Number |    Description                                                                                  |
 |--------|-------------------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be described                                                    |
-| 2      | **Developer** then selects the option "Describe Task"                                           |
-| 3      |  **Developer** enters a description for named task                                              |
-| 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen         |
-| 5      | **File Writer** then writes either a new description to file or appends to existing description |   
+| 1  ->  | **Developer** names the task to be described                                                    |
+| 2  ->  | **Developer** then selects the option "Describe Task"                                           |
+| 3  ->  |  **Developer** enters a description for named task                                              |
+| 4  <-  | **System** signals that there is a task name, and the "Describe Task" option was chosen         |
+| 5  <-  | **File Writer** then writes either a new description to file or appends to existing description |   
 
 &nbsp;
 &nbsp;
@@ -169,10 +169,10 @@ Server side:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be paused                                            |
-| 2      | **Developer** then selects the option "Pause Task"                                   |
-| 3      | **System** signals that there is a task name, and the "Pause Task" option was chosen |
-| 4      | **File Writer** then writes the time paused to a file                                |
+| 1  ->  | **Developer** names the task to be paused                                            |
+| 2  ->  | **Developer** then selects the option "Pause Task"                                   |
+| 3  <-  | **System** signals that there is a task name, and the "Pause Task" option was chosen |
+| 4  <-  | **File Writer** then writes the time paused to a file                                |
 
 &nbsp;
 &nbsp;
@@ -191,10 +191,10 @@ Server side:
 
 | Number |    Description                                                                         |
 |--------|----------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be unpaused                                            |
-| 2      | **Developer** then selects the option "Unpause Task"                                   |
-| 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen |
-| 4      | **File Writer** then writes the time that the task is unpaused to a file               |
+| 1  ->  | **Developer** names the task to be unpaused                                            |
+| 2  ->  | **Developer** then selects the option "Unpause Task"                                   |
+| 3  <-  | **System** signals that there is a task name, and the "Unpause Task" option was chosen |
+| 4  <-  | **File Writer** then writes the time that the task is unpaused to a file               |
 
 &nbsp;
 &nbsp;
@@ -213,10 +213,10 @@ Server side:
 
 | Number |    Description                                                                   |
 |--------|----------------------------------------------------------------------------------|
-| 1      | **Manager** names the task to set notes on                                       |
-| 2      | **Manager** then selects the option "Comment"                                    |
-| 3      | **System** signals that there is a task name, and the "Comment" option was chosen|
-| 4      | **File Writer** then writes the the task name and the notes to a file            |
+| 1  ->  | **Manager** names the task to set notes on                                       |
+| 2  ->  | **Manager** then selects the option "Comment"                                    |
+| 3  <-  | **System** signals that there is a task name, and the "Comment" option was chosen|
+| 4  <-  | **File Writer** then writes the the task name and the notes to a file            |
 
 &nbsp;
 &nbsp;
@@ -235,10 +235,10 @@ Server side:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1      | **Manager** picks a task to create a due date for                                    |
-| 2      | **Manager** then selects the option "Due Date"                                       |
-| 3      | **System** signals that there is a task name, and the "Due Date" option was chosen   |
-| 4      | **File Writer** then writes the task name and the given due date                     |
+| 1  ->  | **Manager** picks a task to create a due date for                                    |
+| 2  ->  | **Manager** then selects the option "Due Date"                                       |
+| 3  <-  | **System** signals that there is a task name, and the "Due Date" option was chosen   |
+| 4  <-  | **File Writer** then writes the task name and the given due date                     |
 
 &nbsp;
 &nbsp;
@@ -257,9 +257,9 @@ Server side:
 
 | Number |    Description                                                                   |
 |--------|----------------------------------------------------------------------------------|
-| 1      | **Developer** sets a time for user to be notified                                |
-| 2      | **System** signals that the timer is done                                        |
-| 3      | **File Writer** then displays the upcoming dates                                 |
+| 1  ->  | **Developer** sets a time for user to be notified                                |
+| 2  <-  | **System** signals that the timer is done                                        |
+| 3  <-  | **File Writer** then displays the upcoming dates                                 |
 
 &nbsp;
 &nbsp;
@@ -278,10 +278,10 @@ Server side:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1      | **User** picks a task to create a budget for                                         |
-| 2      | **User** then selects the option "Budget"                                            |
-| 3      | **System** signals that there is a task name, and the "Budget" option was chosen     |
-| 4      | **File Writer** then writes the task name and the given budget                       |
+| 1  ->  | **User** picks a task to create a budget for                                         |
+| 2  ->  | **User** then selects the option "Budget"                                            |
+| 3  <-  | **System** signals that there is a task name, and the "Budget" option was chosen     |
+| 4  <-  | **File Writer** then writes the task name and the given budget                       |
 
 &nbsp;
 &nbsp;
