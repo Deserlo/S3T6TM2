@@ -123,9 +123,15 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Participating actors      | System, Username Checker, Password Checker                    |
 | Preconditions             | Username exist in the system files                            |
 | Postconditions            | User is logged in with approriate functions avaliable         |
-|-
-|<td colspan=2>Flow of events for main succes scenario:                     |
-|Number| Description |
+
+#### Flow of events for main succes scenario:
+
+|Number| Description                                                             |
+|------|-------------------------------------------------------------------------|
+| 1 -> | **User** enters their username and password                             |
+| 2 -> | **User** hits the log in button                                         |
+| 3 <- | **System** verifys the information                                      |
+| 4 <- | **System** displays the apporiate user interface (manager or developer) |
 
 
 #### Flow of events for main success scenario:
