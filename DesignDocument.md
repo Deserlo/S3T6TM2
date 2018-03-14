@@ -271,6 +271,8 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3  <-  | **System** verifies that the username does not already exist                         |
 | 4  <-  | **File Writer** writes the username and its associated password and user type        |
 
+&nbsp;
+&nbsp;
 
 | Use case UC-13               | Name: Changing Password                                                |
 |------------------------------|------------------------------------------------------------------------|
