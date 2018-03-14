@@ -219,3 +219,22 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 1      | **Developer** sets a time for user to be notified                                |
 | 2      | **System** signals that the timer is done                                        |
 | 3      | **File Writer** then displays the upcoming dates                                 |
+
+| Use case UC-10               | Name: Budget                                                           |
+|-------------------------------------------------------------------------------------------------------|
+| Related requirements         | REQ 8                                                                  |
+| Initiating actor             | Manager, Developer                                                     |
+| Actor's goal                 | Set time budget for a task                                             |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | Task is already created                                                |
+| Postconditions               | A budget is set up                                                     |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | **User** picks a task to create a budget for                                         |
+| 2      | **User** then selects the option "Budget"                                            |
+| 3      | **System** signals that there is a task name, and the "Budget" option was chosen     |
+| 4      | **File Writer** then writes the task name and the given budget                       |
+
