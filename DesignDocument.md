@@ -57,6 +57,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Start Task" option was chosen |
 | 4      | **File Writer** then writes the time to a file                                       |
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-2             | Name: Stop task                                    |
 |---------------------------|----------------------------------------------------|
@@ -76,6 +79,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Stop Task" option was chosen |
 | 4      | **File Writer** then writes the time to a file                                      |
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-3             | Name:   Summarize                                                                              |
 |---------------------------|------------------------------------------------------------------------------------------------|
@@ -94,6 +100,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **System** gathers all summarized data as it relates to a particular manager or developer  |
 | 3      | **FileWriter** writes summarized data to downloadable file                                 |
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-4             | Name: Describe task                     |
 |---------------------------|-----------------------------------------|
@@ -112,8 +121,11 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Developer** then selects the option "Describe Task"                                           |
 | 3      |  **Developer** enters a description for named task                                              |
 | 4      | **System** signals that there is a task name, and the "Describe Task" option was chosen         |
-| 5      | **File Writer** then writes either a new description to file or appends to existing description |                      
+| 5      | **File Writer** then writes either a new description to file or appends to existing description |   
 
+&nbsp;
+&nbsp;
+&nbsp;
  
 | Use case UC-5             | Name: Log in                                                  |
 |---------------------------|---------------------------------------------------------------|
@@ -133,16 +145,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3 <- | **System** verifys the information                                      |
 | 4 <- | **System** displays the apporiate user interface (manager or developer) |
 
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                       |
-|--------|--------------------------------------------------------------------------------------|
-| 1      | **Developer** names the task to be started                                           |
-| 2      | **Developer** then selects the option "Start Task"                                   |
-| 3      | **System** signals that there is a task name, and the "Start Task" option was chosen |
-| 4      | **File Writer** then writes the time to a file                                       |
-
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-6             | Name: Pause Task                                            |
 |---------------------------|-------------------------------------------------------------|
@@ -162,6 +167,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Pause Task" option was chosen |
 | 4      | **File Writer** then writes the time paused to a file                                |
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-7             | Name: Unpause Task                                           |
 |---------------------------|--------------------------------------------------------------|
@@ -181,6 +189,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Unpause Task" option was chosen |
 | 4      | **File Writer** then writes the time that the task is unpaused to a file               |
 
+&nbsp;
+&nbsp;
+&nbsp;
+
 | Use case UC-8             | Name: Set Notes                                                           |
 |---------------------------|---------------------------------------------------------------------------|
 | Related requirements      | REQ7                                                                      |
@@ -198,6 +210,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **Manager** then selects the option "Comment"                                    |
 | 3      | **System** signals that there is a task name, and the "Comment" option was chosen|
 | 4      | **File Writer** then writes the the task name and the notes to a file            |
+
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-9                | Name: Due Date                                                         |
 |------------------------------|------------------------------------------------------------------------|
@@ -217,6 +233,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Due Date" option was chosen   |
 | 4      | **File Writer** then writes the task name and the given due date                     |
 
+&nbsp;
+&nbsp;
+&nbsp;
+
 | Use case UC-10               | Name: Notifications                                                      |
 |------------------------------|--------------------------------------------------------------------------|
 | Related requirements         | REQ 11                                                                   |
@@ -234,6 +254,9 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 2      | **System** signals that the timer is done                                        |
 | 3      | **File Writer** then displays the upcoming dates                                 |
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 | Use case UC-11               | Name: Budget                                                           |
 |------------------------------|------------------------------------------------------------------------|
@@ -253,6 +276,10 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3      | **System** signals that there is a task name, and the "Budget" option was chosen     |
 | 4      | **File Writer** then writes the task name and the given budget                       |
 
+&nbsp;
+&nbsp;
+&nbsp;
+
 | Use case UC-12               | Name: Create Account                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 14                                                                 |
@@ -271,6 +298,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 3  <-  | **System** verifies that the username does not already exist                         |
 | 4  <-  | **File Writer** writes the username and its associated password and user type        |
 
+&nbsp;
 &nbsp;
 &nbsp;
 
