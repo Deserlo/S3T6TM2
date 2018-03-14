@@ -19,8 +19,6 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with he use of a remote database.
 
-![Architecture](Pic1.png)
-
 Client side:
 
 
@@ -328,4 +326,28 @@ Server side:
 | 2  <-  | **System** verify that the username exist                                            |
 | 3  ->  | **User** enters a password                                                           |
 | 4  <-  | **File Writer** writes the new password associated to the user name                  |
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+| Use case  UC - 14            | Name: Assign Task                                                      |
+|------------------------------|------------------------------------------------------------------------|
+| Related requirements         | REQ 10                                                                 |
+| Initiating actor             | Manager                                                                |
+| Actor's goal                 | Assign a task to a specific developer                                  |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | Account with username exist                                            |
+| Postconditions               | Account's password is updated                                          |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1  ->  | **User** enters in a username                                                        |
+| 2  <-  | **System** verify that the username exist                                            |
+| 3  ->  | **User** enters a password                                                           |
+| 4  <-  | **File Writer** writes the new password associated to the user name                  |
+
+
 
