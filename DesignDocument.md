@@ -259,21 +259,18 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | Initiating actor             | Manager, Developer                                                     |
 | Actor's goal                 | Create an account with their log in credentials                        |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Account is not already create                                          |
-| Postconditions               | None worth mentioning                                                  |
+| Preconditions                | Account is not already created                                         |
+| Postconditions               | Account with username/password combination is created                  |
 
 #### Flow of events for main success scenario:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** Enter in a username and password                                            |
+| 1  ->  | **User** enters in a username and password                                           |
 | 2  ->  | **User** selects a user type (manager or developer)                                  |
-| 3  <-  | **System** verify that the username does not already exist                           |
+| 3  <-  | **System** verifies that the username does not already exist                         |
 | 4  <-  | **File Writer** writes the username and its associated password and user type        |
 
-&NewLine;
-&NewLine;
-&NewLine;
 
 | Use case UC-13               | Name: Changing Password                                                |
 |------------------------------|------------------------------------------------------------------------|
@@ -288,8 +285,8 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** Enter in a username and password                                            |
+| 1  ->  | **User** enters in a username and password                                           |
 | 2  ->  | **User** selects a user type (manager or developer)                                  |
-| 3  <-  | **System** verify that the username does not already exist                           |
+| 3  <-  | **System** verifies that the username does not already exist                         |
 | 4  <-  | **File Writer** writes the username and its associated password and user type        |
 
