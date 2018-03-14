@@ -186,7 +186,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 4      | **File Writer** then writes the the task name and the notes to a file            |
 
 | Use case UC-9                | Name: Due Date                                                         |
-|-------------------------------------------------------------------------------------------------------|
+|------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 9                                                                  |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | A due date is made for a particular task                               |
@@ -204,7 +204,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 | 4      | **File Writer** then writes the task name and the given due date                     |
 
 | Use case UC-10               | Name: Notifications                                                      |
-|---------------------------------------------------------------------------------------------------------|
+|------------------------------|--------------------------------------------------------------------------|
 | Related requirements         | REQ 11                                                                   |
 | Initiating actor             | Developer                                                                |
 | Actor's goal                 | To have a reminder for the user of upcoming due dates or budget limits   |
@@ -222,7 +222,7 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 
 | Use case UC-11               | Name: Budget                                                           |
-|-------------------------------------------------------------------------------------------------------|
+|------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 8                                                                  |
 | Initiating actor             | Manager, Developer                                                     |
 | Actor's goal                 | Set time budget for a task                                             |
