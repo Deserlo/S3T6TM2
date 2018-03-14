@@ -34,6 +34,8 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |   REQ11          | The program shall notify the user of the upcoming due date or budget limit                              |
 |   REQ12        b | Each task shall be categorized under a project, thus to organize the workflow                           |
 |   REQ13        b | A user shall be able to log on as a manager or developer, allowing different functions                  |
+|   REQ14          | A user shall be able to create an account with their own username, password, and user tyoe (manager or developer) |
+|   REQ15          | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
 
