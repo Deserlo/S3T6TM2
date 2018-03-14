@@ -333,21 +333,20 @@ Server side:
 
 | Use case  UC - 14            | Name: Assign Task                                                      |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 10                                                                 |
+| Related requirements         | REQ 10,                                                                |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | Assign a task to a specific developer                                  |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Account with username exist                                            |
-| Postconditions               | Account's password is updated                                          |
+| Preconditions                | Task is already created, there are existing developer                  |
+| Postconditions               | Task is associated with developer                                      |
 
 #### Flow of events for main success scenario:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters in a username                                                        |
-| 2  <-  | **System** verify that the username exist                                            |
-| 3  ->  | **User** enters a password                                                           |
-| 4  <-  | **File Writer** writes the new password associated to the user name                  |
+| 1  ->  | **Manager** Selects a task and a developer                                           |
+| 2  <-  | **System** verify that the task and the developer exist                              |
+| 3  <-  | **File Writer** writes the associated developer to the task                          |
 
 
 
