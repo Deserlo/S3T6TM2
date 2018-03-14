@@ -306,17 +306,17 @@ TM is a Time Management GUI application, that will help teams track time spent o
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 15                                                                 |
 | Initiating actor             | User                                                                   |
-| Actor's goal                 | Create an account with their log in credentials                        |
+| Actor's goal                 | Change password associated with a specific username                    |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Account is not already create                                          |
-| Postconditions               | None worth mentioning                                                  |
+| Preconditions                | Account with username exist                                            |
+| Postconditions               | Account's password is updated                                          |
 
 #### Flow of events for main success scenario:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters in a username and password                                           |
-| 2  ->  | **User** selects a user type (manager or developer)                                  |
-| 3  <-  | **System** verifies that the username does not already exist                         |
-| 4  <-  | **File Writer** writes the username and its associated password and user type        |
+| 1  ->  | **User** enters in a username                                                        |
+| 2  <-  | **System** verify that the username exist                                            |
+| 3  ->  | **User** enters a password                                                           |
+| 4  <-  | **File Writer** writes the new password associated to the user name                  |
 
