@@ -9,6 +9,15 @@ Our Time Management application "TM" is created mainly for developers and manage
 We have looked into two applications for research purposes: Timely and GetHarvest. The Timely application is a simple application that helps track time, profit, and efficiency. They also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
 GetHarvest is a more complex application, that not only track time, but also estimate how much time a future project may take. Although this is an interesting and useful feature, it is out of the scope of our project.
 
+Ideas of ours influenced by Timely
+* Beautiful Spreadsheets
+* A budget variable instead of size
+* Multiple projects
+
+Ideas of ours influenced by Timely
+* Easy to use pause buttons.
+* Spreadsheets that show time
+
 
 ## Project Overview
 
