@@ -14,7 +14,7 @@ Ideas of ours influenced by Timely
 * A budget variable instead of size
 * Multiple projects
 
-Ideas of ours influenced by Timely
+Ideas of ours influenced by GetHarvest
 * Easy to use pause buttons.
 * Spreadsheets that show time
 
