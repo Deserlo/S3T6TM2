@@ -28,6 +28,8 @@ TM is a Time Management GUI application, that will help teams track time spent o
 
 We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with he use of a remote database.
 
+![Architecture](Pic1-Shrunk.png)
+
 **Client side:** will be implemented with the use of Java8 and a choice of GUI library between Swing or JavaFX.
 
 **Server side:** MySQL for implementing a simple DBMS, which will store the information such as login data and summaries.
