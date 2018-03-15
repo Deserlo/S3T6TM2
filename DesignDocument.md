@@ -174,7 +174,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor          | Developer                                                   |
 | Actor's goal              | To start a task at the current time                         |
 | Participating actors      | System, File Writer                                         |
-| Preconditions             | The task is named. The task has started, and is not stopped |
+| Preconditions             | The task is named. The task has started, and has not stopped|
 | Postconditions            | The task is paused                                          |
 
 #### Flow of events for main success scenario:
@@ -196,7 +196,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor          | Developer                                                    |
 | Actor's goal              | To start a task at the current time                          |
 | Participating actors      | System, File Writer                                          |
-| Preconditions             | The task is named. The task has started, and is not stopped  |
+| Preconditions             | The task is named. The task has started, and has not stopped |
 | Postconditions            | The task is unpaused                                         |
 
 #### Flow of events for main success scenario:
@@ -219,7 +219,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Actor's goal              | Set notes on a task developer(s) are working on                           |
 | Participating actors      | System, File Writer                                                       |
 | Preconditions             | The task is named. The task has started, and a developer has been assigned|
-| Postconditions            | The developer is notified                                                 |
+| Postconditions            | Notes are added to the task. The developer is notified of these notes.    |
 
 #### Flow of events for main success scenario:
 
@@ -328,7 +328,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Change password associated with a specific username                    |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Account with username exist                                            |
+| Preconditions                | Account with specific username exists                                  |
 | Postconditions               | Account's password is updated                                          |
 
 #### Flow of events for main success scenario:
@@ -350,8 +350,8 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | Assign a task to a specific developer                                  |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Task is already created, there are existing developer                  |
-| Postconditions               | Task is associated with developer                                      |
+| Preconditions                | Task is already created, there are existing developers                 |
+| Postconditions               | Task is associated with a developer                                    |
 
 #### Flow of events for main success scenario:
 
