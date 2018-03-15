@@ -399,10 +399,10 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a name                                                               |
-| 1  ->  | **User** Selects "Create Project"                                                    |
-| 2  <-  | **System** verifies that the project under that name does not already exist.         |
-| 3  <-  | **File Writer** creates the project under that project name.                         |
+| 1  ->  | **User** enters a name.                                                              |
+| 2  ->  | **User** Selects "Create Project".                                                   |
+| 3  <-  | **System** verifies that the project under that name does not already exist.         |
+| 4  <-  | **File Writer** creates the project under that project name.                         |
 
 
 
