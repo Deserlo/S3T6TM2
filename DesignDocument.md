@@ -16,7 +16,7 @@ The **Timely** application is a simple application that helps track time, profit
 * Organizing tasks through multiple projects
 
 **Ideas of ours influenced by GetHarvest:**
-* Easy to use pause buttons.
+* Easy to use pause buttons
 * Spreadsheets that show time
 
 
@@ -58,7 +58,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 ## Use cases
 
-| Use case UC-1             | Name: Start task                                   |
+| Use case ***UC-1***             | Name: Start task                                   |
 |---------------------------|----------------------------------------------------|
 | Related requirements      | REQ1                                               |
 | Initiating actor          | Developer                                          |
@@ -80,7 +80,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-2             | Name: Stop task                                    |
+| Use case ***UC-2***             | Name: Stop task                                    |
 |---------------------------|----------------------------------------------------|
 | Related requirements      | REQ2                                               |
 | Initiating actor          | Developer                                          |
@@ -102,7 +102,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-3             | Name:   Summarize                                                                              |
+| Use case ***UC-3***             | Name:   Summarize                                                                              |
 |---------------------------|------------------------------------------------------------------------------------------------|
 | Related requirements      | REQ2, REQ3**, REQ5                                                                             |
 | Initiating actor          | User                                                                                           |
@@ -123,7 +123,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-4             | Name: Describe task                     |
+| Use case ***UC-4***             | Name: Describe task                     |
 |---------------------------|-----------------------------------------|
 | Related requirements      | REQ4                                    |
 | Initiating actor          | Developer                               |
@@ -146,7 +146,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
  
-| Use case UC-5             | Name: Log in                                                  |
+| Use case ***UC-5***             | Name: Log in                                                  |
 |---------------------------|---------------------------------------------------------------|
 | Related requirements      | REQ 13, REQ 14, REQ 15                                        |
 | Initiating actor          | User                                                          |
@@ -168,7 +168,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-6             | Name: Pause Task                                            |
+| Use case ***UC-6***             | Name: Pause Task                                            |
 |---------------------------|-------------------------------------------------------------|
 | Related requirements      | REQ6                                                        |
 | Initiating actor          | Developer                                                   |
@@ -190,7 +190,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-7             | Name: Unpause Task                                           |
+| Use case ***UC-7***             | Name: Unpause Task                                           |
 |---------------------------|--------------------------------------------------------------|
 | Related requirements      | REQ6                                                         |
 | Initiating actor          | Developer                                                    |
@@ -212,7 +212,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-8             | Name: Set Notes                                                           |
+| Use case ***UC-8***             | Name: Set Notes                                                           |
 |---------------------------|---------------------------------------------------------------------------|
 | Related requirements      | REQ7                                                                      |
 | Initiating actor          | Manager                                                                   |
@@ -234,7 +234,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-9                | Name: Due Date                                                         |
+| Use case ***UC-9***                | Name: Due Date                                                         |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 9                                                                  |
 | Initiating actor             | Manager                                                                |
@@ -256,7 +256,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-10               | Name: Notifications                                                      |
+| Use case ***UC-10***               | Name: Notifications                                                      |
 |------------------------------|--------------------------------------------------------------------------|
 | Related requirements         | REQ 11                                                                   |
 | Initiating actor             | Developer                                                                |
@@ -277,7 +277,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-11               | Name: Budget                                                           |
+| Use case ***UC-11***               | Name: Budget                                                           |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 8                                                                  |
 | Initiating actor             | User                                                                   |
@@ -300,7 +300,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-12               | Name: Create Account                                                   |
+| Use case ***UC-12***               | Name: Create Account                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 14                                                                 |
 | Initiating actor             | User                                                                   |
@@ -322,7 +322,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case UC-13               | Name: Changing Password                                                |
+| Use case ***UC-13***               | Name: Changing Password                                                |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 15                                                                 |
 | Initiating actor             | User                                                                   |
@@ -344,7 +344,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  UC - 14            | Name: Assign Task                                                      |
+| Use case  ***UC-14***            | Name: Assign Task                                                      |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 10                                                                 |
 | Initiating actor             | Manager                                                                |
@@ -365,7 +365,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  UC - 15            | Name: Assign Project                                                   |
+| Use case  ***UC-15***            | Name: Assign Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 12                                                                 |
 | Initiating actor             | User                                                                   |
@@ -386,7 +386,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  UC - 16            | Name: Create Project                                                   |
+| Use case  ***UC-16***            | Name: Create Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 12                                                                 |
 | Initiating actor             | User                                                                   |
