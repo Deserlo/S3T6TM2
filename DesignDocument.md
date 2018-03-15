@@ -48,12 +48,12 @@ We will be implementing a two-tier client/server architecture for the TM project
 |   REQ6           |   Developers shall be able to easily pause a task that is currently running                             |
 |   REQ7           |  Managers shall be able to set notes on tasks developers are working on                                 |
 |   REQ8           | Both managers and developers shall be able to set a time budget for each task                           |             
-|   REQ9           | Managers shall be able to set due date on a task                                                        |
+|   REQ9           | Managers shall be able to set a due date for a task                                                     |
 |   REQ10          | Managers shall be able to assign a task to a particular developer                                       |
 |   REQ11          | The program shall notify the user of the upcoming due date or budget limit                              |
 |   REQ12          | Each task shall be categorized under a project, thus to organize the workflow                           |
 |   REQ13          | A user shall be able to log on as a manager or developer, allowing different functions                  |
-|   REQ14          | A user shall be able to create an account with their own username, password, and user tyoe (manager or developer) |
+|   REQ14          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
 |   REQ15          | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
@@ -148,7 +148,7 @@ We will be implementing a two-tier client/server architecture for the TM project
  
 | Use case UC-5             | Name: Log in                                                  |
 |---------------------------|---------------------------------------------------------------|
-| Related requirements      | REQ 14, REQ 13                                                |
+| Related requirements      | REQ 13, REQ 14, REQ 15                                        |
 | Initiating actor          | User                                                          |
 | Actor's goal              | To log into their account to be able to use the application   |
 | Participating actors      | System, Username Checker, Password Checker                    |
