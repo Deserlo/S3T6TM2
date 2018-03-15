@@ -28,7 +28,7 @@ When users open up TM, they are greeted with a log in/create account graphical u
 
 ## Project Architecture
 
-We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with he use of a remote database.
+We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with the use of a remote database.
 
 ![Architecture](Pic1-Shrunk.png)
 
