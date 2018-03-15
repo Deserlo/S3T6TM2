@@ -371,16 +371,38 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Assign Task to be associated with a project                            |
 | Participating actors         | System, File Writer                                                    |
-| Preconditions                | Task is already created                                                |
+| Preconditions                | Task is already created, a project is already created                  |
 | Postconditions               | Task is associated with the project specified                          |
 
 #### Flow of events for main success scenario:
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a task name and project name                                         |
-| 2  <-  | **System** verify that the task exist                                                |
-| 3  <-  | **File Writer** writes the associated project name to the task                       |
+| 1  ->  | **User** enters a task name and project name.                                        |
+| 2  <-  | **System** verifies that the task exist.                                             |
+| 3  <-  | **File Writer** writes the associated project name to the task.                      |
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+| Use case  UC - 16            | Name: Create Project                                                   |
+|------------------------------|------------------------------------------------------------------------|
+| Related requirements         | REQ 12                                                                 |
+| Initiating actor             | User                                                                   |
+| Actor's goal                 | Create a project to subdivide tasks                                    |
+| Participating actors         | System, File Writer                                                    |
+| Preconditions                | A project with the chosen name is not already created.                 |
+| Postconditions               | A project with the chosen name is now created.                         |
+
+#### Flow of events for main success scenario:
+
+| Number |    Description                                                                       |
+|--------|--------------------------------------------------------------------------------------|
+| 1  ->  | **User** enters a name                                                               |
+| 1  ->  | **User** Selects "Create Project"                                                    |
+| 2  <-  | **System** verifies that the project under that name does not already exist.         |
+| 3  <-  | **File Writer** creates the project under that project name.                         |
 
 
 
