@@ -12,7 +12,7 @@ GetHarvest is a more complex application, that not only track time, but also est
 Ideas of ours influenced by Timely
 * Beautiful Spreadsheets
 * A budget variable instead of size
-* Multiple projects
+* Organizing tasks through multiple projects
 
 Ideas of ours influenced by GetHarvest
 * Easy to use pause buttons.
