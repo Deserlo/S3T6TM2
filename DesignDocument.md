@@ -104,7 +104,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Use case UC-3             | Name:   Summarize                                                                              |
 |---------------------------|------------------------------------------------------------------------------------------------|
 | Related requirements      | REQ2, REQ3**, REQ5                                                                             |
-| Initiating actor          | Developer/Manager                                                                              |
+| Initiating actor          | User                                                                                           |
 | Actor's goal              | To get printable summary on projects/tasks                                                     |
 | Participating actors      | System, FileWriter                                                                             |
 | Preconditions             | The Project(s)/task(s) have a name. The task(s) have started but not necessarily stopped       |
@@ -114,7 +114,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                             |
 |--------|--------------------------------------------------------------------------------------------|
-| 1 ->   | **Developer/Manager** selects option to "Summarize"                                        |
+| 1 ->   | **User** selects option to "Summarize"                                                     |
 | 2 <-   | **System** gathers all summarized data as it relates to a particular manager or developer  |
 | 3 <-   | **FileWriter** writes summarized data to downloadable file                                 |
 
@@ -148,7 +148,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Use case UC-5             | Name: Log in                                                  |
 |---------------------------|---------------------------------------------------------------|
 | Related requirements      | REQ 14                                                        |
-| Initiating actor          | Manager or Developer                                          |
+| Initiating actor          | User                                                          |
 | Actor's goal              | To log into their account to be able to use the application   |
 | Participating actors      | System, Username Checker, Password Checker                    |
 | Preconditions             | Username exist in the system files                            |
@@ -279,7 +279,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Use case UC-11               | Name: Budget                                                           |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 8                                                                  |
-| Initiating actor             | Manager, Developer                                                     |
+| Initiating actor             | User                                                                   |
 | Actor's goal                 | Set time budget for a task                                             |
 | Participating actors         | System, File Writer                                                    |
 | Preconditions                | Task is already created                                                |
@@ -291,8 +291,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 |--------|--------------------------------------------------------------------------------------|
 | 1  ->  | **User** picks a task to create a budget for                                         |
 | 2  ->  | **User** then selects the option "Budget"                                            |
-| 3  <-  | **System** signals that there is a task name, and the "Budget" option was chosen     |
-| 4  <-  | **File Writer** then writes the task name and the given budget                       |
+| 3  ->  | **User** then enters the amount for the budge                                        |
+| 4  <-  | **System** signals that there is a task name, and the "Budget" option was chosen     |
+| 5  <-  | **File Writer** then writes the task name and the given budget                       |
 
 &nbsp;
 &nbsp;
@@ -301,7 +302,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Use case UC-12               | Name: Create Account                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 14                                                                 |
-| Initiating actor             | Manager, Developer                                                     |
+| Initiating actor             | User                                                                   |
 | Actor's goal                 | Create an account with their log in credentials                        |
 | Participating actors         | System, File Writer                                                    |
 | Preconditions                | Account is not already created                                         |
