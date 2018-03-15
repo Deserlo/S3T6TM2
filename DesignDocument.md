@@ -23,6 +23,7 @@ Ideas of ours influenced by GetHarvest
 
 TM is a Time Management GUI application, that will help teams track time spent on projects with the purpose of increasing efficiency of a team or a single developer who would like to maximize his/her time to increase profits. TM is a desktop application.
 
+When users open up TM, they are greeted with a log in/create account graphical user interface. After logging in the application will either take them to a dashboard for developers or a dashboard for managers. Each type of user has their own uses from this point.
 
 ## Project Architecture
 
