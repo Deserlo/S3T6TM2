@@ -161,7 +161,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 |------|-------------------------------------------------------------------------|
 | 1 -> | **User** enters their username and password                             |
 | 2 -> | **User** hits the log in button                                         |
-| 3 <- | **System** verifys the information                                      |
+| 3 <- | **System** verifies the information                                     |
 | 4 <- | **System** displays the apporiate user interface (manager or developer) |
 
 &nbsp;
@@ -336,7 +336,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
 | 1  ->  | **User** enters in a username                                                        |
-| 2  <-  | **System** verify that the username exist                                            |
+| 2  <-  | **System** verifies that the username exist                                            |
 | 3  ->  | **User** enters a password                                                           |
 | 4  <-  | **File Writer** writes the new password associated to the user name                  |
 
@@ -358,7 +358,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
 | 1  ->  | **Manager** Selects a task and a developer                                           |
-| 2  <-  | **System** verify that the task and the developer exist                              |
+| 2  <-  | **System** verifies that the task and the developer exist                              |
 | 3  <-  | **File Writer** writes the associated developer to the task                          |
 
 &nbsp;
