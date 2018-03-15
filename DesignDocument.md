@@ -6,15 +6,16 @@ Our Time Management application "TM" is created mainly for developers and manage
 
 ## Product Reviews
 
-We have looked into two applications for research purposes: Timely and GetHarvest. The Timely application is a simple application that helps track time, profit, and efficiency. They also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
-GetHarvest is a more complex application, that not only track time, but also estimate how much time a future project may take. Although this is an interesting and useful feature, it is out of the scope of our project.
+We have looked into two applications for research purposes: Timely and GetHarvest. 
+The **Timely** application is a simple application that helps track time, profit, and efficiency. It is easy to use and implements a modern user unterface. Timely is built with obsession with time in mind and promises users to find the "25th hour", meaning that it would deliver increased time efficiency to the user. A very neat feature Timely offers is a stopwatch that a user can click to start logging time, it doesn't get more user-friendly than that. Timely also have implemented an idea of time as budget for each project, which gave us the idea of adding budget to TM.
+**GetHarvest** started out with a simple focus on time tracking in 2006, Harvest has grown considerably over the last decade and now encompasses invoicing and project management. Even after expanding into the invoicing world, the software is still focused on time and team management and has over 50,000 users. It is easy to use and provides deeper integration than Timely. Some of the features also include downloadable Summary spreadheets and future project time estimation.
 
-Ideas of ours influenced by Timely
+**Ideas of ours influenced by Timely:**
 * Beautiful Spreadsheets
 * A budget variable instead of size
 * Organizing tasks through multiple projects
 
-Ideas of ours influenced by GetHarvest
+**Ideas of ours influenced by GetHarvest:**
 * Easy to use pause buttons.
 * Spreadsheets that show time
 
