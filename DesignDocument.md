@@ -148,7 +148,7 @@ We will be implementing a two-tier client/server architecture for the TM project
  
 | Use case UC-5             | Name: Log in                                                  |
 |---------------------------|---------------------------------------------------------------|
-| Related requirements      | REQ 14                                                        |
+| Related requirements      | REQ 14, REQ 13                                                |
 | Initiating actor          | User                                                          |
 | Actor's goal              | To log into their account to be able to use the application   |
 | Participating actors      | System, Username Checker, Password Checker                    |
