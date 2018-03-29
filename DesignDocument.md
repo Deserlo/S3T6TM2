@@ -444,6 +444,26 @@ We will be implementing a two-tier client/server architecture for the TM project
 | 4  <-  | **File Writer** removes the task under that name.                                    |
 
 
-
+## Traceability Matrix
+| REQ | PW | UC1 UC2 UC3 UC4 UC5 UC6 UC7 UC8 UC9 UC10 UC11 UC12 UC13 UC14 UC15 UC16 UC17 UC18 |
+|-----|----|----------------------------------------------------------------------------------------------------|
+|REQ1 |    | |
+|REQ2 |    | |
+|REQ3 |    | |
+|REQ4 |    | |
+|REQ5 |    | |
+|REQ6 |    | |
+|REQ7 |    | |
+|REQ8 |    | |
+|REQ9 |    | |
+|REQ10 |    | |
+|REQ11 |    | |
+|REQ12 |    | |
+|REQ13 |    | |
+|REQ14 |    | |
+|REQ15 |    | |
+|REQ16 |    | |
+|Max PW     | |
+|Total PW   | |
 
 
