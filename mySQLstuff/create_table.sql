@@ -1,3 +1,5 @@
+CREATE DATABASE TM;
+
 CREATE TABLE User(id INTEGER NOT NULL AUTO_INCREMENT,
                   userName VARCHAR(30) NOT NULL,
                   pwd VARCHAR(30) NOT NULL,
