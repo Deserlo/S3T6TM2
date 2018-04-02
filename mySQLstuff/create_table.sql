@@ -7,7 +7,7 @@ CREATE TABLE User(id INTEGER NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
                     id INTEGER NOT NULL,
-                    FOREIGN KEY(userName) REFERENCES User(userName).
+                    FOREIGN KEY(userName) REFERENCES User(userName),
                     FOREIGN KEY(id) REFERENCES User(id));
 
 CREATE TABLE Developer(userName VARCHAR(30) NOT NULL,
