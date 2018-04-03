@@ -1,0 +1,20 @@
+To add a new graphic:
+ImageIcon icon_NewGraphic; //On line 50ish
+JLabel label_NewGraphic; //On line 51ish
+icon_NewGraphic = new ImageIcon(TM_GUI.class.getResource("art/black.jpg")); //On line 60ish
+label_NewGraphic = new JLabel(icon_NewGraphic); //On line 65ish
+label_DevIcon.setBounds(-250,400,95,30); //On line 95 
+frame.add(label_NewGraphic); //Within lines 100-108ish
+
+Then 
+label_DevIcon.setBounds(250,400,95,30); within action listener somewhere
+
+
+https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+
+
+https://stackoverflow.com/questions/22124763/picture-changing-in-java-gui
+
+
+Why changing the ImageIcon by setting it is the only way to change the image within the action listener
+https://stackoverflow.com/questions/26142280/refresh-a-jframe-with-a-jbutton-actionlistener
