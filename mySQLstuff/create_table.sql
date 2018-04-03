@@ -13,7 +13,7 @@ CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
 CREATE TABLE Developer(userName VARCHAR(30) NOT NULL,
                       id INTEGER NOT NULL,
                       mgrID INTEGER NOT NULL,
-                      FOREIGN KEY(userName) REFERENCES User(userName).
+                      PRIMARY KEY (id),
                       FOREIGN KEY(id) REFERENCES User(id),
                       FOREIGN KEY (mgrID) REFERENCES User(id));
 
