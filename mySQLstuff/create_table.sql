@@ -19,7 +19,7 @@ CREATE TABLE Developer(userName VARCHAR(30) NOT NULL,
 
 CREATE TABLE Project(projNo INTEGER NOT NULL AUTO_INCREMENT,
                     mgrID INTEGER NOT NULL,
-                    dueDate VARCHAR(30),
+                    dueDate DATE,
                     PRIMARY KEY(projNo),
                     FOREIGN KEY (mgrID) REFERENCES User(id));
 
