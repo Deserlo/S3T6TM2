@@ -30,7 +30,7 @@ When users open up TM, they are greeted with a log in/create account graphical u
 
 We will be implementing a two-tier client/server architecture for the TM project. with the user interface located in the user’s desktop environment, and all storage needs are met with the use of a remote database.
 
-![Architecture](Diagram.png)
+![Architecture](Images/Diagram.png)
 
 **Client side:** will be implemented with the use of Java8 and a choice of GUI library between Swing or JavaFX.
 
