@@ -25,6 +25,7 @@ CREATE TABLE Project(projNo INTEGER NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Works_on(projNo INTEGER NOT NULL,
                       devID INTEGER NOT NULL,
+                      PRIMARY KEY(projNo, devID),
                       FOREIGN KEY(projNo) REFERENCES Project(projNo),
                       FOREIGN KEY(DevID) REFERENCES User(id));
 
