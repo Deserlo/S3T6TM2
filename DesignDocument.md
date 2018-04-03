@@ -445,25 +445,25 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 
 ## Traceability Matrix
-| REQ | PW | UC1 UC2 UC3 UC4 UC5 UC6 UC7 UC8 UC9 UC10 UC11 UC12 UC13 UC14 UC15 UC16 UC17 UC18 |
-|-----|----|----------------------------------------------------------------------------------------------------|
-|REQ1 |    | &nbsp;x |
-|REQ2 |    |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &nbsp;&nbsp;&nbsp;&nbsp; x|
-|REQ3 |    |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x|
-|REQ4 |    | |
-|REQ5 |    |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x|
-|REQ6 |    | |
-|REQ7 |    | |
-|REQ8 |    | |
-|REQ9 |    | |
-|REQ10 |    | |
-|REQ11 |    | |
-|REQ12 |    | |
-|REQ13 |    | |
-|REQ14 |    | |
-|REQ15 |    | |
-|REQ16 |    | |
-|Max PW     | |
-|Total PW   | |
+| REQ | PW | UC1| UC2| UC3 |UC4 |UC5 |UC6 |UC7 |UC8 |UC9|UC10|UC11|UC12|UC13|UC14|UC15|UC16|UC17|UC18 |
+|-----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+|REQ1 |    | x |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ2 |    |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ3 |    |   |  | x  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ4 |    |   |  |  | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ5 |    |  |  | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ6 |    |   |  |  |   |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ7 |    |   |  |  |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ8 |    |   |  |  |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |  |
+|REQ9 |    |   |  |  |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |  |
+|REQ10 |    |   |  |  |   |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |  |
+|REQ11 |    |   |  |  |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |  |
+|REQ12 |    |   |  |  |   |   |   |   |   |   |   |   |   |   |   |  x| x |   |   |   |  |
+|REQ13 |    |   |  |  |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ14 |    |   |  |  |   | x |   |   |   |   |   |   | x |   |   |   |   |   |   |   |  |
+|REQ15 |    |   |  |  |   | x |   |   |   |   |   |   |   |  x|   |   |   |   |   |   |  |
+|REQ16 |    |   |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   | x | x |   |  |
+|Max PW     |   |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|Total PW   |   |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
 
 
