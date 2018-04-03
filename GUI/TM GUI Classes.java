@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import javax.imageio.*;
 
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
@@ -28,7 +29,7 @@ class TM_LogIn extends JPanel{
 		
 		Username.setColumns(10);
 		Password.setColumns(10);
-		setLayout(new GridLayout(3,1,2,2));
+		setLayout(new GridLayout(3,1));
 		pan1.add(User);
 		pan1.add(Username);
 		add(pan1);
@@ -39,6 +40,12 @@ class TM_LogIn extends JPanel{
 		pan3.add(Log);
 		add(pan3);
 		
+		pan1.setOpaque(false);
+		pan2.setOpaque(false);
+		pan3.setOpaque(false);
+
+		setOpaque(true);
+		setBackground(Color.gray);	
 		//setSize(384,216);
 
 	}
@@ -59,6 +66,7 @@ class TM_CreateAccount extends JPanel{
 	JPanel pan4 = new JPanel();
 	
 	public TM_CreateAccount(){
+		
 		Username.setColumns(10);
 		Password1.setColumns(10);
 		Password2.setColumns(10);
@@ -76,8 +84,21 @@ class TM_CreateAccount extends JPanel{
 		pan4.add(Cancel);
 		add(pan4);
 		
+		pan1.setOpaque(false);
+		pan2.setOpaque(false);
+		pan3.setOpaque(false);
+		pan4.setOpaque(false);
+		
+		setOpaque(true);
+		setBackground(Color.gray);
+		
 	}
 }
 	
 	
-	
+class TM_SidePanel extends JPanel{
+	public TM_SidePanel(){
+		setOpaque(true);
+		setBackground(Color.gray);
+	}
+}
