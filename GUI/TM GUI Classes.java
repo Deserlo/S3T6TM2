@@ -104,3 +104,12 @@ class TM_SidePanel extends JPanel{
 		setBackground(Color.gray);
 	}
 }
+
+class IButton extends JButton{
+	public IButton(ImageIcon I){
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBoarderPainted(false);
+		setIcon(I);
+	}
+}
