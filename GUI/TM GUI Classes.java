@@ -96,7 +96,7 @@ class TM_CreateAccount extends JPanel{
 class TM_MSidePanel extends JPanel{
 	JButton Exit;
 	JButton Task;
-	JButton Assign;
+	JButton Accounts;
 	JButton Report;
 	JButton Edit;
 	
@@ -104,11 +104,24 @@ class TM_MSidePanel extends JPanel{
 		setLayout(new GridLayout(5,1,2,2));
 		Exit = new IButton(new ImageIcon(TM_GUI.class.getResource("art/SidePanel/BackButton.png")));
 		add(Exit);
-
+		
+		//need to finish when new icons are created
 		
 		setOpaque(true);
 		setBackground(Color.darkGray);
 	}
+}
+
+class TM_MTask extends JPanel{
+}
+
+class TM_MEdit extends JPanel{
+}
+
+class TM_MReport extends JPanel{
+}
+
+class TM_MAccounts extends JPanel{
 }
 
 class TM_DSidePanel extends JPanel{
@@ -121,12 +134,27 @@ class TM_DSidePanel extends JPanel{
 	public TM_DSidePanel(){
 		setLayout(new GridLayout(5,1,2,2));
 		
+		//need to finish when new icons are created
+		
 		setOpaque(true);
 		setBackground(Color.darkGray);
 	}
 }
 	
 
+class TM_DTask extends JPanel{
+}
+
+class TM_DEdit extends JPanel{
+}
+
+class TM_DTime extends JPanel{
+}
+
+class TM_DReport extends JPanel{
+}
+	
+	
 class CPanel extends JPanel{
 	public CPanel(){
 		setOpaque(false);
