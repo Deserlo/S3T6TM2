@@ -19,7 +19,7 @@ class TM_LogIn extends JPanel{
 	JLabel Username = new JLabel("Username: ");
 	JLabel Password = new JLabel("Password: ");
 	JButton Log = new JButton("Log In");
-	JButton Create = new JButton("Create Account");
+	JButton CreateAccount = new JButton("Create Account");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
 	JPanel pan3 = new CPanel();
@@ -35,7 +35,7 @@ class TM_LogIn extends JPanel{
 		pan2.add(Password);
 		pan2.add(PasswordT);
 		add(pan2);
-		pan3.add(Create);
+		pan3.add(CreateAccount);
 		pan3.add(Log);
 		add(pan3);
 		
@@ -55,7 +55,7 @@ class TM_CreateAccount extends JPanel{
 	JLabel Username = new JLabel("Username: ");
 	JLabel Password = new JLabel("Password: ");
 	JLabel Password2 = new JLabel("Verify Password: ");
-	JButton Create = new JButton("Create Account");
+	JButton CreateAccount = new JButton("Create Account");
 	JButton Cancel = new JButton("Cancel");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
@@ -82,7 +82,7 @@ class TM_CreateAccount extends JPanel{
 		pan4.add(Password2);
 		pan4.add(Password2T);
 		add(pan4);
-		pan5.add(Create);
+		pan5.add(CreateAccount);
 		pan5.add(Cancel); 
 		add(pan5);
 				
@@ -113,6 +113,64 @@ class TM_MSidePanel extends JPanel{
 }
 
 class TM_MTask extends JPanel{
+	JTextField TaskNameT = new JTextField();
+	JTextArea DescriptionT = new JTextArea();
+	JLabel TaskName = new JLabel("TaskName: ");
+	JLabel Description = new JLabel("Description: ");
+	JLabel Priority = new JLabel("Priority : ");
+	JLabel Assign = new JLabel("Assign to Developer: ");
+	JRadioButton Low = new JRadioButton("Low");
+	JRadioButton Medium = new JRadioButton("Medium");
+	JRadioButton High = new JRadioButton("High");
+	JRadioButton NA = new JRadioButton("N/A");
+	ButtonGroup PriorityG = new ButtonGroup();
+	JButton CreateTask = new JButton("Create Task");
+	JComboBox Developers = new JComboBox();
+	JPanel pan1 = new CPanel();
+	JPanel pan2 = new CPanel();
+	JPanel pan3 = new CPanel();
+	JPanel pan4 = new CPanel();
+	JPanel pan5 = new CPanel();
+	JPanel buffer = new CPanel();
+	
+	public TM_MTask(){
+		setLayout(new GridLayout(5,1,2,2));
+		pan1.setLayout(new GridLayout(1,2,2,2));
+		pan2.setLayout(new GridLayout(1,3,2,2));
+		pan3.setLayout(new GridLayout(1,3,2,2));
+		pan4.setLayout(new GridLayout(1,2,2,2));
+		pan5.setLayout(new GridLayout(1,2,2,2));
+
+		TaskNameT.setColumns(10);
+		pan1.add(TaskName);
+		pan1.add(TaskNameT);
+		add(pan1);
+		
+		pan2.add(Priority);
+		pan2.add(Low);
+		pan2.add(Medium);
+		add(pan2);
+		
+		pan3.add(buffer);
+		pan3.add(High);
+		pan3.add(NA);
+		add(pan3);
+		
+		DescriptionT.setColumns(15);
+		DescriptionT.setRows(3);
+		pan3.add(Description);
+		pan3.add(DescriptionT);
+		add(pan3);
+		
+		pan4.add(Assign);
+		pan4.add(Developers);
+		add(pan4);
+		
+		add(CreateTask);
+		
+		setOpaque(true);
+		setBackground(Color.gray);	
+	}
 }
 
 class TM_MEdit extends JPanel{
