@@ -29,7 +29,7 @@ class TM_LogIn extends JPanel{
 		
 		Username.setColumns(10);
 		Password.setColumns(10);
-		setLayout(new GridLayout(3,1));
+		setLayout(new GridLayout(3,1,2,2));
 		pan1.add(User);
 		pan1.add(Username);
 		add(pan1);
@@ -98,6 +98,8 @@ class TM_CreateAccount extends JPanel{
 	
 class TM_SidePanel extends JPanel{
 	public TM_SidePanel(){
+		setLayout(new Layout
+		
 		setOpaque(true);
 		setBackground(Color.gray);
 	}
