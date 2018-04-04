@@ -467,3 +467,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 |Total PW   |   |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
 
 
+## Domain Model 
+| Responsibility Description | Type | Concept Name |
+|----------------------------|------|--------------|
+| Rs1:                           | D/K     | Testing              |
