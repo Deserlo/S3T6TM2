@@ -6,7 +6,7 @@ import javax.imageio.*;
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
-		setSize(1280,720);
+		//setSize(1024,768);
 		setVisible(true);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,21 +127,30 @@ class TM_MTask extends JPanel{
 	JButton CreateTask = new JButton("Create Task");
 	JComboBox Developers = new JComboBox();
 	JPanel pan1 = new CPanel();
+	JPanel pan1a = new CPanel();
+	JPanel pan1b = new CPanel();
 	JPanel pan2 = new CPanel();
 	JPanel pan3 = new CPanel();
 	JPanel pan4 = new CPanel();
 	JPanel pan5 = new CPanel();
+	JPanel pan6 = new CPanel();
 	JPanel buffer = new CPanel();
+	JPanel buffer2 = new CPanel();
 	
 	public TM_MTask(){
-		setLayout(new GridLayout(5,1,2,2));
-		pan1.setLayout(new GridLayout(1,2,2,2));
-		pan2.setLayout(new GridLayout(1,3,2,2));
-		pan3.setLayout(new GridLayout(1,3,2,2));
-		pan4.setLayout(new GridLayout(1,2,2,2));
-		pan5.setLayout(new GridLayout(1,2,2,2));
+		setLayout(new GridLayout(7,1,2,2));
+		//pan1.setLayout(new GridLayout(1,2,2,2));
+		//pan2.setLayout(new GridLayout(1,3,2,2));
+		//pan3.setLayout(new GridLayout(1,3,2,2));
+		//pan4.setLayout(new GridLayout(1,2,2,2));
+		//pan5.setLayout(new GridLayout(1,2,2,2));
 
+		add(buffer2);
+		
 		TaskNameT.setColumns(10);
+		//TaskNameT.setPreferredSize(new Dimension(128,72));
+		//pan1a.add(TaskName);
+		//pan1b.add(TaskNameT);
 		pan1.add(TaskName);
 		pan1.add(TaskNameT);
 		add(pan1);
@@ -158,15 +167,16 @@ class TM_MTask extends JPanel{
 		
 		DescriptionT.setColumns(15);
 		DescriptionT.setRows(3);
-		pan3.add(Description);
-		pan3.add(DescriptionT);
-		add(pan3);
-		
-		pan4.add(Assign);
-		pan4.add(Developers);
+		pan4.add(Description);
+		pan4.add(DescriptionT);
 		add(pan4);
 		
-		add(CreateTask);
+		pan5.add(Assign);
+		pan5.add(Developers);
+		add(pan5);
+		
+		pan6.add(CreateTask);
+		add(pan6);
 		
 		setOpaque(true);
 		setBackground(Color.gray);	
