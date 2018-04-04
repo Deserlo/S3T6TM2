@@ -14,10 +14,10 @@ class TM_Frame extends JFrame{
 }
 
 class TM_LogIn extends JPanel{
-	JTextField Username = new JTextField();
-	JPasswordField Password = new JPasswordField();
-	JLabel User = new JLabel("Username: ");
-	JLabel Pass = new JLabel("Password: ");
+	JTextField UsernameT = new JTextField();
+	JPasswordField PasswordT = new JPasswordField();
+	JLabel Username = new JLabel("Username: ");
+	JLabel Password = new JLabel("Password: ");
 	JButton Log = new JButton("Log In");
 	JButton Create = new JButton("Create Account");
 	JPanel pan1 = new CPanel();
@@ -29,11 +29,11 @@ class TM_LogIn extends JPanel{
 		Username.setColumns(10);
 		Password.setColumns(10);
 		setLayout(new GridLayout(3,1,2,2));
-		pan1.add(User);
 		pan1.add(Username);
+		pan1.add(UsernameT);
 		add(pan1);
-		pan2.add(Pass);
 		pan2.add(Password);
+		pan2.add(PasswordT);
 		add(pan2);
 		pan3.add(Create);
 		pan3.add(Log);
@@ -47,37 +47,44 @@ class TM_LogIn extends JPanel{
 }
 
 class TM_CreateAccount extends JPanel{
-	JTextField Username = new JTextField();
-	JTextField Password1 = new JTextField();
-	JTextField Password2 = new JTextField();
-	JLabel User = new JLabel("Username: ");
-	JLabel Pass = new JLabel("Password: ");
-	JLabel Pass2 = new JLabel("Verify Password: ");
+	JTextField NameT = new JTextField();
+	JTextField UsernameT = new JTextField();
+	JTextField Password1T = new JTextField();
+	JTextField Password2T = new JTextField();
+	JLabel Name = new JLabel("Name: ");
+	JLabel Username = new JLabel("Username: ");
+	JLabel Password = new JLabel("Password: ");
+	JLabel Password2 = new JLabel("Verify Password: ");
 	JButton Create = new JButton("Create Account");
 	JButton Cancel = new JButton("Cancel");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
 	JPanel pan3 = new CPanel();
 	JPanel pan4 = new CPanel();
+	JPanel pan5 = new CPanel();
 	
 	public TM_CreateAccount(){
 		
+		Name.setColumns(10);
 		Username.setColumns(10);
 		Password1.setColumns(10);
 		Password2.setColumns(10);
-		setLayout(new GridLayout(4,1,2,2));
-		pan1.add(User);
-		pan1.add(Username);
+		setLayout(new GridLayout(5,1,2,2));
+		pan1.add(Name);
+		pan1.add(NameT);
 		add(pan1);
-		pan2.add(Pass);
-		pan2.add(Password1);
+		pan2.add(Username);
+		pan2.add(UsernameT);
 		add(pan2);
-		pan3.add(Pass2);
-		pan3.add(Password2);
+		pan3.add(Password);
+		pan3.add(Password1T);
 		add(pan3);
-		pan4.add(Create);
-		pan4.add(Cancel);
+		pan4.add(Password2);
+		pan4.add(Password2T);
 		add(pan4);
+		pan5.add(Create);
+		pan5.add(Cancel);
+		add(pan5);
 				
 		setOpaque(true);
 		setBackground(Color.gray);
@@ -86,7 +93,11 @@ class TM_CreateAccount extends JPanel{
 }
 	
 	
-class TM_SidePanel extends JPanel{
+class TM_DSidePanel extends JPanel{
+	JButton back;
+	JButton task;
+	JButton 
+	
 	public TM_SidePanel(){
 		setLayout(new GridLayout(5,1,2,2));
 		JPanel buffer = new CPanel();
