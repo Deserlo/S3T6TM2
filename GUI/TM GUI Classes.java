@@ -20,11 +20,10 @@ class TM_LogIn extends JPanel{
 	JLabel Pass = new JLabel("Password: ");
 	JButton Log = new JButton("Log In");
 	JButton Create = new JButton("Create Account");
-	JPanel pan1 = new JPanel();
-	JPanel pan2 = new JPanel();
-	JPanel pan3 = new JPanel();
-
-
+	JPanel pan1 = new CPanel();
+	JPanel pan2 = new CPanel();
+	JPanel pan3 = new CPanel();
+	
 	public TM_LogIn(){
 		
 		Username.setColumns(10);
@@ -40,10 +39,6 @@ class TM_LogIn extends JPanel{
 		pan3.add(Log);
 		add(pan3);
 		
-		pan1.setOpaque(false);
-		pan2.setOpaque(false);
-		pan3.setOpaque(false);
-
 		setOpaque(true);
 		setBackground(Color.gray);	
 		//setSize(384,216);
@@ -60,10 +55,10 @@ class TM_CreateAccount extends JPanel{
 	JLabel Pass2 = new JLabel("Verify Password: ");
 	JButton Create = new JButton("Create Account");
 	JButton Cancel = new JButton("Cancel");
-	JPanel pan1 = new JPanel();
-	JPanel pan2 = new JPanel();
-	JPanel pan3 = new JPanel();
-	JPanel pan4 = new JPanel();
+	JPanel pan1 = new CPanel();
+	JPanel pan2 = new CPanel();
+	JPanel pan3 = new CPanel();
+	JPanel pan4 = new CPanel();
 	
 	public TM_CreateAccount(){
 		
@@ -83,12 +78,7 @@ class TM_CreateAccount extends JPanel{
 		pan4.add(Create);
 		pan4.add(Cancel);
 		add(pan4);
-		
-		pan1.setOpaque(false);
-		pan2.setOpaque(false);
-		pan3.setOpaque(false);
-		pan4.setOpaque(false);
-		
+				
 		setOpaque(true);
 		setBackground(Color.gray);
 		
@@ -98,10 +88,17 @@ class TM_CreateAccount extends JPanel{
 	
 class TM_SidePanel extends JPanel{
 	public TM_SidePanel(){
-		setLayout(new Layout
+		setLayout(new GridLayout(5,1,2,2));
+		JPanel buffer = new CPanel();
 		
 		setOpaque(true);
 		setBackground(Color.gray);
+	}
+}
+
+class CPanel extends JPanel{
+	public CPanel(){
+		setOpaque(false);
 	}
 }
 
@@ -109,7 +106,7 @@ class IButton extends JButton{
 	public IButton(ImageIcon I){
 		setOpaque(false);
 		setContentAreaFilled(false);
-		setBoarderPainted(false);
+		setBorderPainted(false);
 		setIcon(I);
 	}
 }
