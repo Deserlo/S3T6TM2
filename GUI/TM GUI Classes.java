@@ -26,8 +26,8 @@ class TM_LogIn extends JPanel{
 	
 	public TM_LogIn(){
 		
-		Username.setColumns(10);
-		Password.setColumns(10);
+		UsernameT.setColumns(10);
+		PasswordT.setColumns(10);
 		setLayout(new GridLayout(3,1,2,2));
 		pan1.add(Username);
 		pan1.add(UsernameT);
@@ -65,10 +65,10 @@ class TM_CreateAccount extends JPanel{
 	
 	public TM_CreateAccount(){
 		
-		Name.setColumns(10);
-		Username.setColumns(10);
-		Password1.setColumns(10);
-		Password2.setColumns(10);
+		NameT.setColumns(10);
+		UsernameT.setColumns(10);
+		Password1T.setColumns(10);
+		Password2T.setColumns(10);
 		setLayout(new GridLayout(5,1,2,2));
 		pan1.add(Name);
 		pan1.add(NameT);
@@ -83,7 +83,7 @@ class TM_CreateAccount extends JPanel{
 		pan4.add(Password2T);
 		add(pan4);
 		pan5.add(Create);
-		pan5.add(Cancel);
+		pan5.add(Cancel); 
 		add(pan5);
 				
 		setOpaque(true);
@@ -93,10 +93,10 @@ class TM_CreateAccount extends JPanel{
 }
 	
 	
-class TM_DSidePanel extends JPanel{
+class TM_SidePanel extends JPanel{
 	JButton back;
 	JButton task;
-	JButton 
+	JButton edit;
 	
 	public TM_SidePanel(){
 		setLayout(new GridLayout(5,1,2,2));
