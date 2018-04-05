@@ -2,10 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
-//Global Data
-static int GlobalTimer = 0;
-
 public class Test{
+	static int GlobalTimer = 0;
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		JPanel log = new TM_LogIn();
