@@ -119,6 +119,7 @@ class TM_MTask extends JPanel{
 	JLabel Description = new JLabel("Description: ");
 	JLabel Priority = new JLabel("Priority : ");
 	JLabel Assign = new JLabel("Assign to Developer: ");
+	JLabel Header = new JLabel("<html><font size = 12>Create a Task</font><html>",JLabel.CENTER);
 	JRadioButton Low = new JRadioButton("Low");
 	JRadioButton Medium = new JRadioButton("Medium");
 	JRadioButton High = new JRadioButton("High");
@@ -138,14 +139,14 @@ class TM_MTask extends JPanel{
 	JPanel buffer2 = new CPanel();
 	
 	public TM_MTask(){
-		setLayout(new GridLayout(7,1,2,2));
+		setLayout(new GridLayout(7,1));
 		//pan1.setLayout(new GridLayout(1,2,2,2));
 		//pan2.setLayout(new GridLayout(1,3,2,2));
 		//pan3.setLayout(new GridLayout(1,3,2,2));
 		//pan4.setLayout(new GridLayout(1,2,2,2));
 		//pan5.setLayout(new GridLayout(1,2,2,2));
 
-		add(buffer2);
+		add(Header);
 		
 		TaskNameT.setColumns(10);
 		//TaskNameT.setPreferredSize(new Dimension(128,72));

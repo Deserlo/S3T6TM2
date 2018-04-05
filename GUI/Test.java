@@ -15,7 +15,7 @@ public class Test{
 		contentpan.setLayout(new BorderLayout());
 		contentpan.add(manager, BorderLayout.WEST);
 		contentpan.add(mtask, BorderLayout.CENTER);
-		home.setSize(1024,608);
+		home.setSize(960,540);
 		//home.setSize(384,216);
 	}
 }
