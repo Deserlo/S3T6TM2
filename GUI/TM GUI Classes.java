@@ -230,6 +230,15 @@ class CPanel extends JPanel{
 	}
 }
 
+class CRadioButton extends JRadioButton{
+	public CRadioButton(){
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorderPainted(false);
+		setForeground(Color.white);
+	}
+}
+
 class IButton extends JButton{
 	public IButton(ImageIcon I){
 		setOpaque(false);
@@ -238,3 +247,4 @@ class IButton extends JButton{
 		setIcon(I);
 	}
 }
+
