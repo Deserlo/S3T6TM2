@@ -254,3 +254,72 @@ class IButton extends JButton{
 	}
 }
 
+class TM_GUI_Intro{
+	public TM_GUI_Intro(int GlobalTimer, JFrame frame, JLabel label, ImageIcon icon){
+		if(GlobalTimer < 35){
+			if(GlobalTimer == 5){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
+			}
+			else if(GlobalTimer == 6){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/2.jpg")));
+			}
+			else if(GlobalTimer == 7){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/3.jpg")));
+			}
+			else if(GlobalTimer == 8){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/4.jpg")));
+			}
+			else if(GlobalTimer == 9){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/5.jpg")));
+			}
+			else if(GlobalTimer == 12){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+			}
+			else if(GlobalTimer == 13){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/8.jpg")));
+			}
+			else if(GlobalTimer == 14){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/7.jpg")));
+			}
+			else if(GlobalTimer == 16){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+			}
+			else if(GlobalTimer == 17){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/9.jpg")));
+			}
+			else if(GlobalTimer == 18){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+			}
+			else if(GlobalTimer == 19){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/5.jpg")));
+			}
+			else if(GlobalTimer == 22){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/4.jpg")));
+			}
+			else if(GlobalTimer == 23){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/3.jpg")));
+			}
+			else if(GlobalTimer == 24){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/2.jpg")));
+			}
+			else if(GlobalTimer == 25){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
+			}
+			else if(GlobalTimer == 26){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/black.jpg")));
+			}
+			else if(GlobalTimer == 31){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/10.jpg")));
+			}
+			else if(GlobalTimer == 32){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/11.jpg")));
+			}
+			else if(GlobalTimer == 33){
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/12.jpg")));
+			}
+			else if(GlobalTimer == 34){ //35 = 3.5 seconds
+				label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/13.jpg")));
+			}
+		}
+	}
+}
