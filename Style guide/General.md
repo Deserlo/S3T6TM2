@@ -5,7 +5,7 @@ R: 59
 G: 68
 B: 91
 
-## Font colors
+## Other colors
 Buttons default
 
 Hex: 7585B3
@@ -21,22 +21,29 @@ R: 93
 G: 106
 B: 143
 
-## Fonts
-Font name: Helvetica
+## Fonts for sidebar and others
+Font name (for all): Helvetica
 
-Inactive color:
+Inactive color (white):
 
 Hex: FFFFFF
 R: 255
 G: 255
 B: 255
 
-Selected  and some headers color :
+Selected  and some headers color (green) :
 
 Hex: 49D292
 R: 73
 G: 210
 B: 146
+
+Textbox (purple):
+
+Hex: 7585B3
+R: 117
+G: 133
+B: 179
 
 
 ## DEV Reports & MGR Reports table as well as progress bar
