@@ -2,6 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
+//Global Data
+static int GlobalTimer = 0;
+
 public class Test{
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
@@ -15,7 +18,6 @@ public class Test{
 		contentpan.setLayout(new BorderLayout());
 		contentpan.add(manager, BorderLayout.WEST);
 		contentpan.add(mtask, BorderLayout.CENTER);
-		home.setSize(960,540);
-		//home.setSize(384,216);
+		home.setSize(960,540); //16:9 Resolution
 	}
 }
