@@ -120,10 +120,10 @@ class TM_MTask extends JPanel{
 	JLabel Priority = new JLabel("Priority : ");
 	JLabel Assign = new JLabel("Assign to Developer: ");
 	JLabel Header = new JLabel("<html><font size = 12>Create a Task</font><html>",JLabel.CENTER);
-	JRadioButton Low = new JRadioButton("Low");
-	JRadioButton Medium = new JRadioButton("Medium");
-	JRadioButton High = new JRadioButton("High");
-	JRadioButton NA = new JRadioButton("N/A");
+	JRadioButton Low = new CRadioButton("Low");
+	JRadioButton Medium = new CRadioButton("Medium");
+	JRadioButton High = new CRadioButton("High");
+	JRadioButton NA = new CRadioButton("N/A");
 	ButtonGroup PriorityG = new ButtonGroup();
 	JButton CreateTask = new JButton("Create Task");
 	JComboBox Developers = new JComboBox();
@@ -165,6 +165,11 @@ class TM_MTask extends JPanel{
 		pan3.add(High);
 		pan3.add(NA);
 		add(pan3);
+		
+		PriorityG.add(Low);
+		PriorityG.add(Medium);
+		PriorityG.add(High);
+		PriorityG.add(NA);
 		
 		DescriptionT.setColumns(15);
 		DescriptionT.setRows(3);
@@ -231,11 +236,12 @@ class CPanel extends JPanel{
 }
 
 class CRadioButton extends JRadioButton{
-	public CRadioButton(){
+	public CRadioButton(String title){
+		super(title);
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
-		setForeground(Color.white);
+		//setForeground(Color.white);
 	}
 }
 
