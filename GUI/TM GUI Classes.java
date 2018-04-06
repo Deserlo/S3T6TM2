@@ -103,7 +103,7 @@ class TM_MSidePanel extends JPanel{
 	
 	public TM_MSidePanel(){
 		setLayout(new GridLayout(5,1,2,2));
-		Exit = new IButton(new ImageIcon(TM_GUI.class.getResource("art/SidePanel/BackButton.png")));
+		Exit = new IButton(new ImageIcon(Test.class.getResource("art/SidePanel/BackButton.png")));
 		add(Exit);
 		
 		//need to finish when new icons are created
@@ -260,74 +260,74 @@ class TM_GUI_Intro{
 	public TM_GUI_Intro(JPanel frame){
 		JLabel label;
 		ImageIcon icon;
-		icon = new ImageIcon(TM_GUI.class.getResource("art/black.jpg"));
+		icon = new ImageIcon(Test.class.getResource("art/black.jpg"));
 		label = new JLabel(icon);
 		frame.add(label);
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
 				if(LocalTimer == 5){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
 				}
 				else if(LocalTimer == 6){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/2.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/2.jpg")));
 				}
 				else if(LocalTimer == 7){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/3.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/3.jpg")));
 				}
 				else if(LocalTimer == 8){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/4.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/4.jpg")));
 				}
 				else if(LocalTimer == 9){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/5.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/5.jpg")));
 				}
 				else if(LocalTimer == 12){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
 				}
 				else if(LocalTimer == 13){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/8.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/8.jpg")));
 				}
 				else if(LocalTimer == 14){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/7.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/7.jpg")));
 				}
 				else if(LocalTimer == 16){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
 				}
 				else if(LocalTimer == 17){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/9.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/9.jpg")));
 				}
 				else if(LocalTimer == 18){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/6.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
 				}
 				else if(LocalTimer == 19){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/5.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/5.jpg")));
 				}
 				else if(LocalTimer == 22){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/4.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/4.jpg")));
 				}
 				else if(LocalTimer == 23){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/3.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/3.jpg")));
 				}
 				else if(LocalTimer == 24){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/2.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/2.jpg")));
 				}
 				else if(LocalTimer == 25){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
 				}
 				else if(LocalTimer == 26){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/black.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/black.jpg")));
 				}
 				else if(LocalTimer == 31){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/10.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/10.jpg")));
 				}
 				else if(LocalTimer == 32){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/11.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/11.jpg")));
 				}
 				else if(LocalTimer == 33){
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/12.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/12.jpg")));
 				}
 				else if(LocalTimer == 34){ //35 = 3.5 seconds
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/13.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/13.jpg")));
 				}
 				else if(LocalTimer == 35){
 					frame.remove(label);
@@ -336,7 +336,7 @@ class TM_GUI_Intro{
 					Test.MenuVar = 2; 
 				}
 				else if(LocalTimer == 37){ 
-					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
+					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
 				}
 			}
 		};
