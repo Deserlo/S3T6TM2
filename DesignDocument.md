@@ -470,4 +470,6 @@ We will be implementing a two-tier client/server architecture for the TM project
 ## Domain Model 
 | Responsibility Description | Type | Concept Name |
 |----------------------------|------|--------------|
-| Rs1:                           | D/K     | Testing              |
+| Rs1: Container that stores name of tasks, start/stop times, manager/ developer names | K | DataStorage |
+| Rs2: Operate program to allow Managers/Developers to be created| D | CreateUser |
+| Rs3: Verify the distinction between Manager/Developer, to prevent unauthorized commands | D | UserVerification |
