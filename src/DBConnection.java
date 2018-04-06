@@ -3,10 +3,11 @@ import java.sql.*;
 public class DBConnection {	
 
 	public Connection ConnectDB() {
+		String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+		//need to hide DB server information 
 		String DB_URL = "jdbc:mysql://athena.ecs.csus.edu:3306/tm";
-		String JDBC_DRIVER = "com.mysql.jdbc.Driver"; 
-		String user = "tm_user";
-		String pass = "tm_team6";
+		String user = "";
+		String pass = "";
 		Connection conn = null;
 		   try{
 		      Class.forName(JDBC_DRIVER).newInstance();
