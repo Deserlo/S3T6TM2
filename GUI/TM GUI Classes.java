@@ -333,7 +333,7 @@ class TM_GUI_Intro{
 					frame.remove(label);
 					frame.revalidate();
 					frame.repaint();
-					Test.MenuVar = 1; 
+					Test.MenuVar = 2; 
 				}
 				else if(LocalTimer == 37){ 
 					label.setIcon(new ImageIcon(TM_GUI.class.getResource("art/IntroAnimation/1.jpg")));
@@ -343,5 +343,153 @@ class TM_GUI_Intro{
 		
 		Timer LocalTimer = new Timer(100, action); //100 milliseconds = 1 to globalvar = .1 second.
 		LocalTimer.start();
+	}
+}
+
+class RegisterScreen{
+	JLabel DevTO = new JLabel("Developer");
+	JLabel ManTO = new JLabel("Manager");
+	JTextField Dev_NameTF = new JTextField("Name");
+	JTextField Dev_EmailTF = new JTextField("Email");
+	JTextField Dev_TeamTF = new JTextField("Team");
+	JTextField Dev_PasswordTF = new JTextField("Password");
+	JTextField Man_NameTF = new JTextField("Name");
+	JTextField Man_EmailTF = new JTextField("Email");
+	JTextField Man_TeamTF = new JTextField("Team");
+	JTextField Man_PasswordTF = new JTextField("Password");
+	JButton button_DevRegister = new JButton("Register");
+	JButton button_DevLogin = new JButton("Login");
+	JButton button_ManRegister = new JButton("Register");
+	JButton button_ManLogin = new JButton("Login");
+	
+	
+	public RegisterScreen(JPanel frame){
+		frame.setBackground(new java.awt.Color(53,53,53));
+		frame.add(DevTO);
+		frame.add(ManTO);
+		frame.add(Dev_NameTF);
+		frame.add(Dev_EmailTF);
+		frame.add(Dev_TeamTF);
+		frame.add(Dev_PasswordTF);
+		frame.add(Man_NameTF);
+		frame.add(Man_EmailTF);
+		frame.add(Man_TeamTF);
+		frame.add(Man_PasswordTF);
+		frame.add(button_DevRegister);
+		frame.add(button_DevLogin);
+		frame.add(button_ManRegister);
+		frame.add(button_ManLogin);
+		frame.setLayout(null);
+		
+		//JLabels/Text Objects
+		DevTO.setBounds(150,0,195,130);
+		DevTO.setFont(new Font("Helvetica", Font.BOLD, 22));
+		DevTO.setForeground(new java.awt.Color(73,210,146));
+		ManTO.setBounds(700,0,195,130);
+		ManTO.setFont(new Font("Helvetica", Font.BOLD, 22));
+		ManTO.setForeground(new java.awt.Color(73,210,146));
+		
+		//Text Fields
+		Dev_NameTF.setBounds(100,100, 200,30); 
+		Dev_EmailTF.setBounds(100,160, 200,30);
+		Dev_TeamTF.setBounds(100,220, 200,30); 
+		Dev_PasswordTF.setBounds(100,280, 200,30); 		
+		Man_NameTF.setBounds(650,100, 200,30); 
+		Man_EmailTF.setBounds(650,160, 200,30);
+		Man_TeamTF.setBounds(650,220, 200,30); 
+		Man_PasswordTF.setBounds(650,280, 200,30); 	
+
+		//Buttons
+		button_DevRegister.setBounds(100,350, 150,40); 
+		button_DevLogin.setBounds(100,450, 150,40); 
+		button_ManRegister.setBounds(650,350, 150,40); 
+		button_ManLogin.setBounds(650,450, 150,40); 
+		
+		button_DevRegister.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.remove(DevTO);
+				frame.remove(ManTO);
+				frame.remove(Dev_NameTF);
+				frame.remove(Dev_EmailTF);
+				frame.remove(Dev_TeamTF);
+				frame.remove(Dev_PasswordTF);
+				frame.remove(Man_NameTF);
+				frame.remove(Man_EmailTF);
+				frame.remove(Man_TeamTF);
+				frame.remove(Man_PasswordTF);
+				frame.remove(button_DevRegister);
+				frame.remove(button_DevLogin);
+				frame.remove(button_ManRegister);
+				frame.remove(button_ManLogin);
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = 1; 
+			}
+		});
+		button_DevLogin.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.remove(DevTO);
+				frame.remove(ManTO);
+				frame.remove(Dev_NameTF);
+				frame.remove(Dev_EmailTF);
+				frame.remove(Dev_TeamTF);
+				frame.remove(Dev_PasswordTF);
+				frame.remove(Man_NameTF);
+				frame.remove(Man_EmailTF);
+				frame.remove(Man_TeamTF);
+				frame.remove(Man_PasswordTF);
+				frame.remove(button_DevRegister);
+				frame.remove(button_DevLogin);
+				frame.remove(button_ManRegister);
+				frame.remove(button_ManLogin);
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = 1; 
+			}
+		});
+		button_ManRegister.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.remove(DevTO);
+				frame.remove(ManTO);
+				frame.remove(Dev_NameTF);
+				frame.remove(Dev_EmailTF);
+				frame.remove(Dev_TeamTF);
+				frame.remove(Dev_PasswordTF);
+				frame.remove(Man_NameTF);
+				frame.remove(Man_EmailTF);
+				frame.remove(Man_TeamTF);
+				frame.remove(Man_PasswordTF);
+				frame.remove(button_DevRegister);
+				frame.remove(button_DevLogin);
+				frame.remove(button_ManRegister);
+				frame.remove(button_ManLogin);
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = 1; 
+			}
+		});
+		button_ManLogin.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.remove(DevTO);
+				frame.remove(ManTO);
+				frame.remove(Dev_NameTF);
+				frame.remove(Dev_EmailTF);
+				frame.remove(Dev_TeamTF);
+				frame.remove(Dev_PasswordTF);
+				frame.remove(Man_NameTF);
+				frame.remove(Man_EmailTF);
+				frame.remove(Man_TeamTF);
+				frame.remove(Man_PasswordTF);
+				frame.remove(button_DevRegister);
+				frame.remove(button_DevLogin);
+				frame.remove(button_ManRegister);
+				frame.remove(button_ManLogin);
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = 1; 
+			}
+		});
+		frame.setOpaque(true);
+		
 	}
 }

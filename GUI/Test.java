@@ -13,6 +13,7 @@ public class Test{
 		JPanel developer = new TM_DSidePanel();
 		JPanel mtask = new TM_MTask();
 		JPanel Intro = new CPanel();
+		JPanel RegisterScreen = new CPanel();
 		              //switch the panel to change view
 		Container contentpan = (JPanel)home.getContentPane();
 		contentpan.setLayout(new BorderLayout());		
@@ -33,6 +34,12 @@ public class Test{
 						contentpan.add(mtask, BorderLayout.CENTER);
 						contentpan.revalidate();
 						break;
+					case 2: 
+						System.out.println("In case " + MenuVar);
+						new RegisterScreen(RegisterScreen);
+						contentpan.add(RegisterScreen);
+						contentpan.revalidate();
+						break;						
 					default:
 						break;
 				}
