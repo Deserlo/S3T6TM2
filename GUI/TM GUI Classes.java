@@ -258,85 +258,60 @@ class IButton extends JButton{
 class TM_GUI_Intro{
 	static int LocalTimer = 0;
 	public TM_GUI_Intro(JPanel frame){
-		JLabel label;
-		ImageIcon icon;
-		icon = new ImageIcon(Test.class.getResource("art/black.jpg"));
-		label = new JLabel(icon);
-		frame.add(label);
+		frame.setBackground(new java.awt.Color(0,0,0));
+		frame.setOpaque(true);
+		frame.setLayout(null);
+		JLabel label_top;
+		ImageIcon icon_top;
+		JLabel label_bottom;
+		ImageIcon icon_bottom;
+		icon_top = new ImageIcon(Test.class.getResource("art/IntroAnimation2/1.png"));
+		label_top = new JLabel(icon_top);
+		icon_bottom = new ImageIcon(Test.class.getResource("art/IntroAnimation2/2.png"));
+		label_bottom = new JLabel(icon_bottom);
+		frame.add(label_top); frame.add(label_bottom);
+		label_top.setBounds(-550, 300, 150, 150);
+		label_bottom.setBounds(-550, 300, 150, 150);
+		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
 				if(LocalTimer == 5){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
-				}
-				else if(LocalTimer == 6){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/2.jpg")));
-				}
-				else if(LocalTimer == 7){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/3.jpg")));
-				}
-				else if(LocalTimer == 8){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/4.jpg")));
-				}
-				else if(LocalTimer == 9){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/5.jpg")));
-				}
-				else if(LocalTimer == 12){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
-				}
-				else if(LocalTimer == 13){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/8.jpg")));
-				}
-				else if(LocalTimer == 14){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/7.jpg")));
-				}
-				else if(LocalTimer == 16){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
-				}
-				else if(LocalTimer == 17){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/9.jpg")));
+					frame.setBackground(new java.awt.Color(0,0,0));
+					label_top.setForeground(new java.awt.Color(255,255,255, 150));
+					label_top.setBounds(400, 140, 150, 150);
+					label_bottom.setBounds(400, 199, 150, 150);
 				}
 				else if(LocalTimer == 18){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
-				}
-				else if(LocalTimer == 19){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/5.jpg")));
-				}
-				else if(LocalTimer == 22){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/4.jpg")));
-				}
-				else if(LocalTimer == 23){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/3.jpg")));
-				}
-				else if(LocalTimer == 24){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/2.jpg")));
-				}
-				else if(LocalTimer == 25){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
+					label_top.setBounds(-550, 300, 150, 150);
+					label_bottom.setBounds(-550, 300, 150, 150);
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
 				}
 				else if(LocalTimer == 26){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/black.jpg")));
+					frame.setBackground(new java.awt.Color(10,10,10));
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/black.jpg")));
 				}
 				else if(LocalTimer == 31){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/10.jpg")));
+					frame.setBackground(new java.awt.Color(20,20,20));
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/10.jpg")));
 				}
 				else if(LocalTimer == 32){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/11.jpg")));
+					frame.setBackground(new java.awt.Color(30,30,30));
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/11.jpg")));
 				}
 				else if(LocalTimer == 33){
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/12.jpg")));
+					frame.setBackground(new java.awt.Color(40,60,80));
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/12.jpg")));
 				}
 				else if(LocalTimer == 34){ //35 = 3.5 seconds
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/13.jpg")));
+					frame.setBackground(new java.awt.Color(59,68,91));
+					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/13.jpg")));
 				}
 				else if(LocalTimer == 35){
-					frame.remove(label);
+					frame.removeAll();
 					frame.revalidate();
-					frame.repaint();
+					//frame.repaint();
 					Test.MenuVar = 2; 
-				}
-				else if(LocalTimer == 37){ 
-					label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/1.jpg")));
 				}
 			}
 		};
@@ -364,63 +339,74 @@ class RegisterScreen{
 	
 	
 	public RegisterScreen(JPanel frame){
-		frame.setBackground(new java.awt.Color(53,53,53));
-		frame.add(DevTO);
-		frame.add(ManTO);
-		frame.add(Dev_NameTF);
-		frame.add(Dev_EmailTF);
-		frame.add(Dev_TeamTF);
-		frame.add(Dev_PasswordTF);
-		frame.add(Man_NameTF);
-		frame.add(Man_EmailTF);
-		frame.add(Man_TeamTF);
-		frame.add(Man_PasswordTF);
-		frame.add(button_DevRegister);
-		frame.add(button_DevLogin);
-		frame.add(button_ManRegister);
-		frame.add(button_ManLogin);
+		//frame.setBackground(new java.awt.Color(53,53,53));
+		frame.setBackground(new java.awt.Color(59,68,91));
+		frame.add(DevTO); frame.add(ManTO);
+		frame.add(Dev_NameTF); frame.add(Dev_EmailTF);
+		frame.add(Dev_TeamTF); frame.add(Dev_PasswordTF);
+		frame.add(Man_NameTF); frame.add(Man_EmailTF);
+		frame.add(Man_TeamTF); frame.add(Man_PasswordTF);
+		frame.add(button_DevRegister); frame.add(button_DevLogin);
+		frame.add(button_ManRegister); frame.add(button_ManLogin);
 		frame.setLayout(null);
 		
 		//JLabels/Text Objects
-		DevTO.setBounds(150,0,195,130);
-		DevTO.setFont(new Font("Helvetica", Font.BOLD, 22));
+		DevTO.setBounds(150,-10,195,130);
+		DevTO.setFont(new Font("Helvetica", Font.BOLD, 32));
 		DevTO.setForeground(new java.awt.Color(73,210,146));
-		ManTO.setBounds(700,0,195,130);
-		ManTO.setFont(new Font("Helvetica", Font.BOLD, 22));
+		ManTO.setBounds(700,-10,195,130);
+		ManTO.setFont(new Font("Helvetica", Font.BOLD, 32));
 		ManTO.setForeground(new java.awt.Color(73,210,146));
 		
 		//Text Fields
-		Dev_NameTF.setBounds(100,100, 200,30); 
-		Dev_EmailTF.setBounds(100,160, 200,30);
-		Dev_TeamTF.setBounds(100,220, 200,30); 
-		Dev_PasswordTF.setBounds(100,280, 200,30); 		
-		Man_NameTF.setBounds(650,100, 200,30); 
-		Man_EmailTF.setBounds(650,160, 200,30);
-		Man_TeamTF.setBounds(650,220, 200,30); 
-		Man_PasswordTF.setBounds(650,280, 200,30); 	
-
+		Dev_NameTF.setBounds(110,120, 240,30); 
+		Dev_EmailTF.setBounds(110,160, 240,30);
+		Dev_TeamTF.setBounds(110,200, 240,30); 
+		Dev_PasswordTF.setBounds(110,240, 240,30); 		
+		Man_NameTF.setBounds(660,120, 240,30); 
+		Man_EmailTF.setBounds(660,160, 240,30);
+		Man_TeamTF.setBounds(660,200, 240,30); 
+		Man_PasswordTF.setBounds(660,240, 240,30); 	
+		Dev_NameTF.setBackground(new java.awt.Color(70,81,108));
+		Dev_NameTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Dev_EmailTF.setBackground(new java.awt.Color(70,81,108));
+		Dev_EmailTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Dev_TeamTF.setBackground(new java.awt.Color(70,81,108));
+		Dev_TeamTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Dev_PasswordTF.setBackground(new java.awt.Color(70,81,108));
+		Dev_PasswordTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Man_NameTF.setBackground(new java.awt.Color(70,81,108));
+		Man_NameTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Man_EmailTF.setBackground(new java.awt.Color(70,81,108));
+		Man_EmailTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Man_TeamTF.setBackground(new java.awt.Color(70,81,108));
+		Man_TeamTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		Man_PasswordTF.setBackground(new java.awt.Color(70,81,108));
+		Man_PasswordTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		
 		//Buttons
-		button_DevRegister.setBounds(100,350, 150,40); 
-		button_DevLogin.setBounds(100,450, 150,40); 
-		button_ManRegister.setBounds(650,350, 150,40); 
-		button_ManLogin.setBounds(650,450, 150,40); 
+		button_DevRegister.setBounds(140,300, 160,45); 
+		button_DevLogin.setBounds(140,360, 160,45); 
+		button_ManRegister.setBounds(690,300, 160,45); 
+		button_ManLogin.setBounds(690,360, 160,45); 
+		button_DevRegister.setBorderPainted(false);
+		button_DevLogin.setBorderPainted(false);
+		button_ManRegister.setBorderPainted(false);
+		button_ManLogin.setBorderPainted(false);
+		button_DevRegister.setForeground(new java.awt.Color(117,132,178));
+		button_DevLogin.setForeground(new java.awt.Color(117,132,178));
+		button_ManRegister.setForeground(new java.awt.Color(117,132,178));
+		button_ManLogin.setForeground(new java.awt.Color(117,132,178));
+		button_DevRegister.setBackground(new java.awt.Color(70,81,108));
+		button_DevLogin.setBackground(new java.awt.Color(70,81,108));
+		button_ManRegister.setBackground(new java.awt.Color(70,81,108));
+		button_ManLogin.setBackground(new java.awt.Color(70,81,108));
 		
 		button_DevRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				frame.remove(DevTO);
-				frame.remove(ManTO);
-				frame.remove(Dev_NameTF);
-				frame.remove(Dev_EmailTF);
-				frame.remove(Dev_TeamTF);
-				frame.remove(Dev_PasswordTF);
-				frame.remove(Man_NameTF);
-				frame.remove(Man_EmailTF);
-				frame.remove(Man_TeamTF);
-				frame.remove(Man_PasswordTF);
-				frame.remove(button_DevRegister);
-				frame.remove(button_DevLogin);
-				frame.remove(button_ManRegister);
-				frame.remove(button_ManLogin);
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
 				Test.MenuVar = 1; 
@@ -428,20 +414,8 @@ class RegisterScreen{
 		});
 		button_DevLogin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				frame.remove(DevTO);
-				frame.remove(ManTO);
-				frame.remove(Dev_NameTF);
-				frame.remove(Dev_EmailTF);
-				frame.remove(Dev_TeamTF);
-				frame.remove(Dev_PasswordTF);
-				frame.remove(Man_NameTF);
-				frame.remove(Man_EmailTF);
-				frame.remove(Man_TeamTF);
-				frame.remove(Man_PasswordTF);
-				frame.remove(button_DevRegister);
-				frame.remove(button_DevLogin);
-				frame.remove(button_ManRegister);
-				frame.remove(button_ManLogin);
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
 				Test.MenuVar = 1; 
@@ -449,20 +423,8 @@ class RegisterScreen{
 		});
 		button_ManRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				frame.remove(DevTO);
-				frame.remove(ManTO);
-				frame.remove(Dev_NameTF);
-				frame.remove(Dev_EmailTF);
-				frame.remove(Dev_TeamTF);
-				frame.remove(Dev_PasswordTF);
-				frame.remove(Man_NameTF);
-				frame.remove(Man_EmailTF);
-				frame.remove(Man_TeamTF);
-				frame.remove(Man_PasswordTF);
-				frame.remove(button_DevRegister);
-				frame.remove(button_DevLogin);
-				frame.remove(button_ManRegister);
-				frame.remove(button_ManLogin);
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
 				Test.MenuVar = 1; 
@@ -470,20 +432,8 @@ class RegisterScreen{
 		});
 		button_ManLogin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				frame.remove(DevTO);
-				frame.remove(ManTO);
-				frame.remove(Dev_NameTF);
-				frame.remove(Dev_EmailTF);
-				frame.remove(Dev_TeamTF);
-				frame.remove(Dev_PasswordTF);
-				frame.remove(Man_NameTF);
-				frame.remove(Man_EmailTF);
-				frame.remove(Man_TeamTF);
-				frame.remove(Man_PasswordTF);
-				frame.remove(button_DevRegister);
-				frame.remove(button_DevLogin);
-				frame.remove(button_ManRegister);
-				frame.remove(button_ManLogin);
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
 				Test.MenuVar = 1; 
