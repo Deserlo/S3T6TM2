@@ -503,3 +503,60 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
+
+
+
+## Progress Report
+
+### Use Cases Implemented
+
+* UC-5(Log In)
+* UC-12(Create Account)
+
+### Use Cases Currently Being Tackled
+
+The developer side of
+* UC-1(Start Task)
+* UC-2(Stop Task)
+* UC-3(Summarize)
+* UC-4(Describe Task)
+* UC-6(Pause Task)
+* UC-7(Unpause Task)
+
+## Plan of Work
+Projected Milestones
+* Week of April 16th
+
+  * GUI for Developer Dashboard, including UC-1, UC-2, UC-3, UC-4, UC-6, and UC-7
+  * Database for Developer Dashboard
+  
+* Week of April 23rd
+
+  * GUI for Manager Dashboard, including UC-8(Set Notes), UC-9(Due Date), UC-10(Notifications), UC-11(Budget), UC-14(Assign Task)
+  * Database for Manager Dashboard
+  
+* Week of April 30th
+
+  * Clean up all code
+  * Integrate database and GUI together
+  * Add "projects" if time allows
+  * Add other extra features that we are not able to reach if time allows
+  
+* Week of May 7th
+
+  * Clean up all code and the GUI to look professional
+  * Submit Final Project
+
+## Breakdown of Responsibilities
+
+Currently we are split into two teams with
+
+* Jacob & Bryant working on the graphical user interface
+
+   * Currently Jacob is working on the class "RegisterScreen", and "DeveloperDashboard"
+   * Currently Bryant is working on the class "LoginScreen", "PTextField", and other modules to refactor existing code.
+
+* Marina, Evamarie, & Avery working on the MySQL database
+
+Merging the code will be a collaborative effort, as will testing the code to make sure everything works to the best of the program's ability. 
+
