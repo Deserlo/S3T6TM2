@@ -468,8 +468,14 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 
 ## Domain Model 
+#### Use Case: Summarize
 | Responsibility Description | Type | Concept Name |
 |----------------------------|------|--------------|
-| Rs1: Container that stores name of tasks, start/stop times, manager/ developer names | K | DataStorage |
-| Rs2: Operate program to allow Managers/Developers to be created| D | CreateUser |
-| Rs3: Verify the distinction between Manager/Developer, to prevent unauthorized commands | D | UserVerification |
+| Rs1: Coordinate actions of concepts associated with this use case and delegate the work to other concepts.| D | Controller |
+| Rs2: Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file | D | WriteSummarizedData |
+
+| Concept pair | Association Description | Association Name |
+|--------------|-------------------------|------------------|
+||||
+
+
