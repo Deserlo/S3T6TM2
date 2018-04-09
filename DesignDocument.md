@@ -484,4 +484,22 @@ We will be implementing a two-tier client/server architecture for the TM project
 |---------|--------------|-----------------------|
 | Controller | Commands | Used to due a certain task based on the "command" specified |
 
+#### Use Case: Log In
+| Responsibility Description | Type | Concept Name |
+|----------------------------|------|--------------|
 
+| Concept pair | Association Description | Association Name |
+|--------------|-------------------------|------------------|
+
+| Concept | Attribute(s) | Attribute Description |
+|---------|--------------|-----------------------|
+
+#### Use Case: Create Account
+| Responsibility Description | Type | Concept Name |
+|----------------------------|------|--------------|
+
+| Concept pair | Association Description | Association Name |
+|--------------|-------------------------|------------------|
+
+| Concept | Attribute(s) | Attribute Description |
+|---------|--------------|-----------------------|
