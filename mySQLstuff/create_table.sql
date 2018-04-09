@@ -1,12 +1,12 @@
 CREATE DATABASE TM;
 
-CREATE TABLE User(id INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE User(id INTEGER NOT NULL AUTO_INCREMENT primary key,
                   userName VARCHAR(30) NOT NULL,
                   fname VARCHAR(30) NOT NULL,
                   team VARCHAR(30) NOT NULL,
                   pwd VARCHAR(30) NOT NULL,
-                  mgrID INEGER,
-                  PRIMARY KEY(id));
+                  mgrID INT,
+                  );
 
 CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
                     id INTEGER NOT NULL,
@@ -14,11 +14,9 @@ CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
                     FOREIGN KEY(id) REFERENCES User(id));
 
 CREATE TABLE Developer(userName VARCHAR(30) NOT NULL,
-                      id INTEGER NOT NULL,
-                      mgrID INTEGER,
+                      id INT NOT NULL,
                       PRIMARY KEY (id),
-                      FOREIGN KEY(id) REFERENCES User(id),
-                      FOREIGN KEY (mgrID) REFERENCES User(mgrID));
+                      FOREIGN KEY (id) REFERENCES User(id));
 
 CREATE TABLE Project(projNo INTEGER NOT NULL AUTO_INCREMENT,
                     mgrID INTEGER NOT NULL,
