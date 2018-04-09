@@ -147,7 +147,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
  
-| Use case ***UC-5***             | Name: Log in                                                  |
+| Use case ***UC-5***             | Name: Log in                                            |
 |---------------------------|---------------------------------------------------------------|
 | Related requirements      | REQ 13, REQ 14, REQ 15                                        |
 | Initiating actor          | User                                                          |
@@ -472,10 +472,16 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Responsibility Description | Type | Concept Name |
 |----------------------------|------|--------------|
 | Rs1: Coordinate actions of concepts associated with this use case and delegate the work to other concepts.| D | Controller |
-| Rs2: Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file | D | WriteSummarizedData |
+| Rs2: Container for user data, such as start/stop times, developer/manager, tasks etc.| K | DataStorage|
+| Rs3: Named projects, subtasks, due dates, summarized data and statistics are written to downloadable file | D | SummaryPage |
 
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
-||||
+| Controller <-> DataStorage | Controller passes requests to DataStorage and receives back the necessary data. | ReceiveRequestedData |
+| DataStorage <-> SummaryPage | The collected DataStorage is printed on a SummaryPage| DisplayedSummary |
+
+| Concept | Attribute(s) | Attribute Description |
+|---------|--------------|-----------------------|
+| Controller | Commands | Used to due a certain task based on the "command" specified |
 
 
