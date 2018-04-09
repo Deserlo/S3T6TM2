@@ -14,6 +14,29 @@ class TM_Frame extends JFrame{
 	}
 }
 	
+class PTextField extends JTextField{ // pulled from stack overflow
+	
+	public PTextField(final String proptText){
+        super(proptText);
+        addFocusListener(new FocusListener(){
+            public void focusLost(FocusEvent e){
+                if(getText().isEmpty()){
+                    setText(proptText);
+                }
+            }
+            public void focusGained(FocusEvent e){
+                if(getText().equals(proptText)){
+                    setText("");
+                }
+            }
+        });
+		this.setBackground(new java.awt.Color(70,81,108));
+		this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		this.setColumns(10);
+		this.setFont(new Font("Helvetica",Font.ITALIC, 30));
+    }
+}
+
 class CPanel extends JPanel{
 	public CPanel(){
 		setOpaque(false);
@@ -28,7 +51,7 @@ class CRadioButton extends JRadioButton{
 		setBorderPainted(false);
 		//setForeground(Color.white);
 	}
-
+}
 
 class CButton extends JButton{
 	public CButton(ImageIcon I){
