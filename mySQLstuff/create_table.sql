@@ -2,7 +2,10 @@ CREATE DATABASE TM;
 
 CREATE TABLE User(id INTEGER NOT NULL AUTO_INCREMENT,
                   userName VARCHAR(30) NOT NULL,
+                  fname VARCHAR(30) NOT NULL,
+                  team VARCHAR(30) NOT NULL,
                   pwd VARCHAR(30) NOT NULL,
+                  mgrID INEGER,
                   PRIMARY KEY(id));
 
 CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
@@ -12,10 +15,10 @@ CREATE TABLE Manager(userName VARCHAR(30) NOT NULL,
 
 CREATE TABLE Developer(userName VARCHAR(30) NOT NULL,
                       id INTEGER NOT NULL,
-                      mgrID INTEGER NOT NULL,
+                      mgrID INTEGER,
                       PRIMARY KEY (id),
                       FOREIGN KEY(id) REFERENCES User(id),
-                      FOREIGN KEY (mgrID) REFERENCES User(id));
+                      FOREIGN KEY (mgrID) REFERENCES User(mgrID));
 
 CREATE TABLE Project(projNo INTEGER NOT NULL AUTO_INCREMENT,
                     mgrID INTEGER NOT NULL,
