@@ -3,40 +3,51 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserAccount {
-	String role;
-	String username;
-	String password;
-	int mgrID;
+public class UserAccount implements ITMModel {
+	private String role;
+	private String fname;
+	private String username;
+	private String password;
+	private String team;
+	private int mgrID;
 	//manager
-	public UserAccount(String role, String username, String password) {
+	public UserAccount(String role, String fname, String username, String password, String team) {
 		this.role = role;
+		this.fname = fname;
 		this.username = username;
 		this.password = password;
+		this.team = team;
 	}
 	//dev
-	public UserAccount(String role, String username, String password, int mgrID) {
+	public UserAccount(String role, String fname, String username, String password, String team, int mgrID) {
 		this.role = role;
+		this.fname = fname;
 		this.username = username;
 		this.password = password;
+		this.team = team;
 		this.mgrID = mgrID;
 	}
+	
 	public void addNewAccount(UserAccount newAccount) {
 		switch (newAccount.role) {
 		case "dev":
-			if (checkIfMgrIDExists(newAccount.mgrID)==true) {
-				addNewUser(newAccount.username, newAccount.password);
-				addNewDev(newAccount.username, newAccount.mgrID); 		
+			if (checkIfTeamExists(newAccount.team)==true) {
+				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password, newAccount.mgrID); 		
 				break;
 			}
 			else {
 				break;
 			}
-		case "mgr":  
-			addNewUser(newAccount.username, newAccount.password);
-			addNewMgr(newAccount.username);
-			break;
-		}	
+		case "mgr": 
+			if (checkIfTeamExists(newAccount.team)==true) {
+				addNewMgr(newAccount.username, newAccount.fname, newAccount.team, newAccount.password);
+				break;
+			}
+			else {
+				break;
+			}
+		}
+	
 	}
 	
 	
@@ -63,20 +74,20 @@ public class UserAccount {
 	       return 0;
 	}
 	
-	//When new Developer creates an account, checks whether Mgr ID entered exists
-	private boolean checkIfMgrIDExists(int id) {
+	//When creating an account, checks whether Team entered exists
+	private boolean checkIfTeamExists(String teamName) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
         try { 
 		   DBConnection db = new DBConnection();
     	   conn = db.ConnectDB();
-    	   String queryForId = "SELECT id FROM Manager";
-           stmt = conn.prepareStatement(queryForId);
+    	   String queryForName = "SELECT teamName FROM Team";
+           stmt = conn.prepareStatement(queryForName);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				 int ID = rs.getInt(1);
-				 if (ID ==id) {
+				 String name = rs.getString(1);
+				 if (teamName == name) {
 				    return true;
 				}
 			}
@@ -84,38 +95,66 @@ public class UserAccount {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}      
-        System.out.println("Manager ID invalid.");
+        System.out.println("Team invalid.");
         return false;
 	}
 	
 	
-	private boolean addNewDev(String username, int mgrID) { //adds new tuple into Developer table
-		DBConnection newDev = new DBConnection();
-		Connection conn = newDev.ConnectDB();
-		String sql = "INSERT INTO Developer (userName,id, mgrID)" + " VALUES (?, ?, ?)" ; 
-		int devID = queryForId(username);
-		System.out.println("adding new developer into Developer table..");
+	private boolean addNewDev(String username, String fname, String team, String password, int mgrID) { 
+		String sqluser ="INSERT INTO User (userName, fname, team,pwd, mgrID)" + " VALUES (?,?, ?, ?, ?)";	
+		DBConnection newUser = new DBConnection();
+		Connection conn = newUser.ConnectDB();
+		System.out.println("adding new user(dev) into User table..");
+		try {
+			PreparedStatement prepstmt = conn.prepareStatement(sqluser);
+			prepstmt.setString(1, username);
+			prepstmt.setString(2, fname);
+			prepstmt.setString(3, team);
+			prepstmt.setString(4, password);
+			prepstmt.setInt(5, mgrID);
+			prepstmt.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		System.out.println("new user(dev) added..");
+		
+		String sqldev = "INSERT INTO Developer (userName,id)" + " VALUES (?, ?)" ; 
+		int devID = queryForId(username);	
         try
         { 	
-			PreparedStatement prepstmt = conn.prepareStatement(sql);
+			PreparedStatement prepstmt = conn.prepareStatement(sqldev);
 			prepstmt.setString(1, username);
 			prepstmt.setInt(2, devID);
-			prepstmt.setInt(3, mgrID);
 			prepstmt.execute();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        System.out.println("new developer added..");
 		return true;
 	}
 	
-	private boolean addNewMgr(String username) { //adds new tuple into Manager table
-		DBConnection newMgr = new DBConnection();
-		Connection conn = newMgr.ConnectDB();
+	private boolean addNewMgr(String username, String fname, String team, String password ) { 		
+		String sqluser ="INSERT INTO User (userName, fname, team,pwd)" + " VALUES (?,?, ?, ?)";	
+		DBConnection newUser = new DBConnection();
+		Connection conn = newUser.ConnectDB();
+		System.out.println("adding new user(mgr) into User table..");
+		try {
+			PreparedStatement prepstmt = conn.prepareStatement(sqluser);
+			prepstmt.setString(1, username);
+			prepstmt.setString(2, fname);
+			prepstmt.setString(3, team);
+			prepstmt.setString(4, password);
+			prepstmt.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		System.out.println("new user (mgr) added..");
+		
+		System.out.println("adding new manager into Manager table");
 		String sql = "INSERT INTO Manager (userName,id)" + " VALUES (?,?)" ; 
 		int id = queryForId(username);
-		System.out.println("adding new manager into Manager table");
         try
         { 	
 			PreparedStatement prepstmt = conn.prepareStatement(sql);
@@ -130,23 +169,7 @@ public class UserAccount {
 		return true;
 	}
 
-	private boolean addNewUser(String username, String password) { //adds new tuple into User table
-		String sql ="INSERT INTO User (userName, pwd)" + " VALUES (?,?)";	
-		DBConnection newUser = new DBConnection();
-		Connection conn = newUser.ConnectDB();
-		System.out.println("adding new user into User table..");
-		try {
-			PreparedStatement prepstmt = conn.prepareStatement(sql);
-			prepstmt.setString(1, username);
-			prepstmt.setString(2, password);
-			prepstmt.execute();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		System.out.println("new user added..");
-		return true;
-	}
+
 	
 	public boolean authenticateUser(String username, String password) {
 		DBConnection authUser = new DBConnection();
