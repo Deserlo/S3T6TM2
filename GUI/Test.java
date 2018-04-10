@@ -7,21 +7,20 @@ public class Test{
 	public static int MenuVar = 0;
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
-		JPanel log = new TM_LogIn();
-		JPanel create = new TM_CreateAccount();
-		JPanel manager = new TM_MSidePanel();
-		JPanel developer = new TM_DSidePanel();
-		JPanel mtask = new TM_MTask();
+		
+		//Screens
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
-		              //switch the panel to change view
+		
+		//Container
 		Container contentpan = (JPanel)home.getContentPane();
 		contentpan.setLayout(new BorderLayout());		
 	
-		int oldValue = -1;
+		//Switch Value here by changing MenuVar
+		int OldValue = -1;
 		while(true){
-			if(oldValue != MenuVar){
-				oldValue = MenuVar;
+			if(OldValue != MenuVar){
+				OldValue = MenuVar;
 				switch(MenuVar){
 					case 0:
 						System.out.println("In case " + MenuVar);
@@ -30,8 +29,8 @@ public class Test{
 						break;
 					case 1: 
 						System.out.println("In case " + MenuVar);
-						contentpan.add(manager, BorderLayout.WEST);
-						contentpan.add(mtask, BorderLayout.CENTER);
+						//contentpan.add(manager, BorderLayout.WEST);
+						//contentpan.add(mtask, BorderLayout.CENTER);
 						contentpan.revalidate();
 						break;
 					case 2: 
@@ -45,8 +44,6 @@ public class Test{
 				}
 			}
 			home.setSize(960,540); //16:9 Resolution
-			if(oldValue == 99)
-			{ break; } //to fix compiler error.
 		}
 		
 	}

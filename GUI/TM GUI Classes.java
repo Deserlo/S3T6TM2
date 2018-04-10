@@ -7,13 +7,13 @@ import javax.imageio.*;
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
-		setSize(960,540);
+		//setSize(960,540);
 		setVisible(true);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
-	
+
 class PTextField extends JTextField{ // pulled from stack overflow
 	
 	public PTextField(final String proptText){
@@ -52,13 +52,38 @@ class CRadioButton extends JRadioButton{
 		//setForeground(Color.white);
 	}
 }
-
 class CButton extends JButton{
 	public CButton(ImageIcon I){
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
 		setIcon(I);
+	}
+}
+
+class AbsoluteTextButton extends JButton{
+	public AbsoluteTextButton(String Words, int x, int y, int width, int height){
+		setText(Words);
+		setBorderPainted(false);
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
+		setBounds(x, y, width, height); 
+	}
+}
+class AbsoluteTextField extends JTextField{
+	public AbsoluteTextField(String Words, int x, int y, int width, int height){
+		setText(Words);
+		setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		setBackground(new java.awt.Color(70,81,108));
+		setBounds(x, y, width, height); 
+	}
+}
+class AbsolutePanel extends JLabel{
+	public AbsolutePanel(String Words, int x, int y, int width, int height, int FontSize){
+		setText(Words);
+		setBounds(x, y, width, height);
+		setFont(new Font("Helvetica", Font.BOLD, FontSize));
+		setForeground(new java.awt.Color(73,210,146));
 	}
 }
 
@@ -129,21 +154,20 @@ class TM_GUI_Intro{
 }
 
 class RegisterScreen{
-	JLabel DevTO = new JLabel("Developer");
-	JLabel ManTO = new JLabel("Manager");
-	JTextField Dev_NameTF = new JTextField("Name");
-	JTextField Dev_EmailTF = new JTextField("Email");
-	JTextField Dev_TeamTF = new JTextField("Team");
-	JTextField Dev_PasswordTF = new JTextField("Password");
-	JTextField Man_NameTF = new JTextField("Name");
-	JTextField Man_EmailTF = new JTextField("Email");
-	JTextField Man_TeamTF = new JTextField("Team");
-	JTextField Man_PasswordTF = new JTextField("Password");
-	JButton button_DevRegister = new JButton("Register");
-	JButton button_DevLogin = new JButton("Login");
-	JButton button_ManRegister = new JButton("Register");
-	JButton button_ManLogin = new JButton("Login");
-	
+	JLabel DevTO = new AbsolutePanel("Developer", 150,-10,195,130, 32);
+	JLabel ManTO = new AbsolutePanel("Manager", 700,-10,195,130, 32);
+	JTextField Dev_NameTF = new AbsoluteTextField("Name", 110,120, 240,30);
+	JTextField Dev_EmailTF = new AbsoluteTextField("Email", 110,160, 240,30);
+	JTextField Dev_TeamTF = new AbsoluteTextField("Team", 110,200, 240,30);
+	JTextField Dev_PasswordTF = new AbsoluteTextField("Password", 110,240, 240,30);
+	JTextField Man_NameTF = new AbsoluteTextField("Name", 660,120, 240,30);
+	JTextField Man_EmailTF = new AbsoluteTextField("Email", 660,160, 240,30);
+	JTextField Man_TeamTF = new AbsoluteTextField("Team", 660,200, 240,30);
+	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 660,240, 240,30);
+	JButton button_DevRegister = new AbsoluteTextButton("Register", 140,300, 160,45);
+	JButton button_DevLogin = new AbsoluteTextButton("Login", 140,360, 160,45);
+	JButton button_ManRegister = new AbsoluteTextButton("Register", 690,300, 160,45);
+	JButton button_ManLogin = new AbsoluteTextButton("Login", 690,360, 160,45);
 	
 	public RegisterScreen(JPanel frame){
 		//frame.setBackground(new java.awt.Color(53,53,53));
@@ -156,59 +180,6 @@ class RegisterScreen{
 		frame.add(button_DevRegister); frame.add(button_DevLogin);
 		frame.add(button_ManRegister); frame.add(button_ManLogin);
 		frame.setLayout(null);
-		
-		//JLabels/Text Objects
-		DevTO.setBounds(150,-10,195,130);
-		DevTO.setFont(new Font("Helvetica", Font.BOLD, 32));
-		DevTO.setForeground(new java.awt.Color(73,210,146));
-		ManTO.setBounds(700,-10,195,130);
-		ManTO.setFont(new Font("Helvetica", Font.BOLD, 32));
-		ManTO.setForeground(new java.awt.Color(73,210,146));
-		
-		//Text Fields
-		Dev_NameTF.setBounds(110,120, 240,30); 
-		Dev_EmailTF.setBounds(110,160, 240,30);
-		Dev_TeamTF.setBounds(110,200, 240,30); 
-		Dev_PasswordTF.setBounds(110,240, 240,30); 		
-		Man_NameTF.setBounds(660,120, 240,30); 
-		Man_EmailTF.setBounds(660,160, 240,30);
-		Man_TeamTF.setBounds(660,200, 240,30); 
-		Man_PasswordTF.setBounds(660,240, 240,30); 	
-		Dev_NameTF.setBackground(new java.awt.Color(70,81,108));
-		Dev_NameTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Dev_EmailTF.setBackground(new java.awt.Color(70,81,108));
-		Dev_EmailTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Dev_TeamTF.setBackground(new java.awt.Color(70,81,108));
-		Dev_TeamTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Dev_PasswordTF.setBackground(new java.awt.Color(70,81,108));
-		Dev_PasswordTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Man_NameTF.setBackground(new java.awt.Color(70,81,108));
-		Man_NameTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Man_EmailTF.setBackground(new java.awt.Color(70,81,108));
-		Man_EmailTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Man_TeamTF.setBackground(new java.awt.Color(70,81,108));
-		Man_TeamTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		Man_PasswordTF.setBackground(new java.awt.Color(70,81,108));
-		Man_PasswordTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
-		
-		//Buttons
-		button_DevRegister.setBounds(140,300, 160,45); 
-		button_DevLogin.setBounds(140,360, 160,45); 
-		button_ManRegister.setBounds(690,300, 160,45); 
-		button_ManLogin.setBounds(690,360, 160,45); 
-		button_DevRegister.setBorderPainted(false);
-		button_DevLogin.setBorderPainted(false);
-		button_ManRegister.setBorderPainted(false);
-		button_ManLogin.setBorderPainted(false);
-		button_DevRegister.setForeground(new java.awt.Color(117,132,178));
-		button_DevLogin.setForeground(new java.awt.Color(117,132,178));
-		button_ManRegister.setForeground(new java.awt.Color(117,132,178));
-		button_ManLogin.setForeground(new java.awt.Color(117,132,178));
-		button_DevRegister.setBackground(new java.awt.Color(70,81,108));
-		button_DevLogin.setBackground(new java.awt.Color(70,81,108));
-		button_ManRegister.setBackground(new java.awt.Color(70,81,108));
-		button_ManLogin.setBackground(new java.awt.Color(70,81,108));
 		
 		button_DevRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
