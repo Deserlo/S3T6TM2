@@ -180,6 +180,8 @@ class RegisterScreen{
 		frame.add(button_DevRegister); frame.add(button_DevLogin);
 		frame.add(button_ManRegister); frame.add(button_ManLogin);
 		frame.setLayout(null);
+		frame.revalidate();
+		frame.repaint();
 		
 		button_DevRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -218,6 +220,30 @@ class RegisterScreen{
 			}
 		});
 		frame.setOpaque(true);
-		
+	}
+}
+class LogInScreen{
+	JLabel LogInTO = new AbsolutePanel("Log In", 430,-5,195,130, 32);
+	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45);
+	JTextField EmailTF = new AbsoluteTextField("Email",360,200, 240,30);
+	JTextField PasswordTF = new AbsoluteTextField("Password", 360,150, 240,30);
+	public LogInScreen(JPanel frame){
+		frame.setBackground(new java.awt.Color(59,68,91));
+		frame.add(LogInTO); frame.add(button_LogIn);
+		frame.add(EmailTF); frame.add(PasswordTF);
+		frame.setLayout(null);
+		frame.revalidate();
+		frame.repaint();
+				
+		button_LogIn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = 2; 
+			}
+		});
+		frame.setOpaque(true);
 	}
 }

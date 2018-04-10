@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 0;
+	public static int MenuVar = 1;
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
 		//Screens
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
+		JPanel LogInScreen = new CPanel();
 		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
@@ -29,6 +30,8 @@ public class Test{
 						break;
 					case 1: 
 						System.out.println("In case " + MenuVar);
+						new LogInScreen(LogInScreen);
+						contentpan.add(LogInScreen);
 						//contentpan.add(manager, BorderLayout.WEST);
 						//contentpan.add(mtask, BorderLayout.CENTER);
 						contentpan.revalidate();
