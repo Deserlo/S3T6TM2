@@ -45,6 +45,8 @@ class CPanel extends JPanel{
 class CButton extends JButton{
 	public CButton(String s){
 		setText(s);
+		//setContentAreaFilled(false);
+		setFocusPainted(false);
 		setBorderPainted(false);
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
@@ -249,6 +251,8 @@ class SidePanel extends JPanel{
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
 	public SidePanel(){
+		
+		//GRAPHICS CODE
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx=0;
@@ -258,8 +262,6 @@ class SidePanel extends JPanel{
 		c.weighty=1.0;
 		c.ipadx = 80;
 		c.ipady = 40;
-		//c.gridheight = 8;
-		//c.gridwidth = 1;
 		add(Hours,c);
 		
 		c.gridy=1;
@@ -279,7 +281,33 @@ class SidePanel extends JPanel{
 		
 		setBackground(new java.awt.Color(70,81,108));
 
+		//FOCUS LISTENER CODE
+		Hours.addFocusListener(new FocusListener(){
+            public void focusGained(FocusEvent e){
+				Hours.setForeground(new java.awt.Color(73,210,146));
+            }
+            public void focusLost(FocusEvent e){
+                Hours.setForeground(new java.awt.Color(117,132,178));
+            }
+        });
 		
+		Projects.addFocusListener(new FocusListener(){
+            public void focusGained(FocusEvent e){
+				Projects.setForeground(new java.awt.Color(73,210,146));
+            }
+            public void focusLost(FocusEvent e){
+                Projects.setForeground(new java.awt.Color(117,132,178));
+            }
+        });
+		
+		Reports.addFocusListener(new FocusListener(){
+            public void focusGained(FocusEvent e){
+				Reports.setForeground(new java.awt.Color(73,210,146));
+            }
+            public void focusLost(FocusEvent e){
+                Reports.setForeground(new java.awt.Color(117,132,178));
+            }
+        });
 	}
 }
 		
