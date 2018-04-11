@@ -250,7 +250,7 @@ class SidePanel extends JPanel{
 	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
-	public SidePanel(){
+	public SidePanel(JPanel main){
 		
 		//GRAPHICS CODE
 		setLayout(new GridBagLayout());
@@ -308,6 +308,10 @@ class SidePanel extends JPanel{
                 Reports.setForeground(new java.awt.Color(117,132,178));
             }
         });
+		
+		//ACTION LISTENR CODE
+		Hours.addActionListener(new ActionListener(){
+			Object source = e.getSource();
 	}
 }
 		
