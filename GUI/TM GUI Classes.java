@@ -29,9 +29,33 @@ class PTextField extends JTextField{ // pulled from stack overflow
                 }
             }
         });
+		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
 		setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setColumns(10);
+		setFont(new Font("Helvetica",Font.ITALIC, 20));
+    }
+}
+
+class PTextArea extends JTextArea{ // pulled from stack overflow
+	
+	public PTextArea(final String proptText){
+        super(proptText);
+        addFocusListener(new FocusListener(){
+            public void focusLost(FocusEvent e){
+                if(getText().isEmpty()){
+                    setText(proptText);
+                }
+            }
+            public void focusGained(FocusEvent e){
+                if(getText().equals(proptText)){
+                    setText("");
+                }
+            }
+        });
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
+		setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
     }
 }
@@ -42,6 +66,17 @@ class CPanel extends JPanel{
 	}
 }
 
+class SButton extends JButton{
+	public SButton(String s){
+		setText(s);
+		//setContentAreaFilled(false);
+		setFocusPainted(false);
+		setBorderPainted(false);
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
+	}
+}
+
 class CButton extends JButton{
 	public CButton(String s){
 		setText(s);
@@ -49,7 +84,15 @@ class CButton extends JButton{
 		setFocusPainted(false);
 		setBorderPainted(false);
 		setForeground(new java.awt.Color(117,132,178));
-		setBackground(new java.awt.Color(70,81,108));
+		setBackground(new java.awt.Color(0,0,0));
+	}
+}
+
+class Header extends JLabel{
+	public Header (String s){
+		setText(s);
+		setFont(new Font("Helvetica", Font.BOLD, 15));
+		setForeground(new java.awt.Color(73,210,146));
 	}
 }
 
@@ -244,13 +287,13 @@ class LogInScreen{
 }
 
 class SidePanel extends JPanel{
-	JButton Hours = new CButton("<html><font face = helvetica size = 6> Hours </font></html>");
-	JButton Projects = new CButton("<html><font face = helvetica size = 6> Projects </font></html>");
-	JButton Reports = new CButton("<html><font face = helvetica size = 6> Reports </font></html>");
-	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>");
+	JButton Hours = new SButton("<html><font face = helvetica size = 6> Hours </font></html>");
+	JButton Projects = new SButton("<html><font face = helvetica size = 6> Projects </font></html>");
+	JButton Reports = new SButton("<html><font face = helvetica size = 6> Reports </font></html>");
+	JButton LogOut = new SButton("<html><font face = helvetica size = 6> Log Out </font></html>");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
-	public SidePanel(Conatiner f, JPanel main, JPanel[] s){
+	public SidePanel(Container f, JPanel main, JPanel[] s){
 		
 		//NOTE ABOUT PARAMETERS:
 		
@@ -324,6 +367,15 @@ class SidePanel extends JPanel{
         });
 		
 		//ACTION LISTENR CODE
+		Hours.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				main.add(s[0]);
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		
 		Projects.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
@@ -353,3 +405,22 @@ class SidePanel extends JPanel{
 		
 	}
 }
+
+class Hours extends JPanel{
+	JButton Start = new CButton("Start");
+	JButton Stop = new CButton("Stop");
+	JTextField TaskName = new PTextField("Task Name");
+	JTextField ProjectName = new PTextField("Project Name");
+	JTextArea Description = new PTextArea("Description");
+	
+	public Hours(){
+		add(TaskName);
+		add(ProjectName);
+		add(Description);
+		add(Start);
+		add(Stop);
+		setBackground(new java.awt.Color(70,81,108));
+
+	}
+}
+	
