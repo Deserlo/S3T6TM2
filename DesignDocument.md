@@ -487,9 +487,15 @@ We will be implementing a two-tier client/server architecture for the TM project
 #### Use Case: Log In
 | Responsibility Description | Type | Concept Name |
 |----------------------------|------|--------------|
+| Rs1: Coordinate actions of concepts associated with this use case and delegate the work to other concepts.|D|Controller|
+| Rs2: Container for user's authentication data. Ex: Username, password | K | LogInInfo |
+| Rs3: Verify if LogInInfo entered is valid | D | VerifyLogInInfo |
+| Rs4: Container for the collection of valid LogInInfo with users| K | LogInInfoStorage|
 
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
+| Controller <-> LogInInfo | Controller passes in information(username, password) to the LogInInfo| UserInput|
+| LogInInfo <-> VerifyLogInInfo | ||
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
