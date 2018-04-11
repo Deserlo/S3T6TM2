@@ -250,7 +250,21 @@ class SidePanel extends JPanel{
 	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>");
 	JPanel pan1 = new CPanel();
 	JPanel pan2 = new CPanel();
-	public SidePanel(JPanel main){
+	public SidePanel(Conatiner f, JPanel main, JPanel[] s){
+		
+		//NOTE ABOUT PARAMETERS:
+		
+		/*main will be the panel that side panel lies on
+		  array s will contain all the different center panels
+		  this allows the buttons to change the panels while keeping itself
+		  intact*/
+		  
+		/*ARRAY indexing:
+		  0 = hours
+		  1 = projects
+		  2 = reports
+		  3 = log in
+		*/
 		
 		//GRAPHICS CODE
 		setLayout(new GridBagLayout());
@@ -310,11 +324,30 @@ class SidePanel extends JPanel{
         });
 		
 		//ACTION LISTENR CODE
-		Hours.addActionListener(new ActionListener(){
+		Projects.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				main.add(s[1]);
 				main.revalidate();
 				main.repaint();
+			}
+		});
+		
+		Reports.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				main.add(s[2]);
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		
+		LogOut.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				f.removeAll();
+				f.add(s[3]);
+				f.revalidate();
+				f.repaint();
 			}
 		});
 		
