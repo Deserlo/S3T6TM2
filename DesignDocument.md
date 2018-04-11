@@ -482,7 +482,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
-| Controller | Commands | Used to due a certain task based on the "command" specified |
+| Controller | Commands | Used for executing a certain task based on the "command" specified |
 
 #### Use Case: Log In
 | Responsibility Description | Type | Concept Name |
@@ -495,10 +495,11 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
 | Controller <-> LogInInfo | Controller passes in information(username, password) to the LogInInfo| UserInput|
-| LogInInfo <-> VerifyLogInInfo | ||
+| LogInInfo <-> VerifyLogInInfo | The LogInInfo is passed into the VerifyLogInInfo to check if the inputs are valid| ValidInfo |
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
+| LogInInfo | User Username/ password | Data created by the user to allow authorization between things created.|
 
 #### Use Case: Create Account
 | Responsibility Description | Type | Concept Name |
