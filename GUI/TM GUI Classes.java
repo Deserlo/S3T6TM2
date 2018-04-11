@@ -7,9 +7,8 @@ import javax.imageio.*;
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
-		//setSize(960,540);
 		setVisible(true);
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
@@ -30,10 +29,10 @@ class PTextField extends JTextField{ // pulled from stack overflow
                 }
             }
         });
-		this.setBackground(new java.awt.Color(70,81,108));
-		this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		this.setColumns(10);
-		this.setFont(new Font("Helvetica",Font.ITALIC, 30));
+		setBackground(new java.awt.Color(70,81,108));
+		setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		setColumns(10);
+		setFont(new Font("Helvetica",Font.ITALIC, 20));
     }
 }
 
@@ -43,21 +42,12 @@ class CPanel extends JPanel{
 	}
 }
 
-class CRadioButton extends JRadioButton{
-	public CRadioButton(String title){
-		super(title);
-		setOpaque(false);
-		setContentAreaFilled(false);
-		setBorderPainted(false);
-		//setForeground(Color.white);
-	}
-}
 class CButton extends JButton{
-	public CButton(ImageIcon I){
-		setOpaque(false);
-		setContentAreaFilled(false);
+	public CButton(String s){
+		setText(s);
 		setBorderPainted(false);
-		setIcon(I);
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
 	}
 }
 
@@ -70,6 +60,7 @@ class AbsoluteTextButton extends JButton{
 		setBounds(x, y, width, height); 
 	}
 }
+
 class AbsoluteTextField extends JTextField{
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
@@ -78,6 +69,7 @@ class AbsoluteTextField extends JTextField{
 		setBounds(x, y, width, height); 
 	}
 }
+
 class AbsolutePanel extends JLabel{
 	public AbsolutePanel(String Words, int x, int y, int width, int height, int FontSize){
 		setText(Words);
@@ -222,6 +214,7 @@ class RegisterScreen{
 		frame.setOpaque(true);
 	}
 }
+
 class LogInScreen{
 	JLabel LogInTO = new AbsolutePanel("Log In", 430,-5,195,130, 32);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45);
@@ -247,3 +240,46 @@ class LogInScreen{
 		frame.setOpaque(true);
 	}
 }
+
+class SidePanel extends JPanel{
+	JButton Hours = new CButton("<html><font face = helvetica size = 6> Hours </font></html>");
+	JButton Projects = new CButton("<html><font face = helvetica size = 6> Projects </font></html>");
+	JButton Reports = new CButton("<html><font face = helvetica size = 6> Reports </font></html>");
+	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>");
+	JPanel pan1 = new CPanel();
+	JPanel pan2 = new CPanel();
+	public SidePanel(){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx=0;
+		c.gridy=0;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx=1.0;
+		c.weighty=1.0;
+		c.ipadx = 80;
+		c.ipady = 40;
+		//c.gridheight = 8;
+		//c.gridwidth = 1;
+		add(Hours,c);
+		
+		c.gridy=1;
+		add(Projects,c);
+		
+		c.gridy=2;
+		add(Reports,c);
+		
+		c.gridy=3;
+		add(pan1,c);
+		
+		c.gridy=4;
+		add(pan2,c);
+		
+		c.gridy=5;
+		add(LogOut,c);
+		
+		setBackground(new java.awt.Color(70,81,108));
+
+		
+	}
+}
+		
