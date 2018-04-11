@@ -311,7 +311,12 @@ class SidePanel extends JPanel{
 		
 		//ACTION LISTENR CODE
 		Hours.addActionListener(new ActionListener(){
-			Object source = e.getSource();
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		
 	}
 }
-		
