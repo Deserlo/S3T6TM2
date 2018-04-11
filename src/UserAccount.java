@@ -3,14 +3,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserAccount implements ITMModel {
+public class UserAccount  {
 	private String role;
 	private String fname;
 	private String username;
 	private String password;
 	private String team;
-	private int mgrID;
-	//manager
+
 	public UserAccount(String role, String fname, String username, String password, String team) {
 		this.role = role;
 		this.fname = fname;
@@ -18,28 +17,25 @@ public class UserAccount implements ITMModel {
 		this.password = password;
 		this.team = team;
 	}
-	//dev
-	public UserAccount(String role, String fname, String username, String password, String team, int mgrID) {
+	
+	public UserAccount(String role, String username, String password) {
 		this.role = role;
-		this.fname = fname;
 		this.username = username;
 		this.password = password;
-		this.team = team;
-		this.mgrID = mgrID;
 	}
 	
 	public void addNewAccount(UserAccount newAccount) {
 		switch (newAccount.role) {
-		case "dev":
+		case "dev": //dev can only join a team
 			if (checkIfTeamExists(newAccount.team)==true) {
-				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password, newAccount.mgrID); 		
+				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password); 		
 				break;
 			}
 			else {
 				break;
 			}
-		case "mgr": 
-			if (checkIfTeamExists(newAccount.team)==true) {
+		case "mgr": //only manager can create Team
+			if (checkIfTeamExists(newAccount.team)==false) {
 				addNewMgr(newAccount.username, newAccount.fname, newAccount.team, newAccount.password);
 				break;
 			}
@@ -48,6 +44,28 @@ public class UserAccount implements ITMModel {
 			}
 		}
 	
+	}
+	
+	private int queryForMgrID(String team) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+        try { 
+		   DBConnection db = new DBConnection();
+    	   conn = db.ConnectDB();
+    	   String queryForID = "SELECT mgrID FROM Team WHERE teamName = ?";
+           stmt = conn.prepareStatement(queryForID);
+           stmt.setString(1, team);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				 int ID = rs.getInt(1);
+				 	return ID;
+			}
+		}catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  
+        return 0;
 	}
 	
 	
@@ -82,29 +100,47 @@ public class UserAccount implements ITMModel {
         try { 
 		   DBConnection db = new DBConnection();
     	   conn = db.ConnectDB();
-    	   String queryForName = "SELECT teamName FROM Team";
+    	   String queryForName = "SELECT teamName FROM Team WHERE teamName = ?";
            stmt = conn.prepareStatement(queryForName);
+           stmt.setString(1, teamName);
 			rs = stmt.executeQuery();
-			while(rs.next()) {
-				 String name = rs.getString(1);
-				 if (teamName == name) {
+			String name = rs.getString(2);
+				 if (name.equals(teamName)) {
 				    return true;
 				}
-			}
 		}catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}      
-        System.out.println("Team invalid.");
+        System.out.println("Team not yet created.");
         return false;
 	}
 	
+	private void createNewTeam(int mgrID, String team) {
+		String sql ="INSERT INTO Team (mgrID, teamName)" + " VALUES (?,?)";	
+		DBConnection newUser = new DBConnection();
+		Connection conn = newUser.ConnectDB();
+		System.out.println("creating new team with manager'S ID into Team table..");
+		try {
+			PreparedStatement prepstmt = conn.prepareStatement(sql);
+			prepstmt.setInt(1, mgrID);
+			prepstmt.setString(2, team);
+			prepstmt.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		System.out.println("new team created..");
+		
+	}
 	
-	private boolean addNewDev(String username, String fname, String team, String password, int mgrID) { 
+	
+	private void addNewDev(String username, String fname, String team, String password) { 
 		String sqluser ="INSERT INTO User (userName, fname, team,pwd, mgrID)" + " VALUES (?,?, ?, ?, ?)";	
 		DBConnection newUser = new DBConnection();
 		Connection conn = newUser.ConnectDB();
 		System.out.println("adding new user(dev) into User table..");
+		int mgrID = queryForMgrID(team);
 		try {
 			PreparedStatement prepstmt = conn.prepareStatement(sqluser);
 			prepstmt.setString(1, username);
@@ -131,10 +167,9 @@ public class UserAccount implements ITMModel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return true;
 	}
 	
-	private boolean addNewMgr(String username, String fname, String team, String password ) { 		
+	private void addNewMgr(String username, String fname, String team, String password ) { 		
 		String sqluser ="INSERT INTO User (userName, fname, team,pwd)" + " VALUES (?,?, ?, ?)";	
 		DBConnection newUser = new DBConnection();
 		Connection conn = newUser.ConnectDB();
@@ -166,20 +201,47 @@ public class UserAccount implements ITMModel {
 			e1.printStackTrace();
 		}
 		System.out.println("new manager added..");
-		return true;
+        createNewTeam(id, team);
 	}
 
 
 	
-	public boolean authenticateUser(String username, String password) {
-		DBConnection authUser = new DBConnection();
-		Connection conn = authUser.ConnectDB();
-	    System.out.println("Checking whether user exists in DB and verifying password");
-	    ////query statement here
-	    //System.out.println("Credentials verified...");
-	    //System.out.println("Unable to verify please re-enter username and password...");
-	    return true;
+	public boolean authenticateUser(UserAccount account) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		boolean login = false;
+		System.out.println("authenticating user "+account.username+ "...");;
+        try { 
+		   DBConnection db = new DBConnection();
+    	   conn = db.ConnectDB();
+    	   String query = "SELECT userName, pwd FROM user WHERE userName =? and pwd=?";
+           stmt = conn.prepareStatement(query);
+           stmt.setString(1, account.username);
+           stmt.setString(2, account.password);
+		   rs = stmt.executeQuery();
+		   while(rs.next()) {
+		        String checkUser = rs.getString("userName");
+		        String checkPass = rs.getString("pwd");
+		        System.out.println(checkUser);
+		        System.out.println(checkPass);
+		        if((checkUser.equals(account.username)) && (checkPass.equals(account.password))) {
+			           login = true;
+			           System.out.println("login authorized.");
+			    }
+			    else {
+			          login = false;       
+			        }
+		    }
+		   System.out.println("please check login credentials.");
+        }  catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        return login;
 	}
 }
+	
+
 
 
