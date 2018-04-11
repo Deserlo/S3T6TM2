@@ -496,6 +496,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 |--------------|-------------------------|------------------|
 | Controller <-> LogInInfo | Controller passes in information(username, password) to the LogInInfo| UserInput|
 | LogInInfo <-> VerifyLogInInfo | The LogInInfo is passed into the VerifyLogInInfo to check if the inputs are valid| ValidInfo |
+| LogInInfoStorage <-> VerifyLogInInfo | LogInInfoStorage passes in the valid credentials to VerifyLogInInfo for comparing the received LogInInfo| ValidLogIn|
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
