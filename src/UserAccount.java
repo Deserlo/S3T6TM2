@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class UserAccount  {
 	private String role;
 	private String fname;
-	private String username;
+	String username;
 	private String password;
 	private String team;
 
@@ -18,8 +18,7 @@ public class UserAccount  {
 		this.team = team;
 	}
 	
-	public UserAccount(String role, String username, String password) {
-		this.role = role;
+	public UserAccount(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
@@ -61,15 +60,18 @@ public class UserAccount  {
 				 int ID = rs.getInt(1);
 				 	return ID;
 			}
-		}catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+		}
         return 0;
 	}
 	
 	
-	private int queryForId(String username) {
+	public int queryForId(String username) {
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
@@ -84,10 +86,13 @@ public class UserAccount  {
 				   int ID = rs.getInt(1);
 				   return ID;
 			   }	
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}      
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+				if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+				if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+			}     
 	       System.out.println("query for ID failed");
 	       return 0;
 	}
@@ -108,10 +113,13 @@ public class UserAccount  {
 				 if (name.equals(teamName)) {
 				    return true;
 				}
-		}catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}      
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+		}     
         System.out.println("Team not yet created.");
         return false;
 	}
@@ -126,9 +134,10 @@ public class UserAccount  {
 			prepstmt.setInt(1, mgrID);
 			prepstmt.setString(2, team);
 			prepstmt.execute();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
 		}	
 		System.out.println("new team created..");
 		
@@ -163,9 +172,10 @@ public class UserAccount  {
 			prepstmt.setString(1, username);
 			prepstmt.setInt(2, devID);
 			prepstmt.execute();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
 		}
 	}
 	
@@ -199,9 +209,11 @@ public class UserAccount  {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+	} finally {
+		if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+	}   
 		System.out.println("new manager added..");
-        createNewTeam(id, team);
+		createNewTeam(id, team);
 	}
 
 
