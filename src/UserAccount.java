@@ -23,25 +23,31 @@ public class UserAccount  {
 		this.password = password;
 	}
 	
-	public void addNewAccount(UserAccount newAccount) {
+	public boolean addNewAccount(UserAccount newAccount) {
+		boolean accountCreated = false;
 		switch (newAccount.role) {
 		case "dev": //dev can only join a team
 			if (checkIfTeamExists(newAccount.team)==true) {
-				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password); 		
+				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password); 
+				accountCreated = true;
 				break;
 			}
 			else {
+				accountCreated = false;
 				break;
 			}
 		case "mgr": //only manager can create Team
 			if (checkIfTeamExists(newAccount.team)==false) {
 				addNewMgr(newAccount.username, newAccount.fname, newAccount.team, newAccount.password);
+				accountCreated = true;
 				break;
 			}
 			else {
+				accountCreated = false;
 				break;
 			}
 		}
+		return accountCreated;
 	
 	}
 	
@@ -242,14 +248,18 @@ public class UserAccount  {
 			           System.out.println("login authorized.");
 			    }
 			    else {
-			          login = false;       
+			          login = false; 
+					   System.out.println("please check login credentials.");
 			        }
 		    }
-		   System.out.println("please check login credentials.");
         }  catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} finally {
+			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+		} 
         return login;
 	}
 }
