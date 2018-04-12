@@ -505,6 +505,11 @@ We will be implementing a two-tier client/server architecture for the TM project
 #### Use Case: Create Account
 | Responsibility Description | Type | Concept Name |
 |----------------------------|------|--------------|
+| Rs1: Coordinate actions of concepts associated with this use case and delegate the work to other concepts.| D | Controller |
+| Rs2: Command or selcetion that allows new users to be created. | D | NewUsers |
+| Rs3: Verify if NewUsers do not already exist | D | VerifyNewUsers |
+| Rs4: Container for user's authentication data. Ex: Username, password | K | LogInInfo | 
+||||
 
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
