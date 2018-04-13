@@ -591,6 +591,7 @@ Currently we are split into two teams with
    * Currently Bryant is working on the classes "SidePanel", "Hours", "Projects", "Reports", as well as various classes to refactor those classes.
 
 * Marina, Evamarie, & Avery working on the MySQL database
+   * Eva is working on the Developer and Manager class logic to store and retrieve entries in the Database
 
 Merging the code and integrating the two teams code together will be mostly on the shoulders of the MySQL team, but also will partially be a collaborative effort when needed.
 
