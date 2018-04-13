@@ -14,6 +14,20 @@ public class Test{
 		JPanel LogInScreen = new CPanel();
 		JPanel DevHoursScreen = new CPanel();
 		
+		//DevScreen
+		JPanel main = new CPanel();
+		JPanel main1 = new Hours();
+		JPanel main2 = new CPanel();
+		JPanel main3 = new CPanel();
+		JPanel[] s = new JPanel[4];
+		JPanel Log = new CPanel();
+		JPanel center = new CPanel();
+		JPanel side = new SidePanel(home.getContentPane(), main, s);
+		JLabel test = new JLabel("test");
+		s[0]=main1;
+		s[1]=main2;
+		s[2]=main3;
+
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
 	
@@ -42,8 +56,14 @@ public class Test{
 						break;		
 					case 3: 
 						System.out.println("In case " + MenuVar);
-						new DevHoursScreen(DevHoursScreen);
-						contentpan.add(DevHoursScreen);
+						contentpan.removeAll();
+						//new DevHoursScreen(DevHoursScreen);
+						//contentpan.add(DevHoursScreen);
+						main.setLayout(new BorderLayout());
+						main.add(side,BorderLayout.WEST);
+						center.add(test);
+						main.add(center,BorderLayout.CENTER);
+						home.getContentPane().add(main);
 						contentpan.revalidate();
 						break;
 					case 4:
