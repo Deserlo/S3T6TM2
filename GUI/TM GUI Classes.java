@@ -14,7 +14,6 @@ class TM_Frame extends JFrame{
 }
 
 class PTextField extends JTextField{ // pulled from stack overflow
-	
 	public PTextField(final String proptText){
         super(proptText);
         addFocusListener(new FocusListener(){
@@ -38,7 +37,6 @@ class PTextField extends JTextField{ // pulled from stack overflow
 }
 
 class PTextArea extends JTextArea{ // pulled from stack overflow
-	
 	public PTextArea(final String proptText){
         super(proptText);
         addFocusListener(new FocusListener(){
@@ -59,13 +57,11 @@ class PTextArea extends JTextArea{ // pulled from stack overflow
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
     }
 }
-
 class CPanel extends JPanel{
 	public CPanel(){
 		setOpaque(false);
 	}
 }
-
 class SButton extends JButton{
 	public SButton(String s){
 		setText(s);
@@ -76,7 +72,6 @@ class SButton extends JButton{
 		setBackground(new java.awt.Color(70,81,108));
 	}
 }
-
 class CButton extends JButton{
 	public CButton(String s){
 		setText(s);
@@ -87,7 +82,6 @@ class CButton extends JButton{
 		setBackground(new java.awt.Color(0,0,0));
 	}
 }
-
 class Header extends JLabel{
 	public Header (String s){
 		setText(s);
@@ -97,15 +91,23 @@ class Header extends JLabel{
 }
 
 class AbsoluteTextButton extends JButton{
-	public AbsoluteTextButton(String Words, int x, int y, int width, int height){
+	public AbsoluteTextButton(String Words, int x, int y, int width, int height, boolean transparent, int MenuSwitch, int ButtonNum){
 		setText(Words);
 		setBorderPainted(false);
-		setForeground(new java.awt.Color(117,132,178));
-		setBackground(new java.awt.Color(70,81,108));
-		setBounds(x, y, width, height); 
+		if(transparent == false){
+			setForeground(new java.awt.Color(117,132,178));
+			setBackground(new java.awt.Color(70,81,108));
+		}
+		else{
+			//setOpaque(false);
+			setContentAreaFilled(false);
+			setForeground(new java.awt.Color(255,255,255));
+		}
+		setBounds(x, y, width, height);
+		putClientProperty("MenuSwitch", MenuSwitch);
+		putClientProperty("ButtonNum", ButtonNum);
 	}
 }
-
 class AbsoluteTextField extends JTextField{
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
@@ -114,9 +116,8 @@ class AbsoluteTextField extends JTextField{
 		setBounds(x, y, width, height); 
 	}
 }
-
-class AbsolutePanel extends JLabel{
-	public AbsolutePanel(String Words, int x, int y, int width, int height, int FontSize){
+class AbsoluteLabel extends JLabel{
+	public AbsoluteLabel(String Words, int x, int y, int width, int height, int FontSize){
 		setText(Words);
 		setBounds(x, y, width, height);
 		setFont(new Font("Helvetica", Font.BOLD, FontSize));
@@ -191,8 +192,8 @@ class TM_GUI_Intro{
 }
 
 class RegisterScreen{
-	JLabel DevTO = new AbsolutePanel("Developer", 150,-10,195,130, 32);
-	JLabel ManTO = new AbsolutePanel("Manager", 700,-10,195,130, 32);
+	JLabel DevTO = new AbsoluteLabel("Developer", 150,-10,195,130, 32);
+	JLabel ManTO = new AbsoluteLabel("Manager", 700,-10,195,130, 32);
 	JTextField Dev_NameTF = new AbsoluteTextField("Name", 110,120, 240,30);
 	JTextField Dev_EmailTF = new AbsoluteTextField("Email", 110,160, 240,30);
 	JTextField Dev_TeamTF = new AbsoluteTextField("Team", 110,200, 240,30);
@@ -201,13 +202,12 @@ class RegisterScreen{
 	JTextField Man_EmailTF = new AbsoluteTextField("Email", 660,160, 240,30);
 	JTextField Man_TeamTF = new AbsoluteTextField("Team", 660,200, 240,30);
 	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 660,240, 240,30);
-	JButton button_DevRegister = new AbsoluteTextButton("Register", 140,300, 160,45);
-	JButton button_DevLogin = new AbsoluteTextButton("Login", 140,360, 160,45);
-	JButton button_ManRegister = new AbsoluteTextButton("Register", 690,300, 160,45);
-	JButton button_ManLogin = new AbsoluteTextButton("Login", 690,360, 160,45);
+	JButton button_DevRegister = new AbsoluteTextButton("Register", 140,300, 160,45, false, 1, 1);
+	JButton button_DevLogin = new AbsoluteTextButton("Login", 140,360, 160,45, false, 1, 2);
+	JButton button_ManRegister = new AbsoluteTextButton("Register", 690,300, 160,45, false, 3, 3);
+	JButton button_ManLogin = new AbsoluteTextButton("Login", 690,360, 160,45, false, 1, 4);
 	
 	public RegisterScreen(JPanel frame){
-		//frame.setBackground(new java.awt.Color(53,53,53));
 		frame.setBackground(new java.awt.Color(59,68,91));
 		frame.add(DevTO); frame.add(ManTO);
 		frame.add(Dev_NameTF); frame.add(Dev_EmailTF);
@@ -220,49 +220,37 @@ class RegisterScreen{
 		frame.revalidate();
 		frame.repaint();
 		
-		button_DevRegister.addActionListener(new ActionListener(){
+		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				frame.setBackground(new java.awt.Color(0,0,0));
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = 1; 
+				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+					//DevRegister Code
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+					//DevLogIn Code
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
+					//ManRegister Code
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
+					//ManLogIn Code
+				}
 			}
-		});
-		button_DevLogin.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
-				frame.removeAll();
-				frame.revalidate();
-				frame.repaint();
-				Test.MenuVar = 1; 
-			}
-		});
-		button_ManRegister.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
-				frame.removeAll();
-				frame.revalidate();
-				frame.repaint();
-				Test.MenuVar = 1; 
-			}
-		});
-		button_ManLogin.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
-				frame.removeAll();
-				frame.revalidate();
-				frame.repaint();
-				Test.MenuVar = 1; 
-			}
-		});
+		};
+		button_DevRegister.addActionListener(action);
+		button_DevLogin.addActionListener(action);
+		button_ManRegister.addActionListener(action);
+		button_ManLogin.addActionListener(action);
 		frame.setOpaque(true);
 	}
 }
-
 class LogInScreen{
-	JLabel LogInTO = new AbsolutePanel("Log In", 430,-5,195,130, 32);
-	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45);
+	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
+	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
 	JTextField EmailTF = new AbsoluteTextField("Email",360,200, 240,30);
 	JTextField PasswordTF = new AbsoluteTextField("Password", 360,150, 240,30);
 	public LogInScreen(JPanel frame){
@@ -272,19 +260,56 @@ class LogInScreen{
 		frame.setLayout(null);
 		frame.revalidate();
 		frame.repaint();
-				
-		button_LogIn.addActionListener(new ActionListener(){
+		
+		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				frame.setBackground(new java.awt.Color(0,0,0));
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = 2; 
+				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 			}
-		});
+		};
+		button_LogIn.addActionListener(action);
 		frame.setOpaque(true);
 	}
 }
+class DevHoursScreen{
+	JLabel LogInTO = new AbsoluteLabel("Logging a Task", 430,-5,255,130, 32);
+	JButton button_StartTask = new AbsoluteTextButton("Start", 360,360, 160,45, false, 1, 1);
+	JButton button_StopTask = new AbsoluteTextButton("Stop", 560,360, 160,45, false, 1, 2);
+	JTextField TaskTF = new AbsoluteTextField("Task name",420,200, 240,30);
+	JTextField ProjectTF = new AbsoluteTextField("Project name", 420,150, 240,30);
+	public DevHoursScreen(JPanel frame){
+		frame.setBackground(new java.awt.Color(59,68,91));
+		frame.add(LogInTO); frame.add(button_StartTask);
+		frame.add(button_StopTask);
+		frame.add(TaskTF); frame.add(ProjectTF);
+		frame.setLayout(null);
+		frame.revalidate();
+		frame.repaint();
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.removeAll();
+				frame.revalidate();
+				frame.repaint();
+				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+					//Start Task Code
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+					//Stop Task Code
+				}
+			}
+		};
+		button_StartTask.addActionListener(action);
+		button_StopTask.addActionListener(action);
+		frame.setOpaque(true);
+	}
+}
+
 
 class SidePanel extends JPanel{
 	JButton Hours = new SButton("<html><font face = helvetica size = 6> Hours </font></html>");
@@ -450,4 +475,3 @@ class Hours extends JPanel{
 
 	}
 }
-	

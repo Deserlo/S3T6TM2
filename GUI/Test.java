@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 1;
+	public static int MenuVar = 2;
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
@@ -12,10 +12,10 @@ public class Test{
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
 		JPanel LogInScreen = new CPanel();
+		JPanel DevHoursScreen = new CPanel();
 		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
-		contentpan.setLayout(new BorderLayout());		
 	
 		//Switch Value here by changing MenuVar
 		int OldValue = -1;
@@ -32,8 +32,6 @@ public class Test{
 						System.out.println("In case " + MenuVar);
 						new LogInScreen(LogInScreen);
 						contentpan.add(LogInScreen);
-						//contentpan.add(manager, BorderLayout.WEST);
-						//contentpan.add(mtask, BorderLayout.CENTER);
 						contentpan.revalidate();
 						break;
 					case 2: 
@@ -41,13 +39,21 @@ public class Test{
 						new RegisterScreen(RegisterScreen);
 						contentpan.add(RegisterScreen);
 						contentpan.revalidate();
-						break;						
+						break;		
+					case 3: 
+						System.out.println("In case " + MenuVar);
+						new DevHoursScreen(DevHoursScreen);
+						contentpan.add(DevHoursScreen);
+						contentpan.revalidate();
+						break;
+					case 4:
+						System.out.println("In case " + MenuVar);
+						contentpan.revalidate();
 					default:
 						break;
 				}
 			}
 			home.setSize(960,540); //16:9 Resolution
 		}
-		
 	}
 }
