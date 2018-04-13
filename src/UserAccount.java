@@ -108,17 +108,20 @@ public class UserAccount  {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		boolean teamExists = false;
         try { 
 		   DBConnection db = new DBConnection();
     	   conn = db.ConnectDB();
     	   String queryForName = "SELECT teamName FROM Team WHERE teamName = ?";
            stmt = conn.prepareStatement(queryForName);
            stmt.setString(1, teamName);
-			rs = stmt.executeQuery();
-			String name = rs.getString(2);
-				 if (name.equals(teamName)) {
-				    return true;
-				}
+		   rs = stmt.executeQuery();
+		   if (rs.next()) {
+				String name = rs.getString(1);
+				if (name.equals(teamName)) {
+					teamExists = true;
+				 }
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -127,7 +130,7 @@ public class UserAccount  {
 			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
 		}     
         System.out.println("Team not yet created.");
-        return false;
+        return teamExists;
 	}
 	
 	private void createNewTeam(int mgrID, String team) {
