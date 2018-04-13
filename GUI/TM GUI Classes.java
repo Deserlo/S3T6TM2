@@ -91,7 +91,7 @@ class CButton extends JButton{
 class Header extends JLabel{
 	public Header (String s){
 		setText(s);
-		setFont(new Font("Helvetica", Font.BOLD, 15));
+		setFont(new Font("Helvetica", Font.BOLD, 30));
 		setForeground(new java.awt.Color(73,210,146));
 	}
 }
@@ -407,18 +407,45 @@ class SidePanel extends JPanel{
 }
 
 class Hours extends JPanel{
+	JLabel LogATask = new Header("Logging a Task");
 	JButton Start = new CButton("Start");
 	JButton Stop = new CButton("Stop");
 	JTextField TaskName = new PTextField("Task Name");
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
+	JPanel[] clear = new JPanel[3];
+
 	
 	public Hours(){
-		add(TaskName);
-		add(ProjectName);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 3;
+		add(LogATask,c);
+		
+		c.gridx=1;
+		c.gridy=1;
+		add(TaskName,c);
+		
+		c.gridx = 2;
+		add(ProjectName,c);
+		
+		c.gridx = 3;
 		add(Description);
-		add(Start);
-		add(Stop);
+		
+		for(JPanel pan : clear){
+			pan = new CPanel();
+			c.gridx++;
+			add(pan);
+		}
+		
+		c.gridx = 8;
+		add(Start,c);
+		
+		c.gridy = 4;
+		add(Stop,c);
 		setBackground(new java.awt.Color(70,81,108));
 
 	}
