@@ -1,26 +1,60 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
 
 public class Test{
-
-	public static void main(String[] args) {
+	public static int MenuVar = 2;
+	
+	//Session info
+	public static int userID;
+	public static boolean login = false;
 		
-		System.out.println("Testing adding new manager..");
-		UserAccount newuser1 = new UserAccount("mgr", "testmgr1", "password");
-		newuser1.addNewAccount(newuser1);
-		System.out.println("");
-			
-		System.out.println("Testing adding new developer with valid manager ID..");
-		int validMgrID = 1; //assumes developer knows their manager ID aka Team#
-		UserAccount newuser2 = new UserAccount("dev", "testDev1", "password", validMgrID);
-		newuser2.addNewAccount(newuser2);
-		System.out.println("");
+	public static void main(String[] args){
+		JFrame home = new TM_Frame("TM");
 		
-		System.out.println("Testing adding new developer with invalid manager ID..");
-		int invalidMgrID = 444; //assumes developer knows their manager ID aka Team#
-		UserAccount newuser3 = new UserAccount("dev", "testDev2", "password", invalidMgrID);
-		newuser3.addNewAccount(newuser3);
-		System.out.println("");
+		//Screens
+		JPanel Intro = new CPanel();
+		JPanel RegisterScreen = new CPanel();
+		JPanel LogInScreen = new CPanel();
 		
 
+		
+		//Container
+		Container contentpan = (JPanel)home.getContentPane();
+		contentpan.setLayout(new BorderLayout());		
+	
+		//Switch Value here by changing MenuVar
+		int OldValue = -1;
+		while(true){
+			if(OldValue != MenuVar){
+				OldValue = MenuVar;
+				switch(MenuVar){
+					case 0:
+						System.out.println("In case " + MenuVar);
+						new TM_GUI_Intro(Intro);
+						contentpan.add(Intro);
+						break;
+					case 1: 
+						System.out.println("In case " + MenuVar);
+						new LogInScreen(LogInScreen);
+						contentpan.add(LogInScreen);
+						//contentpan.add(manager, BorderLayout.WEST);
+						//contentpan.add(mtask, BorderLayout.CENTER);
+						contentpan.revalidate();
+						break;
+					case 2: 
+						System.out.println("In case " + MenuVar);
+						new RegisterScreen(RegisterScreen);
+						contentpan.add(RegisterScreen);
+						contentpan.revalidate();
+						break;						
+					default:
+						break;
+				}
+			}
+			home.setSize(960,540); //16:9 Resolution
+		}
+		
 	}
-
 }
