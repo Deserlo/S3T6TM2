@@ -53,7 +53,7 @@ class PTextArea extends JTextArea{ // pulled from stack overflow
         });
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
-		setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		//setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
     }
 }
@@ -253,6 +253,7 @@ class LogInScreen{
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
 	JTextField EmailTF = new AbsoluteTextField("Email",360,200, 240,30);
 	JTextField PasswordTF = new AbsoluteTextField("Password", 360,150, 240,30);
+	
 	public LogInScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
 		frame.add(LogInTO); frame.add(button_LogIn);
@@ -439,26 +440,31 @@ class Hours extends JPanel{
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
 	JPanel[] clear = new JPanel[3];
-
-	
 	public Hours(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 3;
+		c.weightx=1.0;
+		c.weighty=1.0;
+		c.ipadx = 80;
+		c.ipady = 40;
+		
+		c.gridx = 4;
+		c.gridy = 0;
 		add(LogATask,c);
 		
-		c.gridx=1;
+		c.gridx=3;
 		c.gridy=1;
 		add(TaskName,c);
 		
-		c.gridx = 2;
+		c.gridx = 3;
+		c.gridy=2;
 		add(ProjectName,c);
 		
 		c.gridx = 3;
-		add(Description);
+		c.gridy = 3;
+		add(Description,c);
 		
 		for(JPanel pan : clear){
 			pan = new CPanel();
@@ -466,12 +472,49 @@ class Hours extends JPanel{
 			add(pan);
 		}
 		
-		c.gridx = 8;
+		c.gridx = 3;
+		c.gridy = 4;
 		add(Start,c);
 		
+		c.gridx = 5;
 		c.gridy = 4;
 		add(Stop,c);
 		setBackground(new java.awt.Color(70,81,108));
-
+	}
+}
+class Projects extends JPanel{
+	JLabel ProjectsLabel = new Header("Projects");
+	public Projects(){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx=1.0;
+		c.weighty=1.0;
+		c.ipadx = 80;
+		c.ipady = 40;
+		
+		c.gridx = 4;
+		c.gridy = 0;
+		add(ProjectsLabel,c);
+		setBackground(new java.awt.Color(70,81,108));
+	}
+}
+class Reports extends JPanel{
+	JLabel ReportsLabel = new Header("Reports");
+	public Reports(){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx=1.0;
+		c.weighty=1.0;
+		c.ipadx = 80;
+		c.ipady = 40;
+		
+		c.gridx = 4;
+		c.gridy = 0;
+		add(ReportsLabel,c);
+		setBackground(new java.awt.Color(70,81,108));
 	}
 }

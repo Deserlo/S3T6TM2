@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 2;
+	public static int MenuVar = 3;
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
@@ -17,13 +17,12 @@ public class Test{
 		//DevScreen
 		JPanel main = new CPanel();
 		JPanel main1 = new Hours();
-		JPanel main2 = new CPanel();
-		JPanel main3 = new CPanel();
+		JPanel main2 = new Projects();
+		JPanel main3 = new Reports();
 		JPanel[] s = new JPanel[4];
 		JPanel Log = new CPanel();
 		JPanel center = new CPanel();
 		JPanel side = new SidePanel(home.getContentPane(), main, s);
-		JLabel test = new JLabel("test");
 		s[0]=main1;
 		s[1]=main2;
 		s[2]=main3;
@@ -61,7 +60,6 @@ public class Test{
 						//contentpan.add(DevHoursScreen);
 						main.setLayout(new BorderLayout());
 						main.add(side,BorderLayout.WEST);
-						center.add(test);
 						main.add(center,BorderLayout.CENTER);
 						home.getContentPane().add(main);
 						contentpan.revalidate();
