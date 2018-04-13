@@ -62,24 +62,18 @@ class CPanel extends JPanel{
 		setOpaque(false);
 	}
 }
-class SButton extends JButton{
-	public SButton(String s){
-		setText(s);
-		//setContentAreaFilled(false);
-		setFocusPainted(false);
-		setBorderPainted(false);
-		setForeground(new java.awt.Color(117,132,178));
-		setBackground(new java.awt.Color(70,81,108));
-	}
-}
 class CButton extends JButton{
-	public CButton(String s){
+	public CButton(String s, boolean IsSidePanel, int ExtraValue){
 		setText(s);
 		//setContentAreaFilled(false);
 		setFocusPainted(false);
 		setBorderPainted(false);
 		setForeground(new java.awt.Color(117,132,178));
-		setBackground(new java.awt.Color(0,0,0));
+		if(IsSidePanel == true)
+			setBackground(new java.awt.Color(59,68,91));
+		else
+			setBackground(new java.awt.Color(70,81,108));
+		putClientProperty("ExtraValue", ExtraValue);
 	}
 }
 class Header extends JLabel{
@@ -313,14 +307,13 @@ class DevHoursScreen{
 
 
 class SidePanel extends JPanel{
-	JButton Hours = new SButton("<html><font face = helvetica size = 6> Hours </font></html>");
-	JButton Projects = new SButton("<html><font face = helvetica size = 6> Projects </font></html>");
-	JButton Reports = new SButton("<html><font face = helvetica size = 6> Reports </font></html>");
-	JButton LogOut = new SButton("<html><font face = helvetica size = 6> Log Out </font></html>");
-	JPanel pan1 = new CPanel();
-	JPanel pan2 = new CPanel();
+	JButton Hours = new CButton("<html><font face = helvetica size = 6> Hours </font></html>", true, 0);
+	JButton Projects = new CButton("<html><font face = helvetica size = 6> Projects </font></html>", true, 1);
+	JButton Reports = new CButton("<html><font face = helvetica size = 6> Reports </font></html>", true, 2);
+	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>", true, 3);
+	JPanel pan_empty1 = new CPanel();
+	JPanel pan_empty2 = new CPanel();
 	public SidePanel(Container f, JPanel main, JPanel[] s){
-		
 		//NOTE ABOUT PARAMETERS:
 		
 		/*main will be the panel that side panel lies on
@@ -354,91 +347,78 @@ class SidePanel extends JPanel{
 		add(Reports,c);
 		
 		c.gridy=3;
-		add(pan1,c);
+		add(pan_empty1,c);
 		
 		c.gridy=4;
-		add(pan2,c);
+		add(pan_empty2,c);
 		
 		c.gridy=5;
 		add(LogOut,c);
 		
-		setBackground(new java.awt.Color(70,81,108));
+		setBackground(new java.awt.Color(59,68,91));
 
 		//FOCUS LISTENER CODE
-		Hours.addFocusListener(new FocusListener(){
+		FocusListener focusCode = new FocusListener(){
             public void focusGained(FocusEvent e){
-				Hours.setForeground(new java.awt.Color(73,210,146));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
+					Hours.setForeground(new java.awt.Color(73,210,146));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
+					Projects.setForeground(new java.awt.Color(73,210,146));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
+					Reports.setForeground(new java.awt.Color(73,210,146));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
+					LogOut.setForeground(new java.awt.Color(73,210,146));
             }
             public void focusLost(FocusEvent e){
-                Hours.setForeground(new java.awt.Color(117,132,178));
+                if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
+					Hours.setForeground(new java.awt.Color(117,132,178));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
+					Projects.setForeground(new java.awt.Color(117,132,178));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
+					Reports.setForeground(new java.awt.Color(117,132,178));
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
+					LogOut.setForeground(new java.awt.Color(117,132,178));
             }
-        });
-		
-		Projects.addFocusListener(new FocusListener(){
-            public void focusGained(FocusEvent e){
-				Projects.setForeground(new java.awt.Color(73,210,146));
-            }
-            public void focusLost(FocusEvent e){
-                Projects.setForeground(new java.awt.Color(117,132,178));
-            }
-        });
-		
-		Reports.addFocusListener(new FocusListener(){
-            public void focusGained(FocusEvent e){
-				Reports.setForeground(new java.awt.Color(73,210,146));
-            }
-            public void focusLost(FocusEvent e){
-                Reports.setForeground(new java.awt.Color(117,132,178));
-            }
-        });
-		
-		//ACTION LISTENR CODE
-		Hours.addActionListener(new ActionListener(){
+		};
+		Hours.addFocusListener(focusCode);
+		Projects.addFocusListener(focusCode);
+		Reports.addFocusListener(focusCode);
+		LogOut.addFocusListener(focusCode);
+
+		//ACTION LISTENER CODE
+		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				main.add(s[0]);
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
+					//LogOut
+					main.setBackground(new java.awt.Color(0,0,0));
+					main.removeAll();
+					main.revalidate();
+					main.repaint();
+					Test.MenuVar = 2;
+				}
+				else
+					main.add(s[((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue"))]);
 				main.revalidate();
 				main.repaint();
 			}
-		});
-		
-		Projects.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				main.add(s[1]);
-				main.revalidate();
-				main.repaint();
-			}
-		});
-		
-		Reports.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				main.add(s[2]);
-				main.revalidate();
-				main.repaint();
-			}
-		});
-		
-		LogOut.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				f.removeAll();
-				f.add(s[3]);
-				f.revalidate();
-				f.repaint();
-			}
-		});
-		
+		};
+		Hours.addActionListener(action);
+		Projects.addActionListener(action);
+		Reports.addActionListener(action);
+		LogOut.addActionListener(action);
 	}
 }
 
 class Hours extends JPanel{
 	JLabel LogATask = new Header("Logging a Task");
-	JButton Start = new CButton("Start");
-	JButton Stop = new CButton("Stop");
+	JButton Start = new CButton("Start", false, 1);
+	JButton Stop = new CButton("Stop", false, 2);
 	JTextField TaskName = new PTextField("Task Name");
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
+	JPanel pan_empty1 = new CPanel();
+	JPanel pan_empty2 = new CPanel();
 	JPanel[] clear = new JPanel[3];
 	public Hours(){
 		setLayout(new GridBagLayout());
@@ -453,6 +433,10 @@ class Hours extends JPanel{
 		c.gridx = 4;
 		c.gridy = 0;
 		add(LogATask,c);
+		
+		c.gridx=0;
+		c.gridy=1;
+		add(pan_empty1, c);
 		
 		c.gridx=3;
 		c.gridy=1;
@@ -472,14 +456,30 @@ class Hours extends JPanel{
 			add(pan);
 		}
 		
+		c.gridx=0;
+		c.gridy=1;
+		add(pan_empty1, c);
 		c.gridx = 3;
 		c.gridy = 4;
 		add(Start,c);
 		
-		c.gridx = 5;
+		c.gridx = 4;
 		c.gridy = 4;
 		add(Stop,c);
-		setBackground(new java.awt.Color(70,81,108));
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					//Start Code goes here
+				}
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
+					//Stop Code goes here
+				}
+			}
+		};
+		Start.addActionListener(action);
+		Stop.addActionListener(action);
+		setBackground(new java.awt.Color(59,68,91));
 	}
 }
 class Projects extends JPanel{
@@ -497,7 +497,7 @@ class Projects extends JPanel{
 		c.gridx = 4;
 		c.gridy = 0;
 		add(ProjectsLabel,c);
-		setBackground(new java.awt.Color(70,81,108));
+		setBackground(new java.awt.Color(59,68,91));
 	}
 }
 class Reports extends JPanel{
@@ -515,6 +515,6 @@ class Reports extends JPanel{
 		c.gridx = 4;
 		c.gridy = 0;
 		add(ReportsLabel,c);
-		setBackground(new java.awt.Color(70,81,108));
+		setBackground(new java.awt.Color(59,68,91));
 	}
 }
