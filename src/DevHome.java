@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DevHome {
 	ArrayList<Project> Projects = new ArrayList<Project>();
 	public DevHome() {
-		retrieveDevProjects(Test.userID);
+		retrieveDevProjects(4);
 	}	
 	public void retrieveDevProjects(int devID){//project name, last logged taskname, taskduration
 		Connection conn = null;
@@ -17,18 +17,15 @@ public class DevHome {
 		 try { 
 			   DBConnection db = new DBConnection();
 	    	   conn = db.ConnectDB();
-	    	   String query = "SELECT P.ProjName , T.taskName, T.duration " +  
-	    					   "FROM Projects P, Task T" +
-	    					   "WHERE  P.ProjNo = T.ProjNo and t.devID = ? " +
-	    					   "having max(t.end)"+
-	    			     	   "GROUP BY P.ProjName;" ;
+	    	   //need to fix query..
+	    	   String query = "SELECT P.ProjName , T.taskName, T.duration FROM Project P, Task T, Works_On W  WHERE  P.ProjNo = W.ProjNo and W.devID=t.devID and t.devID = ?" ;    					  
 	           stmt = conn.prepareStatement(query);
 	           stmt.setInt(1, devID);
 			   rs = stmt.executeQuery();
 			   while  (rs.next()) {
 					String name = rs.getString(1);
 					String taskName = rs.getString(2);
-					String duration = rs.getString(3);
+					float duration = rs.getFloat(3);
 					Project proj = new Project(name, taskName, duration);
 					Projects.add(proj);
 				}
@@ -44,8 +41,8 @@ public class DevHome {
 	public class Project {
 		String projName;
 		String lastTask;
-		String taskDuration;	
-		public Project(String projName, String lastTask, String taskDuration ) {
+		float taskDuration;	
+		public Project(String projName, String lastTask, float taskDuration ) {
 			this.projName = projName;
 			this.lastTask = lastTask;
 			this.taskDuration = taskDuration;
@@ -58,7 +55,12 @@ public class DevHome {
 	
 	public static void main(String[] args){
 		DevHome dev = new DevHome();
-		System.out.println(dev.DevProjectsAndLatestTasks());
+		for (int i=0; i<dev.DevProjectsAndLatestTasks().size(); i++) {
+			System.out.print(dev.DevProjectsAndLatestTasks().get(i).projName+" ");
+			System.out.print(dev.DevProjectsAndLatestTasks().get(i).lastTask+" ");
+			System.out.print(dev.DevProjectsAndLatestTasks().get(i).taskDuration);
+			System.out.println("");
+		}
 
 	}
 	
