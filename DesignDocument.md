@@ -518,6 +518,28 @@ We will be implementing a two-tier client/server architecture for the TM project
 |---------|--------------|-----------------------|
 
 
+##System Design
+
+##Algorithms and Data Structures
+We are storing our data in a MySQL database. 
+
+## User Interface Design and Implementation
+We went through a few different UI designs.
+
+Our initial screen mock-ups include quickly and poorly done sketchs like these. These were mostly done non-digitally, on notebook paper.
+
+![Overview](Images/ProjectOverview.png)
+
+These initial poor sketches helped us understand where the UI should take us and led to this design.
+
+![FirstDraft](Images/FirstDraft.jpg)
+
+After coding the initial mock up of this GUI up we decided to completely redesign it to be more clean, and more understandable.
+
+![SecondDraft](Images/SecondDraft.jpg)
+
+After this iteration of the UI we might decide to change the UI even further if some parts of the UI are not understood easily. We will need the GUI actually working to get a good understanding of the issues with this iteration of the design.
+
 
 ## Progress Report
 
@@ -552,8 +574,7 @@ Projected Milestones
 
   * Clean up all code
   * Integrate database and GUI together
-  * Add "projects" if time allows
-  * Add other extra features that we are not able to reach if time allows
+  * Add extra features that we are not able to reach if time allows
   
 * Week of May 7th
 
@@ -566,10 +587,10 @@ Currently we are split into two teams with
 
 * Jacob & Bryant working on the graphical user interface
 
-   * Currently Jacob is working on the class "RegisterScreen", and "DeveloperDashboard"
-   * Currently Bryant is working on the class "LoginScreen", "PTextField", and other modules to refactor existing code.
+   * Currently Jacob is working on the classes "SidePanel", "RegisterScreen", "LogInScreen", "main", as well as various classes to refactor those classes.
+   * Currently Bryant is working on the classes "SidePanel", "Hours", "Projects", "Reports", as well as various classes to refactor those classes.
 
 * Marina, Evamarie, & Avery working on the MySQL database
 
-Merging the code will be a collaborative effort, as will testing the code to make sure everything works to the best of the program's ability. 
+Merging the code and integrating the two teams code together will be mostly on the shoulders of the MySQL team, but also will partially be a collaborative effort when needed.
 
