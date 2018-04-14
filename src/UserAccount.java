@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserAccount  {
-	private String role;
-	private String fname;
+	String role;
+	String fname;
 	String username;
-	private String password;
-	private String team;
+	String password;
+	String team;
 
 	public UserAccount(String role, String fname, String username, String password, String team) {
 		this.role = role;
