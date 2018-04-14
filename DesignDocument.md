@@ -513,6 +513,8 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
+| Controller <-> NewUsers | Controller passes in user data (username/password) to NewUsers | CreatedNewUsers|
+| |||
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
