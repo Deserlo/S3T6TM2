@@ -509,16 +509,16 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Rs2: Command or selcetion that allows new users to be created. | D | NewUsers |
 | Rs3: Verify if NewUsers do not already exist | D | VerifyNewUsers |
 | Rs4: Container for user's authentication data. Ex: Username, password | K | LogInInfo | 
-||||
 
 | Concept pair | Association Description | Association Name |
 |--------------|-------------------------|------------------|
-| Controller <-> NewUsers | Controller passes in user data (username/password) to NewUsers | CreatedNewUsers|
+| Controller <-> NewUsers | Controller passes in user data (username/password) to NewUsers | CreatedNewUsers |
 | NewUsers <-> VerifyNewUsers | NewUsers passes in data to VerifyNewUsers and checks if the username does not exit | UsernameExists |
-
+| NewUsers <-> LogInInfo | Once verified, NewUsers is passed in to LogInInfo and is stored | StoredUsers |
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
+| | | |
 
 
 ##System Design
