@@ -518,12 +518,12 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Concept | Attribute(s) | Attribute Description |
 |---------|--------------|-----------------------|
-| | | |
+| LogInInfo | Username/password | Data created by the user to allow authorization between things created. |
 
 
-##System Design
+## System Design
 
-##Algorithms and Data Structures
+## Algorithms and Data Structures
 We are storing our data in a MySQL database. 
 
 ## User Interface Design and Implementation
