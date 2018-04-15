@@ -120,6 +120,8 @@ We will be implementing a two-tier client/server architecture for the TM project
 | 2 <-   | **System** gathers all summarized data as it relates to a particular manager or developer  |
 | 3 <-   | **FileWriter** writes summarized data to downloadable file                                 |
 
+![Architecture](Images/UCSummarize.png)
+
 &nbsp;
 &nbsp;
 &nbsp;
@@ -165,6 +167,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | 3 <- | **System** verifies the information                                     |
 | 4 <- | **System** displays the apporiate user interface (manager or developer) |
 
+![Architecture](Images/LogIn.png)
 &nbsp;
 &nbsp;
 &nbsp;
