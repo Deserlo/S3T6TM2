@@ -12,12 +12,6 @@ public class DBConnection {
 
 	public Connection ConnectDB() {
 		//athena db server:
-		/*
-		String DB_URL = "jdbc:mysql://athena.ecs.csus.edu:3306/test_tm";
-		String JDBC_DRIVER = "com.mysql.jdbc.Driver"; 
-		String user = "tm_user";
-		String pass = "tm_team6";
-		*/
 		
 		//Local Host
 		String DB_URL = "jdbc:mysql://localhost:3306/tm";
