@@ -597,9 +597,10 @@ Currently we are split into two teams with
    * Currently Jacob is working on the classes "SidePanel", "RegisterScreen", "LogInScreen", "main", as well as various classes to refactor those classes.
    * Currently Bryant is working on the classes "SidePanel", "Hours", "Projects", "Reports", as well as various classes to refactor those classes.
 
-* Marina, Evamarie, & Avery working on the MySQL database
+* Marina, Evamarie, & Avery working on the MySQL database as well as additional smaller tasks
    * Eva is working on the Developer and Manager class logic to store and retrieve entries in the Database
    * Marina is working on UI/UX design
+   * Avery is working on the second draft of the Design Document with input from the team
 
 Merging the code and integrating the two teams code together will be mostly on the shoulders of the MySQL team, but also will partially be a collaborative effort when needed.
 
