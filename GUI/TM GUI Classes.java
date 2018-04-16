@@ -36,6 +36,16 @@ class PTextField extends JTextField{ // pulled from stack overflow
     }
 }
 
+/*class CScrollPane extends JScrollPane{
+	public CScrollPane(){
+		setBorder(null);
+		getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
+		getVerticalScrollBar().setBackground(new java.awt.Color(70,81,108));
+		getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
+		getHorizontalScrollBar().setBackground(new java.awt.Color(70,81,108));
+	}
+}*/
+
 class PTextArea extends JTextArea{ // pulled from stack overflow
 	public PTextArea(final String proptText){
         super(proptText);
@@ -417,6 +427,8 @@ class Hours extends JPanel{
 	JTextField TaskName = new PTextField("Task Name");
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
+	JScrollPane temp = new JScrollPane(Description);
+	JScrollPane Scroll = new JScrollPane();
 	JPanel pan_empty1 = new CPanel();
 	JPanel pan_empty2 = new CPanel();
 	JPanel[] clear = new JPanel[3];
@@ -427,16 +439,16 @@ class Hours extends JPanel{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
-		c.ipadx = 80;
-		c.ipady = 40;
+		c.ipadx = 100;
+		c.ipady = 20;
 		
 		c.gridx = 4;
 		c.gridy = 0;
 		add(LogATask,c);
 		
-		c.gridx=0;
+		/*c.gridx=0;
 		c.gridy=1;
-		add(pan_empty1, c);
+		add(pan_empty1, c);*/
 		
 		c.gridx=3;
 		c.gridy=1;
@@ -448,7 +460,14 @@ class Hours extends JPanel{
 		
 		c.gridx = 3;
 		c.gridy = 3;
-		add(Description,c);
+		c.ipady =  60;
+		temp.setBorder(null);
+		temp.getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
+		temp.getVerticalScrollBar().setBackground(new java.awt.Color(70,81,108));
+		temp.getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
+		temp.getHorizontalScrollBar().setBackground(new java.awt.Color(70,81,108));
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
 		
 		for(JPanel pan : clear){
 			pan = new CPanel();
@@ -456,11 +475,14 @@ class Hours extends JPanel{
 			add(pan);
 		}
 		
-		c.gridx=0;
+		/*c.gridx=0;
 		c.gridy=1;
-		add(pan_empty1, c);
+		add(pan_empty1, c);*/
+		
+		c.fill = GridBagConstraints.NONE;
 		c.gridx = 3;
 		c.gridy = 4;
+		c.ipady = 20;
 		add(Start,c);
 		
 		c.gridx = 4;
