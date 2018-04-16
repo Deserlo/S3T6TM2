@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Our Time Management application "TM" is created mainly for developers and managers of small teams to help them track time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time to reduce the amount of wasted resources will increase revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will still find this application useful: it will help anyone and their team stay focused on whatever project they are working on.
+Our Time Management application "TM" is created mainly for developers and managers of small teams to help them track time more efficiently to increase productivity. Clients in a commercial setting will find that actively managing time will increase revenue for that company; however, this product is not just for commercial uses. Clients in a non-commercial setting will find this application useful.
 
 ## Product Reviews
 
@@ -525,15 +525,15 @@ We will be implementing a two-tier client/server architecture for the TM project
 | LogInInfo | Username/password | Data created by the user to allow authorization between things created. |
 
 
-## System Design
-
 ## Algorithms and Data Structures
-We are storing our data in a MySQL database. 
+We are storing our data in a MySQL database. The data will be serialized. We have decided to serialize the data because we viewed it as easier to implement. There are also few reasons for the users of this program to manually change data.
+
+To switch between the various UI screens we have debated on whether it would be more efficient to use a card layout to switch between these screens or whether a while loop would suffice. At the moment we are using a while loop to switch between UI screens but this may change in the future. 
 
 ## User Interface Design and Implementation
 We went through a few different UI designs.
 
-Our initial screen mock-ups include quickly and poorly done sketchs like these. These were mostly done non-digitally, on notebook paper.
+Our initial screen mock-ups include quickly and poorly done sketchs like these. These were mostly done non-digitally on notebook paper.
 
 ![Overview](Images/ProjectOverview.png)
 
@@ -541,7 +541,7 @@ These initial poor sketches helped us understand where the UI should take us and
 
 ![FirstDraft](Images/FirstDraft.jpg)
 
-After coding the initial mock up of this GUI up we decided to completely redesign it to be more clean, and more understandable.
+After coding the initial mock up of this GUI we decided to completely redesign it to be more clean, and more understandable.
 
 ![SecondDraft](Images/SecondDraft.jpg)
 
