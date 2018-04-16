@@ -322,7 +322,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 | 3  <-  | **System** verifies that the username does not already exist                         |
 | 4  <-  | **File Writer** writes the username and its associated password and user type        |
 
-
+![create account use case](https://user-images.githubusercontent.com/35741436/38787509-28739142-40e3-11e8-9d94-cc43f29e4089.PNG)
 &nbsp;
 &nbsp;
 &nbsp;
