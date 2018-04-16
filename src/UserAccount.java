@@ -9,6 +9,7 @@ public class UserAccount  {
 	String username;
 	String password;
 	String team;
+	int mgrID;
 
 	public UserAccount(String role, String fname, String username, String password, String team) {
 		this.role = role;
@@ -18,17 +19,15 @@ public class UserAccount  {
 		this.team = team;
 	}
 	
-	public UserAccount(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
-	
-	public boolean addNewAccount(UserAccount newAccount) {
+	public boolean createAccount(UserAccount newAccount) {
+		Statement stmtUser = new Statement("User");	
 		boolean accountCreated = false;
 		switch (newAccount.role) {
 		case "dev": //dev can only join a team
-			if (checkIfTeamExists(newAccount.team)==true) {
-				addNewDev(newAccount.username, newAccount.fname, newAccount.team, newAccount.password); 
+			if (checkName(newAccount.username)==false && checkTeam(newAccount.team)==true) {
+				Statement stmtDev = new Statement("Developer");		
+				insertUser(newAccount, stmtUser);
+				insertDev(newAccount, stmtDev);
 				accountCreated = true;
 				break;
 			}
@@ -37,8 +36,12 @@ public class UserAccount  {
 				break;
 			}
 		case "mgr": //only manager can create Team
-			if (checkIfTeamExists(newAccount.team)==false) {
-				addNewMgr(newAccount.username, newAccount.fname, newAccount.team, newAccount.password);
+			if (checkName(newAccount.username)==false && checkTeam(newAccount.team)==false ) {
+				insertUser(newAccount, stmtUser);
+				Statement stmtMgr = new Statement("Manager");
+				Statement stmtTeam = new Statement("Team");
+				insertMgr(newAccount, stmtMgr);
+				createNewTeam(newAccount, stmtTeam);
 				accountCreated = true;
 				break;
 			}
@@ -52,219 +55,176 @@ public class UserAccount  {
 	}
 	
 	private int queryForMgrID(String team) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-        try { 
-		   DBConnection db = new DBConnection();
-    	   conn = db.ConnectDB();
-    	   String queryForID = "SELECT mgrID FROM Team WHERE teamName = ?";
-           stmt = conn.prepareStatement(queryForID);
-           stmt.setString(1, team);
-			rs = stmt.executeQuery();
-			while(rs.next()) {
-				 int ID = rs.getInt(1);
-				 	return ID;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
-			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
-			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
-		}
-        return 0;
+		//String queryForID = "SELECT mgrID FROM Team WHERE teamName = ?";
+		Query q = new Query("team", "mgrID","teamName",team);
+		String t = q.genQuery(q);
+		int id = q.getID(q.name, t);
+		return id;
 	}
 	
-	
-	public int queryForId(String username) {
-			Connection conn = null;
-			PreparedStatement stmt = null;
-			ResultSet rs = null;
-	       try { 
-			   DBConnection id = new DBConnection();
-	    	   conn = id.ConnectDB();
-	    	   String queryForId = "SELECT id FROM User WHERE userName =?";
-	           stmt = conn.prepareStatement(queryForId);
-	           stmt.setString(1, username);
-			   rs = stmt.executeQuery();
-			   while(rs.next()) {
-				   int ID = rs.getInt(1);
-				   return ID;
-			   }	
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
-				if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
-				if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
-			}     
-	       System.out.println("query for ID failed");
-	       return 0;
+	private int queryForId(String username) {
+		Query q = new Query("user", "id","userName",username);
+		String t = q.genQuery(q);
+		int id = q.getID(q.name, t);
+		return id;
 	}
-	
+		
 	//When creating an account, checks whether Team entered exists
-	private boolean checkIfTeamExists(String teamName) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+	private boolean checkTeam (String team) {
 		boolean teamExists = false;
-        try { 
-		   DBConnection db = new DBConnection();
-    	   conn = db.ConnectDB();
-    	   String queryForName = "SELECT teamName FROM Team WHERE teamName = ?";
-           stmt = conn.prepareStatement(queryForName);
-           stmt.setString(1, teamName);
-		   rs = stmt.executeQuery();
-		   if (rs.next()) {
-				String name = rs.getString(1);
-				if (name.equals(teamName)) {
-					teamExists = true;
-				 }
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
-			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
-			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
-		}     
-        System.out.println("Team not yet created.");
-        return teamExists;
+		Query q = new Query("Team", "teamName","teamName",team);
+		String t = q.genQuery(q);
+	    String a = q.getName(q.name, t);
+	    if (a.equals(team)) {
+	    	teamExists = true;
+	    	System.out.println("Team exists.");
+	    }
+	    return teamExists;	
 	}
 	
-	private void createNewTeam(int mgrID, String team) {
-		String sql ="INSERT INTO Team (mgrID, teamName)" + " VALUES (?,?)";	
-		DBConnection newUser = new DBConnection();
-		Connection conn = newUser.ConnectDB();
+	private boolean checkName (String username) {
+		boolean nameExists = true;
+		Query q = new Query("User", "userName","userName",username);
+		String t = q.genQuery(q);
+	    String a = q.getName(q.name, t);
+	    if (a.equals(username)) {
+	    	nameExists = true;
+	    	System.out.println("username already exists.");
+	    }
+	    else {
+	    	nameExists = false;
+	    }
+	    return nameExists;	
+	}
+	
+	
+	private void insertUser(UserAccount ua, Statement s) {
+		ua.mgrID = queryForMgrID(ua.team);
+		ua.prepUserCols(s);	
+		if(ua.mgrID ==0) {//removes mgrID field from insert statement
+			s.colNames.remove(4);
+		}
+		String sql = ua.genTaskStmt(s);
+		DBConnection db = new DBConnection();
+		db.conn = db.ConnectDB();
+		try {
+			db.stmt = db.conn.prepareStatement(sql);
+			db.stmt.setString(1, ua.username);
+			db.stmt.setString(2, ua.fname);
+			db.stmt.setString(3, ua.team);
+			db.stmt.setString(4, ua.password);
+			if (ua.mgrID !=0)
+				db.stmt.setInt(5, ua.mgrID);
+			db.stmt.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	private void createNewTeam(UserAccount ua, Statement s) {
+		int mgrID = ua.queryForId(ua.username);
+		ua.prepTeamCols(s);	
+		String sql = ua.genTaskStmt(s);
+		DBConnection newTeam = new DBConnection();
+		newTeam.conn = newTeam.ConnectDB();
 		System.out.println("creating new team with manager'S ID into Team table..");
 		try {
-			PreparedStatement prepstmt = conn.prepareStatement(sql);
-			prepstmt.setInt(1, mgrID);
-			prepstmt.setString(2, team);
-			prepstmt.execute();
+			newTeam.stmt = newTeam.conn.prepareStatement(sql);
+			newTeam.stmt.setInt(1, mgrID);
+			newTeam.stmt.setString(2, ua.team);
+			newTeam.stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+			if (newTeam.rs != null) try {newTeam.rs.close(); } catch (SQLException ignore) {}
+			if (newTeam.stmt != null) try {newTeam.stmt.close(); } catch (SQLException ignore) {}
+			if (newTeam.conn != null) try {newTeam.conn.close(); } catch (SQLException ignore) {}
 		}	
 		System.out.println("new team created..");
 		
 	}
-	
-	
-	private void addNewDev(String username, String fname, String team, String password) { 
-		String sqluser ="INSERT INTO User (userName, fname, team,pwd, mgrID)" + " VALUES (?,?, ?, ?, ?)";	
-		DBConnection newUser = new DBConnection();
-		Connection conn = newUser.ConnectDB();
-		System.out.println("adding new user(dev) into User table..");
-		int mgrID = queryForMgrID(team);
-		try {
-			PreparedStatement prepstmt = conn.prepareStatement(sqluser);
-			prepstmt.setString(1, username);
-			prepstmt.setString(2, fname);
-			prepstmt.setString(3, team);
-			prepstmt.setString(4, password);
-			prepstmt.setInt(5, mgrID);
-			prepstmt.execute();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
-		System.out.println("new user(dev) added..");
 		
-		String sqldev = "INSERT INTO Developer (userName,id)" + " VALUES (?, ?)" ; 
-		int devID = queryForId(username);	
-        try
-        { 	
-			PreparedStatement prepstmt = conn.prepareStatement(sqldev);
-			prepstmt.setString(1, username);
-			prepstmt.setInt(2, devID);
-			prepstmt.execute();
+	private void prepUserCols(Statement s) {
+		//must match db column names
+		s.addCols("userName");
+		s.addCols("fname");
+		s.addCols("team");
+		s.addCols("pwd");
+		s.addCols("mgrID");	
+	}
+	
+	private void prepTeamCols(Statement s) {
+		//must match db column names
+		s.addCols("teamName");
+		s.addCols("mgrID");	
+	}
+	
+	private String genTaskStmt(Statement s) {
+	    String sql = s.genInsertStmtStr(s);
+	    return sql;
+	}
+		
+	private void insertDev(UserAccount ua, Statement s) { 
+		s.addCols("userName");
+		s.addCols("id");
+		DBConnection newUser = new DBConnection();
+		newUser.conn = newUser.ConnectDB();	
+		int devID = ua.queryForId(ua.username);	
+		String sql = ua.genTaskStmt(s);
+        try{ 	
+			newUser.stmt = newUser.conn.prepareStatement(sql);
+			newUser.stmt.setString(1, ua.username);
+			newUser.stmt.setInt(2, devID);
+			newUser.stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+			if (newUser.rs != null) try {newUser.rs.close(); } catch (SQLException ignore) {}
+			if (newUser.stmt != null) try {newUser.stmt.close(); } catch (SQLException ignore) {}
+			if (newUser.conn != null) try {newUser.conn.close(); } catch (SQLException ignore) {}		
 		}
 	}
 	
-	private void addNewMgr(String username, String fname, String team, String password ) { 		
-		String sqluser ="INSERT INTO User (userName, fname, team,pwd)" + " VALUES (?,?, ?, ?)";	
+	private void insertMgr(UserAccount ua, Statement s) { 		
+		//String sqluser ="INSERT INTO User (userName, fname, team,pwd)" + " VALUES (?,?, ?, ?)";
+		s.addCols("userName");
+		s.addCols("id");	
 		DBConnection newUser = new DBConnection();
-		Connection conn = newUser.ConnectDB();
-		System.out.println("adding new user(mgr) into User table..");
-		try {
-			PreparedStatement prepstmt = conn.prepareStatement(sqluser);
-			prepstmt.setString(1, username);
-			prepstmt.setString(2, fname);
-			prepstmt.setString(3, team);
-			prepstmt.setString(4, password);
-			prepstmt.execute();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
-		System.out.println("new user (mgr) added..");
-		
+		newUser.conn = newUser.ConnectDB();
+		int id = ua.queryForId(ua.username);	
+		String sql = ua.genTaskStmt(s);
 		System.out.println("adding new manager into Manager table");
-		String sql = "INSERT INTO Manager (userName,id)" + " VALUES (?,?)" ; 
-		int id = queryForId(username);
-        try
-        { 	
-			PreparedStatement prepstmt = conn.prepareStatement(sql);
-			prepstmt.setString(1, username);
-			prepstmt.setInt(2, id);
-			prepstmt.execute();
+        try{ 	
+        	newUser.stmt = newUser.conn.prepareStatement(sql);
+			newUser.stmt.setString(1, ua.username);
+			newUser.stmt.setInt(2, id);
+			newUser.stmt.execute();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 	} finally {
-		if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+		if (newUser.rs != null) try {newUser.rs.close(); } catch (SQLException ignore) {}
+		if (newUser.stmt != null) try {newUser.stmt.close(); } catch (SQLException ignore) {}
+		if (newUser.conn != null) try {newUser.conn.close(); } catch (SQLException ignore) {}
 	}   
 		System.out.println("new manager added..");
-		createNewTeam(id, team);
 	}
+	
+	
+	public static void main(String[] args) {
 
+		//UserAccount(String role, String fname, String username, String password, String team)
+		UserAccount test = new UserAccount("dev","jobe","jobe","11fsd11","lakers");
+		UserAccount test1 = new UserAccount("mgr","bill","bill","11fsd11","lakers");
+	    test.createAccount(test);
+	    test.createAccount(test1);
+	    //test.createNewTeam(test, stmtTeam);
+
+
+	}
 
 	
-	public boolean authenticateUser(UserAccount account) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		boolean login = false;
-		System.out.println("authenticating user "+account.username+ "...");;
-        try { 
-		   DBConnection db = new DBConnection();
-    	   conn = db.ConnectDB();
-    	   String query = "SELECT userName, pwd FROM user WHERE userName =? and pwd=?";
-           stmt = conn.prepareStatement(query);
-           stmt.setString(1, account.username);
-           stmt.setString(2, account.password);
-		   rs = stmt.executeQuery();
-		   while(rs.next()) {
-		        String checkUser = rs.getString("userName");
-		        String checkPass = rs.getString("pwd");
-		        System.out.println(checkUser);
-		        System.out.println(checkPass);
-		        if((checkUser.equals(account.username)) && (checkPass.equals(account.password))) {
-			           login = true;
-			           System.out.println("login authorized.");
-			    }
-			    else {
-			          login = false; 
-					   System.out.println("please check login credentials.");
-			        }
-		    }
-        }  catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} finally {
-			if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
-			if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
-			if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
-		} 
-        return login;
-	}
 }
 	
 
