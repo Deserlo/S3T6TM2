@@ -442,13 +442,9 @@ class Hours extends JPanel{
 		c.ipadx = 100;
 		c.ipady = 20;
 		
-		c.gridx = 4;
+		c.gridx = 3;
 		c.gridy = 0;
 		add(LogATask,c);
-		
-		/*c.gridx=0;
-		c.gridy=1;
-		add(pan_empty1, c);*/
 		
 		c.gridx=3;
 		c.gridy=1;
@@ -474,10 +470,6 @@ class Hours extends JPanel{
 			c.gridx++;
 			add(pan);
 		}
-		
-		/*c.gridx=0;
-		c.gridy=1;
-		add(pan_empty1, c);*/
 		
 		c.fill = GridBagConstraints.NONE;
 		c.gridx = 3;
