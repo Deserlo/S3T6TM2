@@ -1,7 +1,6 @@
 import java.sql.SQLException;
 
 public class TaskLog {
-	String table;
 	String taskName;
 	String projectName;
 	int projNo;
@@ -10,23 +9,20 @@ public class TaskLog {
 	String end;
 	int devID;
 	public TaskLog() {
-		table = "Task";
 		taskName = "";
 		projectName = "";
 		description = "";
 		start = "";
 	};
+	public TaskLog(String taskName, String projectName, int devID) {
+		
+	}
+	
 	public TaskLog(String taskName, String projectName, String description,int devID) {
-		table = "Task";
 		this.taskName = taskName;
 		this.projectName = projectName;
 		this.description = description;
 		this.devID = devID;
-	}
-	public TaskLog(String start, String end) {
-		table = "Task";
-		this.start = start;
-		this.end = end;
 	}
 		
 	public String startTask() {	
@@ -37,10 +33,9 @@ public class TaskLog {
 		return start;
 	}
 	
-	public void insertTask(TaskLog t, Statement s) {
-		t.projNo = projID(t.projectName);
-		t.prepareCols(s);	
-		String sql = t.genTaskStmt(s);
+	public void insertTask(TaskLog t) {
+		t.projNo = getProjID(t.projectName);
+		String sql = insertSqlTask();
 		DBConnection db = new DBConnection();
 		db.conn = db.ConnectDB();
 		try {
@@ -69,52 +64,39 @@ public class TaskLog {
 	}
 	
 	public void describeTask(String taskName) {
-		//get task id and update description
-		
+		//get task id and update description	
 	}
 	
-	private int taskID(String taskName) {
+	private int getTaskID(String taskName) {
 		Query q = new Query("Task", "id","taskName",taskName);
-		String t = q.genQuery(q);
+		String t = q.generateQueryString(q);
 	    int id = q.getID(q.name, t);
 	    System.out.println(id);
 	    return id;		
 	}
-	private int projID(String projName) {
+	private int getProjID(String projName) {
 		Query queryForProjNo = new Query("Project", "ProjNo", "ProjName", projectName);
-		String t = queryForProjNo.genQuery(queryForProjNo);
+		String t = queryForProjNo.generateQueryString(queryForProjNo);
 		int pNo = queryForProjNo.getID(queryForProjNo.name, t);
-		return pNo;
-	}
+		return pNo;}
 	
-	private int devID(String userName) {
-		Query queryForDevID = new Query("User", "id", "userName", userName);
-		String s = queryForDevID.genQuery(queryForDevID);
-		int devID = queryForDevID.getID(queryForDevID.name,s);	
-		return devID;
-	}
+	private int getDevID(String userName) {
+		Query queryID = new Query("User", "id", "userName", userName);
+		String s = queryID.generateQueryString(queryID);
+		int devID = queryID.getID(queryID.name,s);	
+		return devID;}
 	
 	private float calcDuration(String start, String end) {
-		return 99;
-	}
+		return 99;}
 	
-	private void prepareCols(Statement s) {	
-		s.addCols("taskName");
-		s.addCols("projNo");
-		s.addCols("devID");
-		s.addCols("start");
-		s.addCols("description");		
-	}
-	
-	private String genTaskStmt(Statement s) {
-	    String sql = s.genInsertStmtStr(s);
-	    return sql;
-	}
+	public static String insertSqlTask() {
+		return "INSERT INTO TASK (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";	}
 	
 	public static void main(String[] args) {	
-		Statement stmtTask = new Statement("Task");
-		TaskLog newtask = new TaskLog("butt","ExProject1","this is task description",2);
-	    newtask.insertTask(newtask,stmtTask);	
+		TaskLog newtask = new TaskLog("A","ExProject1","this is task description",2);
+		newtask.insertTask(newtask);		
+		TaskLog newtask1 = new TaskLog("AA","ExProject1","this ishhh task description",2);
+		newtask1.insertTask(newtask1);
 	}
 
 }

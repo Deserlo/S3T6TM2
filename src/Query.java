@@ -11,11 +11,10 @@ public class Query {
 		this.colName1 = colName1;
 		this.name = name;
 	}
-	public String genQuery(Query q) {
+	public String generateQueryString(Query q) {
 		String select = "SELECT " + q.colName;
 		String from = " FROM " + q.tableName;
 		String where = " WHERE " + q.colName1 + "=?";
-		System.out.println(select + from + where);
 		return select + from + where;
 	}
 	public int getID(String name, String query) {
@@ -36,7 +35,6 @@ public class Query {
 			if (id.stmt != null) try {id.stmt.close(); } catch (SQLException ignore) {}
 			if (id.conn != null) try {id.conn.close(); } catch (SQLException ignore) {}
 		}     
-       System.out.println("query for ID failed");
        return 0;
 	}
 	
@@ -59,7 +57,6 @@ public class Query {
 			if (id.stmt != null) try {id.stmt.close(); } catch (SQLException ignore) {}
 			if (id.conn != null) try {id.conn.close(); } catch (SQLException ignore) {}
 		}     
-       System.out.println("query for name failed");
 		return aname;
 	}
 	
@@ -67,12 +64,12 @@ public class Query {
 
 	public static void main(String[] args) {
 		Query q = new Query("user", "id","userName","email@example.com");
-		String t = q.genQuery(q);
+		String t = q.generateQueryString(q);
 	    int id = q.getID(q.name, t);
 	    System.out.println(id);
 	    
 	    Query qa = new Query("user", "userName","id","1");
-		String ta = qa.genQuery(qa);
+		String ta = qa.generateQueryString(qa);
 	    String a = qa.getName(qa.name, ta);
 	    System.out.println(a);
 
