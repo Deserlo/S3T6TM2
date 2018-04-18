@@ -282,42 +282,6 @@ class LogInScreen{
 		frame.setOpaque(true);
 	}
 }
-class DevHoursScreen{
-	JLabel LogInTO = new AbsoluteLabel("Logging a Task", 430,-5,255,130, 32);
-	JButton button_StartTask = new AbsoluteTextButton("Start", 360,360, 160,45, false, 1, 1);
-	JButton button_StopTask = new AbsoluteTextButton("Stop", 560,360, 160,45, false, 1, 2);
-	JTextField TaskTF = new AbsoluteTextField("Task name",420,200, 240,30);
-	JTextField ProjectTF = new AbsoluteTextField("Project name", 420,150, 240,30);
-	public DevHoursScreen(JPanel frame){
-		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(LogInTO); frame.add(button_StartTask);
-		frame.add(button_StopTask);
-		frame.add(TaskTF); frame.add(ProjectTF);
-		frame.setLayout(null);
-		frame.revalidate();
-		frame.repaint();
-		
-		ActionListener action = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
-				frame.removeAll();
-				frame.revalidate();
-				frame.repaint();
-				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
-					//Start Task Code
-				}
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-					//Stop Task Code
-				}
-			}
-		};
-		button_StartTask.addActionListener(action);
-		button_StopTask.addActionListener(action);
-		frame.setOpaque(true);
-	}
-}
-
 
 class SidePanel extends JPanel{
 	JButton Hours = new CButton("<html><font face = helvetica size = 6> Hours </font></html>", true, 0);
