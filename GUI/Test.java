@@ -15,9 +15,12 @@ public class Test{
 		JPanel DevHoursScreen = new CPanel();
 		
 		//DevScreen
+		
+		String[][] Data = new String[4][3];
+		
 		JPanel main = new CPanel();
 		JPanel main1 = new Hours();
-		JPanel main2 = new Projects();
+		JPanel main2 = new ProjectsDev(Data);
 		JPanel main3 = new Reports();
 		JPanel[] s = new JPanel[4];
 		JPanel Log = new CPanel();
