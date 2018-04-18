@@ -16,7 +16,7 @@ public class Test{
 		
 		//DevScreen
 		
-		String[][] Data = new String[4][3];
+		String[][] Data = new String[3][4];
 		
 		JPanel main = new CPanel();
 		JPanel main1 = new Hours();

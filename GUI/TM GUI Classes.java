@@ -499,8 +499,8 @@ class Hours extends JPanel{
 class ProjectsDev extends JPanel{
 	JLabel ProjectsLabel = new Header("Projects");
 	JTable table;
-	String Cnames[] = {"Project","Budget","Tasks"};
-	JScrollPane temp = new JScrollPane(table);
+	String[] Cnames = {"Project","Budget","Tasks"};
+	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("Log Task",false,0);
 	
@@ -522,6 +522,7 @@ class ProjectsDev extends JPanel{
 		c.ipadx = 289;
 		c.ipady = 174;
 		c.gridy = 1;
+		temp = new JScrollPane(table);
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
 		
