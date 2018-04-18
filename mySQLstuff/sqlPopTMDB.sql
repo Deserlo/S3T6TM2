@@ -52,32 +52,34 @@ CREATE TABLE Team(teamID integer not null auto_increment,
                   primary key(teamID),
                   foreign key(mgrID) references User(id));
                   
-INSERT INTO USER (userName, fname, team, pwd) VALUES ("email@example.com", "Mike", "A", "1234");
-INSERT INTO USER (userName, fname, team, pwd, mgrID) VALUES ("email1@example.com", "Alice", "A", "4567", 1);
-INSERT INTO USER (userName, fname, team, pwd) VALUES ("email2@example.com", "Ben", "B", "7890");
-INSERT INTO USER (userName, fname, team, pwd, mgrID) VALUES ("email3@example.com", "John", "B", "1122", 3);
+INSERT INTO User (userName, fname, team, pwd) VALUES ("email@example.com", "Mike", "A", "1234");
+INSERT INTO User (userName, fname, team, pwd, mgrID) VALUES ("email1@example.com", "Alice", "A", "4567", 1);
+INSERT INTO User (userName, fname, team, pwd) VALUES ("email2@example.com", "Ben", "B", "7890");
+INSERT INTO User (userName, fname, team, pwd, mgrID) VALUES ("email3@example.com", "John", "B", "1122", 3);
 
-INSERT INTO DEVELOPER (userName, id) VALUES ("email1@example.com", 2);
-INSERT INTO DEVELOPER (userName, id) VALUES ("email3@example.com", 4);
+INSERT INTO Developer (userName, id) VALUES ("email1@example.com", 2);
+INSERT INTO Developer (userName, id) VALUES ("email3@example.com", 4);
 
-INSERT INTO MANAGER (userName, id) VALUES ("email@example.com", 1);
-INSERT INTO MANAGER (userName, id) VALUES ("email2@example.com", 3);
+INSERT INTO Manager (userName, id) VALUES ("email@example.com", 1);
+INSERT INTO Manager (userName, id) VALUES ("email2@example.com", 3);
 
-INSERT INTO PROJECT (projName, mgrID, dueDate) VALUES ("ExProject1", 1, '2018-06-11') ;
-INSERT INTO PROJECT (projName, mgrID, dueDate) VALUES ("ExProject2", 3, '2018-06-24'); 
-INSERT INTO PROJECT (projName, mgrID, dueDate) VALUES ("ExProject3", 3, '2018-07-18'); 
+INSERT INTO Project (projName, mgrID, dueDate) VALUES ("ExProject1", 1, '2018-06-11') ;
+INSERT INTO Project (projName, mgrID, dueDate) VALUES ("ExProject2", 3, '2018-06-24'); 
+INSERT INTO Project (projName, mgrID, dueDate) VALUES ("ExProject3", 3, '2018-07-18'); 
 
-INSERT INTO WORKS_ON (projNo, devID) VALUES (1, 2);
-INSERT INTO WORKS_ON (projNo, devID) VALUES (2, 4);
-INSERT INTO WORKS_ON (projNo, devID) VALUES (3, 4);
+INSERT INTO Works_on (projNo, devID) VALUES (1, 2);
+INSERT INTO Works_on (projNo, devID) VALUES (2, 4);
+INSERT INTO Works_on (projNo, devID) VALUES (3, 4);
 
-INSERT INTO TEAM (teamName, mgrID) VALUES ("A", 1);
-INSERT INTO TEAM (teamName, mgrID) VALUES ("B", 3);
+INSERT INTO Team (teamName, mgrID) VALUES ("A", 1);
+INSERT INTO Team (teamName, mgrID) VALUES ("B", 3);
 
-INSERT INTO TASK (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task A", 1, 2, 4.5, '2018-04-12 09:00:00', '2018-04-12 12:00:00', 3.0, "this is task A");
-INSERT INTO TASK (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task B", 2, 4, 2.5, '2018-04-12 08:00:00', '2018-04-12 10:00:00', 2.0, "this is task B");
-INSERT INTO TASK (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task C", 3, 4, 6.0, '2018-04-12 10:00:00', '2018-04-12 16:00:00', 6.0, "this is task C");
+INSERT INTO Task (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task A", 1, 2, 4.5, '2018-04-12 09:00:00', '2018-04-12 12:00:00', 3.0, "this is task A");
+INSERT INTO Task (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task B", 2, 4, 2.5, '2018-04-12 08:00:00', '2018-04-12 10:00:00', 2.0, "this is task B");
+INSERT INTO Task (taskName, projNo, devID, timeBudget, start, end, duration, description) VALUES ("task C", 3, 4, 6.0, '2018-04-12 10:00:00', '2018-04-12 16:00:00', 6.0, "this is task C");
 
+INSERT INTO Team (teamID, teamName, mgrID) VALUES("11", "A","1");
+INSERT INTO Team (teamID, teamName, mgrID) VALUES("22", "B","3");
 
 
 
