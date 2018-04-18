@@ -8,7 +8,6 @@ class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
 		setVisible(true);
-		//setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
@@ -36,7 +35,7 @@ class PTextField extends JTextField{ // pulled from stack overflow
     }
 }
 
-/*class CScrollPane extends JScrollPane{
+class CScrollPane extends JScrollPane{
 	public CScrollPane(){
 		setBorder(null);
 		getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
@@ -44,7 +43,7 @@ class PTextField extends JTextField{ // pulled from stack overflow
 		getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
 		getHorizontalScrollBar().setBackground(new java.awt.Color(70,81,108));
 	}
-}*/
+}
 
 class PTextArea extends JTextArea{ // pulled from stack overflow
 	public PTextArea(final String proptText){
@@ -67,11 +66,13 @@ class PTextArea extends JTextArea{ // pulled from stack overflow
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
     }
 }
+
 class CPanel extends JPanel{
 	public CPanel(){
 		setOpaque(false);
 	}
 }
+
 class CButton extends JButton{
 	public CButton(String s, boolean IsSidePanel, int ExtraValue){
 		setText(s);
@@ -86,6 +87,7 @@ class CButton extends JButton{
 		putClientProperty("ExtraValue", ExtraValue);
 	}
 }
+
 class Header extends JLabel{
 	public Header (String s){
 		setText(s);
@@ -112,6 +114,7 @@ class AbsoluteTextButton extends JButton{
 		putClientProperty("ButtonNum", ButtonNum);
 	}
 }
+
 class AbsoluteTextField extends JTextField{
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
@@ -428,10 +431,11 @@ class Hours extends JPanel{
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
 	JScrollPane temp = new JScrollPane(Description);
-	JScrollPane Scroll = new JScrollPane();
+	JScrollPane Scroll = new CScrollPane();
 	JPanel pan_empty1 = new CPanel();
 	JPanel pan_empty2 = new CPanel();
 	JPanel[] clear = new JPanel[3];
+	
 	public Hours(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -457,11 +461,6 @@ class Hours extends JPanel{
 		c.gridx = 3;
 		c.gridy = 3;
 		c.ipady =  60;
-		temp.setBorder(null);
-		temp.getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
-		temp.getVerticalScrollBar().setBackground(new java.awt.Color(70,81,108));
-		temp.getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
-		temp.getHorizontalScrollBar().setBackground(new java.awt.Color(70,81,108));
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
 		
@@ -488,6 +487,7 @@ class Hours extends JPanel{
 				}
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
 					//Stop Code goes here
+					// name.getText() is the command to get the string;
 				}
 			}
 		};
@@ -496,21 +496,40 @@ class Hours extends JPanel{
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
-class Projects extends JPanel{
+class ProjectsDev extends JPanel{
 	JLabel ProjectsLabel = new Header("Projects");
-	public Projects(){
+	JTable table;
+	String Cnames[] = {"Project","Budget","Tasks"};
+	JScrollPane temp = new JScrollPane(table);
+	JScrollPane Scroll = new CScrollPane();
+	JButton log = new CButton("Log Task",false,0);
+	
+	public ProjectsDev(String[][] Data){
+		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.fill = GridBagConstraints.HORIZONTAL;
+		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
-		c.ipadx = 80;
-		c.ipady = 40;
+		c.ipadx = 100;
+		c.ipady = 20;
 		
-		c.gridx = 4;
+		c.gridx = 0;
 		c.gridy = 0;
 		add(ProjectsLabel,c);
+		
+		c.ipadx = 289;
+		c.ipady = 174;
+		c.gridy = 1;
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		
+		c.ipady = 20;
+		c.gridy = 2;
+		add(log,c);
+		
+		
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
@@ -523,12 +542,15 @@ class Reports extends JPanel{
 		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
-		c.ipadx = 80;
-		c.ipady = 40;
+		c.ipadx = 100;
+		c.ipady = 20;
 		
-		c.gridx = 4;
+		c.gridx = 0;
 		c.gridy = 0;
 		add(ReportsLabel,c);
+
+		
+		
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
