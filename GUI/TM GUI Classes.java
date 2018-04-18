@@ -519,13 +519,15 @@ class ProjectsDev extends JPanel{
 		c.gridy = 0;
 		add(ProjectsLabel,c);
 		
-		c.ipadx = 289;
-		c.ipady = 174;
+		c.ipadx = 450;
+		c.ipady = 325;
 		c.gridy = 1;
+		table.setEnabled(false);
 		temp = new JScrollPane(table);
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
 		
+		c.ipadx = 100;
 		c.ipady = 20;
 		c.gridy = 2;
 		add(log,c);
