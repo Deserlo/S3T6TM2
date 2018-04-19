@@ -236,6 +236,12 @@ class RegisterScreen{
 				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
+					UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
+					if (newDev.createAccount(newDev)) {				
+						Test.UserID = newDev.queryForId(newDev.username);
+						Test.loggedIn = true;
+						Test.MenuVar = 3; 
+					}
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					//DevLogIn Code
