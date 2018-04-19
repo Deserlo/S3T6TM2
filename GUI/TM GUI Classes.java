@@ -267,6 +267,17 @@ class RegisterScreen{
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
 					//ManLogIn Code
+					Login newLogin = new Login(C.getText(), Man_PasswordTF.getText());
+					if (newLogin.authenticateUser(newLogin) == true) {
+						Test.UserID = newLogin.queryForId(newLogin.getUserName());
+						Test.loggedIn = true;
+						//Test.MenuVar = ; 
+					}
+					else {
+						Test.loggedIn = false;
+						Test.MenuVar = 1; 
+					}
+					
 				}
 			}
 		};
