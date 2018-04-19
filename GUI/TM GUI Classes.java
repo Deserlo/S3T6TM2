@@ -248,6 +248,12 @@ class RegisterScreen{
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
 					//ManRegister Code
+					UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),C.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
+					if (newMgr.createAccount(newMgr)) {				
+						Test.UserID = newMgr.queryForId(newMgr.username);
+						Test.loggedIn = true;
+						//Test.MenuVar = ?; 
+					}	
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
 					//ManLogIn Code
