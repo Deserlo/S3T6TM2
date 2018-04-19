@@ -5,6 +5,9 @@ import java.io.*;
 
 public class Test{
 	public static int MenuVar = 3;
+	public static int UserID = -1;
+	public static boolean loggedIn = false;
+	
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
