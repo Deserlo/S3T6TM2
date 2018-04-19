@@ -308,7 +308,16 @@ class LogInScreen{
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
+				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch"));
+				//log in code
+				Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
+				if (newLogin.authenticateUser(newLogin) == true) {
+					Test.UserID = newLogin.queryForId(newLogin.getUserName());
+					Test.loggedIn = true;	
+				}
+				else {
+					Test.loggedIn = false;
+				}
 			}
 		};
 		button_LogIn.addActionListener(action);
