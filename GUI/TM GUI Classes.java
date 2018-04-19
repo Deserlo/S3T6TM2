@@ -313,10 +313,12 @@ class LogInScreen{
 				Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
 				if (newLogin.authenticateUser(newLogin) == true) {
 					Test.UserID = newLogin.queryForId(newLogin.getUserName());
-					Test.loggedIn = true;	
+					Test.loggedIn = true;
+					//Test.MenuVar = ?
 				}
 				else {
 					Test.loggedIn = false;
+					Test.MenuVar = 1; //?
 				}
 			}
 		};
