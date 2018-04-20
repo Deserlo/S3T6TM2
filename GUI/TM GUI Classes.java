@@ -123,6 +123,7 @@ class AbsoluteTextField extends JTextField{
 		setBounds(x, y, width, height); 
 	}
 }
+
 class AbsoluteLabel extends JLabel{
 	public AbsoluteLabel(String Words, int x, int y, int width, int height, int FontSize){
 		setText(Words);
@@ -236,16 +237,16 @@ class RegisterScreen{
 				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
-					UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
+					/*UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
 					if (newDev.createAccount(newDev)) {				
 						Test.UserID = newDev.queryForId(newDev.username);
 						Test.loggedIn = true;
 						Test.MenuVar = 3; 
-					}
+					}*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					//DevLogIn Code
-					Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
+					/*Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.UserID = newLogin.queryForId(newLogin.getUserName());
 						Test.loggedIn = true;
@@ -254,20 +255,20 @@ class RegisterScreen{
 					else {
 						Test.loggedIn = false;
 						Test.MenuVar = 1; 
-					}
+					}*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
 					//ManRegister Code
-					UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),C.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
+					/*UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),C.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
 					if (newMgr.createAccount(newMgr)) {				
 						Test.UserID = newMgr.queryForId(newMgr.username);
 						Test.loggedIn = true;
 						//Test.MenuVar = ?; 
-					}	
+					}*/	
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
 					//ManLogIn Code
-					Login newLogin = new Login(C.getText(), Man_PasswordTF.getText());
+					/*Login newLogin = new Login(C.getText(), Man_PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.UserID = newLogin.queryForId(newLogin.getUserName());
 						Test.loggedIn = true;
@@ -277,7 +278,7 @@ class RegisterScreen{
 						Test.loggedIn = false;
 						Test.MenuVar = 1; 
 					}
-					
+					*/
 				}
 			}
 		};
@@ -288,6 +289,7 @@ class RegisterScreen{
 		frame.setOpaque(true);
 	}
 }
+
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
@@ -310,7 +312,7 @@ class LogInScreen{
 				frame.repaint();
 				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch"));
 				//log in code
-				Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
+				/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
 				if (newLogin.authenticateUser(newLogin) == true) {
 					Test.UserID = newLogin.queryForId(newLogin.getUserName());
 					Test.loggedIn = true;
@@ -319,7 +321,7 @@ class LogInScreen{
 				else {
 					Test.loggedIn = false;
 					Test.MenuVar = 1; //?
-				}
+				}*/
 			}
 		};
 		button_LogIn.addActionListener(action);
@@ -504,6 +506,7 @@ class Hours extends JPanel{
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
+
 class ProjectsDev extends JPanel{
 	JLabel ProjectsLabel = new Header("Projects");
 	JTable table;
@@ -531,6 +534,7 @@ class ProjectsDev extends JPanel{
 		c.ipady = 325;
 		c.gridy = 1;
 		table.setEnabled(false);
+		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
@@ -540,13 +544,23 @@ class ProjectsDev extends JPanel{
 		c.gridy = 2;
 		add(log,c);
 		
-		
 		setBackground(new java.awt.Color(59,68,91));
+		
+		//
+		//
+		// NEED ACTIONLISTENER;
+		// link button to Hours panel
 	}
 }
-class Reports extends JPanel{
+class ReportsDev extends JPanel{
 	JLabel ReportsLabel = new Header("Reports");
-	public Reports(){
+	int count = 0;
+	JPanel Columns = new CPanel();
+	JPanel Columns2 = new CPanel();
+	JPanel Main = new CPanel();
+	JScrollPane temp = new JScrollPane();
+	JScrollPane Scroll = new CScrollPane();
+	public ReportsDev(JButton[] Buttons){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -560,7 +574,23 @@ class Reports extends JPanel{
 		c.gridy = 0;
 		add(ReportsLabel,c);
 
+		Columns.setLayout(new BoxLayout(Columns,1));
+		Columns2.setLayout(new BoxLayout(Columns,1));
 		
+		Main.setLayout(new GridLayout(1,2,2,2));
+		Main.add(Colmns);
+		Main.add(Colmns2);
+		
+		count = 0;
+		for(JButton x: Buttons){
+			if(count%2==0){
+				Columns.add(x);
+			}
+			else{
+				Columns2.add(x);
+			}
+			count++;
+		}
 		
 		setBackground(new java.awt.Color(59,68,91));
 	}
