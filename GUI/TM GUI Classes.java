@@ -588,15 +588,17 @@ class ReportsDev extends JPanel{
 		
 		cs1.ipady = 30;
 		cs2.ipady = 30;
-		cs1.ipadx = 100;
-		cs2.ipadx = 100;
+		cs1.ipadx = 125;
+		cs2.ipadx = 125;
 		cs1.gridx = 0;
 		cs2.gridx = 0;
 		cs1.gridy = 0;
 		cs2.gridx = 0;
+		cs1.insets = new Insets(20,20,0,0);
+		cs2.insets = new Insets(20,20,0,0);
 
 		
-		Main.setLayout(new GridLayout(1,2,30,10));
+		Main.setLayout(new GridLayout(1,2,30	,10));
 		Main.add(Columns);
 		Main.add(Columns2);
 		
@@ -619,7 +621,7 @@ class ReportsDev extends JPanel{
 		Scroll.setViewport(temp.getViewport());
 
 		c.ipadx = 550;
-		c.ipady = 325;
+		c.ipady = 350;
 		c.gridy = 1;
 		add(Scroll,c);
 		
