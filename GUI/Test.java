@@ -7,11 +7,8 @@ public class Test{
 	public static int MenuVar = 3;
 	public static int UserID = -1;
 	public static boolean loggedIn = false;
-	static JButton[] Buttons;
-	static JPanel pr;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
 	static JPanel main;	
-;
 	
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
@@ -20,44 +17,25 @@ public class Test{
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
 		JPanel LogInScreen = new CPanel();
-		JPanel DevHoursScreen = new CPanel();
 		
-		//DevScreen
-		int y = 40;
-		Buttons = new CButton[y];
-		
-		for(int x = 0 ; x < Buttons.length ; x++){
-			Buttons[x] = new CButton("Some Project",false, 50);
-		}
-		
+		//Developer Dashboard Screen
 		main = new CPanel();
-		JPanel main1 = new Hours();
-		JPanel main2 = new ProjectsDev(Data);
-		//JPanel main3 = new ReportsDev(Buttons);
-		JPanel[] s = new JPanel[4];
+		JPanel[] center_panels = new JPanel[4];
 		JPanel Log = new CPanel();
 		JPanel center = new CPanel();
-		JPanel side = new SidePanel(home.getContentPane(), main, s);
-		s[0]=main1;
-		s[1]=main2;
+		JPanel side = new SidePanel(home.getContentPane(), main, center_panels);
+		JPanel main_hours = new Hours();
+		center_panels[0]=main_hours;
+		JPanel main_projects = new ProjectsDev(Data);
+		center_panels[1]=main_projects;
+		JPanel main_reports = new ReportsDev(Data, main);
+		center_panels[2]=main_reports;
+		main.setLayout(new BorderLayout());
+		main.add(side,BorderLayout.WEST);
+		main.add(center,BorderLayout.CENTER);
+						
+		//Manager Dashboard Screen
 		
-		for(int x = 0 ; x < Buttons.length ; x++){
-			Buttons[x] = new CButton("Some Project",false, 50);
-			Buttons[x].addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					pr = new ProjectReportDev (Data, ((JButton)e.getSource()).getText());
-					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(pr,BorderLayout.CENTER);
-					main.revalidate();
-					main.repaint();
-					System.out.println("button pressed");
-				}
-			});
-		}
-
-		JPanel main3 = new ReportsDev(Buttons);
-		s[2]=main3;
-
 		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
@@ -87,13 +65,8 @@ public class Test{
 						break;		
 					case 3: 
 						System.out.println("In case " + MenuVar);
-						contentpan.removeAll();
-						//new DevHoursScreen(DevHoursScreen);
-						//contentpan.add(DevHoursScreen);
-						main.setLayout(new BorderLayout());
-						main.add(side,BorderLayout.WEST);
-						main.add(center,BorderLayout.CENTER);
-						home.getContentPane().add(main);
+						//contentpan.removeAll();
+						contentpan.add(main);
 						contentpan.revalidate();
 						break;
 					case 4:

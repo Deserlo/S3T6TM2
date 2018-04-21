@@ -237,7 +237,6 @@ class RegisterScreen{
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
 					/*UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
@@ -283,6 +282,7 @@ class RegisterScreen{
 					}
 					*/
 				}
+				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 			}
 		};
 		button_DevRegister.addActionListener(action);
@@ -343,7 +343,7 @@ class SidePanel extends JPanel{
 		//NOTE ABOUT PARAMETERS:
 		
 		/*main will be the panel that side panel lies on
-		  array s will contain all the different center panels
+		  array s(center_panels) will contain all the different center panels
 		  this allows the buttons to change the panels while keeping itself
 		  intact*/
 		  
@@ -497,10 +497,21 @@ class Hours extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					//Start Code goes here
+					String String_TaskName = TaskName.getText();
+					String String_ProjectName = ProjectName.getText();
+					String String_Description = Description.getText();
+					
+					//Example
+					System.out.println("" + String_Description);
 				}
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
 					//Stop Code goes here
-					// name.getText() is the command to get the string;
+					String String_TaskName = TaskName.getText();
+					String String_ProjectName = ProjectName.getText();
+					String String_Description = Description.getText();
+					
+					//Example
+					System.out.println("" + String_TaskName);
 				}
 			}
 		};
@@ -564,10 +575,33 @@ class ReportsDev extends JPanel{
 	JPanel Main = new CPanel();
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
+	JButton[] Buttons;
+	JPanel pr;
 	
-	public ReportsDev(JButton[] Buttons){
+	public ReportsDev(String[][] Data, JPanel main){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
+		
+		//Filling Buttons
+		int y = 40;
+		Buttons = new CButton[y];
+		for(int x = 0 ; x < Buttons.length ; x++){
+			Buttons[x] = new CButton("Some Project",false, 50);
+		}
+		for(int x = 0 ; x < Buttons.length ; x++){
+			Buttons[x] = new CButton("Some Project",false, 50);
+			Buttons[x].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText());
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(pr,BorderLayout.CENTER);
+					main.revalidate();
+					main.repaint();
+					System.out.println("button pressed");
+				}
+			});
+		}
 		int boxSizes = Buttons.length / 2 + 1;
 		
 		//c.fill = GridBagConstraints.HORIZONTAL;
