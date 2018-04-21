@@ -18,13 +18,18 @@ public class Test{
 		JPanel DevHoursScreen = new CPanel();
 		
 		//DevScreen
+		int y = 40;
+		String[][] Data = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
+		JButton[] Buttons = new CButton[y];
 		
-		String[][] Data = new String[3][4];
+		for(int x = 0 ; x < Buttons.length ; x++){
+			Buttons[x] = new CButton("Some Project",false, 50);
+		}
 		
 		JPanel main = new CPanel();
 		JPanel main1 = new Hours();
 		JPanel main2 = new ProjectsDev(Data);
-		JPanel main3 = new Reports();
+		JPanel main3 = new ReportsDev(Buttons);
 		JPanel[] s = new JPanel[4];
 		JPanel Log = new CPanel();
 		JPanel center = new CPanel();

@@ -38,6 +38,9 @@ class PTextField extends JTextField{ // pulled from stack overflow
 class CScrollPane extends JScrollPane{
 	public CScrollPane(){
 		setBorder(null);
+		getViewport().setOpaque(true);
+		getViewport().		setBackground(new java.awt.Color(70,81,108));
+
 		getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
 		getVerticalScrollBar().setBackground(new java.awt.Color(70,81,108));
 		getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
@@ -536,6 +539,7 @@ class ProjectsDev extends JPanel{
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
 		
@@ -558,11 +562,13 @@ class ReportsDev extends JPanel{
 	JPanel Columns = new CPanel();
 	JPanel Columns2 = new CPanel();
 	JPanel Main = new CPanel();
-	JScrollPane temp = new JScrollPane();
+	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
+	
 	public ReportsDev(JButton[] Buttons){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		int boxSizes = Buttons.length / 2 + 1;
 		
 		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
@@ -574,23 +580,48 @@ class ReportsDev extends JPanel{
 		c.gridy = 0;
 		add(ReportsLabel,c);
 
-		Columns.setLayout(new BoxLayout(Columns,1));
-		Columns2.setLayout(new BoxLayout(Columns,1));
+		Columns.setLayout(new GridBagLayout());
+		Columns2.setLayout(new GridBagLayout());
 		
-		Main.setLayout(new GridLayout(1,2,2,2));
-		Main.add(Colmns);
-		Main.add(Colmns2);
+		GridBagConstraints cs1 = new GridBagConstraints();
+		GridBagConstraints cs2 = new GridBagConstraints();
+		
+		cs1.ipady = 30;
+		cs2.ipady = 30;
+		cs1.ipadx = 100;
+		cs2.ipadx = 100;
+		cs1.gridx = 0;
+		cs2.gridx = 0;
+		cs1.gridy = 0;
+		cs2.gridx = 0;
+
+		
+		Main.setLayout(new GridLayout(1,2,30,10));
+		Main.add(Columns);
+		Main.add(Columns2);
 		
 		count = 0;
-		for(JButton x: Buttons){
+		for(int x = 0; x < Buttons.length; x++){
 			if(count%2==0){
-				Columns.add(x);
+				Columns.add(Buttons[x],cs1);
+				cs1.gridy++;
 			}
 			else{
-				Columns2.add(x);
+				Columns2.add(Buttons[x],cs2);
+				cs1.gridy++;
+
 			}
 			count++;
 		}
+		
+		temp = new JScrollPane(Main);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll.setViewport(temp.getViewport());
+
+		c.ipadx = 550;
+		c.ipady = 325;
+		c.gridy = 1;
+		add(Scroll,c);
 		
 		setBackground(new java.awt.Color(59,68,91));
 	}
