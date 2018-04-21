@@ -523,7 +523,6 @@ class ProjectsDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
 		c.ipadx = 100;
@@ -556,6 +555,7 @@ class ProjectsDev extends JPanel{
 		// link button to Hours panel
 	}
 }
+
 class ReportsDev extends JPanel{
 	JLabel ReportsLabel = new Header("Reports");
 	int count = 0;
@@ -628,3 +628,51 @@ class ReportsDev extends JPanel{
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
+
+class ProjectsReportDev extends JPanel{
+	JLabel ProjectsLabel;
+	JTable table;
+	String[] Cnames = {"Task","Time","Description"};
+	JScrollPane temp;
+	JScrollPane Scroll = new CScrollPane();
+	JButton log = new CButton("Log Task",false,0);
+	
+	public ProjectsReportDev(String[][] Data,String Project){
+		ProjectsLabel = new Header("Project " + Project + " Report");
+		table = new JTable(Data, Cnames);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx=1.0;
+		c.weighty=1.0;
+		c.ipadx = 100;
+		c.ipady = 20;
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		add(ProjectsLabel,c);
+		
+		c.ipadx = 450;
+		c.ipady = 325;
+		c.gridy = 1;
+		table.setEnabled(false);
+		table.setBackground(new java.awt.Color(117,132,178));
+		temp = new JScrollPane(table);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		
+		c.ipadx = 100;
+		c.ipady = 20;
+		c.gridy = 2;
+		add(log,c);
+		
+		setBackground(new java.awt.Color(59,68,91));
+		
+		//
+		//
+		// NEED ACTIONLISTENER;
+		// link button to Hours panel
+	}
+}
+
