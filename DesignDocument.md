@@ -55,7 +55,6 @@ We will be implementing a two-tier client/server architecture for the TM project
 |   REQ13          | A user shall be able to log on as a manager or developer, allowing different functions                  |
 |   REQ14          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
 |   REQ15          | A user shall be able to change the password associated with their username                              |
-|   REQ16          | Users shall be able to delete tasks and projects                                                        |
 
 ## Use cases
 
@@ -409,66 +408,28 @@ We will be implementing a two-tier client/server architecture for the TM project
 | 3  <-  | **System** verifies that the project under that name does not already exist.         |
 | 4  <-  | **File Writer** creates the project under that project name.                         |
 
-| Use case  ***UC-17***            | Name: Delete Project                                                   |
-|------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 16                                                                 |
-| Initiating actor             | User                                                                   |
-| Actor's goal                 | Delete a project to clean up space                                     |
-| Participating actors         | System, File Writer                                                    |
-| Preconditions                | A project with the chosen name is already created.                     |
-| Postconditions               | A project with the chosen name is now deleted.  All Tasks associated with that project are no longer associated with that project.                       |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                       |
-|--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a name.                                                              |
-| 2  ->  | **User** Selects "Delete Project".                                                   |
-| 3  <-  | **System** verifies that the project under that name exists.                         |
-| 4  <-  |  **File Writer** unassigns tasks to that project name                                |
-| 5  <-  |  **File Writer** removes the project under that project name.                        |
-
-
-| Use case  ***UC-18***            | Name: Delete Task                                                   |
-|------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 16                                                                 |
-| Initiating actor             | User                                                                   |
-| Actor's goal                 | Delete a task to clean up space                                        |
-| Participating actors         | System, File Writer                                                    |
-| Preconditions                | A task with the chosen name is already created.                        |
-| Postconditions               | A task with the chosen name is now deleted.                           |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                       |
-|--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a name.                                                              |
-| 2  ->  | **User** Selects "Delete Task".                                                      |
-| 3  <-  | **System** verifies that the task under that name exists.                            |
-| 4  <-  | **File Writer** removes the task under that name.                                    |
 
 
 ## Traceability Matrix
-| REQ | PW | UC1| UC2| UC3 |UC4 |UC5 |UC6 |UC7 |UC8 |UC9|UC10|UC11|UC12|UC13|UC14|UC15|UC16|UC17|UC18 |
-|-----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-|REQ1 | 5  | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ2 | 5  |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ3 | 5  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ4 | 4  |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ5 | 1  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ6 | 3  |   |   |   |   |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ7 | 3  |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ8 | 2  |   |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |  |
-|REQ9 | 4  |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |  |
-|REQ10| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |  |
-|REQ11| 1  |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |  |
-|REQ12| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  x| x |   |   |   |  |
-|REQ13| 5  |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ14| 5  |   |   |   |   | x |   |   |   |   |   |   | x |   |   |   |   |   |   |   |  |
-|REQ15| 1  |   |   |   |   | x |   |   |   |   |   |   |   |  x|   |   |   |   |   |   |  |
-|REQ16| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | x | x |   |  |
-|Max |PW   | 5 | 5 | 5 | 4 | 5 | 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 | 2 | 2 |   |  |
-|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 | 2 | 2 |   |  |
+| REQ | PW | UC1| UC2| UC3 |UC4 |UC5 |UC6 |UC7 |UC8 |UC9|UC10|UC11|UC12|UC13|UC14|UC15|UC16|
+|-----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+|REQ1 | 5  | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ2 | 5  |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ3 | 5  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ4 | 4  |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ5 | 1  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ6 | 3  |   |   |   |   |   | x | x |   |   |   |   |   |   |   |   |   |   |  |
+|REQ7 | 3  |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |  |
+|REQ8 | 2  |   |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |  |
+|REQ9 | 4  |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |  |
+|REQ10| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   | x |   |   |   |  |
+|REQ11| 1  |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |  |
+|REQ12| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  x| x |   |  |
+|REQ13| 5  |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |  |
+|REQ14| 5  |   |   |   |   | x |   |   |   |   |   |   | x |   |   |   |   |   |  |
+|REQ15| 1  |   |   |   |   | x |   |   |   |   |   |   |   |  x|   |   |   |   |  |
+|Max |PW   | 5 | 5 | 5 | 4 | 5 | 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 |   |  |
+|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 |   |  |
 
 
 ## Domain Model 
