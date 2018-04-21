@@ -7,6 +7,11 @@ public class Test{
 	public static int MenuVar = 3;
 	public static int UserID = -1;
 	public static boolean loggedIn = false;
+	static JButton[] Buttons;
+	static JPanel pr;
+	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
+	static JPanel main;	
+;
 	
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
@@ -19,25 +24,41 @@ public class Test{
 		
 		//DevScreen
 		int y = 40;
-		String[][] Data = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
-		JButton[] Buttons = new CButton[y];
+		Buttons = new CButton[y];
 		
 		for(int x = 0 ; x < Buttons.length ; x++){
 			Buttons[x] = new CButton("Some Project",false, 50);
 		}
 		
-		JPanel main = new CPanel();
+		main = new CPanel();
 		JPanel main1 = new Hours();
 		JPanel main2 = new ProjectsDev(Data);
-		JPanel main3 = new ReportsDev(Buttons);
+		//JPanel main3 = new ReportsDev(Buttons);
 		JPanel[] s = new JPanel[4];
 		JPanel Log = new CPanel();
 		JPanel center = new CPanel();
 		JPanel side = new SidePanel(home.getContentPane(), main, s);
 		s[0]=main1;
 		s[1]=main2;
+		
+		for(int x = 0 ; x < Buttons.length ; x++){
+			Buttons[x] = new CButton("Some Project",false, 50);
+			Buttons[x].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					pr = new ProjectReportDev (Data, ((JButton)e.getSource()).getText());
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(pr,BorderLayout.CENTER);
+					main.revalidate();
+					main.repaint();
+					System.out.println("button pressed");
+				}
+			});
+		}
+
+		JPanel main3 = new ReportsDev(Buttons);
 		s[2]=main3;
 
+		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
 	

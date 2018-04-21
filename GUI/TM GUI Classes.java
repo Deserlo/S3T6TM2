@@ -629,7 +629,7 @@ class ReportsDev extends JPanel{
 	}
 }
 
-class ProjectsReportDev extends JPanel{
+class ProjectReportDev extends JPanel{
 	JLabel ProjectsLabel;
 	JTable table;
 	String[] Cnames = {"Task","Time","Description"};
@@ -637,7 +637,7 @@ class ProjectsReportDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("Log Task",false,0);
 	
-	public ProjectsReportDev(String[][] Data,String Project){
+	public ProjectReportDev(String[][] Data,String Project){
 		ProjectsLabel = new Header("Project " + Project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
