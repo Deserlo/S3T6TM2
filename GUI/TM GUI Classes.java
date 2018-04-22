@@ -223,14 +223,14 @@ class RegisterScreen{
 		frame.add(button_ManRegister); frame.add(button_ManLogin);
 		frame.setLayout(null);
 		frame.revalidate();
-		frame.repaint();
+		frame.repaint(500);
 		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				frame.setBackground(new java.awt.Color(0,0,0));
 				frame.removeAll();
 				frame.revalidate();
-				frame.repaint();
+				frame.repaint(500);
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
 					/*UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
@@ -299,7 +299,7 @@ class LogInScreen{
 		frame.add(EmailTF); frame.add(PasswordTF);
 		frame.setLayout(null);
 		frame.revalidate();
-		frame.repaint();
+		frame.repaint(500);
 		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
@@ -307,17 +307,18 @@ class LogInScreen{
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch"));
+				Test.MenuVar = 3; //Developer atm
 				//log in code
 				/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
 				if (newLogin.authenticateUser(newLogin) == true) {
 					Test.UserID = newLogin.queryForId(newLogin.getUserName());
 					Test.loggedIn = true;
-					//Test.MenuVar = ?
+					//Test.MenuVar = 3 //if dev
+					//Test.MenuVar = 4 //if manager
 				}
 				else {
 					Test.loggedIn = false;
-					Test.MenuVar = 1; //?
+					//Display "Bad Username/Password"
 				}*/
 			}
 		};
@@ -432,17 +433,20 @@ class SidePanel extends JPanel{
 		//ACTION LISTENER CODE
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
-				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
 					//LogOut
+					//main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.setBackground(new java.awt.Color(0,0,0));
-					main.removeAll();
+					main.setVisible(false);
+					main.setEnabled(false);
 					main.revalidate();
 					main.repaint();
 					Test.MenuVar = 2;
 				}
-				else
+				else{
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(s[((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue"))]);
+				}
 				main.revalidate();
 				main.repaint();
 			}

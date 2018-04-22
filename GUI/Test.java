@@ -20,20 +20,13 @@ public class Test{
 		
 		//Developer Dashboard Screen
 		main = new CPanel();
-		JPanel[] center_panels = new JPanel[4];
-		JPanel Log = new CPanel();
-		JPanel center = new CPanel();
-		JPanel side = new SidePanel(home.getContentPane(), main, center_panels);
-		JPanel main_hours = new Hours();
-		center_panels[0]=main_hours;
-		JPanel main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels);
-		center_panels[1]=main_projects;
-		JPanel main_reports = new ReportsDev(Data, main, home.getContentPane(), center_panels);
-		center_panels[2]=main_reports;
-		main.setLayout(new BorderLayout());
-		main.add(side,BorderLayout.WEST);
-		main.add(center,BorderLayout.CENTER);
-		main.add(center_panels[0]);	
+		JPanel[] center_panels;
+		JPanel Log;
+		JPanel center;
+		JPanel side;
+		JPanel main_hours;
+		JPanel main_projects;
+		JPanel main_reports;
 			
 		//Manager Dashboard Screen
 		
@@ -65,8 +58,25 @@ public class Test{
 						contentpan.revalidate();
 						break;		
 					case 3: 
+						main.setVisible(true);
+						main.setEnabled(true);
 						System.out.println("In case " + MenuVar);
 						//contentpan.removeAll();
+						main = new CPanel();
+						center_panels = new JPanel[4];
+						Log = new CPanel();
+						center = new CPanel();
+						side = new SidePanel(home.getContentPane(), main, center_panels);
+						main_hours = new Hours();
+						center_panels[0]=main_hours;
+						main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels);
+						center_panels[1]=main_projects;
+						main_reports = new ReportsDev(Data, main, home.getContentPane(), center_panels);
+						center_panels[2]=main_reports;
+						main.setLayout(new BorderLayout());
+						main.add(side,BorderLayout.WEST);
+						main.add(center,BorderLayout.CENTER);
+						
 						contentpan.add(main);
 						contentpan.revalidate();
 						break;
