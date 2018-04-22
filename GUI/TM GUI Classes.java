@@ -82,7 +82,7 @@ class CButton extends JButton{
 		//setContentAreaFilled(false);
 		setFocusPainted(false);
 		setBorderPainted(false);
-		setForeground(new java.awt.Color(117,132,178));
+		setForeground(new java.awt.Color(117,132,178)); //(255,255,255)(117,132,178)
 		if(IsSidePanel == true)
 			setBackground(new java.awt.Color(59,68,91));
 		else
@@ -166,27 +166,21 @@ class TM_GUI_Intro{
 				else if(LocalTimer == 18){
 					label_top.setBounds(-550, 300, 150, 150);
 					label_bottom.setBounds(-550, 300, 150, 150);
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/6.jpg")));
 				}
 				else if(LocalTimer == 26){
 					frame.setBackground(new java.awt.Color(10,10,10));
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/black.jpg")));
 				}
 				else if(LocalTimer == 31){
 					frame.setBackground(new java.awt.Color(20,20,20));
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/10.jpg")));
 				}
 				else if(LocalTimer == 32){
 					frame.setBackground(new java.awt.Color(30,30,30));
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/11.jpg")));
 				}
 				else if(LocalTimer == 33){
 					frame.setBackground(new java.awt.Color(40,60,80));
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/12.jpg")));
 				}
 				else if(LocalTimer == 34){ //35 = 3.5 seconds
 					frame.setBackground(new java.awt.Color(59,68,91));
-					//label.setIcon(new ImageIcon(Test.class.getResource("art/IntroAnimation/13.jpg")));
 				}
 				else if(LocalTimer == 35){
 					frame.removeAll();
@@ -333,12 +327,12 @@ class LogInScreen{
 }
 
 class SidePanel extends JPanel{
-	JButton Hours = new CButton("<html><font face = helvetica size = 6> Hours </font></html>", true, 0);
-	JButton Projects = new CButton("<html><font face = helvetica size = 6> Projects </font></html>", true, 1);
-	JButton Reports = new CButton("<html><font face = helvetica size = 6> Reports </font></html>", true, 2);
-	JButton LogOut = new CButton("<html><font face = helvetica size = 6> Log Out </font></html>", true, 3);
-	JPanel pan_empty1 = new CPanel();
-	JPanel pan_empty2 = new CPanel();
+	JButton Hours = new CButton("<html><font face = helvetica size = 5> Hours </font></html>", true, 0);
+	JButton Projects = new CButton("<html><font face = helvetica size = 5> Projects </font></html>", true, 1);
+	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
+	JButton LogOut = new CButton("<html><font face = helvetica size = 5> Log Out </font></html>", true, 3);
+	//ImageIcon icon_line;
+	
 	public SidePanel(Container f, JPanel main, JPanel[] s){
 		//NOTE ABOUT PARAMETERS:
 		
@@ -353,33 +347,57 @@ class SidePanel extends JPanel{
 		  2 = reports
 		  3 = log in
 		*/
+		//icon_line = new ImageIcon(Test.class.getResource("art/Line.png"));
 		
 		//GRAPHICS CODE
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
 		c.gridx=0;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
-		c.ipadx = 80;
-		c.ipady = 40;
+		
+		c.ipadx = 60;
+		c.ipady = 15;
+		c.gridy=0;
+		add(new CPanel(),c);
+		
+		c.ipadx = 9;
+		c.gridx=1;add(new CPanel(),c);
+		//c.gridx=2; add(new CPanel(),c);
+		c.ipadx = 60; c.ipady = 25;
+		c.gridx=0;
+		c.gridy=1;
 		add(Hours,c);
 		
-		c.gridy=1;
+		c.ipadx = 9;
+		c.gridx=1;add(new CPanel(),c);
+		//c.gridx=2; add(new CPanel(),c);
+		c.ipadx = 60;
+
+		c.gridx=0; c.gridy=2;
 		add(Projects,c);
 		
-		c.gridy=2;
+		/*c.ipadx = 9;
+		c.gridx=1;add(new CPanel(),c);
+		c.gridx=2; add(new JLabel(icon_line), c);
+		c.ipadx = 60;*/
+		c.gridx=0; c.gridy=3;
 		add(Reports,c);
 		
-		c.gridy=3;
-		add(pan_empty1,c);
-		
+		c.ipady = 200;
 		c.gridy=4;
-		add(pan_empty2,c);
+		add(new CPanel(),c);
 		
+		c.ipady = 25;
 		c.gridy=5;
 		add(LogOut,c);
+		
+		c.ipady = 15;
+		c.gridy=6;
+		add(new CPanel(),c);
 		
 		setBackground(new java.awt.Color(59,68,91));
 
@@ -445,8 +463,6 @@ class Hours extends JPanel{
 	JTextArea Description = new PTextArea("Description");
 	JScrollPane temp = new JScrollPane(Description);
 	JScrollPane Scroll = new CScrollPane();
-	JPanel pan_empty1 = new CPanel();
-	JPanel pan_empty2 = new CPanel();
 	JPanel[] clear = new JPanel[3];
 	
 	public Hours(){
@@ -527,9 +543,9 @@ class ProjectsDev extends JPanel{
 	String[] Cnames = {"Project","Budget","Tasks"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("Log Task",false,0);
+	JButton log = new CButton("Log Task",false,1);
 	
-	public ProjectsDev(String[][] Data){
+	public ProjectsDev(String[][] Data, Container f, JPanel main, JPanel[] s){
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -564,6 +580,17 @@ class ProjectsDev extends JPanel{
 		//
 		// NEED ACTIONLISTENER;
 		// link button to Hours panel
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(s[0]);
+					main.revalidate();
+					main.repaint();
+				}
+			}
+		};
+		log.addActionListener(action);
 	}
 }
 
@@ -578,7 +605,7 @@ class ReportsDev extends JPanel{
 	JButton[] Buttons;
 	JPanel pr;
 	
-	public ReportsDev(String[][] Data, JPanel main){
+	public ReportsDev(String[][] Data, JPanel main, Container f, JPanel[] s){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -593,7 +620,7 @@ class ReportsDev extends JPanel{
 			Buttons[x] = new CButton("Some Project",false, 50);
 			Buttons[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText());
+					pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -669,9 +696,9 @@ class ProjectReportDev extends JPanel{
 	String[] Cnames = {"Task","Time","Description"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("Log Task",false,0);
+	JButton log = new CButton("Log Task",false,1);
 	
-	public ProjectReportDev(String[][] Data,String Project){
+	public ProjectReportDev(String[][] Data,String Project, Container f, JPanel main, JPanel[] s){
 		ProjectsLabel = new Header("Project " + Project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
@@ -707,6 +734,17 @@ class ProjectReportDev extends JPanel{
 		//
 		// NEED ACTIONLISTENER;
 		// link button to Hours panel
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(s[0]);
+					main.revalidate();
+					main.repaint();
+				}
+			}
+		};
+		log.addActionListener(action);
 	}
 }
 
