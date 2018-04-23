@@ -1,0 +1,4 @@
+select P.projName, taskName, max(T.end)
+from Project P, Task T, Works_on W 
+where P.projNo = W.projNo AND W.devID = T.devID and T.devID=2 
+group by P.projName;
