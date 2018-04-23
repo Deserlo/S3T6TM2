@@ -1,0 +1,3 @@
+select fname, mgrID
+from Manager, User
+where Manager.id = User.mgrID AND mgrID = 9;
