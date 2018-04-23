@@ -9,6 +9,9 @@ public class Test{
 	public static boolean loggedIn = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
 	static JPanel main;	
+	static JPanel devPR;
+	static int counter; // counter = # of projects
+	static JButton[] ButtonActual = new CButton[counter];
 	
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
@@ -76,6 +79,7 @@ public class Test{
 						main.setLayout(new BorderLayout());
 						main.add(side,BorderLayout.WEST);
 						main.add(center,BorderLayout.CENTER);
+						
 						
 						contentpan.add(main);
 						contentpan.revalidate();

@@ -403,7 +403,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	JButton Projects = new CButton("<html><font face = helvetica size = 5> Projects </font></html>", true, 1);
 	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
 	JButton LogOut = new CButton("<html><font face = helvetica size = 5> Log Out </font></html>", true, 3);
-	//ImageIcon icon_line;
+	//JPanel bar = new JPanel();
 	
 	public SidePanel(Container f, JPanel main, JPanel[] s){
 		//NOTE ABOUT PARAMETERS:
@@ -419,7 +419,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		  2 = reports
 		  3 = log in
 		*/
-		//icon_line = new ImageIcon(Test.class.getResource("art/Line.png"));
 		
 		//GRAPHICS CODE
 		setLayout(new GridBagLayout());
@@ -438,7 +437,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		
 		c.ipadx = 9;
 		c.gridx=1;add(new CPanel(),c);
-		//c.gridx=2; add(new CPanel(),c);
 		c.ipadx = 60; c.ipady = 25;
 		c.gridx=0;
 		c.gridy=1;
@@ -446,16 +444,11 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		
 		c.ipadx = 9;
 		c.gridx=1;add(new CPanel(),c);
-		//c.gridx=2; add(new CPanel(),c);
 		c.ipadx = 60;
 
 		c.gridx=0; c.gridy=2;
 		add(Projects,c);
 		
-		/*c.ipadx = 9;
-		c.gridx=1;add(new CPanel(),c);
-		c.gridx=2; add(new JLabel(icon_line), c);
-		c.ipadx = 60;*/
 		c.gridx=0; c.gridy=3;
 		add(Reports,c);
 		
@@ -470,6 +463,16 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		c.ipady = 15;
 		c.gridy=6;
 		add(new CPanel(),c);
+		
+		/*bar.setOpaque(true);
+		bar.setBackground(new java.awt.Color(117,132,178));
+		c.ipadx = 10;
+		c.ipady = 600;
+		c.gridx = 2;
+		c.gridy = 0;
+		c.fill = GridBagConstraints.NONE;
+		add(bar,c);*/
+
 		
 		setBackground(new java.awt.Color(59,68,91));
 
@@ -488,11 +491,11 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 			public void focusLost(FocusEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
 					Hours.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
+				else if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
 					Projects.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
+				else if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
 					Reports.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
+				else if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
 					LogOut.setForeground(new java.awt.Color(117,132,178));
 			}
 		};
@@ -682,11 +685,7 @@ class ReportsDev extends JPanel{
 		
 		
 		//Filling Buttons
-		int y = 40;
-		Buttons = new CButton[y];
-		for(int x = 0 ; x < Buttons.length ; x++){
-			Buttons[x] = new CButton("Some Project",false, 50);
-		}
+		Buttons = new CButton[40];
 		for(int x = 0 ; x < Buttons.length ; x++){
 			Buttons[x] = new CButton("Some Project",false, 50);
 			Buttons[x].addActionListener(new ActionListener(){
