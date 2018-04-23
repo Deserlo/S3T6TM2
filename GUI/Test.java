@@ -68,9 +68,9 @@ public class Test{
 						main = new CPanel();
 						center_panels = new JPanel[4];
 						Log = new CPanel();
-						center = new CPanel();
+						center = new HomeDev(Data, home.getContentPane(), main, center_panels);
 						side = new SidePanel(home.getContentPane(), main, center_panels);
-						main_hours = new Hours();
+						main_hours = new HoursDev();
 						center_panels[0]=main_hours;
 						main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;
@@ -94,7 +94,7 @@ public class Test{
 						Log = new CPanel();
 						center = new CPanel();
 						side = new SidePanel(home.getContentPane(), main, center_panels);
-						main_hours = new Hours(); //HoursManager();
+						main_hours = new HoursDev(); //HoursManager();
 						center_panels[0]=main_hours;
 						main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels); //ProjectsManager();
 						center_panels[1]=main_projects;
