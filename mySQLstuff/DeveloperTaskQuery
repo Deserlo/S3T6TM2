@@ -1,0 +1,3 @@
+select taskName, ProjName, description, start
+from Task, Project
+where Task.projNo = Project.projNo;
