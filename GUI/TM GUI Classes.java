@@ -4,6 +4,13 @@ import java.awt.event.*;
 import java.io.*;
 import javax.imageio.*;
 
+/*
+************************************************************************************
+************************************************************************************
+******************************ABSTRACTION CLASSES***********************************
+************************************************************************************
+************************************************************************************
+*/
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
@@ -136,6 +143,14 @@ class AbsoluteLabel extends JLabel{
 	}
 }
 
+
+/*
+************************************************************************************
+************************************************************************************
+***********************************SCREEN CLASSES***********************************
+************************************************************************************
+************************************************************************************
+*/
 class TM_GUI_Intro{
 	static int LocalTimer = 0;
 	public TM_GUI_Intro(JPanel frame){
@@ -157,36 +172,92 @@ class TM_GUI_Intro{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
-				if(LocalTimer == 5){
-					frame.setBackground(new java.awt.Color(0,0,0));
-					label_top.setForeground(new java.awt.Color(255,255,255, 150));
-					label_top.setBounds(400, 140, 150, 150);
-					label_bottom.setBounds(400, 199, 150, 150);
-				}
-				else if(LocalTimer == 18){
-					label_top.setBounds(-550, 300, 150, 150);
-					label_bottom.setBounds(-550, 300, 150, 150);
-				}
-				else if(LocalTimer == 26){
-					frame.setBackground(new java.awt.Color(10,10,10));
-				}
-				else if(LocalTimer == 31){
-					frame.setBackground(new java.awt.Color(20,20,20));
-				}
-				else if(LocalTimer == 32){
-					frame.setBackground(new java.awt.Color(30,30,30));
-				}
-				else if(LocalTimer == 33){
-					frame.setBackground(new java.awt.Color(40,60,80));
-				}
-				else if(LocalTimer == 34){ //35 = 3.5 seconds
-					frame.setBackground(new java.awt.Color(59,68,91));
-				}
-				else if(LocalTimer == 35){
-					frame.removeAll();
-					frame.revalidate();
-					//frame.repaint();
-					Test.MenuVar = 2; 
+				switch(LocalTimer){
+					case 5: //From 5-11 we are just fading in "TM"
+						frame.setBackground(new java.awt.Color(0,0,0)); 
+						label_top.setBackground(new java.awt.Color(255,255,255, 25)); //RGB-A, Alpha(0-255) 0 = Transparent
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
+						label_top.setBounds(400, 140, 150, 150);
+						label_bottom.setBounds(400, 199, 150, 150);
+						break;
+					case 6:
+						label_top.setBackground(new java.awt.Color(255,255,255, 50));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
+						break;
+					case 7:
+						label_top.setBackground(new java.awt.Color(255,255,255, 75));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 75));
+						break;
+					case 8:
+						label_top.setBackground(new java.awt.Color(255,255,255, 100));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
+						break;
+					case 9:
+						label_top.setBackground(new java.awt.Color(255,255,255, 150));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 150));
+						break;
+					case 10:
+						label_top.setBackground(new java.awt.Color(255,255,255, 200));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 200));
+						break;
+					case 11:
+						label_top.setBackground(new java.awt.Color(255,255,255, 255));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
+						break;
+					case 13:
+						label_top.setBounds(405, 140, 150, 150);
+						label_bottom.setBounds(395, 199, 150, 150);
+						break;
+					case 14:
+						label_top.setBounds(410, 140, 150, 150);
+						label_bottom.setBounds(390, 199, 150, 150);
+						break;
+					case 15:
+						label_top.setBounds(405, 140, 150, 150);
+						label_bottom.setBounds(395, 199, 150, 150);
+						break;
+					case 16:
+						label_top.setBounds(400, 140, 150, 150);
+						label_bottom.setBounds(400, 199, 150, 150);
+						break;
+					case 17:
+						label_top.setBackground(new java.awt.Color(255,255,255, 175));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 175));
+						break;
+					case 18:
+						label_top.setBackground(new java.awt.Color(255,255,255, 100));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
+						break;	
+					case 19:
+						label_top.setBackground(new java.awt.Color(255,255,255, 50));
+						label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
+						break;	
+					case 20:
+						label_top.setBounds(-550, 300, 150, 150);
+						label_bottom.setBounds(-550, 300, 150, 150);
+						break;
+					case 22:
+						frame.setBackground(new java.awt.Color(10,10,10));
+						break;
+					case 23:
+						frame.setBackground(new java.awt.Color(20,20,20));
+						break;
+					case 24:
+						frame.setBackground(new java.awt.Color(30,30,30));
+						break;
+					case 25:
+						frame.setBackground(new java.awt.Color(40,60,80));
+						break;
+					case 26:
+						frame.setBackground(new java.awt.Color(59,68,91));
+						break;
+					case 27: //27 = 2.7 seconds.
+						frame.removeAll();
+						frame.revalidate();
+						Test.MenuVar = 2; 
+						break;
+					default:
+						break;
 				}
 			}
 		};
@@ -404,7 +475,7 @@ class SidePanel extends JPanel{
 
 		//FOCUS LISTENER CODE
 		FocusListener focusCode = new FocusListener(){
-            public void focusGained(FocusEvent e){
+			public void focusGained(FocusEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
 					Hours.setForeground(new java.awt.Color(73,210,146));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
@@ -413,9 +484,9 @@ class SidePanel extends JPanel{
 					Reports.setForeground(new java.awt.Color(73,210,146));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
 					LogOut.setForeground(new java.awt.Color(73,210,146));
-            }
-            public void focusLost(FocusEvent e){
-                if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
+			}
+			public void focusLost(FocusEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
 					Hours.setForeground(new java.awt.Color(117,132,178));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
 					Projects.setForeground(new java.awt.Color(117,132,178));
@@ -423,7 +494,7 @@ class SidePanel extends JPanel{
 					Reports.setForeground(new java.awt.Color(117,132,178));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
 					LogOut.setForeground(new java.awt.Color(117,132,178));
-            }
+			}
 		};
 		Hours.addFocusListener(focusCode);
 		Projects.addFocusListener(focusCode);
