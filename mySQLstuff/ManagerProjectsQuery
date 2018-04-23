@@ -1,0 +1,3 @@
+select projName, mgrID
+from Manager, Project
+where Manager.id = Project.mgrID AND mgrID = 9;
