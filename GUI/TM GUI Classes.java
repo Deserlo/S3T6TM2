@@ -15,39 +15,42 @@ class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
 		setVisible(true);
+		//setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
 
-class PTextField extends JTextField{ // pulled from stack overflow
-	public PTextField(final String proptText){
-        super(proptText);
-        addFocusListener(new FocusListener(){
-            public void focusLost(FocusEvent e){
-                if(getText().isEmpty()){
-                    setText(proptText);
-                }
-            }
-            public void focusGained(FocusEvent e){
-                if(getText().equals(proptText)){
-                    setText("");
-                }
-            }
-        });
+class PTextField extends JTextField{ //pulled from stack overflow 
+	public PTextField(final String promptText){
+		/*This class creates a text field that has a default string in the text field.
+		  If the user clicks on that text field then the string disappears.
+		  Then the default string reappears if the text is empty.*/
+		super(promptText);
+		addFocusListener(new FocusListener(){
+		    public void focusLost(FocusEvent e){
+			if(getText().isEmpty()){
+			    setText(promptText);
+			}
+		    }
+		    public void focusGained(FocusEvent e){
+			if(getText().equals(promptText)){
+			    setText("");
+			}
+		    }
+		});
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
 		setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setColumns(10);
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
-    }
+	}
 }
 
 class CScrollPane extends JScrollPane{
 	public CScrollPane(){
 		setBorder(null);
 		getViewport().setOpaque(true);
-		getViewport().		setBackground(new java.awt.Color(70,81,108));
-
+		getViewport().setBackground(new java.awt.Color(70,81,108));
 		getVerticalScrollBar().setForeground(new java.awt.Color(117,132,178));
 		getVerticalScrollBar().setBackground(new java.awt.Color(70,81,108));
 		getHorizontalScrollBar().setForeground(new java.awt.Color(117,132,178));
@@ -56,25 +59,29 @@ class CScrollPane extends JScrollPane{
 }
 
 class PTextArea extends JTextArea{ // pulled from stack overflow
-	public PTextArea(final String proptText){
-        super(proptText);
-        addFocusListener(new FocusListener(){
-            public void focusLost(FocusEvent e){
-                if(getText().isEmpty()){
-                    setText(proptText);
-                }
-            }
-            public void focusGained(FocusEvent e){
-                if(getText().equals(proptText)){
-                    setText("");
-                }
-            }
-        });
+	/*This class is similar to "PTextField".
+	  This class creates a text area that has a default string in the area.
+	  If the user clicks on that text field then the string disappears.
+	  Then the default string reappears if the text is empty.*/
+	public PTextArea(final String promptText){
+		super(promptText);
+		addFocusListener(new FocusListener(){
+		    public void focusLost(FocusEvent e){
+			if(getText().isEmpty()){
+			    setText(promptText);
+			}
+		    }
+		    public void focusGained(FocusEvent e){
+			if(getText().equals(promptText)){
+			    setText("");
+			}
+		    }
+		});
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
 		//setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
-    }
+	}
 }
 
 class CPanel extends JPanel{
@@ -86,7 +93,7 @@ class CPanel extends JPanel{
 class CButton extends JButton{
 	public CButton(String s, boolean IsSidePanel, int ExtraValue){
 		setText(s);
-		//setContentAreaFilled(false);
+		//setContentAreaFilled(false); //Uncommenting this will cause the flash to disappear when clicking the button. We may want this for the side panel.
 		setFocusPainted(false);
 		setBorderPainted(false);
 		setForeground(new java.awt.Color(117,132,178)); //(255,255,255)(117,132,178)
@@ -105,8 +112,8 @@ class Header extends JLabel{
 		setForeground(new java.awt.Color(73,210,146));
 	}
 }
-
-class AbsoluteTextButton extends JButton{
+//Absolute = Absolute Positioning on the screen. These require setLayout(null) for these 3 classes to work.
+class AbsoluteTextButton extends JButton{ 
 	public AbsoluteTextButton(String Words, int x, int y, int width, int height, boolean transparent, int MenuSwitch, int ButtonNum){
 		setText(Words);
 		setBorderPainted(false);
@@ -124,7 +131,6 @@ class AbsoluteTextButton extends JButton{
 		putClientProperty("ButtonNum", ButtonNum);
 	}
 }
-
 class AbsoluteTextField extends JTextField{
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
@@ -133,7 +139,6 @@ class AbsoluteTextField extends JTextField{
 		setBounds(x, y, width, height); 
 	}
 }
-
 class AbsoluteLabel extends JLabel{
 	public AbsoluteLabel(String Words, int x, int y, int width, int height, int FontSize){
 		setText(Words);
@@ -142,8 +147,6 @@ class AbsoluteLabel extends JLabel{
 		setForeground(new java.awt.Color(73,210,146));
 	}
 }
-
-
 /*
 ************************************************************************************
 ************************************************************************************
@@ -157,10 +160,8 @@ class TM_GUI_Intro{
 		frame.setBackground(new java.awt.Color(0,0,0));
 		frame.setOpaque(true);
 		frame.setLayout(null);
-		JLabel label_top;
-		ImageIcon icon_top;
-		JLabel label_bottom;
-		ImageIcon icon_bottom;
+		JLabel label_top; JLabel label_bottom;
+		ImageIcon icon_top; ImageIcon icon_bottom;
 		icon_top = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
 		label_top = new JLabel(icon_top);
 		icon_bottom = new ImageIcon(Test.class.getResource("art/IntroAnimation/2.png"));
@@ -168,7 +169,7 @@ class TM_GUI_Intro{
 		frame.add(label_top); frame.add(label_bottom);
 		label_top.setBounds(-550, 300, 150, 150);
 		label_bottom.setBounds(-550, 300, 150, 150);
-		
+	
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
@@ -204,7 +205,7 @@ class TM_GUI_Intro{
 						label_top.setBackground(new java.awt.Color(255,255,255, 255));
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
 						break;
-					case 13:
+					case 13: //From 13-16 we are doing some small animation
 						label_top.setBounds(405, 140, 150, 150);
 						label_bottom.setBounds(395, 199, 150, 150);
 						break;
@@ -220,7 +221,7 @@ class TM_GUI_Intro{
 						label_top.setBounds(400, 140, 150, 150);
 						label_bottom.setBounds(400, 199, 150, 150);
 						break;
-					case 17:
+					case 17: //From 17-20 is fading out "TM", with 20 setting the labels offscreen
 						label_top.setBackground(new java.awt.Color(255,255,255, 175));
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 175));
 						break;
@@ -236,7 +237,7 @@ class TM_GUI_Intro{
 						label_top.setBounds(-550, 300, 150, 150);
 						label_bottom.setBounds(-550, 300, 150, 150);
 						break;
-					case 22:
+					case 22: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
 						frame.setBackground(new java.awt.Color(10,10,10));
 						break;
 					case 23:
@@ -251,7 +252,7 @@ class TM_GUI_Intro{
 					case 26:
 						frame.setBackground(new java.awt.Color(59,68,91));
 						break;
-					case 27: //27 = 2.7 seconds.
+					case 27: //27 = 2.7 seconds for this intro.
 						frame.removeAll();
 						frame.revalidate();
 						Test.MenuVar = 2; 
@@ -261,13 +262,12 @@ class TM_GUI_Intro{
 				}
 			}
 		};
-		
 		Timer LocalTimer = new Timer(100, action); //100 milliseconds = 1 to globalvar = .1 second.
 		LocalTimer.start();
 	}
 }
 
-class RegisterScreen{
+class RegisterScreen{ 
 	JLabel DevTO = new AbsoluteLabel("Developer", 150,-10,195,130, 32);
 	JLabel ManTO = new AbsoluteLabel("Manager", 700,-10,195,130, 32);
 	JTextField Dev_NameTF = new AbsoluteTextField("Name", 110,120, 240,30);
@@ -398,7 +398,7 @@ class LogInScreen{
 	}
 }
 
-class SidePanel extends JPanel{
+class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	JButton Hours = new CButton("<html><font face = helvetica size = 5> Hours </font></html>", true, 0);
 	JButton Projects = new CButton("<html><font face = helvetica size = 5> Projects </font></html>", true, 1);
 	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
@@ -651,10 +651,6 @@ class ProjectsDev extends JPanel{
 		
 		setBackground(new java.awt.Color(59,68,91));
 		
-		//
-		//
-		// NEED ACTIONLISTENER;
-		// link button to Hours panel
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
@@ -804,11 +800,7 @@ class ProjectReportDev extends JPanel{
 		add(log,c);
 		
 		setBackground(new java.awt.Color(59,68,91));
-		
-		//
-		//
-		// NEED ACTIONLISTENER;
-		// link button to Hours panel
+
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
