@@ -388,7 +388,6 @@ class LogInScreen{
 		frame.add(LogInTO); frame.add(button_LogIn); frame.add(button_GoBack);
 		frame.add(EmailTF); frame.add(PasswordTF);
 		frame.setLayout(null);
-		
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				frame.repaint(500);
@@ -829,6 +828,51 @@ class ProjectReportDev extends JPanel{
 
 //MANAGER SCREENS
 class ProjectsManager extends JPanel{
+	JLabel ProjectsLabel = new Header("Projects");
+	JTable table;
+	String[] Cnames = {"Project","Budget","People"};
+	JScrollPane temp;
+	JScrollPane Scroll = new CScrollPane();
+	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
+	
+	public ProjectsManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+		table = new JTable(Data, Cnames);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx=1.0;
+		c.weighty=1.0;
+
+		new SetGrid(0,0,100,20, c);
+		add(ProjectsLabel,c);
+
+		new SetGrid(0,1,450,325, c);
+		table.setEnabled(false);
+		table.setBackground(new java.awt.Color(117,132,178));
+		temp = new JScrollPane(table);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		
+		new SetGrid(0,2,100,20, c);
+		add(log,c);
+		
+		setBackground(new java.awt.Color(59,68,91));
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(s[3]);
+					main.revalidate();
+					main.repaint();
+				}
+			}
+		};
+		log.addActionListener(action);
+	}
+}
+class AddProjectManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Add a project");
 	JTextField ProjectName = new PTextField("Project name");
 	JTextField BudgetHours = new PTextField("Budget hours");
@@ -838,7 +882,7 @@ class ProjectsManager extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton AddProject = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
-	public ProjectsManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public AddProjectManager(String[][] Data, Container f, JPanel main, JPanel[] s){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -873,5 +917,119 @@ class ProjectsManager extends JPanel{
 			}
 		};
 		AddProject.addActionListener(action);
+	}
+}
+
+class ReportsManager extends JPanel{
+	JLabel ProjectsLabel = new Header("Projects");
+	JLabel DevelopersLabel = new Header("Developers");
+	int count = 0;
+	JPanel Columns = new CPanel();
+	JPanel Columns2 = new CPanel();
+	JPanel Main = new CPanel();
+	JPanel Main2 = new CPanel();
+	JScrollPane temp;
+	JScrollPane temp2;
+	JScrollPane Scroll_Projects = new CScrollPane();
+	JScrollPane Scroll_Developers = new CScrollPane();
+	JButton[] Buttons_Projects;
+	JButton[] Buttons_Developers;
+	JPanel pr;
+	
+	public ReportsManager(String[][] Data, JPanel main, Container f, JPanel[] s){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		//Filling Buttons
+		Buttons_Projects = new CButton[40];
+		for(int x = 0 ; x < Buttons_Projects.length ; x++){
+			Buttons_Projects[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
+			Buttons_Projects[x].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					/*pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(pr,BorderLayout.CENTER);
+					main.revalidate();
+					main.repaint();
+					System.out.println("button pressed");*/
+				}
+			});
+		}
+		int boxSizes = Buttons_Projects.length / 2 + 1;
+		
+		Buttons_Developers = new CButton[40];
+		for(int x = 0 ; x < Buttons_Developers.length ; x++){
+			Buttons_Developers[x] = new CButton("Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
+			Buttons_Developers[x].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					/*pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(pr,BorderLayout.CENTER);
+					main.revalidate();
+					main.repaint();
+					System.out.println("button pressed");*/
+				}
+			});
+		}
+		int boxSizes2 = Buttons_Developers.length / 2 + 1;
+		
+		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx=1.0;
+		c.weighty=1.0;
+
+		new SetGrid(0,0,100,20, c);
+		add(ProjectsLabel,c);
+		new SetGrid(1,0,100,20, c);
+		add(new CPanel(),c);
+		new SetGrid(2,0,100,20, c);
+		add(DevelopersLabel,c);
+		
+		Columns.setLayout(new GridBagLayout());
+		Columns2.setLayout(new GridBagLayout());
+		
+		GridBagConstraints cs1 = new GridBagConstraints();
+		GridBagConstraints cs2 = new GridBagConstraints();
+
+		new SetGrid(0,0,125,30, cs1);
+		cs1.insets = new Insets(20,20,0,0);
+		Main.setLayout(new GridLayout(1,2,30,10));
+		Main.add(Columns);
+		count = 0;
+		for(int x = 0; x < Buttons_Projects.length; x++){
+			if(count%2==0){
+				Columns.add(Buttons_Projects[x],cs1);
+				cs1.gridy++;
+			}
+			count++;
+		}
+		temp = new JScrollPane(Main);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll_Projects.setViewport(temp.getViewport());
+		new SetGrid(0,1,350,350, c);
+		add(Scroll_Projects,c);
+		
+		new SetGrid(1,1,20,350, c);
+		add(new CPanel(),c);
+		
+		new SetGrid(0,0,125,30, cs1);
+		cs2.insets = new Insets(20,20,0,0);
+		Main2.setLayout(new GridLayout(1,2,30,10));
+		Main2.add(Columns2);
+		count = 0;
+		for(int x = 0; x < Buttons_Developers.length; x++){
+			if(count%2==0){
+				Columns2.add(Buttons_Developers[x],cs2);
+				cs2.gridy++;
+			}
+			count++;
+		}
+		temp = new JScrollPane(Main2);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll_Developers.setViewport(temp.getViewport());
+		new SetGrid(2,1,350,350, c);
+		add(Scroll_Developers,c);
+		
+		
+		
+		setBackground(new java.awt.Color(59,68,91));
 	}
 }

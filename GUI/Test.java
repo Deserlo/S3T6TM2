@@ -30,6 +30,7 @@ public class Test{
 		JPanel main_hours;
 		JPanel main_projects;
 		JPanel main_reports;
+		JPanel main_addprojects;
 			
 		//Manager Dashboard Screen
 		
@@ -93,8 +94,10 @@ public class Test{
 						center_panels[0]=main_hours;
 						main_projects = new ProjectsManager(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;
-						main_reports = new ReportsDev(Data, main, home.getContentPane(), center_panels);
+						main_reports = new ReportsManager(Data, main, home.getContentPane(), center_panels);
 						center_panels[2]=main_reports;
+						main_addprojects = new AddProjectManager(Data, home.getContentPane(), main, center_panels);
+						center_panels[3]=main_addprojects;
 						main.setLayout(new BorderLayout());
 						main.add(side,BorderLayout.WEST);
 						main.add(center,BorderLayout.CENTER);
