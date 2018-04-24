@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 1;
+	public static int MenuVar = 4;
 	public static int UserID = -1;
 	public static boolean loggedIn = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
@@ -91,7 +91,7 @@ public class Test{
 						side = new SidePanel(home.getContentPane(), main, center_panels);
 						main_hours = new HoursDev();
 						center_panels[0]=main_hours;
-						main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels);
+						main_projects = new ProjectsManager(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;
 						main_reports = new ReportsDev(Data, main, home.getContentPane(), center_panels);
 						center_panels[2]=main_reports;

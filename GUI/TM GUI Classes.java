@@ -304,9 +304,7 @@ class RegisterScreen{
 		frame.add(button_DevRegister); frame.add(button_DevLogin);
 		frame.add(button_ManRegister); frame.add(button_ManLogin);
 		frame.setLayout(null);
-		frame.revalidate();
-		frame.repaint(500);
-		
+	
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				frame.repaint(500);
@@ -546,6 +544,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	}
 }
 
+//DEVELOPER SCREENS
 class HomeDev extends JPanel{
 	JTable table;
 	String[] Cnames = {"Project","Task","Hours"};
@@ -605,7 +604,6 @@ class HoursDev extends JPanel{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=1.0;
 		c.weighty=1.0;
-
 		new SetGrid(3,0,100,20, c);
 		add(LogATask,c);
 		new SetGrid(3,1,100,20, c);
@@ -623,7 +621,6 @@ class HoursDev extends JPanel{
 		}
 		
 		c.fill = GridBagConstraints.NONE;
-
 		new SetGrid(3,4,100,20, c);
 		add(Start,c);
 		new SetGrid(4,4,100,20, c);
@@ -827,5 +824,54 @@ class ProjectReportDev extends JPanel{
 			}
 		};
 		log.addActionListener(action);
+	}
+}
+
+//MANAGER SCREENS
+class ProjectsManager extends JPanel{
+	JLabel ProjectsLabel = new Header("Add a project");
+	JTextField ProjectName = new PTextField("Project name");
+	JTextField BudgetHours = new PTextField("Budget hours");
+	JTextField PeopleOnProject = new PTextField("People on the project");
+	JTextArea Notes = new PTextArea("Notes");
+	JScrollPane temp = new JScrollPane(Notes);
+	JScrollPane Scroll = new CScrollPane();
+	JButton AddProject = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
+	
+	public ProjectsManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx=1.0;
+		c.weighty=1.0;
+
+		new SetGrid(0,0,100,20, c);
+		add(ProjectsLabel,c);
+		new SetGrid(1,0,100,20, c);
+		add(new CPanel(),c);
+		new SetGrid(0,1,100,20, c);
+		add(ProjectName,c);
+		new SetGrid(1,1,100,20, c);
+		add(PeopleOnProject,c);
+		new SetGrid(0,2,100,20, c);
+		add(BudgetHours,c);
+		new SetGrid(0,3,220,140, c);
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		new SetGrid(0,4,20,20, c);
+		add(new CPanel(),c);
+		new SetGrid(1,4,40,20, c);
+		add(AddProject,c);
+		
+		setBackground(new java.awt.Color(59,68,91));
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					//Add Project Code
+				}
+			}
+		};
+		AddProject.addActionListener(action);
 	}
 }
