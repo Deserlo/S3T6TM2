@@ -184,17 +184,19 @@ class TM_GUI_Intro{
 				LocalTimer++;
 				switch(LocalTimer){
 					case 5: //From 5-11 we are just fading in "TM"
-						frame.setBackground(new java.awt.Color(0,0,0)); 
+						frame.setBackground(new java.awt.Color(0,0,0,25)); 
 						label_top.setBackground(new java.awt.Color(255,255,255, 25)); //RGB-A, Alpha(0-255) 0 = Transparent
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
 						label_top.setBounds(400, 140, 150, 150);
 						label_bottom.setBounds(400, 199, 150, 150);
 						break;
 					case 6:
+						frame.setBackground(new java.awt.Color(0,0,0,50)); 
 						label_top.setBackground(new java.awt.Color(255,255,255, 50));
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
 						break;
 					case 7:
+						frame.setBackground(new java.awt.Color(0,0,0,75)); 
 						label_top.setBackground(new java.awt.Color(255,255,255, 75));
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 75));
 						break;
@@ -215,16 +217,16 @@ class TM_GUI_Intro{
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
 						break;
 					case 13: //From 13-16 we are doing some small animation
-						label_top.setBounds(405, 140, 150, 150);
-						label_bottom.setBounds(395, 199, 150, 150);
+						label_top.setBounds(405, 145, 150, 150);
+						label_bottom.setBounds(405, 204, 150, 150);
 						break;
 					case 14:
 						label_top.setBounds(410, 140, 150, 150);
-						label_bottom.setBounds(390, 199, 150, 150);
+						label_bottom.setBounds(410, 209, 150, 150);
 						break;
 					case 15:
-						label_top.setBounds(405, 140, 150, 150);
-						label_bottom.setBounds(395, 199, 150, 150);
+						label_top.setBounds(405, 145, 150, 150);
+						label_bottom.setBounds(405, 204, 150, 150);
 						break;
 					case 16:
 						label_top.setBounds(400, 140, 150, 150);
@@ -278,19 +280,19 @@ class TM_GUI_Intro{
 
 class RegisterScreen{ 
 	JLabel DevTO = new AbsoluteLabel("Developer", 150,-10,195,130, 32);
-	JLabel ManTO = new AbsoluteLabel("Manager", 700,-10,195,130, 32);
+	JLabel ManTO = new AbsoluteLabel("Manager", 680,-10,195,130, 32);
 	JTextField Dev_NameTF = new AbsoluteTextField("Name", 110,120, 240,30);
 	JTextField Dev_EmailTF = new AbsoluteTextField("Email", 110,160, 240,30);
 	JTextField Dev_TeamTF = new AbsoluteTextField("Team", 110,200, 240,30);
 	JTextField Dev_PasswordTF = new AbsoluteTextField("Password", 110,240, 240,30);
-	JTextField Man_NameTF = new AbsoluteTextField("Name", 660,120, 240,30);
-	JTextField Man_EmailTF = new AbsoluteTextField("Email", 660,160, 240,30);
-	JTextField Man_TeamTF = new AbsoluteTextField("Team", 660,200, 240,30);
-	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 660,240, 240,30);
-	JButton button_DevRegister = new AbsoluteTextButton("Register", 140,300, 160,45, false, 1, 1);
-	JButton button_DevLogin = new AbsoluteTextButton("Login", 140,360, 160,45, false, 1, 2);
-	JButton button_ManRegister = new AbsoluteTextButton("Register", 690,300, 160,45, false, 3, 3);
-	JButton button_ManLogin = new AbsoluteTextButton("Login", 690,360, 160,45, false, 1, 4);
+	JTextField Man_NameTF = new AbsoluteTextField("Name", 640,120, 240,30);
+	JTextField Man_EmailTF = new AbsoluteTextField("Email", 640,160, 240,30);
+	JTextField Man_TeamTF = new AbsoluteTextField("Team", 640,200, 240,30);
+	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 640,240, 240,30);
+	JButton button_DevRegister = new AbsoluteTextButton("Register", 145,300, 160,45, false, 3, 1);
+	JButton button_DevLogin = new AbsoluteTextButton("Login", 145,360, 160,45, false, 1, 2);
+	JButton button_ManRegister = new AbsoluteTextButton("Register", 675,300, 160,45, false, 4, 3);
+	JButton button_ManLogin = new AbsoluteTextButton("Login", 675,360, 160,45, false, 1, 4);
 	
 	public RegisterScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
@@ -305,12 +307,20 @@ class RegisterScreen{
 		frame.revalidate();
 		frame.repaint(500);
 		
+		ActionListener RepaintScreen = new ActionListener(){ 
+			public void actionPerformed(ActionEvent event){
+				frame.repaint(500);
+				frame.revalidate();
+			}
+		};
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		RepaintTimer.start();
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				frame.setBackground(new java.awt.Color(0,0,0));
 				frame.removeAll();
 				frame.revalidate();
-				frame.repaint(500);
+				frame.repaint(2500);
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
 					/*UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
@@ -356,6 +366,7 @@ class RegisterScreen{
 					}
 					*/
 				}
+				RepaintTimer.stop();
 				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 			}
 		};
@@ -370,16 +381,24 @@ class RegisterScreen{
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
+	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, false, 2, 2);
 	JTextField EmailTF = new AbsoluteTextField("Email",360,200, 240,30);
 	JTextField PasswordTF = new AbsoluteTextField("Password", 360,150, 240,30);
 	
 	public LogInScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(LogInTO); frame.add(button_LogIn);
+		frame.add(LogInTO); frame.add(button_LogIn); frame.add(button_GoBack);
 		frame.add(EmailTF); frame.add(PasswordTF);
 		frame.setLayout(null);
-		frame.revalidate();
-		frame.repaint(500);
+		
+		ActionListener RepaintScreen = new ActionListener(){ 
+			public void actionPerformed(ActionEvent event){
+				frame.repaint(500);
+				frame.revalidate();
+			}
+		};
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		RepaintTimer.start();
 		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
@@ -387,22 +406,30 @@ class LogInScreen{
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint();
-				Test.MenuVar = 3; //Developer atm
-				//log in code
-				/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
-				if (newLogin.authenticateUser(newLogin) == true) {
-					Test.UserID = newLogin.queryForId(newLogin.getUserName());
-					Test.loggedIn = true;
-					//Test.MenuVar = 3 //if dev
-					//Test.MenuVar = 4 //if manager
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+					RepaintTimer.stop();
+					Test.MenuVar = 3; //Developer
+					//log in code
+					/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
+					if (newLogin.authenticateUser(newLogin) == true) {
+						Test.UserID = newLogin.queryForId(newLogin.getUserName());
+						Test.loggedIn = true;
+						//Test.MenuVar = 3 //if dev
+						//Test.MenuVar = 4 //if manager
+					}
+					else {
+						Test.loggedIn = false;
+						//Display "Bad Username/Password"
+					}*/
 				}
-				else {
-					Test.loggedIn = false;
-					//Display "Bad Username/Password"
-				}*/
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+					RepaintTimer.stop();
+					Test.MenuVar = 2; //Go Back
+				}
 			}
 		};
 		button_LogIn.addActionListener(action);
+		button_GoBack.addActionListener(action);
 		frame.setOpaque(true);
 	}
 }
@@ -412,11 +439,9 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	JButton Projects = new CButton("<html><font face = helvetica size = 5> Projects </font></html>", true, 1);
 	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
 	JButton LogOut = new CButton("<html><font face = helvetica size = 5> Log Out </font></html>", true, 3);
-	//JPanel bar = new JPanel();
 	
 	public SidePanel(Container f, JPanel main, JPanel[] s){
 		//NOTE ABOUT PARAMETERS:
-		
 		/*main will be the panel that side panel lies on
 		  array s(center_panels) will contain all the different center panels
 		  this allows the buttons to change the panels while keeping itself
@@ -439,28 +464,20 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		
 		new SetGrid(0,0,60,15, c);
 		add(new CPanel(),c);
-		
 		new SetGrid(1,0,9,15, c);
 		add(new CPanel(),c);
-	
 		new SetGrid(0,1,60,25, c);
 		add(Hours,c);
-		
 		new SetGrid(1,1,9,25, c);
 		add(new CPanel(),c);
-		
 		new SetGrid(0,2,60,25, c);
 		add(Projects,c);
-		
 		new SetGrid(0,3,60,25, c);
 		add(Reports,c);
-		
 		new SetGrid(0,4,60,200, c);
 		add(new CPanel(),c);
-		
 		new SetGrid(0,5,60,25, c);
 		add(LogOut,c);
-		
 		new SetGrid(0,6,60,15, c);
 		add(new CPanel(),c);
 		
@@ -472,7 +489,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
 		add(bar,c);*/
-
 		
 		setBackground(new java.awt.Color(59,68,91));
 
@@ -509,12 +525,10 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
 					//LogOut
-					//main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.setBackground(new java.awt.Color(0,0,0));
-					main.setVisible(false);
-					main.setEnabled(false);
+					main.removeAll();
 					main.revalidate();
-					main.repaint();
+					main.repaint(2500);
 					Test.MenuVar = 2;
 				}
 				else{
@@ -537,7 +551,7 @@ class HomeDev extends JPanel{
 	String[] Cnames = {"Project","Task","Hours"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("Log Task",false,1);
+	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public HomeDev(String[][] Data, Container f, JPanel main, JPanel[] s){
 		table = new JTable(Data, Cnames);
@@ -575,8 +589,8 @@ class HomeDev extends JPanel{
 
 class HoursDev extends JPanel{
 	JLabel LogATask = new Header("Logging a Task");
-	JButton Start = new CButton("Start", false, 1);
-	JButton Stop = new CButton("Stop", false, 2);
+	JButton Start = new CButton("<html><font face = helvetica size = 4>Start</font></html>", false, 1);
+	JButton Stop = new CButton("<html><font face = helvetica size = 4>Stop</font></html>", false, 2);
 	JTextField TaskName = new PTextField("Task Name");
 	JTextField ProjectName = new PTextField("Project Name");
 	JTextArea Description = new PTextArea("Description");
@@ -612,7 +626,6 @@ class HoursDev extends JPanel{
 
 		new SetGrid(3,4,100,20, c);
 		add(Start,c);
-		
 		new SetGrid(4,4,100,20, c);
 		add(Stop,c);
 		
@@ -650,7 +663,7 @@ class ProjectsDev extends JPanel{
 	String[] Cnames = {"Project","Budget","Tasks"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("Log Task",false,1);
+	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public ProjectsDev(String[][] Data, Container f, JPanel main, JPanel[] s){
 		table = new JTable(Data, Cnames);
@@ -704,12 +717,10 @@ class ReportsDev extends JPanel{
 	public ReportsDev(String[][] Data, JPanel main, Container f, JPanel[] s){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
-		
 		//Filling Buttons
 		Buttons = new CButton[40];
 		for(int x = 0 ; x < Buttons.length ; x++){
-			Buttons[x] = new CButton("Some Project",false, 50);
+			Buttons[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
@@ -780,7 +791,7 @@ class ProjectReportDev extends JPanel{
 	String[] Cnames = {"Task","Time","Description"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("Log Task",false,1);
+	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public ProjectReportDev(String[][] Data,String Project, Container f, JPanel main, JPanel[] s){
 		ProjectsLabel = new Header("Project " + Project + " Report");
@@ -793,7 +804,6 @@ class ProjectReportDev extends JPanel{
 
 		new SetGrid(0,0,100,20, c);
 		add(ProjectsLabel,c);
-		
 		new SetGrid(0,1,450,325, c);
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
@@ -801,7 +811,6 @@ class ProjectReportDev extends JPanel{
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
-		
 		new SetGrid(0,2,100,20, c);
 		add(log,c);
 		
