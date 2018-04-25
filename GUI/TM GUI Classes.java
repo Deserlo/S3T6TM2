@@ -827,6 +827,73 @@ class ProjectReportDev extends JPanel{
 }
 
 //MANAGER SCREENS
+class HoursManager extends JPanel{
+	JLabel LogATask = new Header("Assign a Task");
+	JButton Start = new CButton("<html><font face = helvetica size = 4>Start</font></html>", false, 1);
+	JButton Stop = new CButton("<html><font face = helvetica size = 4>Stop</font></html>", false, 2);
+	JTextField TaskName = new PTextField("Task Name");
+	JTextField DeveloperName = new PTextField("Developer To Assign Task");
+	JTextArea Notes = new PTextArea("Notes To Give Developer");
+	JScrollPane temp = new JScrollPane(Notes);
+	JScrollPane Scroll = new CScrollPane();
+	JPanel[] clear = new JPanel[3];
+	
+	public HoursManager(){
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx=1.0;
+		c.weighty=1.0;
+		new SetGrid(3,0,100,20, c);
+		add(LogATask,c);
+		new SetGrid(3,1,100,20, c);
+		add(TaskName,c);
+		new SetGrid(3,2,100,20, c);
+		add(DeveloperName,c);
+		new SetGrid(3,3,100,60, c);
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		
+		for(JPanel pan : clear){
+			pan = new CPanel();
+			c.gridx++;
+			add(pan);
+		}
+		
+		c.fill = GridBagConstraints.NONE;
+		new SetGrid(3,4,100,20, c);
+		add(Start,c);
+		new SetGrid(4,4,100,20, c);
+		add(Stop,c);
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					//Start Code goes here
+					String String_TaskName = TaskName.getText();
+					String String_DeveloperName = DeveloperName.getText();
+					String String_Notes = Notes.getText();
+					
+					//Example
+					System.out.println("" + String_Notes);
+				}
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
+					//Stop Code goes here
+					String String_TaskName = TaskName.getText();
+					String String_DeveloperName = DeveloperName.getText();
+					String String_Notes = Notes.getText();
+					
+					//Example
+					System.out.println("" + String_TaskName);
+				}
+			}
+		};
+		Start.addActionListener(action);
+		Stop.addActionListener(action);
+		setBackground(new java.awt.Color(59,68,91));
+	}
+}
 class ProjectsManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Current Ongoing Projects");
 	JTable table;
@@ -843,9 +910,9 @@ class ProjectsManager extends JPanel{
 		c.weightx=1.0;
 		c.weighty=1.0;
 		
-		new SetGrid(0,0,40,20, c);
-		add(new CPanel(),c);
-		new SetGrid(1,0,100,20, c);
+		//new SetGrid(0,0,40,20, c);
+		//add(new CPanel(),c);
+		new SetGrid(0,0,100,20, c);
 		add(ProjectsLabel,c);
 
 		new SetGrid(0,1,450,325, c);
@@ -1027,8 +1094,6 @@ class ReportsManager extends JPanel{
 		Scroll_Developers.setViewport(temp.getViewport());
 		new SetGrid(2,1,350,350, c);
 		add(Scroll_Developers,c);
-		
-		
 		
 		setBackground(new java.awt.Color(59,68,91));
 	}

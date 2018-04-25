@@ -90,7 +90,7 @@ public class Test{
 						Log = new CPanel();
 						center = new HomeDev(Data, home.getContentPane(), main, center_panels);
 						side = new SidePanel(home.getContentPane(), main, center_panels);
-						main_hours = new HoursDev();
+						main_hours = new HoursManager();
 						center_panels[0]=main_hours;
 						main_projects = new ProjectsManager(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;
