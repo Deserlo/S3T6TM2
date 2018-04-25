@@ -1,0 +1,3 @@
+select taskName
+from Project, Task
+where Project.projNo = Task.projNo AND mgrID = 9; 
