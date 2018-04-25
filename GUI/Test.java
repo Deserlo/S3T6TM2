@@ -21,7 +21,7 @@ public class Test{
 		JPanel RegisterScreen = new CPanel();
 		JPanel LogInScreen = new CPanel();
 		
-		//Developer Dashboard Screen
+		//Dashboard Screen
 		main = new CPanel();
 		JPanel[] center_panels;
 		JPanel Log;
@@ -31,9 +31,6 @@ public class Test{
 		JPanel main_projects;
 		JPanel main_reports;
 		JPanel main_addprojects;
-			
-		//Manager Dashboard Screen
-		
 		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();

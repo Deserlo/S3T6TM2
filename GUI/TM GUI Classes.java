@@ -67,14 +67,14 @@ class PTextArea extends JTextArea{ // pulled from stack overflow
 		super(promptText);
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
-			if(getText().isEmpty()){
-			    setText(promptText);
-			}
+				if(getText().isEmpty()){
+					setText(promptText);
+				}
 		    }
 		    public void focusGained(FocusEvent e){
-			if(getText().equals(promptText)){
-			    setText("");
-			}
+				if(getText().equals(promptText)){
+					setText("");
+				}
 		    }
 		});
 		setForeground(new java.awt.Color(117,132,178));
@@ -145,6 +145,7 @@ class AbsoluteTextField extends JTextField{
 		setText(Words);
 		setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setBackground(new java.awt.Color(70,81,108));
+		setForeground(new java.awt.Color(117,132,178));
 		setBounds(x, y, width, height); 
 	}
 }
@@ -184,8 +185,8 @@ class TM_GUI_Intro{
 				LocalTimer++;
 				switch(LocalTimer){
 					case 5: //From 5-11 we are just fading in "TM"
-						frame.setBackground(new java.awt.Color(0,0,0,25)); 
-						label_top.setBackground(new java.awt.Color(255,255,255, 25)); //RGB-A, Alpha(0-255) 0 = Transparent
+						frame.setBackground(new java.awt.Color(0,0,0,25)); //RGB-A, Alpha(0-255) 0 = Transparent
+						label_top.setBackground(new java.awt.Color(255,255,255, 25)); 
 						label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
 						label_top.setBounds(400, 140, 150, 150);
 						label_bottom.setBounds(400, 199, 150, 150);
@@ -405,7 +406,16 @@ class LogInScreen{
 				frame.repaint();
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					RepaintTimer.stop();
-					Test.MenuVar = 3; //Developer
+					
+					/* EXAMPLE 3=developer dash, 4= manager dash*/
+					String String_Email = EmailTF.getText();
+					if(String_Email.equals("Dev"))
+						Test.MenuVar = 3; 
+					else if(String_Email.equals("Man"))
+						Test.MenuVar = 4; 
+					else
+						Test.MenuVar = 3;
+
 					//log in code
 					/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
@@ -1077,7 +1087,7 @@ class ReportsManager extends JPanel{
 		new SetGrid(1,1,20,350, c);
 		add(new CPanel(),c);
 		
-		new SetGrid(0,0,125,30, cs1);
+		new SetGrid(0,0,125,30, cs2);
 		cs2.insets = new Insets(20,20,0,0);
 		Main2.setLayout(new GridLayout(1,2,30,10));
 		Main2.add(Columns2);
