@@ -804,7 +804,7 @@ class ProjectReportDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ProjectReportDev(String[][] Data,String Project, Container f, JPanel main, JPanel[] s){
+	public ProjectReportDev(String[][] Data, String Project, Container f, JPanel main, JPanel[] s){
 		ProjectsLabel = new Header("Project " + Project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
@@ -1073,7 +1073,7 @@ class ReportsManager extends JPanel{
 			Buttons_Projects[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons_Projects[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ManagerReports_ByProject(Data,  f, main, s);
+					pr = new ManagerReports_ByProject(Data, ((JButton)e.getSource()).getText(), f, main, s);
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -1088,7 +1088,7 @@ class ReportsManager extends JPanel{
 			Buttons_Developers[x] = new CButton("Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons_Developers[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ManagerReports_ByDev(Data,  f, main, s);
+					pr = new ManagerReports_ByDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -1159,14 +1159,15 @@ class ReportsManager extends JPanel{
 }
 
 class ManagerReports_ByDev extends JPanel{
-	JLabel ProjectsLabel = new Header("Developer <name> Report");
+	JLabel ProjectsLabel;
 	JTable table;
 	String[] Cnames = {"Task","Time","Description"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ManagerReports_ByDev(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public ManagerReports_ByDev(String[][] Data, String dev, Container f, JPanel main, JPanel[] s){
+		ProjectsLabel = new Header("Developer " + dev + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -1205,14 +1206,15 @@ class ManagerReports_ByDev extends JPanel{
 }
 
 class ManagerReports_ByProject extends JPanel{
-	JLabel ProjectsLabel = new Header("Project <name> Report");
+	JLabel ProjectsLabel;
 	JTable table;
 	String[] Cnames = {"Task","Time","Description"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ManagerReports_ByProject(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public ManagerReports_ByProject(String[][] Data, String project, Container f, JPanel main, JPanel[] s){
+		ProjectsLabel = new Header("Project " + project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
