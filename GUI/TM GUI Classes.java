@@ -453,7 +453,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
 	JButton LogOut = new CButton("<html><font face = helvetica size = 5> Log Out </font></html>", true, 3);
 	
-	public SidePanel(Container f, JPanel main, JPanel[] s){
+	public SidePanel(Container f, JPanel main, JPanel[] s, String[][] Data, int var){
 		//NOTE ABOUT PARAMETERS:
 		/*main will be the panel that side panel lies on
 		  array s(center_panels) will contain all the different center panels
@@ -534,7 +534,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		LogOut.addFocusListener(focusCode);
 
 		//ACTION LISTENER CODE
-		ActionListener action = new ActionListener(){ 
+		/*ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
 					//LogOut
@@ -551,11 +551,70 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 				main.revalidate();
 				main.repaint();
 			}
-		};
-		Hours.addActionListener(action);
-		Projects.addActionListener(action);
-		Reports.addActionListener(action);
-		LogOut.addActionListener(action);
+		};*/
+		Hours.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				if(var == 3){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new HoursDev(f, main, s, Data);
+				}
+				else if(var == 4){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new HoursManager(f, main, s, Data);
+				}	
+				main.add(s[0]);
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		Projects.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				if(var == 3){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new ProjectsDev(f, main, s, Data);
+				}
+				else if(var == 4){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new ProjectsManager(f, main, s, Data);
+				}	
+				main.add(s[1]);
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		Reports.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+				if(var == 3){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new ReportsDev(f, main, s, Data);
+				}
+				else if(var == 4){
+					//BACK END TEAM
+					//Add code to update Data[][] content here
+					s[0] = new ReportsManager(f, main, s, Data);
+				}	
+				main.add(s[2]);
+				main.revalidate();
+				main.repaint();
+			}
+		});
+		LogOut.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				main.setBackground(new java.awt.Color(0,0,0));
+				main.removeAll();
+				main.revalidate();
+				main.repaint(2500);
+				Test.MenuVar = 2;
+			}
+		});
 	}
 }
 
@@ -567,7 +626,7 @@ class HoursDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
-	public HoursDev(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public HoursDev(Container f, JPanel main, JPanel[] s, String[][] Data){
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -591,7 +650,8 @@ class HoursDev extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[0]);
+					s[4] = new LogTaskDev();
+					main.add(s[4]);
 					main.revalidate();
 					main.repaint();
 				}
@@ -677,7 +737,7 @@ class ProjectsDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
-	public ProjectsDev(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public ProjectsDev(Container f, JPanel main, JPanel[] s, String[][] Data){
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -705,7 +765,8 @@ class ProjectsDev extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[0]);
+					s[4] = new LogTaskDev();
+					main.add(s[4]);
 					main.revalidate();
 					main.repaint();
 				}
@@ -726,7 +787,7 @@ class ReportsDev extends JPanel{
 	JButton[] Buttons;
 	JPanel pr;
 	
-	public ReportsDev(String[][] Data, JPanel main, Container f, JPanel[] s){
+	public ReportsDev(Container f, JPanel main, JPanel[] s, String[][] Data){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		//Filling Buttons
@@ -735,7 +796,10 @@ class ReportsDev extends JPanel{
 			Buttons[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ProjectReportDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
+					//BACK END TEAM
+					//UPDATE Data[][] here using jbutton.getText
+					//reference line below
+					pr = new ProjectReportDev(f, main, s, Data, ((JButton)e.getSource()).getText());
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -804,7 +868,7 @@ class ProjectReportDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ProjectReportDev(String[][] Data, String Project, Container f, JPanel main, JPanel[] s){
+	public ProjectReportDev(Container f, JPanel main, JPanel[] s, String[][] Data, String Project){
 		ProjectsLabel = new Header("Project " + Project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
@@ -918,7 +982,7 @@ class HoursManager extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
-	public HoursManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public HoursManager(Container f, JPanel main, JPanel[] s, String[][] Data){
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -933,54 +997,6 @@ class HoursManager extends JPanel{
 		Scroll.setViewport(temp.getViewport());
 		new SetGrid(0,1,450,325, c);
 		add(Scroll,c);
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
-		
-		setBackground(new java.awt.Color(59,68,91));
-		
-		ActionListener action = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e){
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
-					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[3]);
-					main.revalidate();
-					main.repaint();
-				}
-			}
-		};
-		log.addActionListener(action);
-	}
-}
-
-class ProjectsManager extends JPanel{
-	JLabel ProjectsLabel = new Header("Projects");
-	JTable table;
-	String[] Cnames = {"Project","Budget","People"};
-	JScrollPane temp;
-	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
-	
-	public ProjectsManager(String[][] Data, Container f, JPanel main, JPanel[] s){
-		table = new JTable(Data, Cnames);
-		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.weightx=1.0;
-		c.weighty=1.0;
-		
-		//new SetGrid(0,0,40,20, c);
-		//add(new CPanel(),c);
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-
-		new SetGrid(0,1,450,325, c);
-		table.setEnabled(false);
-		table.setBackground(new java.awt.Color(117,132,178));
-		temp = new JScrollPane(table);
-		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
-		Scroll.setViewport(temp.getViewport());
-		add(Scroll,c);
-		
 		new SetGrid(0,2,100,20, c);
 		add(log,c);
 		
@@ -1048,6 +1064,54 @@ class AddProjectManager extends JPanel{
 	}
 }
 
+class ProjectsManager extends JPanel{
+	JLabel ProjectsLabel = new Header("Projects");
+	JTable table;
+	String[] Cnames = {"Project","Budget","People"};
+	JScrollPane temp;
+	JScrollPane Scroll = new CScrollPane();
+	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
+	
+	public ProjectsManager(Container f, JPanel main, JPanel[] s, String[][] Data){
+		table = new JTable(Data, Cnames);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx=1.0;
+		c.weighty=1.0;
+		
+		//new SetGrid(0,0,40,20, c);
+		//add(new CPanel(),c);
+		new SetGrid(0,0,100,20, c);
+		add(ProjectsLabel,c);
+
+		new SetGrid(0,1,450,325, c);
+		table.setEnabled(false);
+		table.setBackground(new java.awt.Color(117,132,178));
+		temp = new JScrollPane(table);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll.setViewport(temp.getViewport());
+		add(Scroll,c);
+		
+		new SetGrid(0,2,100,20, c);
+		add(log,c);
+		
+		setBackground(new java.awt.Color(59,68,91));
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(s[3]);
+					main.revalidate();
+					main.repaint();
+				}
+			}
+		};
+		log.addActionListener(action);
+	}
+}
+
 class ReportsManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Projects");
 	JLabel DevelopersLabel = new Header("Developers");
@@ -1064,7 +1128,7 @@ class ReportsManager extends JPanel{
 	JButton[] Buttons_Developers;
 	JPanel pr;
 	
-	public ReportsManager(String[][] Data, JPanel main, Container f, JPanel[] s){
+	public ReportsManager(Container f, JPanel main, JPanel[] s, String[][] Data){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		//Filling Buttons
@@ -1073,7 +1137,9 @@ class ReportsManager extends JPanel{
 			Buttons_Projects[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons_Projects[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ManagerReports_ByProject(Data, ((JButton)e.getSource()).getText(), f, main, s);
+					//BACK END TEAM
+					//update Data[][] here
+					pr = new ManagerReports_ByProject(f, main, s, Data, ((JButton)e.getSource()).getText());
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -1088,7 +1154,9 @@ class ReportsManager extends JPanel{
 			Buttons_Developers[x] = new CButton("Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons_Developers[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					pr = new ManagerReports_ByDev(Data, ((JButton)e.getSource()).getText(), f, main, s);
+					//BACK END TEAM
+					//update Data[][] here
+					pr = new ManagerReports_ByDev(f, main, s, Data, ((JButton)e.getSource()).getText());
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
 					main.revalidate();
@@ -1166,7 +1234,7 @@ class ManagerReports_ByDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ManagerReports_ByDev(String[][] Data, String dev, Container f, JPanel main, JPanel[] s){
+	public ManagerReports_ByDev(Container f, JPanel main, JPanel[] s, String[][] Data, String dev){
 		ProjectsLabel = new Header("Developer " + dev + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
@@ -1213,7 +1281,7 @@ class ManagerReports_ByProject extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
-	public ManagerReports_ByProject(String[][] Data, String project, Container f, JPanel main, JPanel[] s){
+	public ManagerReports_ByProject(Container f, JPanel main, JPanel[] s, String[][] Data,String project){
 		ProjectsLabel = new Header("Project " + project + " Report");
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
