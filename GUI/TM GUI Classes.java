@@ -453,7 +453,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	JButton Reports = new CButton("<html><font face = helvetica size = 5> Reports </font></html>", true, 2);
 	JButton LogOut = new CButton("<html><font face = helvetica size = 5> Log Out </font></html>", true, 3);
 	
-	public SidePanel(Container f, JPanel main, JPanel[] s, String[][] Data, int var){
+	public SidePanel(Container f, JPanel main, JPanel[] s, String[][] Data, boolean m){
 		//NOTE ABOUT PARAMETERS:
 		/*main will be the panel that side panel lies on
 		  array s(center_panels) will contain all the different center panels
@@ -555,12 +555,12 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		Hours.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				if(var == 3){
+				if(!m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
 					s[0] = new HoursDev(f, main, s, Data);
 				}
-				else if(var == 4){
+				else if(m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
 					s[0] = new HoursManager(f, main, s, Data);
@@ -573,15 +573,15 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		Projects.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				if(var == 3){
+				if(!m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
-					s[0] = new ProjectsDev(f, main, s, Data);
+					s[1] = new ProjectsDev(f, main, s, Data);
 				}
-				else if(var == 4){
+				else if(m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
-					s[0] = new ProjectsManager(f, main, s, Data);
+					s[1] = new ProjectsManager(f, main, s, Data);
 				}	
 				main.add(s[1]);
 				main.revalidate();
@@ -591,15 +591,15 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		Reports.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-				if(var == 3){
+				if(!m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
-					s[0] = new ReportsDev(f, main, s, Data);
+					s[2] = new ReportsDev(f, main, s, Data);
 				}
-				else if(var == 4){
+				else if(m){
 					//BACK END TEAM
 					//Add code to update Data[][] content here
-					s[0] = new ReportsManager(f, main, s, Data);
+					s[2] = new ReportsManager(f, main, s, Data);
 				}	
 				main.add(s[2]);
 				main.revalidate();
@@ -1005,8 +1005,9 @@ class HoursManager extends JPanel{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					s[4] = new AddProjectManager();
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[3]);
+					main.add(s[4]);
 					main.revalidate();
 					main.repaint();
 				}
@@ -1026,7 +1027,7 @@ class AddProjectManager extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JButton AddProject = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
-	public AddProjectManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public AddProjectManager(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1101,8 +1102,9 @@ class ProjectsManager extends JPanel{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					s[4] = new AddProjectManager();
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[3]);
+					main.add(s[4]);
 					main.revalidate();
 					main.repaint();
 				}
