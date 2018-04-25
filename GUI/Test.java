@@ -85,10 +85,10 @@ public class Test{
 						main = new CPanel();
 						center_panels = new JPanel[4];
 						Log = new CPanel();
-						center = new HomeDev(Data, home.getContentPane(), main, center_panels);
+						center = new HoursManager(Data, home.getContentPane(), main, center_panels);
 						side = new SidePanel(home.getContentPane(), main, center_panels);
-						main_hours = new HoursManager();
-						center_panels[0]=main_hours;
+						//main_hours = new HoursManager();
+						center_panels[0]= center;
 						main_projects = new ProjectsManager(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;
 						main_reports = new ReportsManager(Data, main, home.getContentPane(), center_panels);

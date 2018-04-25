@@ -842,7 +842,7 @@ class ProjectReportDev extends JPanel{
 }
 
 //MANAGER SCREENS
-class HoursManager extends JPanel{
+/*class HoursManager extends JPanel{
 	JLabel LogATask = new Header("Assign a Task");
 	JButton Start = new CButton("<html><font face = helvetica size = 4>Start</font></html>", false, 1);
 	JButton Stop = new CButton("<html><font face = helvetica size = 4>Stop</font></html>", false, 2);
@@ -907,6 +907,48 @@ class HoursManager extends JPanel{
 		Start.addActionListener(action);
 		Stop.addActionListener(action);
 		setBackground(new java.awt.Color(59,68,91));
+	}
+}
+*/
+
+class HoursManager extends JPanel{
+	JTable table;
+	String[] Cnames = {"Project","Activity","Progress"};
+	JScrollPane temp;
+	JScrollPane Scroll = new CScrollPane();
+	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
+	
+	public HoursManager(String[][] Data, Container f, JPanel main, JPanel[] s){
+		table = new JTable(Data, Cnames);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx=1.0;
+		c.weighty=1.0;
+		
+		table.setEnabled(false);
+		table.setBackground(new java.awt.Color(117,132,178));
+		temp = new JScrollPane(table);
+		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
+		Scroll.setViewport(temp.getViewport());
+		new SetGrid(0,1,450,325, c);
+		add(Scroll,c);
+		new SetGrid(0,2,100,20, c);
+		add(log,c);
+		
+		setBackground(new java.awt.Color(59,68,91));
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
+					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+					main.add(s[3]);
+					main.revalidate();
+					main.repaint();
+				}
+			}
+		};
+		log.addActionListener(action);
 	}
 }
 
