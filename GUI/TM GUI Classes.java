@@ -953,7 +953,7 @@ class HoursManager extends JPanel{
 }
 
 class ProjectsManager extends JPanel{
-	JLabel ProjectsLabel = new Header("Current Ongoing Projects");
+	JLabel ProjectsLabel = new Header("Projects");
 	JTable table;
 	String[] Cnames = {"Project","Budget","People"};
 	JScrollPane temp;
