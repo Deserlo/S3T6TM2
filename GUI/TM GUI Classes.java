@@ -802,7 +802,7 @@ class ProjectReportDev extends JPanel{
 	String[] Cnames = {"Task","Time","Description"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
-	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
+	JButton log = new CButton("<html><font face = helvetica size = 4>Close Report</font></html>",false,1);
 	
 	public ProjectReportDev(String[][] Data,String Project, Container f, JPanel main, JPanel[] s){
 		ProjectsLabel = new Header("Project " + Project + " Report");
@@ -831,7 +831,7 @@ class ProjectReportDev extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-					main.add(s[0]);
+					main.add(s[2]);
 					main.revalidate();
 					main.repaint();
 				}
