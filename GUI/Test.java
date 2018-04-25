@@ -5,8 +5,8 @@ import java.io.*;
 
 public class Test{
 	public static int MenuVar = 4;
-	public static int UserID = -1;
-	public static boolean loggedIn = false;
+	public static int userID = -1;
+	public static boolean login = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
 	static JPanel main;	
 	static JPanel devPR;
@@ -64,9 +64,9 @@ public class Test{
 						main = new CPanel();
 						center_panels = new JPanel[4];
 						Log = new CPanel();
-						center = new HomeDev(Data, home.getContentPane(), main, center_panels);
+						center = new HoursDev(Data, home.getContentPane(), main, center_panels);
 						side = new SidePanel(home.getContentPane(), main, center_panels);
-						main_hours = new HoursDev();
+						main_hours = new LogTaskDev();
 						center_panels[0]=main_hours;
 						main_projects = new ProjectsDev(Data, home.getContentPane(), main, center_panels);
 						center_panels[1]=main_projects;

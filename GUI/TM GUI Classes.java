@@ -112,6 +112,7 @@ class Header extends JLabel{
 		setForeground(new java.awt.Color(73,210,146));
 	}
 }
+
 class SetGrid{
 	public SetGrid(int x, int y, int width, int height, GridBagConstraints Grid){
 		//This class is used for GridBagLayout. This is used in both the developer and manager dashboards.
@@ -121,6 +122,7 @@ class SetGrid{
 		Grid.ipady = height;
 	}
 }
+
 //Absolute = Absolute Positioning on the screen. These require setLayout(null) for these 3 classes to work.
 class AbsoluteTextButton extends JButton{ 
 	public AbsoluteTextButton(String Words, int x, int y, int width, int height, boolean transparent, int MenuSwitch, int ButtonNum){
@@ -140,6 +142,7 @@ class AbsoluteTextButton extends JButton{
 		putClientProperty("ButtonNum", ButtonNum);
 	}
 }
+
 class AbsoluteTextField extends JTextField{
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
@@ -149,6 +152,7 @@ class AbsoluteTextField extends JTextField{
 		setBounds(x, y, width, height); 
 	}
 }
+
 class AbsoluteLabel extends JLabel{
 	public AbsoluteLabel(String Words, int x, int y, int width, int height, int FontSize){
 		setText(Words);
@@ -157,6 +161,7 @@ class AbsoluteLabel extends JLabel{
 		setForeground(new java.awt.Color(73,210,146));
 	}
 }
+
 /*
 ************************************************************************************
 ************************************************************************************
@@ -164,6 +169,7 @@ class AbsoluteLabel extends JLabel{
 ************************************************************************************
 ************************************************************************************
 */
+
 class TM_GUI_Intro{
 	static int LocalTimer = 0;
 	public TM_GUI_Intro(JPanel frame){
@@ -554,14 +560,14 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 }
 
 //DEVELOPER SCREENS
-class HomeDev extends JPanel{
+class HoursDev extends JPanel{
 	JTable table;
 	String[] Cnames = {"Project","Task","Hours"};
 	JScrollPane temp;
 	JScrollPane Scroll = new CScrollPane();
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
-	public HomeDev(String[][] Data, Container f, JPanel main, JPanel[] s){
+	public HoursDev(String[][] Data, Container f, JPanel main, JPanel[] s){
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -595,7 +601,7 @@ class HomeDev extends JPanel{
 	}
 }
 
-class HoursDev extends JPanel{
+class LogTaskDev extends JPanel{
 	JLabel LogATask = new Header("Logging a Task");
 	JButton Start = new CButton("<html><font face = helvetica size = 4>Start</font></html>", false, 1);
 	JButton Stop = new CButton("<html><font face = helvetica size = 4>Stop</font></html>", false, 2);
@@ -606,7 +612,7 @@ class HoursDev extends JPanel{
 	JScrollPane Scroll = new CScrollPane();
 	JPanel[] clear = new JPanel[3];
 	
-	public HoursDev(){
+	public LogTaskDev(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -790,7 +796,6 @@ class ReportsDev extends JPanel{
 	}
 }
 
-
 class ProjectReportDev extends JPanel{
 	JLabel ProjectsLabel;
 	JTable table;
@@ -904,6 +909,7 @@ class HoursManager extends JPanel{
 		setBackground(new java.awt.Color(59,68,91));
 	}
 }
+
 class ProjectsManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Current Ongoing Projects");
 	JTable table;
@@ -951,6 +957,7 @@ class ProjectsManager extends JPanel{
 		log.addActionListener(action);
 	}
 }
+
 class AddProjectManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Add a project");
 	JTextField ProjectName = new PTextField("Project name");
