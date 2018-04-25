@@ -115,9 +115,11 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                             |
 |--------|--------------------------------------------------------------------------------------------|
-| 1 ->   | **User** selects option to "Summarize"                                                     |
-| 2 <-   | **System** gathers all summarized data as it relates to a particular manager or developer  |
-| 3 <-   | **FileWriter** writes summarized data to downloadable file                                 |
+| 1 ->   | **User** selects tab "Reports"                                                             |
+| 2 <-   | **System** creates and displays a list of tasks that have been created   |
+| 3 ->   | **User** selects on a task to get summarized data from.                                    |
+| 4 <-   | **System** gathers all summarized data as it relates to a particular manager or developer  |
+| 5 <-   | **FileWriter** writes summarized data to downloadable file                               |
 
 ![Architecture](Images/UCSummarize.png)
 
@@ -139,9 +141,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Number |    Description                                                                                  |
 |--------|-------------------------------------------------------------------------------------------------|
 | 1  ->  | **Developer** names the task to be described                                                    |
-| 2  ->  | **Developer** then selects the option "Describe Task"                                           |
-| 3  ->  |  **Developer** enters a description for named task                                              |
-| 4  <-  | **System** signals that there is a task name, and the "Describe Task" option was chosen         |
+| 2  ->  | **Developer** enters a description for the named task |                  
+| 3  ->  |  **Developer** selects start task to either update or create the task with the description |
+| 4  <-  | **System** signals that there is a task name, and the "Start Task" option was chosen         |
 | 5  <-  | **File Writer** then writes either a new description to file or appends to existing description |   
 
 &nbsp;
@@ -154,14 +156,14 @@ We will be implementing a two-tier client/server architecture for the TM project
 | Initiating actor          | User                                                          |
 | Actor's goal              | To log into their account to be able to use the application   |
 | Participating actors      | System, Username Checker, Password Checker                    |
-| Preconditions             | Username exist in the system files                            |
+| Preconditions             | Username exists in the system files                            |
 | Postconditions            | User is logged in with approriate functions avaliable         |
 
 #### Flow of events for main succes scenario:
 
 |Number| Description                                                             |
 |------|-------------------------------------------------------------------------|
-| 1 -> | **User** enters their username and password                             |
+| 1 -> | **User** enters their username and password                             |
 | 2 -> | **User** hits the log in button                                         |
 | 3 <- | **System** verifies the information                                     |
 | 4 <- | **System** displays the apporiate user interface (manager or developer) |
@@ -228,10 +230,11 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                   |
 |--------|----------------------------------------------------------------------------------|
-| 1  ->  | **Manager** names the task to set notes on                                       |
-| 2  ->  | **Manager** then selects the option "Comment"                                    |
-| 3  <-  | **System** signals that there is a task name, and the "Comment" option was chosen|
-| 4  <-  | **File Writer** then writes the the task name and the notes to a file            |
+| 1  ->  | **Manager** Selects the tab "Hours"                                              |
+| 2  ->  | **Manager** names the task to set notes on                                       |
+| 3  ->  | **Manager** then selects the option "Assign Task" to add notes                    |
+| 4  <-  | **System** signals that there is a task name, and the "Comment" option was chosen|
+| 5  <-  | **File Writer** then writes the the task name and the notes to a file            |
 
 &nbsp;
 &nbsp;
@@ -293,9 +296,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** picks a task to create a budget for                                         |
-| 2  ->  | **User** then selects the option "Budget"                                            |
-| 3  ->  | **User** then enters the amount for the budge                                        |
+| 1  ->  | **User** selects the tab "Hours"  |
+| 2  ->  | **User** enters the amount for the budget |
+| 3  ->  | **User** then selects the  option "Assign Task" to add the budget value       |
 | 4  <-  | **System** signals that there is a task name, and the "Budget" option was chosen     |
 | 5  <-  | **File Writer** then writes the task name and the given budget                       |
 
@@ -361,9 +364,10 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **Manager** Selects a task and a developer                                           |
-| 2  <-  | **System** verifies that the task and the developer exist                              |
-| 3  <-  | **File Writer** writes the associated developer to the task                          |
+| 1  ->  | **Manager** Selects the tab "Hours"                                                  |
+| 2  ->  | **Manager** Names a task and a developer to be assigned the task                     |
+| 3  <-  | **System** verifies that the task and the developer exist                            |
+| 4  <-  | **File Writer** writes the associated developer to the task                          |
 
 &nbsp;
 &nbsp;
@@ -382,9 +386,10 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a task name and project name.                                        |
-| 2  <-  | **System** verifies that the task exist.                                             |
-| 3  <-  | **File Writer** writes the associated project name to the task.                      |
+| 1  ->  | **User** Selects the tab "Hours"                                           |
+| 2 ->  | **User** enters a task name and project name.                                         |
+| 3  <-  | **System** verifies that the task exist.                                             |
+| 4  <-  | **File Writer** writes the associated project name to the task.                      |
 
 &nbsp;
 &nbsp;
@@ -403,10 +408,11 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 | Number |    Description                                                                       |
 |--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **User** enters a name.                                                              |
-| 2  ->  | **User** Selects "Create Project".                                                   |
-| 3  <-  | **System** verifies that the project under that name does not already exist.         |
-| 4  <-  | **File Writer** creates the project under that project name.                         |
+| 1  ->  | **User** Selects the tab "Projects"                                                  |
+| 2  ->  | **User** enters a name.                                                              |
+| 3  ->  | **User** Selects "Add Project".                                                      |
+| 4  <-  | **System** verifies that the project under that name does not already exist.         |
+| 5  <-  | **File Writer** creates the project under that project name.                         |
 
 
 
