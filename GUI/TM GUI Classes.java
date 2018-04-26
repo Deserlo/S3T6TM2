@@ -655,6 +655,8 @@ class HoursDev extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public HoursDev(Container f, JPanel main, JPanel[] s, String[][] Data){
+		//Developer dev = new Developer();
+		//table = new JTable(dev.getDevHours(Test.userID), Cnames);
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
