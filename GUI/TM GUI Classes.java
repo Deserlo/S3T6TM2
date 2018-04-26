@@ -845,6 +845,15 @@ class ReportsDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		//Filling Buttons
+		
+		//back end code
+		//Developer dev = new Developer();
+		//String ProjectName[]=dev.getAllDevReports(Test.userID);
+		//Buttons = new CButton[ProjectName.length];
+		//for(int x = 0 ; x < Buttons.length ; x++){
+		//	Buttons[x] = new CButton(ProjectName[x],false, 50);
+		//
+		
 		Buttons = new CButton[40];
 		for(int x = 0 ; x < Buttons.length ; x++){
 			Buttons[x] = new CButton(/*BACK END TEAM: "" + ProjectName[x]*/"Some Project",false, 50);
