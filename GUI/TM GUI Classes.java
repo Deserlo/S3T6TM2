@@ -600,7 +600,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 						//Add code to update Data[][] content here for developer hours table
 						//Data = GetDataForHours();
 						Developer dev = new Developer();
-						//getDevHours returns a 2D array of strings based on whatever query to db
+						//getDevHours returns a 2D array of strings 
 						Developer dev = new Developer();
 						Test.Data = dev.getDevHours(Test.userID);
 						
