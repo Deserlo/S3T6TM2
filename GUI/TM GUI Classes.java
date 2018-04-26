@@ -273,7 +273,7 @@ class TM_GUI_Intro{
 					case 27: //27 = 2.7 seconds for this intro.
 						frame.removeAll();
 						frame.revalidate();
-						Test.MenuVar = 2; 
+						Test.MenuVar = 1; 
 						break;
 					default:
 						break;
@@ -386,14 +386,15 @@ class RegisterScreen{
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
-	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, false, 2, 2);
-	JTextField EmailTF = new AbsoluteTextField("Email",360,200, 240,30);
-	JTextField PasswordTF = new AbsoluteTextField("Password", 360,150, 240,30);
+	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, false, 2, 2);
+	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, false, 2, 3);
+	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
+	JTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
 	
 	public LogInScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(LogInTO); frame.add(button_LogIn); frame.add(button_GoBack);
-		frame.add(EmailTF); frame.add(PasswordTF);
+		frame.add(LogInTO); frame.add(button_LogIn); frame.add(button_GoBack); frame.add(button_ChangePassword);
+		frame.add(UsernameTF); frame.add(PasswordTF);
 		frame.setLayout(null);
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
@@ -414,10 +415,10 @@ class LogInScreen{
 					RepaintTimer.stop();
 					
 					/* EXAMPLE 3=developer dash, 4= manager dash*/
-					String String_Email = EmailTF.getText();
-					if(String_Email.equals("Dev"))
+					String String_Username = UsernameTF.getText();
+					if(String_Username.equals("Dev"))
 						Test.MenuVar = 3; 
-					else if(String_Email.equals("Man"))
+					else if(String_Username.equals("Man"))
 						Test.MenuVar = 4; 
 					else
 						Test.MenuVar = 3;
@@ -437,11 +438,60 @@ class LogInScreen{
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					RepaintTimer.stop();
-					Test.MenuVar = 2; //Go Back
+					Test.MenuVar = 2; //Register
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
+					RepaintTimer.stop();
+					Test.MenuVar = 5; //Change Password
 				}
 			}
 		};
 		button_LogIn.addActionListener(action);
+		button_GoBack.addActionListener(action);
+		button_ChangePassword.addActionListener(action);
+		frame.setOpaque(true);
+	}
+}
+
+class ChangePasswordScreen{
+	JLabel TitleTO = new AbsoluteLabel("Change Password", 345,-5,355,130, 32);
+	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
+	JTextField OldPasswordTF = new AbsoluteTextField("Old Password", 360,200, 240,30);
+	JTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
+	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, false, 2, 1);
+	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, false, 2, 2);
+	
+	public ChangePasswordScreen(JPanel frame){
+		frame.setBackground(new java.awt.Color(59,68,91));
+		frame.add(TitleTO); frame.add(UsernameTF);  frame.add(OldPasswordTF); frame.add(NewPasswordTF);
+		frame.add(button_ChangePassword); frame.add(button_GoBack);
+		frame.setLayout(null);
+		
+		ActionListener RepaintScreen = new ActionListener(){ 
+			public void actionPerformed(ActionEvent event){
+				frame.repaint(500);
+				frame.revalidate();
+			}
+		};
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		RepaintTimer.start();
+		
+		ActionListener action = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e){
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+					System.out.println("Change Password Successful");
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+					frame.setBackground(new java.awt.Color(0,0,0));
+					frame.removeAll();
+					frame.revalidate();
+					frame.repaint();
+					RepaintTimer.stop();
+					Test.MenuVar = 1; //Login Screen
+				}
+			}
+		};
+		button_ChangePassword.addActionListener(action);
 		button_GoBack.addActionListener(action);
 		frame.setOpaque(true);
 	}
@@ -546,15 +596,11 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 				}
 				else{
 					if(Test.MenuVar == 3){
-						//BACK END TEAM
-						//Add code to update Data[][] content here
 						s[0] = new HoursDev(f, main, s, Data);
 						s[1] = new ProjectsDev(f, main, s, Data);
 						s[2] = new ReportsDev(f, main, s, Data);
 					}
 					else if(Test.MenuVar == 4){
-						//BACK END TEAM
-						//Add code to update Data[][] content here
 						s[0] = new HoursManager(f, main, s, Data);
 						s[1] = new ProjectsManager(f, main, s, Data);
 						s[2] = new ReportsManager(f, main, s, Data);

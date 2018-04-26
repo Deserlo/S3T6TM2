@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 4;
+	public static int MenuVar = 1;
 	public static int userID = -1;
 	public static boolean login = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
@@ -20,6 +20,7 @@ public class Test{
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
 		JPanel LogInScreen = new CPanel();
+		JPanel ChangePasswordScreen = new CPanel();
 		
 		//Dashboard Screen
 		main = new CPanel();
@@ -86,6 +87,12 @@ public class Test{
 						main.add(center,BorderLayout.CENTER);
 						
 						contentpan.add(main);
+						contentpan.revalidate();
+						break;
+					case 5:
+						System.out.println("In case " + MenuVar);
+						new ChangePasswordScreen(ChangePasswordScreen);
+						contentpan.add(ChangePasswordScreen);
 						contentpan.revalidate();
 						break;
 					default:
