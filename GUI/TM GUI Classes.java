@@ -328,48 +328,56 @@ class RegisterScreen{
 				frame.repaint(2500);
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
-					/*UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
+					/*
+					UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
 					if (newDev.createAccount(newDev)) {				
-						Test.UserID = newDev.queryForId(newDev.username);
-						Test.loggedIn = true;
+						Test.userID = newDev.queryForId(newDev.username);
+						Test.login = true;
 						Test.MenuVar = 3; 
+					
 					}*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					//DevLogIn Code
-					/*Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
+					/*
+					Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
-						Test.UserID = newLogin.queryForId(newLogin.getUserName());
-						Test.loggedIn = true;
+						Test.userID = newLogin.queryForId(newLogin.getUserName());
+						Test.login = true;
 						Test.MenuVar = 3; 
 					}
 					else {
-						Test.loggedIn = false;
-						Test.MenuVar = 1; 
-					}*/
-				}
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
-					//ManRegister Code
-					/*UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),C.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
-					if (newMgr.createAccount(newMgr)) {				
-						Test.UserID = newMgr.queryForId(newMgr.username);
-						Test.loggedIn = true;
-						//Test.MenuVar = ?; 
-					}*/	
-				}
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
-					//ManLogIn Code
-					/*Login newLogin = new Login(C.getText(), Man_PasswordTF.getText());
-					if (newLogin.authenticateUser(newLogin) == true) {
-						Test.UserID = newLogin.queryForId(newLogin.getUserName());
-						Test.loggedIn = true;
-						//Test.MenuVar = ; 
-					}
-					else {
-						Test.loggedIn = false;
+						Test.login = false;
 						Test.MenuVar = 1; 
 					}
 					*/
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
+					//ManRegister Code
+					/*
+					UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),Man_EmailTF.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
+					if (newMgr.createAccount(newMgr)) {				
+						Test.userID = newMgr.queryForId(newMgr.username);
+						Test.login = true;
+						Test.MenuVar = 4; 
+					}	
+					*/
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
+					//ManLogIn Code
+					/*
+					Login newLogin = new Login(Man_EmailTF.getText(), Man_PasswordTF.getText());
+					if (newLogin.authenticateUser(newLogin) == true) {
+						Test.userID = newLogin.queryForId(newLogin.getUserName());
+						Test.login = true;
+						Test.MenuVar = 4; 
+					}
+					else {
+						Test.login = false;
+						Test.MenuVar = 1; 
+					}
+					*/
+					
 				}
 				RepaintTimer.stop();
 				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
@@ -382,6 +390,7 @@ class RegisterScreen{
 		frame.setOpaque(true);
 	}
 }
+
 
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
@@ -416,25 +425,30 @@ class LogInScreen{
 					
 					/* EXAMPLE 3=developer dash, 4= manager dash*/
 					String String_Username = UsernameTF.getText();
-					if(String_Username.equals("Dev"))
-						Test.MenuVar = 3; 
-					else if(String_Username.equals("Man"))
-						Test.MenuVar = 4; 
-					else
-						Test.MenuVar = 3;
-
+					String String_Password = PasswordTF.getText();
 					//log in code
-					/*Login newLogin = new Login(EmailTF.getText(), PasswordTF.getText());
+					/*
+					Login newLogin = new Login(String_Username, String_Password);
 					if (newLogin.authenticateUser(newLogin) == true) {
-						Test.UserID = newLogin.queryForId(newLogin.getUserName());
-						Test.loggedIn = true;
-						//Test.MenuVar = 3 //if dev
-						//Test.MenuVar = 4 //if manager
+						Test.userID = newLogin.queryForId(String_Username);
+						Test.login = true;
+						String role = newLogin.getUserRole(Test.userID);
+						System.out.println("Logged in as "+role);
+						switch (role) {
+							case "developer":
+								Test.MenuVar = 3; 
+								break;
+							case "manager":
+								Test.MenuVar = 4; 
+								break;		
+						}
 					}
 					else {
-						Test.loggedIn = false;
+						Test.login = false;
+						//Test.MenuVar = 1;
 						//Display "Bad Username/Password"
-					}*/
+					}
+					*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					RepaintTimer.stop();
@@ -598,13 +612,12 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 					if(Test.MenuVar == 3){
 						//BACK END TEAM
 						//Add code to update Data[][] content here for developer hours table
+						//Developer dev = new Developer();
+						//Test.Data = dev.getDevHours(Test.userID);
+						//Test.Data = dev.getDevProjects(Test.userID);
+						//Test.Data = dev.getDevReports(Test.userID);
 						//Data = GetDataForHours();
-						Developer dev = new Developer();
-						//getDevHours returns a 2D array of strings 
-						Developer dev = new Developer();
-						Test.Data = dev.getDevHours(Test.userID);
-						
-						s[0] = new HoursDev(f, main, s, Test.Data);
+						s[0] = new HoursDev(f, main, s, Data);
 						//Add code to update Data[][] content here for developer project table
 						s[1] = new ProjectsDev(f, main, s, Data); 
 						//Add code to update Data[][] content here for developer reports table
@@ -724,7 +737,8 @@ class LogTaskDev extends JPanel{
 					String String_Description = Description.getText();
 					
 					//BACK END TEAM
-					//Start Task Code
+					//Start Task Code 
+					/*
 					TaskLog task = new TaskLog(String_TaskName, String_ProjectName, String_Description, Test.userID);
 					if (task.insertTask(task)) {
 						System.out.println("Task "+ String_TaskName + " started.");
@@ -732,18 +746,21 @@ class LogTaskDev extends JPanel{
 					else {
 						System.out.println("Error with starting task "+String_TaskName);
 					}
+					*/
 					
 					//Example
 					//AddTaskToDatabase(String_TaskName, String_ProjectName, String_Description);
 					System.out.println("" + String_Description);
 				}
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
+					
 					String String_TaskName = TaskName.getText();
 					String String_ProjectName = ProjectName.getText();
 					String String_Description = Description.getText();
 					
 					//BACK END TEAM
 					//Stop Task Code
+					/*
 					TaskLog task = new TaskLog(String_TaskName, String_ProjectName, String_Description, Test.userID);
 					if (task.stopTask(Test.userID, task.taskName, task.projectName, task.description)) {
 						System.out.println("Task "+ String_TaskName + " stopped.");
@@ -751,6 +768,7 @@ class LogTaskDev extends JPanel{
 					else {
 						System.out.println("Error with stopping task "+String_TaskName);
 					}
+					*/
 					
 					//Example
 					System.out.println("" + String_TaskName);
