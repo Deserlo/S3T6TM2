@@ -11,6 +11,7 @@ public class Query {
 		this.colName1 = colName1;
 		this.name = name;
 	}
+
 	public String generateQueryString(Query q) {
 		String select = "SELECT " + q.colName;
 		String from = " FROM " + q.tableName;
@@ -40,9 +41,9 @@ public class Query {
 	
 	public String getName(String name, String query) {
 		DBConnection id = new DBConnection();
-    	id.conn = id.ConnectDB(); 
+		id.conn = id.ConnectDB(); 
     	String aname = "";
-       try { 
+        try { 
     	   id.stmt = id.conn.prepareStatement(query);
            id.stmt.setString(1, name);
 		   id.rs = id.stmt.executeQuery();
@@ -50,9 +51,9 @@ public class Query {
 			   aname = id.rs.getString(1);
 			   return aname;
 		   }	
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			if (id.rs != null) try {id.rs.close(); } catch (SQLException ignore) {}
 			if (id.stmt != null) try {id.stmt.close(); } catch (SQLException ignore) {}
 			if (id.conn != null) try {id.conn.close(); } catch (SQLException ignore) {}
@@ -60,14 +61,39 @@ public class Query {
 		return aname;
 	}
 	
+	public boolean checkIfExists(int id, String query) {
+		//eg. SELECT id FROM developer WHERE id=?
+		boolean exists = false;
+		DBConnection db = new DBConnection();
+		db.conn = db.ConnectDB();
+		try { 
+	    	   db.stmt = db.conn.prepareStatement(query);
+	           db.stmt.setInt(1, id);
+			   db.rs = db.stmt.executeQuery();
+			   while(db.rs.next()) {
+				   exists = true;
+			   }	
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+				if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+				if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+			}     
+		return exists;
+	}
+	
 	
 
 	public static void main(String[] args) {
+		//eg.
+		//select id from user where userName = "email@example.com"
 		Query q = new Query("user", "id","userName","email@example.com");
 		String t = q.generateQueryString(q);
 	    int id = q.getID(q.name, t);
 	    System.out.println(id);
-	    
+	    //eg.
+	    //select userName from user where id = 1
 	    Query qa = new Query("user", "userName","id","1");
 		String ta = qa.generateQueryString(qa);
 	    String a = qa.getName(qa.name, ta);
