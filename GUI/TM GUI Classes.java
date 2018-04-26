@@ -733,10 +733,19 @@ class LogTaskDev extends JPanel{
 					System.out.println("" + String_Description);
 				}
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
-					//Stop Task Code goes here
 					String String_TaskName = TaskName.getText();
 					String String_ProjectName = ProjectName.getText();
 					String String_Description = Description.getText();
+					
+					//BACK END TEAM
+					//Stop Task Code
+					TaskLog task = new TaskLog(String_TaskName, String_ProjectName, String_Description, Test.userID);
+					if (task.stopTask(Test.userID, task.taskName, task.projectName, task.description)) {
+						System.out.println("Task "+ String_TaskName + " stopped.");
+					}
+					else {
+						System.out.println("Error with stopping task "+String_TaskName);
+					}
 					
 					//Example
 					System.out.println("" + String_TaskName);
