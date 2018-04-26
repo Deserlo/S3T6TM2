@@ -318,7 +318,7 @@ class RegisterScreen{
 				frame.revalidate();
 			}
 		};
-		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds
 		RepaintTimer.start();
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
@@ -402,7 +402,7 @@ class LogInScreen{
 				frame.revalidate();
 			}
 		};
-		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds
 		RepaintTimer.start();
 		
 		ActionListener action = new ActionListener(){ 
@@ -473,7 +473,7 @@ class ChangePasswordScreen{
 				frame.revalidate();
 			}
 		};
-		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds = 1 to globalvar = .1 second.
+		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds
 		RepaintTimer.start();
 		
 		ActionListener action = new ActionListener(){ 
@@ -596,13 +596,22 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 				}
 				else{
 					if(Test.MenuVar == 3){
+						//BACK END TEAM
+						//Add code to update Data[][] content here for developer hours table
+						//Data = GetDataForHours();
 						s[0] = new HoursDev(f, main, s, Data);
-						s[1] = new ProjectsDev(f, main, s, Data);
+						//Add code to update Data[][] content here for developer project table
+						s[1] = new ProjectsDev(f, main, s, Data); 
+						//Add code to update Data[][] content here for developer reports table
 						s[2] = new ReportsDev(f, main, s, Data);
 					}
 					else if(Test.MenuVar == 4){
+						//BACK END TEAM
+						//Add code to update Data[][] content here for manager hours table
 						s[0] = new HoursManager(f, main, s, Data);
+						//Add code to update Data[][] content here for manager projects table
 						s[1] = new ProjectsManager(f, main, s, Data);
+						//Add code to update Data[][] content here for manager reports table
 						s[2] = new ReportsManager(f, main, s, Data);
 					}
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
@@ -628,8 +637,6 @@ class HoursDev extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public HoursDev(Container f, JPanel main, JPanel[] s, String[][] Data){
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -707,16 +714,18 @@ class LogTaskDev extends JPanel{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
-					//Start Code goes here
+					//BACK END TEAM
+					//Start Task Code goes here
 					String String_TaskName = TaskName.getText();
 					String String_ProjectName = ProjectName.getText();
 					String String_Description = Description.getText();
 					
 					//Example
+					//AddTaskToDatabase(String_TaskName, String_ProjectName, String_Description);
 					System.out.println("" + String_Description);
 				}
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
-					//Stop Code goes here
+					//Stop Task Code goes here
 					String String_TaskName = TaskName.getText();
 					String String_ProjectName = ProjectName.getText();
 					String String_Description = Description.getText();
@@ -741,8 +750,6 @@ class ProjectsDev extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public ProjectsDev(Container f, JPanel main, JPanel[] s, String[][] Data){
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -798,12 +805,11 @@ class ReportsDev extends JPanel{
 		//Filling Buttons
 		Buttons = new CButton[40];
 		for(int x = 0 ; x < Buttons.length ; x++){
-			Buttons[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
+			Buttons[x] = new CButton(/*BACK END TEAM: "" + ProjectName[x]*/"Some Project",false, 50);
 			Buttons[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					//BACK END TEAM
-					//UPDATE Data[][] here using jbutton.getText
-					//reference line below
+					//Data for Dev Reports goes here
 					pr = new ProjectReportDev(f, main, s, Data, ((JButton)e.getSource()).getText());
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
@@ -875,8 +881,6 @@ class ProjectReportDev extends JPanel{
 	
 	public ProjectReportDev(Container f, JPanel main, JPanel[] s, String[][] Data, String Project){
 		ProjectsLabel = new Header("Project " + Project + " Report");
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -913,75 +917,6 @@ class ProjectReportDev extends JPanel{
 }
 
 //MANAGER SCREENS
-/*class HoursManager extends JPanel{
-	JLabel LogATask = new Header("Assign a Task");
-	JButton Start = new CButton("<html><font face = helvetica size = 4>Start</font></html>", false, 1);
-	JButton Stop = new CButton("<html><font face = helvetica size = 4>Stop</font></html>", false, 2);
-	JTextField TaskName = new PTextField("Task Name");
-	JTextField DeveloperName = new PTextField("Developer To Assign Task");
-	JTextArea Notes = new PTextArea("Notes To Give Developer");
-	JScrollPane temp = new JScrollPane(Notes);
-	JScrollPane Scroll = new CScrollPane();
-	JPanel[] clear = new JPanel[3];
-	
-	public HoursManager(){
-		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=1.0;
-		c.weighty=1.0;
-		new SetGrid(3,0,100,20, c);
-		add(LogATask,c);
-		new SetGrid(3,1,100,20, c);
-		add(TaskName,c);
-		new SetGrid(3,2,100,20, c);
-		add(DeveloperName,c);
-		new SetGrid(3,3,100,60, c);
-		Scroll.setViewport(temp.getViewport());
-		add(Scroll,c);
-		
-		for(JPanel pan : clear){
-			pan = new CPanel();
-			c.gridx++;
-			add(pan);
-		}
-		
-		c.fill = GridBagConstraints.NONE;
-		new SetGrid(3,4,100,20, c);
-		add(Start,c);
-		new SetGrid(4,4,100,20, c);
-		add(Stop,c);
-		
-		ActionListener action = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e){
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
-					//Start Code goes here
-					String String_TaskName = TaskName.getText();
-					String String_DeveloperName = DeveloperName.getText();
-					String String_Notes = Notes.getText();
-					
-					//Example
-					System.out.println("" + String_Notes);
-				}
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2){
-					//Stop Code goes here
-					String String_TaskName = TaskName.getText();
-					String String_DeveloperName = DeveloperName.getText();
-					String String_Notes = Notes.getText();
-					
-					//Example
-					System.out.println("" + String_TaskName);
-				}
-			}
-		};
-		Start.addActionListener(action);
-		Stop.addActionListener(action);
-		setBackground(new java.awt.Color(59,68,91));
-	}
-}
-*/
-
 class HoursManager extends JPanel{
 	JTable table;
 	String[] Cnames = {"Project","Activity","Progress"};
@@ -990,8 +925,6 @@ class HoursManager extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
 	public HoursManager(Container f, JPanel main, JPanel[] s, String[][] Data){
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -1066,7 +999,9 @@ class AddProjectManager extends JPanel{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
-					//Add Project Code
+					/*   BACK END TEAM
+					Add Project Code goes here
+					However it gets added into the database*/
 				}
 			}
 		};
@@ -1083,8 +1018,6 @@ class ProjectsManager extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
 	public ProjectsManager(Container f, JPanel main, JPanel[] s, String[][] Data){
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -1092,8 +1025,6 @@ class ProjectsManager extends JPanel{
 		c.weightx=1.0;
 		c.weighty=1.0;
 		
-		//new SetGrid(0,0,40,20, c);
-		//add(new CPanel(),c);
 		new SetGrid(0,0,100,20, c);
 		add(ProjectsLabel,c);
 
@@ -1147,11 +1078,12 @@ class ReportsManager extends JPanel{
 		//Filling Buttons
 		Buttons_Projects = new CButton[40];
 		for(int x = 0 ; x < Buttons_Projects.length ; x++){
-			Buttons_Projects[x] = new CButton("Some Project",false, 50);//<html><font face = helvetica size = 4> </font></html>
+			Buttons_Projects[x] = new CButton(/*BACK END TEAM: "" + ProjectName[x]*/"Some Project",false, 50);
 			Buttons_Projects[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					//BACK END TEAM
 					//update Data[][] here
+					//Data = 
 					pr = new ManagerReports_ByProject(f, main, s, Data, ((JButton)e.getSource()).getText());
 					main.remove(((BorderLayout)main.getLayout()).getLayoutComponent(BorderLayout.CENTER));
 					main.add(pr,BorderLayout.CENTER);
@@ -1164,7 +1096,7 @@ class ReportsManager extends JPanel{
 		
 		Buttons_Developers = new CButton[40];
 		for(int x = 0 ; x < Buttons_Developers.length ; x++){
-			Buttons_Developers[x] = new CButton("Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
+			Buttons_Developers[x] = new CButton(/*BACK END TEAM: "" + DeveloperName[x]*/"Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
 			Buttons_Developers[x].addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					//BACK END TEAM
@@ -1249,8 +1181,6 @@ class ManagerReports_ByDev extends JPanel{
 	
 	public ManagerReports_ByDev(Container f, JPanel main, JPanel[] s, String[][] Data, String dev){
 		ProjectsLabel = new Header("Developer " + dev + " Report");
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -1298,8 +1228,6 @@ class ManagerReports_ByProject extends JPanel{
 	
 	public ManagerReports_ByProject(Container f, JPanel main, JPanel[] s, String[][] Data,String project){
 		ProjectsLabel = new Header("Project " + project + " Report");
-		//BACK END TEAM
-		//Add code to update Data[][] content here
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
