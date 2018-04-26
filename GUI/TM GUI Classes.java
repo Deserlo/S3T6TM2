@@ -714,11 +714,19 @@ class LogTaskDev extends JPanel{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
-					//BACK END TEAM
-					//Start Task Code goes here
 					String String_TaskName = TaskName.getText();
 					String String_ProjectName = ProjectName.getText();
 					String String_Description = Description.getText();
+					
+					//BACK END TEAM
+					//Start Task Code
+					TaskLog task = new TaskLog(String_TaskName, String_ProjectName, String_Description, Test.userID);
+					if (task.insertTask(task)) {
+						System.out.println("Task "+ String_TaskName + " started.");
+					}
+					else {
+						System.out.println("Error with starting task "+String_TaskName);
+					}
 					
 					//Example
 					//AddTaskToDatabase(String_TaskName, String_ProjectName, String_Description);
