@@ -24,6 +24,33 @@ public class Login {
 	public void SetLoginStatus(boolean activeLogin) {
 		login = activeLogin;
 	}
+	public void setUserName(String name) {
+		username = name;	
+	}
+	
+	public int queryForId(String username) {
+		Query q = new Query("user", "id","userName",username);
+		String t = q.generateQueryString(q);
+		int id = q.getID(q.name, t);
+		return id;
+	}
+	//checks developer table to see if user exists and assigns user role
+	//if user doesn't exist in developer table, checks manager table
+	public String getUserRole(int id) {
+		String role = "";
+		Query q = new Query("developer", "id","id","id");
+		String devQuery = q.generateQueryString(q);
+		//SELECT id FROM developer WHERE id=?
+		if (q.checkIfExists(id, devQuery)==true)
+			role = "developer";
+		else {
+			q.tableName = "manager";
+			String mgrQuery = q.generateQueryString(q);
+			if (q.checkIfExists(id, mgrQuery)==true)
+				role = "manager";
+		}
+		return role;
+	}
 	
 	public boolean authenticateUser(Login existingAccount) {
 		boolean login = false;
@@ -39,8 +66,6 @@ public class Login {
 		   while(db.rs.next()) {
 		        String checkUser = db.rs.getString("userName");
 		        String checkPass = db.rs.getString("pwd");
-		        System.out.println(checkUser);
-		        System.out.println(checkPass);
 		        if((checkUser.equals(existingAccount.username)) && (checkPass.equals(existingAccount.password))) {
 			           login = true;
 			           System.out.println("login authorized.");
