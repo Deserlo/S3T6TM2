@@ -777,6 +777,9 @@ class ProjectsDev extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Log Task</font></html>",false,1);
 	
 	public ProjectsDev(Container f, JPanel main, JPanel[] s, String[][] Data){
+		//Developer dev = new Developer();
+		//String DevProjects[][] = dev.getDevProjects(Test.userID);
+		//table = new JTable(DevProjects, Cnames);
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
