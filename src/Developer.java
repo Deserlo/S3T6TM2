@@ -158,19 +158,21 @@ public class Developer {
 		return noReports; 
 	}	
 	//task, time, description for a selected projectName
-	public String[][] getDevReport(int devID){
-		String[] noReports = {};
+	public String[][] getDevReport(int devID, String projName){
+		String[][] noReportInfoToDisplay ={{}};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		 try { 
 			   DBConnection db = new DBConnection();
 	    	   conn = db.ConnectDB();
-	    	   String query =  "SELECT P.ProjName " + 
-	    	   		"FROM Project P,  Works_on W " + 
-	    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = ?; ";
+	    	   String query =  "SELECT T.taskName, T.duration, T.description " + 
+	    	   		"FROM Task T, Works_on W, Project P " + 
+	    	   		"WHERE  P.ProjNo = W.ProjNo and W.devID = T.devID " + 
+	    	   		"and T.devID = ? and T.duration is not null and P.projName = ?;"; 
 	           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	           stmt.setInt(1, devID);
+	           stmt.setString(2, projName);
 			   rs = stmt.executeQuery();
 			   int i=0;
 			   if (rs.last()) {
@@ -196,7 +198,7 @@ public class Developer {
 				if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
 				if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
 			}
-		return noReports; 
+		return noReportInfoToDisplay; 
 	}
 
 }
