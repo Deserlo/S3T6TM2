@@ -1,0 +1,4 @@
+SELECT T.taskName, T.duration, T.description
+FROM Task T, Works_on W, Project P
+WHERE  P.ProjNo = W.ProjNo and W.devID = T.devID
+and T.devID = ? and T.duration is not null and P.projName = ?;
