@@ -203,7 +203,7 @@ public class TaskLog {
 	}
 	
 	private boolean checkIfTaskComplete(int taskID) {
-		String sql = "SELECT end from task where taskID= ? AND duration is null;";
+		String sql = "SELECT end from Task where taskID= ? AND duration is null;";
 		DBConnection db = new DBConnection();
     	db.conn = db.ConnectDB();   
        try { 
@@ -224,7 +224,7 @@ public class TaskLog {
 	}
 	
 	public static String insertSqlTask() {
-		return "INSERT INTO TASK (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";	}
+		return "INSERT INTO Task (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";	}
 		
 	public static String updateSqlDuration() {
 		return  "UPDATE Task SET duration = ? WHERE taskID = ?;";	}
@@ -233,10 +233,10 @@ public class TaskLog {
 		return  "UPDATE Task SET end = ? , description = ? WHERE taskID = ? and projNo = ? and duration is null;";	}
 	
 	public static String checkSqlProject() {
-		return "SELECT P.ProjName FROM PROJECT P, WORKS_ON W WHERE P.projNo = W.projNo and W.devID = ?";	}
+		return "SELECT P.ProjName FROM Project P, Works_on W WHERE P.projNo = W.projNo and W.devID = ?";	}
 	
 	public static String getDesc() {
-		return "SELECT description from task where taskID=?;";	}
+		return "SELECT description from Task where taskID=?;";	}
 	
 	public static void main(String[] args) {	
 		TaskLog newtask1 = new TaskLog();
