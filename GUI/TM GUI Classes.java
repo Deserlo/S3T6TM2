@@ -649,7 +649,8 @@ class HoursDev extends JPanel{
 	
 	public HoursDev(Container f, JPanel main, JPanel[] s, String[][] Data){
 		//Developer dev = new Developer();
-		//table = new JTable(dev.getDevHours(Test.userID), Cnames);
+		//String hours[][] = dev.getDevHours(Test.userID);
+		//table = new JTable(hours, Cnames);
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
