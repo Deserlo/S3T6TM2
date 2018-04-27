@@ -29,7 +29,7 @@ public class Login {
 	}
 	
 	public int queryForId(String username) {
-		Query q = new Query("user", "id","userName",username);
+		Query q = new Query("User", "id","userName",username);
 		String t = q.generateQueryString(q);
 		int id = q.getID(q.name, t);
 		return id;
@@ -38,7 +38,7 @@ public class Login {
 	//if user doesn't exist in developer table, checks manager table
 	public String getUserRole(int id) {
 		String role = "";
-		Query q = new Query("developer", "id","id","id");
+		Query q = new Query("Developer", "id","id","id");
 		String devQuery = q.generateQueryString(q);
 		//SELECT id FROM developer WHERE id=?
 		if (q.checkIfExists(id, devQuery)==true)
