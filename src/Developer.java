@@ -67,12 +67,57 @@ public class Developer {
 	
 	
 	public String[][] getDevProjects(int devID){
-		String[][] myArray = {{"blah", "yep", "si,si"}, {"beexus", "ribsy", "toto"}, {"huggins", "joda", "lolo"}};
-		return myArray;
-		
+			String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "},
+													{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "},
+													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
+													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
+													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
+													{" ", " ", " "}};
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			 try { 
+				   DBConnection db = new DBConnection();
+		    	   conn = db.ConnectDB();
+		    	   // # of ? in query indicates #of parameters to set in stmt.setInt(1, devID)
+		    	   // if 2 ? then stmt.setInt (2, someIntVar) would be next line or stmt.setString (2, someStringVar) if parameter was string
+		    	   String query =  "SELECT P.ProjName as Project, P.timeBudget as hoursForProject, T.taskName as Last_Task_Completed " + 
+		    	   		"FROM Project P, Task T, Works_on W " + 
+		    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = T.devID " + 
+		    	   		"and T.devID = ?  and T.duration is not null " + 
+		    	   		"GROUP BY P.ProjName " + 
+		    	   		"HAVING MAX(T.end);";
+		           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		           stmt.setInt(1, devID);
+				   rs = stmt.executeQuery();
+				   int i=0;
+				   if (rs.last()) {
+					    int rows = rs.getRow();
+					    String [][] results =new String[rows][columns];
+					    System.out.println("number of results: " + rows);
+					    // Move to beginning
+					    rs.beforeFirst();
+					    while  (rs.next()) {
+							String pName = rs.getString(1);
+							float pBudget = rs.getFloat(3);
+							String pLastTask = rs.getString(2);
+											
+							results[i] = new String[] {pName, String.valueOf(pBudget), pLastTask};
+							i++;
+						}
+						return results;
+					}
+				   	  
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+					if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+					if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+				}
+			return noProjects; 
+		}	
 
-		
-	}
 	
 	public String[] getAllDevReports(int devID){
 		String[] noReports = {};
