@@ -25,7 +25,7 @@ public class UserAccount  {
 		case "dev": //dev can only join a team
 			if (checkName(newAccount.username)==false && checkTeam(newAccount.team)==true) {	
 				insertUser(newAccount);
-				insertDev(newAccount.username);
+				insertDev(newAccount.username, newAccount.role);
 				accountCreated = true;
 				break;
 			}
@@ -36,7 +36,7 @@ public class UserAccount  {
 		case "mgr": //only manager can create Team
 			if (checkName(newAccount.username)==false && checkTeam(newAccount.team)==false ) {
 				insertUser(newAccount);
-				insertMgr(newAccount.username);
+				insertMgr(newAccount.username, newAccount.role);
 				createNewTeam(newAccount.username, newAccount.team);
 				accountCreated = true;
 				break;
@@ -47,19 +47,18 @@ public class UserAccount  {
 			}
 		}
 		return accountCreated;
-	
 	}
 	
 	private int queryForMgrID(String team) {
 		//String queryForID = "SELECT mgrID FROM Team WHERE teamName = ?";
-		Query q = new Query("team", "mgrID","teamName",team);
+		Query q = new Query("Team", "mgrID","teamName",team);
 		String t = q.generateQueryString(q);
 		int id = q.getID(q.name, t);
 		return id;
 	}
 	
-	private int queryForId(String username) {
-		Query q = new Query("user", "id","userName",username);
+	public int queryForId(String username) {
+		Query q = new Query("User", "id","userName",username);
 		String t = q.generateQueryString(q);
 		int id = q.getID(q.name, t);
 		return id;
@@ -77,7 +76,7 @@ public class UserAccount  {
 	    }
 	    return teamExists;	
 	}
-	
+	//checks that username is unique
 	private boolean checkName (String username) {
 		boolean nameExists = true;
 		Query q = new Query("User", "userName","userName",username);
@@ -93,7 +92,6 @@ public class UserAccount  {
 	    }
 	    return nameExists;	
 	}
-	
 	
 	private void insertUser(UserAccount ua) {
 		ua.mgrID = queryForMgrID(ua.team);
@@ -134,14 +132,13 @@ public class UserAccount  {
 			if (newTeam.conn != null) try {newTeam.conn.close(); } catch (SQLException ignore) {}
 		}	
 		System.out.println("new team created..");
-		
 	}
 				
-	private void insertDev(String username) { 
+	private void insertDev(String username, String role) { 
 		DBConnection newUser = new DBConnection();
 		newUser.conn = newUser.ConnectDB();	
 		int devID = queryForId(username);
-		String sql = insertSqlRole("Dev");
+		String sql = insertSqlRole("Developer");
         try{ 	
 			newUser.stmt = newUser.conn.prepareStatement(sql);
 			newUser.stmt.setString(1, username);
@@ -156,7 +153,7 @@ public class UserAccount  {
 		}
 	}
 	
-	public void insertMgr(String username) { 		
+	public void insertMgr(String username, String role) { 		
 		String sql = insertSqlRole("Manager");
 		DBConnection newUser = new DBConnection();
 		newUser.conn = newUser.ConnectDB();
@@ -191,11 +188,6 @@ public class UserAccount  {
 	
 	public static String insertSqlTeam() {
 		return "INSERT INTO Team (mgrID, teamName) VALUES (?,?);"; }
-	public static void main(String[] args) {
-
-
-	}
-
 	
 }
 	
