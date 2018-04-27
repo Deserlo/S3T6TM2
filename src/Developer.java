@@ -81,7 +81,7 @@ public class Developer {
 		    	   conn = db.ConnectDB();
 		    	   // # of ? in query indicates #of parameters to set in stmt.setInt(1, devID)
 		    	   // if 2 ? then stmt.setInt (2, someIntVar) would be next line or stmt.setString (2, someStringVar) if parameter was string
-		    	   String query =  "SELECT P.ProjName as Project, P.timeBudget as hoursForProject, T.taskName as Last_Task_Completed " + 
+		    	   String query =  "SELECT P.ProjName, P.timeBudget, T.taskName " + 
 		    	   		"FROM Project P, Task T, Works_on W " + 
 		    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = T.devID " + 
 		    	   		"and T.devID = ?  and T.duration is not null " + 
@@ -99,8 +99,8 @@ public class Developer {
 					    rs.beforeFirst();
 					    while  (rs.next()) {
 							String pName = rs.getString(1);
-							float pBudget = rs.getFloat(3);
-							String pLastTask = rs.getString(2);
+							float pBudget = rs.getFloat(2);
+							String pLastTask = rs.getString(3);
 											
 							results[i] = new String[] {pName, String.valueOf(pBudget), pLastTask};
 							i++;
@@ -157,11 +157,46 @@ public class Developer {
 			}
 		return noReports; 
 	}	
-	
+	//task, time, description for a selected projectName
 	public String[][] getDevReport(int devID){
-		String[][] myArray = {{"fontina", "brie", "cheddar"}, {"beezus", "ribsy", "quimby"}, {"nikea", "okoye", "rula"}};
-		return myArray;
-		
+		String[] noReports = {};
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		 try { 
+			   DBConnection db = new DBConnection();
+	    	   conn = db.ConnectDB();
+	    	   String query =  "SELECT P.ProjName " + 
+	    	   		"FROM Project P,  Works_on W " + 
+	    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = ?; ";
+	           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	           stmt.setInt(1, devID);
+			   rs = stmt.executeQuery();
+			   int i=0;
+			   if (rs.last()) {
+				    int rows = rs.getRow();
+				    String [][] results = new String[rows][columns];
+				    System.out.println("number of results: " + rows);
+				    // Move to beginning
+				    rs.beforeFirst();
+				    while  (rs.next()) {
+						String pName = rs.getString(1);
+						float pBudget = rs.getFloat(2);
+						String pLastTask = rs.getString(3);				
+						results[i] = new String[] {pName, String.valueOf(pBudget), pLastTask};
+						i++;
+					}
+					return results;
+				}
+			   	  
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) try {rs.close(); } catch (SQLException ignore) {}
+				if (stmt != null) try {stmt.close(); } catch (SQLException ignore) {}
+				if (conn != null) try {conn.close(); } catch (SQLException ignore) {}
+			}
+		return noReports; 
 	}
 
 }
