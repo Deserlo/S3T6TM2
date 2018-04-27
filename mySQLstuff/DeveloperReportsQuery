@@ -1,0 +1,6 @@
+SELECT P.ProjName as Project, P.timeBudget as hoursForProject, T.taskName as Last_Task_Completed
+FROM Project P, Task T, Works_on W
+WHERE  P.ProjNo = W.ProjNo and  W.devID = T.devID 
+and T.devID = 1  and T.duration is not null
+GROUP BY P.ProjName
+HAVING MAX(T.end);
