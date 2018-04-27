@@ -11,6 +11,7 @@ import javax.imageio.*;
 ************************************************************************************
 ************************************************************************************
 */
+
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
@@ -176,6 +177,13 @@ class AbsoluteLabel extends JLabel{
 	}
 }
 
+class AddToFrame{
+	public AddToFrame(JPanel frame, Component[] Comp){
+		for(int i = 0; i < Comp.length; i++)
+			frame.add(Comp[i]);
+	}
+}
+
 /*
 ************************************************************************************
 ************************************************************************************
@@ -205,92 +213,75 @@ class TM_GUI_Intro{
 				LocalTimer++;
 				switch(LocalTimer){
 					case 5: //From 5-11 we are just fading in "TM"
-						frame.setBackground(new java.awt.Color(0,0,0,25)); //RGB-A, Alpha(0-255) 0 = Transparent
-						label_top.setBackground(new java.awt.Color(255,255,255, 25)); 
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
-						label_top.setBounds(400, 140, 150, 150);
-						label_bottom.setBounds(400, 199, 150, 150);
-						break;
-					case 6:
-						frame.setBackground(new java.awt.Color(0,0,0,50)); 
-						label_top.setBackground(new java.awt.Color(255,255,255, 50));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
-						break;
-					case 7:
-						frame.setBackground(new java.awt.Color(0,0,0,75)); 
-						label_top.setBackground(new java.awt.Color(255,255,255, 75));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 75));
-						break;
-					case 8:
-						label_top.setBackground(new java.awt.Color(255,255,255, 100));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
-						break;
-					case 9:
-						label_top.setBackground(new java.awt.Color(255,255,255, 150));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 150));
-						break;
-					case 10:
-						label_top.setBackground(new java.awt.Color(255,255,255, 200));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 200));
-						break;
-					case 11:
-						label_top.setBackground(new java.awt.Color(255,255,255, 255));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
-						break;
+							frame.setBackground(new java.awt.Color(0,0,0,25)); //RGB-A, Alpha(0-255) 0 = Transparent
+							label_top.setBackground(new java.awt.Color(255,255,255, 25)); 
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
+							label_top.setBounds(400, 140, 150, 150);
+							label_bottom.setBounds(400, 199, 150, 150);
+							break;
+					case 6:	frame.setBackground(new java.awt.Color(0,0,0,50)); 
+							label_top.setBackground(new java.awt.Color(255,255,255, 50));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
+							break;
+					case 7:	frame.setBackground(new java.awt.Color(0,0,0,75)); 
+							label_top.setBackground(new java.awt.Color(255,255,255, 75));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 75));
+							break;
+					case 8:	label_top.setBackground(new java.awt.Color(255,255,255, 100));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
+							break;
+					case 9:	label_top.setBackground(new java.awt.Color(255,255,255, 150));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 150));
+							break;
+					case 10:label_top.setBackground(new java.awt.Color(255,255,255, 200));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 200));
+							break;
+					case 11:label_top.setBackground(new java.awt.Color(255,255,255, 255));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
+							break;
 					case 13: //From 13-16 we are doing some small animation
-						label_top.setBounds(405, 145, 150, 150);
-						label_bottom.setBounds(405, 204, 150, 150);
-						break;
-					case 14:
-						label_top.setBounds(410, 140, 150, 150);
-						label_bottom.setBounds(410, 209, 150, 150);
-						break;
-					case 15:
-						label_top.setBounds(405, 145, 150, 150);
-						label_bottom.setBounds(405, 204, 150, 150);
-						break;
-					case 16:
-						label_top.setBounds(400, 140, 150, 150);
-						label_bottom.setBounds(400, 199, 150, 150);
-						break;
+							label_top.setBounds(405, 145, 150, 150);
+							label_bottom.setBounds(405, 204, 150, 150);
+							break;
+					case 14:label_top.setBounds(410, 140, 150, 150);
+							label_bottom.setBounds(410, 209, 150, 150);
+							break;
+					case 15:label_top.setBounds(405, 145, 150, 150);
+							label_bottom.setBounds(405, 204, 150, 150);
+							break;
+					case 16:label_top.setBounds(400, 140, 150, 150);
+							label_bottom.setBounds(400, 199, 150, 150);
+							break;
 					case 17: //From 17-20 is fading out "TM", with 20 setting the labels offscreen
-						label_top.setBackground(new java.awt.Color(255,255,255, 175));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 175));
-						break;
-					case 18:
-						label_top.setBackground(new java.awt.Color(255,255,255, 100));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
-						break;	
-					case 19:
-						label_top.setBackground(new java.awt.Color(255,255,255, 50));
-						label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
-						break;	
-					case 20:
-						label_top.setBounds(-550, 300, 150, 150);
-						label_bottom.setBounds(-550, 300, 150, 150);
-						break;
+							label_top.setBackground(new java.awt.Color(255,255,255, 175));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 175));
+							break;
+					case 18:label_top.setBackground(new java.awt.Color(255,255,255, 100));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
+							break;	
+					case 19:label_top.setBackground(new java.awt.Color(255,255,255, 50));
+							label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
+							break;	
+					case 20:label_top.setBounds(-550, 300, 150, 150);
+							label_bottom.setBounds(-550, 300, 150, 150);
+							break;
 					case 22: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
-						frame.setBackground(new java.awt.Color(10,10,10));
-						break;
-					case 23:
-						frame.setBackground(new java.awt.Color(20,20,20));
-						break;
-					case 24:
-						frame.setBackground(new java.awt.Color(30,30,30));
-						break;
-					case 25:
-						frame.setBackground(new java.awt.Color(40,60,80));
-						break;
-					case 26:
-						frame.setBackground(new java.awt.Color(59,68,91));
-						break;
+							frame.setBackground(new java.awt.Color(10,10,10));
+							break;
+					case 23:frame.setBackground(new java.awt.Color(20,20,20));
+							break;
+					case 24:frame.setBackground(new java.awt.Color(30,30,30));
+							break;
+					case 25:frame.setBackground(new java.awt.Color(40,60,80));
+							break;
+					case 26:frame.setBackground(new java.awt.Color(59,68,91));
+							break;
 					case 27: //27 = 2.7 seconds for this intro.
-						frame.removeAll();
-						frame.revalidate();
-						Test.MenuVar = 1; 
-						break;
-					default:
-						break;
+							frame.removeAll();
+							frame.revalidate();
+							Test.MenuVar = 1; 
+							break;
+					default:break;
 				}
 			}
 		};
@@ -314,16 +305,12 @@ class RegisterScreen{
 	JButton button_DevLogin = new AbsoluteTextButton("Login", 145,360, 160,45, false, 1, 2);
 	JButton button_ManRegister = new AbsoluteTextButton("Register", 675,300, 160,45, false, 4, 3);
 	JButton button_ManLogin = new AbsoluteTextButton("Login", 675,360, 160,45, false, 1, 4);
+	Component[] Comp = {DevTO, ManTO, Dev_NameTF, Dev_EmailTF, Dev_TeamTF, Dev_PasswordTF, Man_NameTF, Man_EmailTF,
+						Man_TeamTF, Man_PasswordTF, button_DevRegister, button_DevLogin, button_ManRegister, button_ManLogin};
 	
 	public RegisterScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(DevTO); frame.add(ManTO);
-		frame.add(Dev_NameTF); frame.add(Dev_EmailTF);
-		frame.add(Dev_TeamTF); frame.add(Dev_PasswordTF);
-		frame.add(Man_NameTF); frame.add(Man_EmailTF);
-		frame.add(Man_TeamTF); frame.add(Man_PasswordTF);
-		frame.add(button_DevRegister); frame.add(button_DevLogin);
-		frame.add(button_ManRegister); frame.add(button_ManLogin);
+		new AddToFrame(frame, Comp);
 		frame.setLayout(null);
 	
 		ActionListener RepaintScreen = new ActionListener(){ 
@@ -412,11 +399,11 @@ class LogInScreen{
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, false, 2, 3);
 	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
 	JTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
+	Component[] Comp = {LogInTO, button_LogIn, button_GoBack, button_ChangePassword, UsernameTF, PasswordTF};
 	
 	public LogInScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(LogInTO); frame.add(button_LogIn); frame.add(button_GoBack); frame.add(button_ChangePassword);
-		frame.add(UsernameTF); frame.add(PasswordTF);
+		new AddToFrame(frame, Comp);
 		frame.setLayout(null);
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
@@ -494,11 +481,11 @@ class ChangePasswordScreen{
 	JTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, false, 2, 1);
 	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, false, 2, 2);
+	Component[] Comp = {TitleTO, UsernameTF, OldPasswordTF, NewPasswordTF, button_ChangePassword, button_GoBack};
 	
 	public ChangePasswordScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
-		frame.add(TitleTO); frame.add(UsernameTF);  frame.add(OldPasswordTF); frame.add(NewPasswordTF);
-		frame.add(button_ChangePassword); frame.add(button_GoBack);
+		new AddToFrame(frame, Comp);
 		frame.setLayout(null);
 		
 		ActionListener RepaintScreen = new ActionListener(){ 
@@ -567,7 +554,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		new SetGrid(0,4,60,200,c,new CPanel(),this);
 		new SetGrid(0,5,60,25,c,LogOut,this);
 		new SetGrid(0,6,60,15,c,new CPanel(),this);
-		
 		/*bar.setOpaque(true);
 		bar.setBackground(new java.awt.Color(117,132,178));
 		c.ipadx = 10;
@@ -589,7 +575,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 					main.removeAll();
 					main.revalidate();
 					main.repaint(2500);
-					Test.MenuVar = 2;
+					Test.MenuVar = 1;
 				}
 				else{
 					if(Test.MenuVar == 3){
@@ -629,30 +615,26 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 	}
 	private void SwitchFocus(int ButtonNum){
 		switch(ButtonNum){
-			case 0:
-				Hours.setForeground(new java.awt.Color(73,210,146));
-				Projects.setForeground(new java.awt.Color(117,132,178));
-				Reports.setForeground(new java.awt.Color(117,132,178));
-				LogOut.setForeground(new java.awt.Color(117,132,178));
-				break;
-			case 1:
-				Hours.setForeground(new java.awt.Color(117,132,178));
-				Projects.setForeground(new java.awt.Color(73,210,146));
-				Reports.setForeground(new java.awt.Color(117,132,178));
-				LogOut.setForeground(new java.awt.Color(117,132,178));
-				break;
-			case 2:
-				Hours.setForeground(new java.awt.Color(117,132,178));
-				Projects.setForeground(new java.awt.Color(117,132,178));
-				Reports.setForeground(new java.awt.Color(73,210,146));
-				LogOut.setForeground(new java.awt.Color(117,132,178));
-				break;
-			case 3:
-				Hours.setForeground(new java.awt.Color(117,132,178));
-				Projects.setForeground(new java.awt.Color(117,132,178));
-				Reports.setForeground(new java.awt.Color(117,132,178));
-				LogOut.setForeground(new java.awt.Color(73,210,146));
-				break;
+			case 0:	Hours.setForeground(new java.awt.Color(73,210,146));
+					Projects.setForeground(new java.awt.Color(117,132,178));
+					Reports.setForeground(new java.awt.Color(117,132,178));
+					LogOut.setForeground(new java.awt.Color(117,132,178));
+					break;
+			case 1:	Hours.setForeground(new java.awt.Color(117,132,178));
+					Projects.setForeground(new java.awt.Color(73,210,146));
+					Reports.setForeground(new java.awt.Color(117,132,178));
+					LogOut.setForeground(new java.awt.Color(117,132,178));
+					break;
+			case 2:	Hours.setForeground(new java.awt.Color(117,132,178));
+					Projects.setForeground(new java.awt.Color(117,132,178));
+					Reports.setForeground(new java.awt.Color(73,210,146));
+					LogOut.setForeground(new java.awt.Color(117,132,178));
+					break;
+			case 3:	Hours.setForeground(new java.awt.Color(117,132,178));
+					Projects.setForeground(new java.awt.Color(117,132,178));
+					Reports.setForeground(new java.awt.Color(117,132,178));
+					LogOut.setForeground(new java.awt.Color(73,210,146));
+					break;
 		}
 	}
 }

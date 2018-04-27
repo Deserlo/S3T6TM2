@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 0;
+	public static int MenuVar = 3;
 	public static int userID = -1;
 	public static boolean login = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
@@ -35,57 +35,47 @@ public class Test{
 			if(OldValue != MenuVar){
 				OldValue = MenuVar;
 				switch(MenuVar){
-					case 0:
-						System.out.println("In case " + MenuVar);
-						new TM_GUI_Intro(Intro);
-						contentpan.add(Intro);
-						break;
-					case 1: 
-						System.out.println("In case " + MenuVar);
-						new LogInScreen(LogInScreen);
-						contentpan.add(LogInScreen);
-						contentpan.revalidate();
-						break;
-					case 2: 
-						System.out.println("In case " + MenuVar);
-						new RegisterScreen(RegisterScreen);
-						contentpan.add(RegisterScreen);
-						contentpan.revalidate();
-						break;		
-					case 3: 
-						System.out.println("In case " + MenuVar);
-						contentpan.removeAll();
-						main = new CPanel();
-						center = new HoursDev(home.getContentPane(), main, new JPanel[5], Data);
-						side = new SidePanel(home.getContentPane(), main, new JPanel[5], Data);
-						main.setLayout(new BorderLayout());
-						main.add(side,BorderLayout.WEST);
-						main.add(center,BorderLayout.CENTER);
-						
-						contentpan.add(main);
-						contentpan.revalidate();
-						break;
-					case 4:
-						System.out.println("In case " + MenuVar);
-						contentpan.removeAll();
-						main = new CPanel();
-						center = new HoursManager(home.getContentPane(), main, new JPanel[5], Data);
-						side = new SidePanel(home.getContentPane(), main, new JPanel[5],Data);
-						main.setLayout(new BorderLayout());
-						main.add(side,BorderLayout.WEST);
-						main.add(center,BorderLayout.CENTER);
-						
-						contentpan.add(main);
-						contentpan.revalidate();
-						break;
-					case 5:
-						System.out.println("In case " + MenuVar);
-						new ChangePasswordScreen(ChangePasswordScreen);
-						contentpan.add(ChangePasswordScreen);
-						contentpan.revalidate();
-						break;
-					default:
-						break;
+					case 0:	System.out.println("In case " + MenuVar);
+							new TM_GUI_Intro(Intro);
+							contentpan.add(Intro);
+							break;
+					case 1: System.out.println("In case " + MenuVar);
+							new LogInScreen(LogInScreen);
+							contentpan.add(LogInScreen);
+							contentpan.revalidate();
+							break;
+					case 2: System.out.println("In case " + MenuVar);
+							new RegisterScreen(RegisterScreen);
+							contentpan.add(RegisterScreen);
+							contentpan.revalidate();
+							break;		
+					case 3: System.out.println("In case " + MenuVar);
+							contentpan.removeAll();
+							main = new CPanel();
+							center = new HoursDev(home.getContentPane(), main, new JPanel[5], Data);
+							side = new SidePanel(home.getContentPane(), main, new JPanel[5], Data);
+							main.setLayout(new BorderLayout());
+							main.add(side,BorderLayout.WEST);
+							main.add(center,BorderLayout.CENTER);
+							contentpan.add(main);
+							contentpan.revalidate();
+							break;
+					case 4:	System.out.println("In case " + MenuVar);
+							contentpan.removeAll();
+							main = new CPanel();
+							center = new HoursManager(home.getContentPane(), main, new JPanel[5], Data);
+							side = new SidePanel(home.getContentPane(), main, new JPanel[5],Data);
+							main.setLayout(new BorderLayout());
+							main.add(side,BorderLayout.WEST);
+							main.add(center,BorderLayout.CENTER);
+							contentpan.add(main);
+							contentpan.revalidate();
+							break;
+					case 5:	System.out.println("In case " + MenuVar);
+							new ChangePasswordScreen(ChangePasswordScreen);
+							contentpan.add(ChangePasswordScreen);
+							contentpan.revalidate();
+							break;
 				}
 			} home.setSize(960,540); //16:9 Resolution
 		}
