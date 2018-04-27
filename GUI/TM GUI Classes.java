@@ -910,6 +910,9 @@ class ProjectReportDev extends JPanel{
 	
 	public ProjectReportDev(Container f, JPanel main, JPanel[] s, String[][] Data, String Project){
 		ProjectsLabel = new Header("Project " + Project + " Report");
+		//Developer dev = new Developer();
+		//String ProjectReport[][] = dev.getDevReport(Test.userID, Project);
+		//table = new JTable(ProjectReport, Cnames);
 		table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
