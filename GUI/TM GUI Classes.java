@@ -15,6 +15,9 @@ class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
 		setVisible(true);
+		//ImageIcon icon_corner = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
+		//setIconImage(icon_corner.getImage());
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(117,132,178)));
 		//setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -114,12 +117,23 @@ class Header extends JLabel{
 }
 
 class SetGrid{
+	//This class is used for GridBagLayout. This is used in both the developer and manager dashboards.
+	public SetGrid(double x, double y, GridBagConstraints Grid){
+		Grid.weightx = x;
+		Grid.weighty = y;
+	}
 	public SetGrid(int x, int y, int width, int height, GridBagConstraints Grid){
-		//This class is used for GridBagLayout. This is used in both the developer and manager dashboards.
 		Grid.gridx = x;
 		Grid.gridy = y;
 		Grid.ipadx = width;
 		Grid.ipady = height;
+	}
+	public SetGrid(int x, int y, int width, int height, GridBagConstraints Grid, Component Comp, JPanel frame){
+		Grid.gridx = x;
+		Grid.gridy = y;
+		Grid.ipadx = width;
+		Grid.ipady = height;
+		frame.add(Comp, Grid);
 	}
 }
 
@@ -391,7 +405,6 @@ class RegisterScreen{
 	}
 }
 
-
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
@@ -426,6 +439,13 @@ class LogInScreen{
 					/* EXAMPLE 3=developer dash, 4= manager dash*/
 					String String_Username = UsernameTF.getText();
 					String String_Password = PasswordTF.getText();
+					if(String_Username.equals("Dev"))
+						Test.MenuVar = 3; 
+					else if(String_Username.equals("Man"))
+						Test.MenuVar = 4; 
+					else
+						Test.MenuVar = 3;
+
 					//log in code
 					/*
 					Login newLogin = new Login(String_Username, String_Password);
@@ -536,27 +556,17 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=1.0;
-		c.weighty=1.0;
-		
-		new SetGrid(0,0,60,15, c);
-		add(new CPanel(),c);
-		new SetGrid(1,0,9,15, c);
-		add(new CPanel(),c);
-		new SetGrid(0,1,60,25, c);
-		add(Hours,c);
-		new SetGrid(1,1,9,25, c);
-		add(new CPanel(),c);
-		new SetGrid(0,2,60,25, c);
-		add(Projects,c);
-		new SetGrid(0,3,60,25, c);
-		add(Reports,c);
-		new SetGrid(0,4,60,200, c);
-		add(new CPanel(),c);
-		new SetGrid(0,5,60,25, c);
-		add(LogOut,c);
-		new SetGrid(0,6,60,15, c);
-		add(new CPanel(),c);
+
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,60,15,c,new CPanel(),this);
+		new SetGrid(1,0,9,15,c,new CPanel(),this);
+		new SetGrid(0,1,60,25,c,Hours,this);
+		new SetGrid(1,1,9,25,c,new CPanel(),this);
+		new SetGrid(0,2,60,25,c,Projects,this);
+		new SetGrid(0,3,60,25,c,Reports,this);
+		new SetGrid(0,4,60,200,c,new CPanel(),this);
+		new SetGrid(0,5,60,25,c,LogOut,this);
+		new SetGrid(0,6,60,15,c,new CPanel(),this);
 		
 		/*bar.setOpaque(true);
 		bar.setBackground(new java.awt.Color(117,132,178));
@@ -569,37 +579,10 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		
 		setBackground(new java.awt.Color(59,68,91));
 
-		//FOCUS LISTENER CODE
-		FocusListener focusCode = new FocusListener(){
-			public void focusGained(FocusEvent e){
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
-					Hours.setForeground(new java.awt.Color(73,210,146));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
-					Projects.setForeground(new java.awt.Color(73,210,146));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
-					Reports.setForeground(new java.awt.Color(73,210,146));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
-					LogOut.setForeground(new java.awt.Color(73,210,146));
-			}
-			public void focusLost(FocusEvent e){
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 0)
-					Hours.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1)
-					Projects.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 2)
-					Reports.setForeground(new java.awt.Color(117,132,178));
-				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3)
-					LogOut.setForeground(new java.awt.Color(117,132,178));
-			}
-		};
-		Hours.addFocusListener(focusCode);
-		Projects.addFocusListener(focusCode);
-		Reports.addFocusListener(focusCode);
-		LogOut.addFocusListener(focusCode);
-
 		//ACTION LISTENER CODE
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
+				SwitchFocus(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
 					//LogOut
 					main.setBackground(new java.awt.Color(0,0,0));
@@ -644,6 +627,34 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		Reports.addActionListener(action);
 		LogOut.addActionListener(action);
 	}
+	private void SwitchFocus(int ButtonNum){
+		switch(ButtonNum){
+			case 0:
+				Hours.setForeground(new java.awt.Color(73,210,146));
+				Projects.setForeground(new java.awt.Color(117,132,178));
+				Reports.setForeground(new java.awt.Color(117,132,178));
+				LogOut.setForeground(new java.awt.Color(117,132,178));
+				break;
+			case 1:
+				Hours.setForeground(new java.awt.Color(117,132,178));
+				Projects.setForeground(new java.awt.Color(73,210,146));
+				Reports.setForeground(new java.awt.Color(117,132,178));
+				LogOut.setForeground(new java.awt.Color(117,132,178));
+				break;
+			case 2:
+				Hours.setForeground(new java.awt.Color(117,132,178));
+				Projects.setForeground(new java.awt.Color(117,132,178));
+				Reports.setForeground(new java.awt.Color(73,210,146));
+				LogOut.setForeground(new java.awt.Color(117,132,178));
+				break;
+			case 3:
+				Hours.setForeground(new java.awt.Color(117,132,178));
+				Projects.setForeground(new java.awt.Color(117,132,178));
+				Reports.setForeground(new java.awt.Color(117,132,178));
+				LogOut.setForeground(new java.awt.Color(73,210,146));
+				break;
+		}
+	}
 }
 
 //DEVELOPER SCREENS
@@ -661,18 +672,15 @@ class HoursDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
+		new SetGrid(1.0,1.0,c);
 		
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
-		new SetGrid(0,1,450,325, c);
-		add(Scroll,c);
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
+		new SetGrid(0,1,450,325,c,Scroll,this);
+		new SetGrid(0,2,100,20,c,log,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 		
@@ -707,17 +715,13 @@ class LogTaskDev extends JPanel{
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=1.0;
-		c.weighty=1.0;
-		new SetGrid(3,0,100,20, c);
-		add(LogATask,c);
-		new SetGrid(3,1,100,20, c);
-		add(TaskName,c);
-		new SetGrid(3,2,100,20, c);
-		add(ProjectName,c);
-		new SetGrid(3,3,100,60, c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(3,0,100,20,c,LogATask,this);
+		new SetGrid(3,1,100,20,c,TaskName,this);
+		new SetGrid(3,2,100,20,c,ProjectName,this);
+		
 		Scroll.setViewport(temp.getViewport());
-		add(Scroll,c);
+		new SetGrid(3,3,100,60,c,Scroll,this);
 		
 		for(JPanel pan : clear){
 			pan = new CPanel();
@@ -726,10 +730,8 @@ class LogTaskDev extends JPanel{
 		}
 		
 		c.fill = GridBagConstraints.NONE;
-		new SetGrid(3,4,100,20, c);
-		add(Start,c);
-		new SetGrid(4,4,100,20, c);
-		add(Stop,c);
+		new SetGrid(3,4,100,20,c,Start,this);
+		new SetGrid(4,4,100,20,c,Stop,this);
 		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
@@ -796,11 +798,8 @@ class ProjectsDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
 
 		new SetGrid(0,1,450,325, c);
 		table.setEnabled(false);
@@ -810,9 +809,8 @@ class ProjectsDev extends JPanel{
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
 		
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
-		
+		new SetGrid(0,2,100,20,c,log,this);
+
 		setBackground(new java.awt.Color(59,68,91));
 		
 		ActionListener action = new ActionListener(){ 
@@ -873,15 +871,11 @@ class ReportsDev extends JPanel{
 		int boxSizes = Buttons.length / 2 + 1;
 		
 		//c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ReportsLabel,c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ReportsLabel,this);
 
 		Columns.setLayout(new GridBagLayout());
 		Columns2.setLayout(new GridBagLayout());
-		
 		GridBagConstraints cs1 = new GridBagConstraints();
 		GridBagConstraints cs2 = new GridBagConstraints();
 
@@ -914,9 +908,7 @@ class ReportsDev extends JPanel{
 		temp = new JScrollPane(Main);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
-
-		new SetGrid(0,1,550,350, c);
-		add(Scroll,c);
+		new SetGrid(0,1,550,350,c,Scroll,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 	}
@@ -936,20 +928,16 @@ class ProjectReportDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-		new SetGrid(0,1,450,325, c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
+		
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
-		add(Scroll,c);
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
+		new SetGrid(0,1,450,325,c,Scroll,this);
+		new SetGrid(0,2,100,20,c,log,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 
@@ -980,19 +968,16 @@ class HoursManager extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
+		new SetGrid(1.0,1.0,c);
 		
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
-		new SetGrid(0,1,450,325, c);
-		add(Scroll,c);
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
-		
+		new SetGrid(0,1,450,325,c,Scroll,this);
+		new SetGrid(0,2,100,20,c,log,this);
+
 		setBackground(new java.awt.Color(59,68,91));
 		
 		ActionListener action = new ActionListener(){ 
@@ -1024,26 +1009,16 @@ class AddProjectManager extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-		new SetGrid(1,0,100,20, c);
-		add(new CPanel(),c);
-		new SetGrid(0,1,100,20, c);
-		add(ProjectName,c);
-		new SetGrid(1,1,100,20, c);
-		add(PeopleOnProject,c);
-		new SetGrid(0,2,100,20, c);
-		add(BudgetHours,c);
-		new SetGrid(0,3,220,140, c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
+		new SetGrid(1,0,100,20,c,new CPanel(),this);
+		new SetGrid(0,1,100,20,c,ProjectName,this);
+		new SetGrid(1,1,100,20,c,PeopleOnProject,this);
+		new SetGrid(0,2,100,20,c,BudgetHours,this);
 		Scroll.setViewport(temp.getViewport());
-		add(Scroll,c);
-		new SetGrid(0,4,20,20, c);
-		add(new CPanel(),c);
-		new SetGrid(1,4,40,20, c);
-		add(AddProject,c);
+		new SetGrid(0,3,220,140,c,Scroll,this);
+		new SetGrid(0,4,20,20,c,new CPanel(),this);
+		new SetGrid(1,4,40,20,c,AddProject,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 		
@@ -1073,12 +1048,8 @@ class ProjectsManager extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-		
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
 		new SetGrid(0,1,450,325, c);
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
@@ -1163,15 +1134,10 @@ class ReportsManager extends JPanel{
 		int boxSizes2 = Buttons_Developers.length / 2 + 1;
 		
 		//c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-		new SetGrid(1,0,100,20, c);
-		add(new CPanel(),c);
-		new SetGrid(2,0,100,20, c);
-		add(DevelopersLabel,c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
+		new SetGrid(1,0,100,20,c,new CPanel(),this);
+		new SetGrid(2,0,100,20,c,DevelopersLabel,this);
 		
 		Columns.setLayout(new GridBagLayout());
 		Columns2.setLayout(new GridBagLayout());
@@ -1194,11 +1160,8 @@ class ReportsManager extends JPanel{
 		temp = new JScrollPane(Main);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll_Projects.setViewport(temp.getViewport());
-		new SetGrid(0,1,350,350, c);
-		add(Scroll_Projects,c);
-		
-		new SetGrid(1,1,20,350, c);
-		add(new CPanel(),c);
+		new SetGrid(0,1,350,350,c,Scroll_Projects,this);
+		new SetGrid(1,1,20,350,c,new CPanel(),this);
 		
 		new SetGrid(0,0,125,30, cs2);
 		cs2.insets = new Insets(20,20,0,0);
@@ -1215,8 +1178,7 @@ class ReportsManager extends JPanel{
 		temp = new JScrollPane(Main2);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll_Developers.setViewport(temp.getViewport());
-		new SetGrid(2,1,350,350, c);
-		add(Scroll_Developers,c);
+		new SetGrid(2,1,350,350,c,Scroll_Developers,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 	}
@@ -1236,22 +1198,16 @@ class ManagerReports_ByDev extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-
-		new SetGrid(0,1,450,325, c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
+		new SetGrid(0,1,450,325,c);
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
-		
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
+		new SetGrid(0,2,100,20,c,log,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 		
@@ -1283,22 +1239,16 @@ class ManagerReports_ByProject extends JPanel{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.weightx=1.0;
-		c.weighty=1.0;
-
-		new SetGrid(0,0,100,20, c);
-		add(ProjectsLabel,c);
-
-		new SetGrid(0,1,450,325, c);
+		new SetGrid(1.0,1.0,c);
+		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
+		new SetGrid(0,1,450,325,c);
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
 		Scroll.setViewport(temp.getViewport());
 		add(Scroll,c);
-		
-		new SetGrid(0,2,100,20, c);
-		add(log,c);
+		new SetGrid(0,2,100,20,c,log,this);
 		
 		setBackground(new java.awt.Color(59,68,91));
 		

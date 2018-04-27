@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 1;
+	public static int MenuVar = 0;
 	public static int userID = -1;
 	public static boolean login = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
@@ -23,15 +23,8 @@ public class Test{
 		JPanel ChangePasswordScreen = new CPanel();
 		
 		//Dashboard Screen
-		main = new CPanel();
-		JPanel[] center_panels;
-		JPanel Log;
 		JPanel center;
 		JPanel side;
-		JPanel main_hours;
-		JPanel main_projects;
-		JPanel main_reports;
-		JPanel main_addprojects;
 		
 		//Container
 		Container contentpan = (JPanel)home.getContentPane();
@@ -63,10 +56,8 @@ public class Test{
 						System.out.println("In case " + MenuVar);
 						contentpan.removeAll();
 						main = new CPanel();
-						center_panels = new JPanel[5];
-						Log = new CPanel();
-						center = new HoursDev(home.getContentPane(), main, center_panels, Data);
-						side = new SidePanel(home.getContentPane(), main, center_panels, Data);
+						center = new HoursDev(home.getContentPane(), main, new JPanel[5], Data);
+						side = new SidePanel(home.getContentPane(), main, new JPanel[5], Data);
 						main.setLayout(new BorderLayout());
 						main.add(side,BorderLayout.WEST);
 						main.add(center,BorderLayout.CENTER);
@@ -78,10 +69,8 @@ public class Test{
 						System.out.println("In case " + MenuVar);
 						contentpan.removeAll();
 						main = new CPanel();
-						center_panels = new JPanel[5];
-						Log = new CPanel();
-						center = new HoursManager(home.getContentPane(), main, center_panels, Data);
-						side = new SidePanel(home.getContentPane(), main, center_panels,Data);
+						center = new HoursManager(home.getContentPane(), main, new JPanel[5], Data);
+						side = new SidePanel(home.getContentPane(), main, new JPanel[5],Data);
 						main.setLayout(new BorderLayout());
 						main.add(side,BorderLayout.WEST);
 						main.add(center,BorderLayout.CENTER);
@@ -98,8 +87,7 @@ public class Test{
 					default:
 						break;
 				}
-			}
-			home.setSize(960,540); //16:9 Resolution
+			} home.setSize(960,540); //16:9 Resolution
 		}
 	}
 }
