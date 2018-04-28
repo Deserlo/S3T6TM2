@@ -24,6 +24,30 @@ class TM_Frame extends JFrame{
 	}
 }
 
+class PComboBox<String> extends JComboBox<String>{
+	public PComboBox(final String promptText, String[] ListOfNames){
+		setToolTipText("The list of developers on the project");
+		
+		//IDK How to have default text on a jcombobox. Will fix later.
+		addFocusListener(new FocusListener(){
+		    public void focusLost(FocusEvent e){
+			    insertItemAt((String)promptText, 0);
+		    }
+		    public void focusGained(FocusEvent e){
+			    removeItemAt(0);
+		    }
+		});
+		
+		
+		//At the moment only the lists color is changed. Will fix later.
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
+		setEditable(true);
+		for(int i = 0; i < ListOfNames.length; i++)
+			addItem((String)ListOfNames[i]);
+	}
+}
+
 class PTextField extends JTextField{ //pulled from stack overflow 
 	public PTextField(final String promptText){
 		/*This class creates a text field that has a default string in the text field.
@@ -988,7 +1012,9 @@ class AddProjectManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Add a project");
 	JTextField ProjectName = new PTextField("Project name");
 	JTextField BudgetHours = new PTextField("Budget hours");
-	JTextField PeopleOnProject = new PTextField("People on the project");
+	//JTextField PeopleOnProject = new PTextField("People on the project");
+	String DevList[]={"james","jingle","heimer","schmidt","and josh"};        
+	JComboBox<String> PeopleOnProject = new PComboBox<>("People on the project", DevList);
 	JTextArea Notes = new PTextArea("Notes");
 	JScrollPane temp = new JScrollPane(Notes);
 	JScrollPane Scroll = new CScrollPane();
