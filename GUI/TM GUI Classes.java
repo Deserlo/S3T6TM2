@@ -470,21 +470,20 @@ class LogInScreen{
 			public void actionPerformed(ActionEvent e){
 				String String_Username = UsernameTF.getText();
 				String String_Password = PasswordTF.getText();
-				//BACK END TEAM
-				/* Just change this if(error) to however
-					an error is detected in the username/password combo*/
-				if(String_Username.equals("Error")){
-					frame.add(ErrorTO);
-					LocalTimer = 6;
-				}
-				else{
-					frame.setBackground(new java.awt.Color(0,0,0));
-					frame.removeAll();
-					frame.revalidate();
-					frame.repaint();
-					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
-						//RepaintTimer.stop();
-						
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+					//BACK END TEAM
+					/* Just change this if(error) to however
+						an error is detected in the username/password combo*/
+					if(String_Username.equals("Error")){
+						frame.add(ErrorTO);
+						LocalTimer = 6;
+					}
+					else{
+						frame.setBackground(new java.awt.Color(0,0,0));
+						frame.removeAll();
+						frame.revalidate();
+						frame.repaint();
+						RepaintTimer.stop();
 						/* EXAMPLE 3=developer dash, 4= manager dash*/
 						if(String_Username.equals("Dev")){
 							Test.MenuVar = 3; 
@@ -518,14 +517,22 @@ class LogInScreen{
 						}
 						*/
 					}
-					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-						RepaintTimer.stop();
-						Test.MenuVar = 2; //Register
-					}
-					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
-						RepaintTimer.stop();
-						Test.MenuVar = 5; //Change Password
-					}
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+					frame.setBackground(new java.awt.Color(0,0,0));
+					frame.removeAll();
+					frame.revalidate();
+					frame.repaint();
+					RepaintTimer.stop();
+					Test.MenuVar = 2; //Register
+				}
+				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
+					frame.setBackground(new java.awt.Color(0,0,0));
+					frame.removeAll();
+					frame.revalidate();
+					frame.repaint();
+					RepaintTimer.stop();
+					Test.MenuVar = 5; //Change Password
 				}
 			}
 		};
