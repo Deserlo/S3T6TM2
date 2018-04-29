@@ -314,7 +314,7 @@ class RegisterScreen{
 		RepaintTimer.start();
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
+				frame.setBackground(new java.awt.Color(59,68,91));
 				frame.removeAll();
 				frame.revalidate();
 				frame.repaint(2500);
@@ -325,8 +325,6 @@ class RegisterScreen{
 					if (newDev.createAccount(newDev)) {				
 						Test.userID = newDev.queryForId(newDev.username);
 						Test.login = true;
-						Test.MenuVar = 3; 
-					
 					}*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
@@ -335,12 +333,10 @@ class RegisterScreen{
 					Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.userID = newLogin.queryForId(newLogin.getUserName());
-						Test.login = true;
-						Test.MenuVar = 3; 
+						Test.login = true; 
 					}
 					else {
 						Test.login = false;
-						Test.MenuVar = 1; 
 					}
 					*/
 				}
@@ -351,7 +347,6 @@ class RegisterScreen{
 					if (newMgr.createAccount(newMgr)) {				
 						Test.userID = newMgr.queryForId(newMgr.username);
 						Test.login = true;
-						Test.MenuVar = 4; 
 					}	
 					*/
 				}
@@ -361,18 +356,17 @@ class RegisterScreen{
 					Login newLogin = new Login(Man_EmailTF.getText(), Man_PasswordTF.getText());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.userID = newLogin.queryForId(newLogin.getUserName());
-						Test.login = true;
-						Test.MenuVar = 4; 
+						Test.login = true; 
 					}
 					else {
 						Test.login = false;
-						Test.MenuVar = 1; 
 					}
 					*/
 					
 				}
 				RepaintTimer.stop();
-				Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
+				Test.MenuVar = 1; //All buttons go back to login screen.
+				//Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 			}
 		};
 		button_DevRegister.addActionListener(action);
@@ -479,10 +473,7 @@ class LogInScreen{
 						LocalTimer = 6;
 					}
 					else{
-						frame.setBackground(new java.awt.Color(0,0,0));
-						frame.removeAll();
-						frame.revalidate();
-						frame.repaint();
+						RemoveEverything(frame);
 						RepaintTimer.stop();
 						/* EXAMPLE 3=developer dash, 4= manager dash*/
 						if(String_Username.equals("Dev")){
@@ -519,18 +510,12 @@ class LogInScreen{
 					}
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-					frame.setBackground(new java.awt.Color(0,0,0));
-					frame.removeAll();
-					frame.revalidate();
-					frame.repaint();
+					RemoveEverything(frame);
 					RepaintTimer.stop();
 					Test.MenuVar = 2; //Register
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
-					frame.setBackground(new java.awt.Color(0,0,0));
-					frame.removeAll();
-					frame.revalidate();
-					frame.repaint();
+					RemoveEverything(frame);
 					RepaintTimer.stop();
 					Test.MenuVar = 5; //Change Password
 				}
@@ -540,6 +525,12 @@ class LogInScreen{
 		button_GoBack.addActionListener(action);
 		button_ChangePassword.addActionListener(action);
 		frame.setOpaque(true);
+	}
+	private void RemoveEverything(JPanel frame){
+		frame.setBackground(new java.awt.Color(59,68,91));
+		frame.removeAll();
+		frame.revalidate();
+		frame.repaint();
 	}
 }
 
@@ -580,7 +571,7 @@ class ChangePasswordScreen{
 					*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-					frame.setBackground(new java.awt.Color(0,0,0));
+					frame.setBackground(new java.awt.Color(59,68,91));
 					frame.removeAll();
 					frame.revalidate();
 					frame.repaint();
@@ -640,7 +631,7 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 				SwitchFocus(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")));
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 3){
 					//LogOut
-					main.setBackground(new java.awt.Color(0,0,0));
+					main.setBackground(new java.awt.Color(59,68,91));
 					main.removeAll();
 					main.revalidate();
 					main.repaint(2500);
