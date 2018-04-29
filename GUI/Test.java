@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Test{
-	public static int MenuVar = 3;
+	public static int MenuVar = 0;
 	public static int userID = -1;
 	public static boolean login = false;
 	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};

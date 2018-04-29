@@ -19,32 +19,32 @@ class TM_Frame extends JFrame{
 		//ImageIcon icon_corner = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
 		//setIconImage(icon_corner.getImage());
 		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(117,132,178)));
-		//setResizable(false);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
 
 class PComboBox<String> extends JComboBox<String>{
 	public PComboBox(final String promptText, String[] ListOfNames){
-		setToolTipText("The list of developers on the project");
-		
-		//IDK How to have default text on a jcombobox. Will fix later.
+		insertItemAt((String)promptText, 0);
+		setSelectedItem(promptText);
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
+				setEditable(true);
 			    insertItemAt((String)promptText, 0);
+				setSelectedItem(promptText);
+				setEditable(false);
 		    }
 		    public void focusGained(FocusEvent e){
 			    removeItemAt(0);
 		    }
 		});
-		
-		
-		//At the moment only the lists color is changed. Will fix later.
+		setEditable(true);
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
-		setEditable(true);
 		for(int i = 0; i < ListOfNames.length; i++)
 			addItem((String)ListOfNames[i]);
+		setEditable(false);
 	}
 }
 
@@ -56,14 +56,14 @@ class PTextField extends JTextField{ //pulled from stack overflow
 		super(promptText);
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
-			if(getText().isEmpty()){
-			    setText(promptText);
-			}
+				if(getText().isEmpty()){
+					setText(promptText);
+				}
 		    }
 		    public void focusGained(FocusEvent e){
-			if(getText().equals(promptText)){
-			    setText("");
-			}
+				if(getText().equals(promptText)){
+					setText("");
+				}
 		    }
 		});
 		setForeground(new java.awt.Color(117,132,178));
@@ -164,18 +164,13 @@ class SetGrid{
 
 //Absolute = Absolute Positioning on the screen. These require setLayout(null) for these 3 classes to work.
 class AbsoluteTextButton extends JButton{ 
-	public AbsoluteTextButton(String Words, int x, int y, int width, int height, boolean transparent, int MenuSwitch, int ButtonNum){
+	public AbsoluteTextButton(String Words, int x, int y, int width, int height, int MenuSwitch, int ButtonNum){
 		setText(Words);
+		//if(!ToolTipWords.equals("blank"))
+			//setToolTipText(ToolTipWords);
 		setBorderPainted(false);
-		if(transparent == false){
-			setForeground(new java.awt.Color(117,132,178));
-			setBackground(new java.awt.Color(70,81,108));
-		}
-		else{
-			//setOpaque(false);
-			setContentAreaFilled(false);
-			setForeground(new java.awt.Color(255,255,255));
-		}
+		setForeground(new java.awt.Color(117,132,178));
+		setBackground(new java.awt.Color(70,81,108));
 		setBounds(x, y, width, height);
 		putClientProperty("MenuSwitch", MenuSwitch);
 		putClientProperty("ButtonNum", ButtonNum);
@@ -198,6 +193,12 @@ class AbsoluteLabel extends JLabel{
 		setBounds(x, y, width, height);
 		setFont(new Font("Helvetica", Font.BOLD, FontSize));
 		setForeground(new java.awt.Color(73,210,146));
+	}
+	public AbsoluteLabel(String Words, int x, int y, int width, int height, int FontSize, boolean ErrorLabel){
+		setText(Words);
+		setBounds(x, y, width, height);
+		setFont(new Font("Helvetica", Font.BOLD, FontSize));
+		setForeground(new java.awt.Color(194,56,61));
 	}
 }
 
@@ -231,76 +232,42 @@ class TM_GUI_Intro{
 		frame.add(label_top); frame.add(label_bottom);
 		label_top.setBounds(-550, 300, 150, 150);
 		label_bottom.setBounds(-550, 300, 150, 150);
-	
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
 				switch(LocalTimer){
-					case 5: //From 5-11 we are just fading in "TM"
-							frame.setBackground(new java.awt.Color(0,0,0,25)); //RGB-A, Alpha(0-255) 0 = Transparent
-							label_top.setBackground(new java.awt.Color(255,255,255, 25)); 
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 25));
+					case 4: //From 5-11 we are just fading in "TM"
 							label_top.setBounds(400, 140, 150, 150);
 							label_bottom.setBounds(400, 199, 150, 150);
 							break;
-					case 6:	frame.setBackground(new java.awt.Color(0,0,0,50)); 
-							label_top.setBackground(new java.awt.Color(255,255,255, 50));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
-							break;
-					case 7:	frame.setBackground(new java.awt.Color(0,0,0,75)); 
-							label_top.setBackground(new java.awt.Color(255,255,255, 75));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 75));
-							break;
-					case 8:	label_top.setBackground(new java.awt.Color(255,255,255, 100));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
-							break;
-					case 9:	label_top.setBackground(new java.awt.Color(255,255,255, 150));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 150));
-							break;
-					case 10:label_top.setBackground(new java.awt.Color(255,255,255, 200));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 200));
-							break;
-					case 11:label_top.setBackground(new java.awt.Color(255,255,255, 255));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 255));
-							break;
-					case 13: //From 13-16 we are doing some small animation
+					case 8: //From 8-11 we are doing some small animation
 							label_top.setBounds(405, 145, 150, 150);
 							label_bottom.setBounds(405, 204, 150, 150);
 							break;
-					case 14:label_top.setBounds(410, 140, 150, 150);
+					case 9:	label_top.setBounds(410, 140, 150, 150);
 							label_bottom.setBounds(410, 209, 150, 150);
 							break;
-					case 15:label_top.setBounds(405, 145, 150, 150);
+					case 10:label_top.setBounds(405, 145, 150, 150);
 							label_bottom.setBounds(405, 204, 150, 150);
 							break;
-					case 16:label_top.setBounds(400, 140, 150, 150);
+					case 11:label_top.setBounds(400, 140, 150, 150);
 							label_bottom.setBounds(400, 199, 150, 150);
 							break;
-					case 17: //From 17-20 is fading out "TM", with 20 setting the labels offscreen
-							label_top.setBackground(new java.awt.Color(255,255,255, 175));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 175));
-							break;
-					case 18:label_top.setBackground(new java.awt.Color(255,255,255, 100));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 100));
-							break;	
-					case 19:label_top.setBackground(new java.awt.Color(255,255,255, 50));
-							label_bottom.setBackground(new java.awt.Color(255,255,255, 50));
-							break;	
-					case 20:label_top.setBounds(-550, 300, 150, 150);
+					case 15:label_top.setBounds(-550, 300, 150, 150);
 							label_bottom.setBounds(-550, 300, 150, 150);
 							break;
-					case 22: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
+					case 17: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
 							frame.setBackground(new java.awt.Color(10,10,10));
 							break;
-					case 23:frame.setBackground(new java.awt.Color(20,20,20));
+					case 18:frame.setBackground(new java.awt.Color(20,20,20));
 							break;
-					case 24:frame.setBackground(new java.awt.Color(30,30,30));
+					case 19:frame.setBackground(new java.awt.Color(30,30,30));
 							break;
-					case 25:frame.setBackground(new java.awt.Color(40,60,80));
+					case 20:frame.setBackground(new java.awt.Color(40,60,80));
 							break;
-					case 26:frame.setBackground(new java.awt.Color(59,68,91));
+					case 21:frame.setBackground(new java.awt.Color(59,68,91));
 							break;
-					case 27: //27 = 2.7 seconds for this intro.
+					case 22: //22 = 2.2 seconds for this intro.
 							frame.removeAll();
 							frame.revalidate();
 							Test.MenuVar = 1; 
@@ -325,10 +292,10 @@ class RegisterScreen{
 	JTextField Man_EmailTF = new AbsoluteTextField("Email", 640,160, 240,30);
 	JTextField Man_TeamTF = new AbsoluteTextField("Team", 640,200, 240,30);
 	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 640,240, 240,30);
-	JButton button_DevRegister = new AbsoluteTextButton("Register", 145,300, 160,45, false, 3, 1);
-	JButton button_DevLogin = new AbsoluteTextButton("Login", 145,360, 160,45, false, 1, 2);
-	JButton button_ManRegister = new AbsoluteTextButton("Register", 675,300, 160,45, false, 4, 3);
-	JButton button_ManLogin = new AbsoluteTextButton("Login", 675,360, 160,45, false, 1, 4);
+	JButton button_DevRegister = new AbsoluteTextButton("Register", 145,300, 160,45, 3, 1);
+	JButton button_DevLogin = new AbsoluteTextButton("Login", 145,360, 160,45, 1, 2);
+	JButton button_ManRegister = new AbsoluteTextButton("Register", 675,300, 160,45, 4, 3);
+	JButton button_ManLogin = new AbsoluteTextButton("Login", 675,360, 160,45, 1, 4);
 	Component[] Comp = {DevTO, ManTO, Dev_NameTF, Dev_EmailTF, Dev_TeamTF, Dev_PasswordTF, Man_NameTF, Man_EmailTF,
 						Man_TeamTF, Man_PasswordTF, button_DevRegister, button_DevLogin, button_ManRegister, button_ManLogin};
 	
@@ -418,12 +385,14 @@ class RegisterScreen{
 
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
-	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, false, 2, 1);
-	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, false, 2, 2);
-	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, false, 2, 3);
+	JLabel ErrorTO = new AbsoluteLabel("Error: Wrong Username/Password combo", 330,210,440,130, 16, true);
+	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, 2, 1);
+	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, 2, 2);
+	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, 2, 3);
 	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
 	JTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
 	Component[] Comp = {LogInTO, button_LogIn, button_GoBack, button_ChangePassword, UsernameTF, PasswordTF};
+	int LocalTimer = 0;
 	
 	public LogInScreen(JPanel frame){
 		frame.setBackground(new java.awt.Color(59,68,91));
@@ -431,8 +400,67 @@ class LogInScreen{
 		frame.setLayout(null);
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
+				LocalTimer++;
 				frame.repaint(500);
 				frame.revalidate();
+				switch(LocalTimer){
+					case 0: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 0));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 0));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 0));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 0));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 0));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 0));
+								break;
+					case 1: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 70));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 70));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 70));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 70));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 70));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 70));
+								break;
+					case 2: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 130));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 130));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 130));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 130));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 130));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 130));
+								break;
+					case 3: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 170));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 170));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 170));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 170));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 170));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 170));
+								break;
+					case 4: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 200));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 200));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 200));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 200));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 200));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 200));
+								break;
+					case 5: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 255));
+								button_LogIn.setBackground(new java.awt.Color(70,81,108, 255));
+								button_GoBack.setBackground(new java.awt.Color(70,81,108, 255));
+								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 255));
+								UsernameTF.setBackground(new java.awt.Color(70,81,108, 255));
+								PasswordTF.setBackground(new java.awt.Color(70,81,108, 255));
+								break;
+					case 20: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 220));
+								break;
+					case 21: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 200));
+								break;
+					case 22: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 170));
+								break;
+					case 23: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 130));
+								break;
+					case 24: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 70));
+								break;
+					case 25: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 255));
+								frame.remove(ErrorTO); LocalTimer = 500;
+								break;
+					default:	break;
+				}
 			}
 		};
 		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds
@@ -440,54 +468,64 @@ class LogInScreen{
 		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
-				frame.setBackground(new java.awt.Color(0,0,0));
-				frame.removeAll();
-				frame.revalidate();
-				frame.repaint();
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
-					RepaintTimer.stop();
-					
-					/* EXAMPLE 3=developer dash, 4= manager dash*/
-					String String_Username = UsernameTF.getText();
-					String String_Password = PasswordTF.getText();
-					if(String_Username.equals("Dev"))
-						Test.MenuVar = 3; 
-					else if(String_Username.equals("Man"))
-						Test.MenuVar = 4; 
-					else
-						Test.MenuVar = 3;
-
-					//log in code
-					/*
-					Login newLogin = new Login(String_Username, String_Password);
-					if (newLogin.authenticateUser(newLogin) == true) {
-						Test.userID = newLogin.queryForId(String_Username);
-						Test.login = true;
-						String role = newLogin.getUserRole(Test.userID);
-						System.out.println("Logged in as "+role);
-						switch (role) {
-							case "developer":
-								Test.MenuVar = 3; 
-								break;
-							case "manager":
-								Test.MenuVar = 4; 
-								break;		
+				String String_Username = UsernameTF.getText();
+				String String_Password = PasswordTF.getText();
+				//BACK END TEAM
+				/* Just change this if(error) to however
+					an error is detected in the username/password combo*/
+				if(String_Username.equals("Error")){
+					frame.add(ErrorTO);
+					LocalTimer = 6;
+				}
+				else{
+					frame.setBackground(new java.awt.Color(0,0,0));
+					frame.removeAll();
+					frame.revalidate();
+					frame.repaint();
+					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
+						//RepaintTimer.stop();
+						
+						/* EXAMPLE 3=developer dash, 4= manager dash*/
+						if(String_Username.equals("Dev")){
+							Test.MenuVar = 3; 
 						}
+						else if(String_Username.equals("Man"))
+							Test.MenuVar = 4; 
+						else
+							Test.MenuVar = 3;
+
+						//log in code
+						/*
+						Login newLogin = new Login(String_Username, String_Password);
+						if (newLogin.authenticateUser(newLogin) == true) {
+							Test.userID = newLogin.queryForId(String_Username);
+							Test.login = true;
+							String role = newLogin.getUserRole(Test.userID);
+							System.out.println("Logged in as "+role);
+							switch (role) {
+								case "developer":
+									Test.MenuVar = 3; 
+									break;
+								case "manager":
+									Test.MenuVar = 4; 
+									break;		
+							}
+						}
+						else {
+							Test.login = false;
+							//Test.MenuVar = 1;
+							//Display "Bad Username/Password"
+						}
+						*/
 					}
-					else {
-						Test.login = false;
-						//Test.MenuVar = 1;
-						//Display "Bad Username/Password"
+					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
+						RepaintTimer.stop();
+						Test.MenuVar = 2; //Register
 					}
-					*/
-				}
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-					RepaintTimer.stop();
-					Test.MenuVar = 2; //Register
-				}
-				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
-					RepaintTimer.stop();
-					Test.MenuVar = 5; //Change Password
+					if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
+						RepaintTimer.stop();
+						Test.MenuVar = 5; //Change Password
+					}
 				}
 			}
 		};
@@ -503,8 +541,8 @@ class ChangePasswordScreen{
 	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
 	JTextField OldPasswordTF = new AbsoluteTextField("Old Password", 360,200, 240,30);
 	JTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
-	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, false, 2, 1);
-	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, false, 2, 2);
+	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, 2, 1);
+	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, 2, 2);
 	Component[] Comp = {TitleTO, UsernameTF, OldPasswordTF, NewPasswordTF, button_ChangePassword, button_GoBack};
 	
 	public ChangePasswordScreen(JPanel frame){
@@ -525,6 +563,14 @@ class ChangePasswordScreen{
 			public void actionPerformed(ActionEvent e){
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					System.out.println("Change Password Successful");
+					String String_Username = UsernameTF.getText();
+					String String_OldPassword = OldPasswordTF.getText();
+					String String_NewPassword = NewPasswordTF.getText();
+					//BACK END TEAM
+					/*
+					if(String_OldPassword.equals(getPassword(String_Username)))
+						setPassword(String_Username, String_NewPassword);
+					*/
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					frame.setBackground(new java.awt.Color(0,0,0));
@@ -578,14 +624,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 		new SetGrid(0,4,60,200,c,new CPanel(),this);
 		new SetGrid(0,5,60,25,c,LogOut,this);
 		new SetGrid(0,6,60,15,c,new CPanel(),this);
-		/*bar.setOpaque(true);
-		bar.setBackground(new java.awt.Color(117,132,178));
-		c.ipadx = 10;
-		c.ipady = 600;
-		c.gridx = 2;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
-		add(bar,c);*/
 		
 		setBackground(new java.awt.Color(59,68,91));
 
@@ -982,7 +1020,6 @@ class HoursManager extends JPanel{
 		GridBagConstraints c = new GridBagConstraints();
 		
 		new SetGrid(1.0,1.0,c);
-		
 		table.setEnabled(false);
 		table.setBackground(new java.awt.Color(117,132,178));
 		temp = new JScrollPane(table);
@@ -1014,7 +1051,7 @@ class AddProjectManager extends JPanel{
 	JTextField BudgetHours = new PTextField("Budget hours");
 	//JTextField PeopleOnProject = new PTextField("People on the project");
 	String DevList[]={"james","jingle","heimer","schmidt","and josh"};        
-	JComboBox<String> PeopleOnProject = new PComboBox<>("People on the project", DevList);
+	JComboBox<String> PeopleOnProject = new PComboBox<>("Developer List", DevList);
 	JTextArea Notes = new PTextArea("Notes");
 	JScrollPane temp = new JScrollPane(Notes);
 	JScrollPane Scroll = new CScrollPane();
@@ -1148,7 +1185,6 @@ class ReportsManager extends JPanel{
 		}
 		int boxSizes2 = Buttons_Developers.length / 2 + 1;
 		
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		new SetGrid(1.0,1.0,c);
 		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
 		new SetGrid(1,0,100,20,c,new CPanel(),this);
