@@ -198,7 +198,12 @@ class AbsoluteLabel extends JLabel{
 		setText(Words);
 		setBounds(x, y, width, height);
 		setFont(new Font("Helvetica", Font.BOLD, FontSize));
-		setForeground(new java.awt.Color(194,56,61));
+		if(ErrorLabel)
+			setForeground(new java.awt.Color(194,56,61));
+		else{
+			setForeground(new java.awt.Color(255,255,255));
+			setFont(new Font("Helvetica", ~Font.BOLD, FontSize));
+		}
 	}
 }
 
@@ -218,50 +223,52 @@ class AddToFrame{
 */
 
 class TM_GUI_Intro{
+	JLabel TitleTO = new AbsoluteLabel("TM", 330,200,440,430, 120, false);
+	JLabel DescriptionTO = new AbsoluteLabel("An Agile Task Managing Application", 330,160,640,330, 18, false);
 	static int LocalTimer = 0;
 	public TM_GUI_Intro(JPanel frame){
 		frame.setBackground(new java.awt.Color(0,0,0));
 		frame.setOpaque(true);
 		frame.setLayout(null);
-		JLabel label_top; JLabel label_bottom;
-		ImageIcon icon_top; ImageIcon icon_bottom;
-		icon_top = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
-		label_top = new JLabel(icon_top);
-		icon_bottom = new ImageIcon(Test.class.getResource("art/IntroAnimation/2.png"));
-		label_bottom = new JLabel(icon_bottom);
-		frame.add(label_top); frame.add(label_bottom);
-		label_top.setBounds(-550, 300, 150, 150);
-		label_bottom.setBounds(-550, 300, 150, 150);
+		frame.add(TitleTO); frame.add(DescriptionTO);
+		TitleTO.setBounds(-550, 300, 500, 500);
+		DescriptionTO.setBounds(-550, 300, 500, 500);
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				LocalTimer++;
 				switch(LocalTimer){
-					case 4: //From 5-11 we are just fading in "TM"
-							label_top.setBounds(400, 140, 150, 150);
-							label_bottom.setBounds(400, 199, 150, 150);
+					case 4: TitleTO.setBounds(390, -10, 500, 500);
 							break;
 					case 8: //From 8-11 we are doing some small animation
-							label_top.setBounds(405, 145, 150, 150);
-							label_bottom.setBounds(405, 204, 150, 150);
+							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 30));
+							DescriptionTO.setBounds(340, 60, 500, 500);
 							break;
-					case 9:	label_top.setBounds(410, 140, 150, 150);
-							label_bottom.setBounds(410, 209, 150, 150);
+					case 9:	DescriptionTO.setForeground(new java.awt.Color(255,255,255, 70));
 							break;
-					case 10:label_top.setBounds(405, 145, 150, 150);
-							label_bottom.setBounds(405, 204, 150, 150);
+					case 10:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 140));
 							break;
-					case 11:label_top.setBounds(400, 140, 150, 150);
-							label_bottom.setBounds(400, 199, 150, 150);
+					case 11:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 200));
 							break;
-					case 15:label_top.setBounds(-550, 300, 150, 150);
-							label_bottom.setBounds(-550, 300, 150, 150);
+					case 12:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 255));
+							break;
+					case 15:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 200));
+							TitleTO.setForeground(new java.awt.Color(255,255,255, 200));
+							break;
+					case 16:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 140));
+							TitleTO.setForeground(new java.awt.Color(255,255,255, 140));
 							break;
 					case 17: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
 							frame.setBackground(new java.awt.Color(10,10,10));
+							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 70));
+							TitleTO.setForeground(new java.awt.Color(255,255,255, 70));
 							break;
 					case 18:frame.setBackground(new java.awt.Color(20,20,20));
+							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 30));
+							TitleTO.setForeground(new java.awt.Color(255,255,255, 30));
 							break;
 					case 19:frame.setBackground(new java.awt.Color(30,30,30));
+							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 0));
+							TitleTO.setForeground(new java.awt.Color(255,255,255, 0));
 							break;
 					case 20:frame.setBackground(new java.awt.Color(40,60,80));
 							break;
