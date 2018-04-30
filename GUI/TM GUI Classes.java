@@ -26,24 +26,29 @@ class TM_Frame extends JFrame{
 
 class PComboBox<String> extends JComboBox<String>{
 	public PComboBox(final String promptText, String[] ListOfNames){
-		insertItemAt((String)promptText, 0);
+		insertItemAt(promptText, 0);
 		setSelectedItem(promptText);
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
 				setEditable(true);
-			    insertItemAt((String)promptText, 0);
-				setSelectedItem(promptText);
+				if(!((String)getSelectedItem()).equals(promptText)){
+				}
+				else{
+					insertItemAt(promptText, 0);
+				}
 				setEditable(false);
 		    }
 		    public void focusGained(FocusEvent e){
-			    removeItemAt(0);
+			    if(((String)getSelectedItem()).equals(promptText)){
+					removeItemAt(0);
+				}
 		    }
 		});
 		setEditable(true);
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
 		for(int i = 0; i < ListOfNames.length; i++)
-			addItem((String)ListOfNames[i]);
+			addItem(ListOfNames[i]);
 		setEditable(false);
 	}
 }
@@ -1054,7 +1059,6 @@ class AddProjectManager extends JPanel{
 	JLabel ProjectsLabel = new Header("Add a project");
 	JTextField ProjectName = new PTextField("Project name");
 	JTextField BudgetHours = new PTextField("Budget hours");
-	//JTextField PeopleOnProject = new PTextField("People on the project");
 	String DevList[]={"james","jingle","heimer","schmidt","and josh"};        
 	JComboBox<String> PeopleOnProject = new PComboBox<>("Developer List", DevList);
 	JTextArea Notes = new PTextArea("Notes");
