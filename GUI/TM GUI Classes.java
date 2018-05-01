@@ -31,7 +31,7 @@ class PComboBox<String> extends JComboBox<String>{
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
 				setEditable(true);
-				if(!((String)getSelectedItem()).equals(promptText)){
+				if(!getSelectedItem().equals(promptText)){
 				}
 				else{
 					insertItemAt(promptText, 0);
@@ -39,7 +39,7 @@ class PComboBox<String> extends JComboBox<String>{
 				setEditable(false);
 		    }
 		    public void focusGained(FocusEvent e){
-			    if(((String)getSelectedItem()).equals(promptText)){
+			    if(getSelectedItem().equals(promptText)){
 					removeItemAt(0);
 				}
 		    }
