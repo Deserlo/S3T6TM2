@@ -25,26 +25,22 @@ class TM_Frame extends JFrame{
 }
 
 class PComboBox<String> extends JComboBox<String>{
+	/*This class creates a drop down list.
+	  If the user clicks on that drop down list then the initial text disappears
+	  This is only used in the manager side for a list of the developers.*/
 	public PComboBox(final String promptText, String[] ListOfNames){
 		insertItemAt(promptText, 0);
 		setSelectedItem(promptText);
 		addFocusListener(new FocusListener(){
 		    public void focusLost(FocusEvent e){
-				setEditable(true);
-				if(!getSelectedItem().equals(promptText)){
-				}
-				else{
+				if(getSelectedItem().equals(promptText))
 					insertItemAt(promptText, 0);
-				}
-				setEditable(false);
 		    }
 		    public void focusGained(FocusEvent e){
-			    if(getSelectedItem().equals(promptText)){
+			    if(getSelectedItem().equals(promptText))
 					removeItemAt(0);
-				}
 		    }
 		});
-		setEditable(true);
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
 		for(int i = 0; i < ListOfNames.length; i++)
@@ -112,7 +108,6 @@ class PTextArea extends JTextArea{ // pulled from stack overflow
 		});
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
-		//setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setFont(new Font("Helvetica",Font.ITALIC, 20));
 	}
 }
@@ -271,7 +266,7 @@ class TM_GUI_Intro{
 				switch(LocalTimer){
 					case 4: TitleTO.setBounds(390, -10, 500, 500);
 							break;
-					case 8: //From 8-11 we are doing some small animation
+					case 8: //From 8-12 we are fading in the description
 							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 30));
 							DescriptionTO.setBounds(340, 60, 500, 500);
 							break;
@@ -405,7 +400,6 @@ class RegisterScreen{
 				}
 				RepaintTimer.stop();
 				Test.MenuVar = 1; //All buttons go back to login screen.
-				//Test.MenuVar = ((Integer)((JButton)e.getSource()).getClientProperty("MenuSwitch")); 
 			}
 		};
 		button_DevRegister.addActionListener(action);
@@ -506,7 +500,8 @@ class LogInScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//BACK END TEAM
 					/* Just change this if(error) to however
-						an error is detected in the username/password combo*/
+						an error is detected in the username/password combo
+						String_Username & String_Password*/
 					if(String_Username.equals("Error")){
 						frame.add(ErrorTO);
 						LocalTimer = 6;
@@ -544,6 +539,8 @@ class LogInScreen{
 							Test.login = false;
 							//Test.MenuVar = 1;
 							//Display "Bad Username/Password"
+							frame.add(ErrorTO); //Comment out if(String_Username.equals("Error")){
+							LocalTimer = 6; //Idk if this will work.
 						}
 						*/
 					}
@@ -1115,7 +1112,11 @@ class AddProjectManager extends JPanel{
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					/*   BACK END TEAM
 					Add Project Code goes here
-					However it gets added into the database*/
+					However it gets added into the database
+					String String_ProjectName = ProjectName.getText();
+					String String_BudgetHours = BudgetHours.getText();
+					PeopleOnProject.getSelectedIndex(); //This will be the value in DevList
+					*/
 				}
 			}
 		};
