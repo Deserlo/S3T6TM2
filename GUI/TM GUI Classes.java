@@ -14,13 +14,25 @@ import javax.imageio.*;
 
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
+		//if(Test.MenuVar == 0){
+		/*dispose(); //CTRL-C
+		setUndecorated(true);
+		setOpacity(0.5f);
+		setVisible(true);*/
+		
 		setTitle(title);
 		setVisible(true);
 		//ImageIcon icon_corner = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
-		//setIconImage(icon_corner.getImage());
+		//setIconImage(icon_corner.getImage()); //can probably easily animate on first Login
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(117,132,178)));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize(); //pulled from https://stackoverflow.com/questions/11232131/centering-a-jframe
+		int x = (int)((screen.getWidth() - 960) / 2);
+		int y = (int)((screen.getHeight() - 540) / 2);
+		setLocation(x, y);
+		
 	}
 }
 
@@ -253,8 +265,8 @@ class TM_GUI_Intro{
 	JLabel TitleTO = new AbsoluteLabel("TM", 330,200,440,430, 120, false);
 	JLabel DescriptionTO = new AbsoluteLabel("An Agile Task Managing Application", 330,160,640,330, 18, false);
 	static int LocalTimer = 0;
-	public TM_GUI_Intro(JPanel frame){
-		frame.setBackground(new java.awt.Color(0,0,0));
+	public TM_GUI_Intro(JPanel frame, JFrame window){
+		frame.setBackground(new java.awt.Color(0,0,0));//,0
 		frame.setOpaque(true);
 		frame.setLayout(null);
 		frame.add(TitleTO); frame.add(DescriptionTO);
@@ -265,6 +277,10 @@ class TM_GUI_Intro{
 				LocalTimer++;
 				switch(LocalTimer){
 					case 4: TitleTO.setBounds(390, -10, 500, 500);
+							/*window.dispose(); //CTRL-C
+							window.setUndecorated(true);
+							window.setBackground(new java.awt.Color(0,0,0,0));//window.setOpacity(0.5f);
+							window.setVisible(true);*/
 							break;
 					case 8: //From 8-12 we are fading in the description
 							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 30));

@@ -16,6 +16,7 @@ public class Test{
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
+		
 		//Screens
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
@@ -36,7 +37,7 @@ public class Test{
 				OldValue = MenuVar;
 				switch(MenuVar){
 					case 0:	System.out.println("In case " + MenuVar);
-							new TM_GUI_Intro(Intro);
+							new TM_GUI_Intro(Intro, home);
 							contentpan.add(Intro);
 							break;
 					case 1: System.out.println("In case " + MenuVar);
