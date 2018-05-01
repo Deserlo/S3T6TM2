@@ -183,12 +183,39 @@ class AbsoluteTextButton extends JButton{
 }
 
 class AbsoluteTextField extends JTextField{
+	public String Password;
+	private int PasswordLength;
 	public AbsoluteTextField(String Words, int x, int y, int width, int height){
 		setText(Words);
+		addFocusListener(new FocusListener(){
+		    public void focusLost(FocusEvent e){
+				if(getText().isEmpty()){
+					setText(Words);
+				}
+				if(Words.equals("Password") || Words.equals("Old Password") || Words.equals("New Password")){ 
+					Password = getText(); //There is a JPasswordField but this is /probably/ simpler.
+					PasswordLength = getText().length();
+					setText("");
+					for(int i = 0; i < PasswordLength; i++)
+						setText(getText() + "*");
+				}
+		    }
+		    public void focusGained(FocusEvent e){
+				if(getText().equals(Words)){
+					setText("");
+				}
+				if(Words.equals("Password") || Words.equals("Old Password") || Words.equals("New Password")){
+					setText(Password);
+				}
+		    }
+		});
 		setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		setBackground(new java.awt.Color(70,81,108));
 		setForeground(new java.awt.Color(117,132,178));
 		setBounds(x, y, width, height); 
+	}
+	public String getPassword(){
+		return Password;
 	}
 }
 
@@ -299,11 +326,11 @@ class RegisterScreen{
 	JTextField Dev_NameTF = new AbsoluteTextField("Name", 110,120, 240,30);
 	JTextField Dev_EmailTF = new AbsoluteTextField("Email", 110,160, 240,30);
 	JTextField Dev_TeamTF = new AbsoluteTextField("Team", 110,200, 240,30);
-	JTextField Dev_PasswordTF = new AbsoluteTextField("Password", 110,240, 240,30);
+	AbsoluteTextField Dev_PasswordTF = new AbsoluteTextField("Password", 110,240, 240,30);
 	JTextField Man_NameTF = new AbsoluteTextField("Name", 640,120, 240,30);
 	JTextField Man_EmailTF = new AbsoluteTextField("Email", 640,160, 240,30);
 	JTextField Man_TeamTF = new AbsoluteTextField("Team", 640,200, 240,30);
-	JTextField Man_PasswordTF = new AbsoluteTextField("Password", 640,240, 240,30);
+	AbsoluteTextField Man_PasswordTF = new AbsoluteTextField("Password", 640,240, 240,30);
 	JButton button_DevRegister = new AbsoluteTextButton("Register", 145,300, 160,45, 3, 1);
 	JButton button_DevLogin = new AbsoluteTextButton("Login", 145,360, 160,45, 1, 2);
 	JButton button_ManRegister = new AbsoluteTextButton("Register", 675,300, 160,45, 4, 3);
@@ -333,7 +360,7 @@ class RegisterScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//DevRegister Code
 					/*
-					UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getText(),Dev_TeamTF.getText());
+					UserAccount newDev = new UserAccount("dev", Dev_NameTF.getText(),Dev_EmailTF.getText(), Dev_PasswordTF.getPassword(),Dev_TeamTF.getText());
 					if (newDev.createAccount(newDev)) {				
 						Test.userID = newDev.queryForId(newDev.username);
 						Test.login = true;
@@ -342,7 +369,7 @@ class RegisterScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					//DevLogIn Code
 					/*
-					Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getText());
+					Login newLogin = new Login(Dev_EmailTF.getText(), Dev_PasswordTF.getPassword());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.userID = newLogin.queryForId(newLogin.getUserName());
 						Test.login = true; 
@@ -355,7 +382,7 @@ class RegisterScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
 					//ManRegister Code
 					/*
-					UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),Man_EmailTF.getText(), Man_PasswordTF.getText(),Man_TeamTF.getText());
+					UserAccount newMgr = new UserAccount("mgr", Man_NameTF.getText(),Man_EmailTF.getText(), Man_PasswordTF.getPassword(),Man_TeamTF.getText());
 					if (newMgr.createAccount(newMgr)) {				
 						Test.userID = newMgr.queryForId(newMgr.username);
 						Test.login = true;
@@ -365,7 +392,7 @@ class RegisterScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 4){
 					//ManLogIn Code
 					/*
-					Login newLogin = new Login(Man_EmailTF.getText(), Man_PasswordTF.getText());
+					Login newLogin = new Login(Man_EmailTF.getText(), Man_PasswordTF.getPassword());
 					if (newLogin.authenticateUser(newLogin) == true) {
 						Test.userID = newLogin.queryForId(newLogin.getUserName());
 						Test.login = true; 
@@ -396,7 +423,7 @@ class LogInScreen{
 	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, 2, 2);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, 2, 3);
 	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
-	JTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
+	AbsoluteTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
 	Component[] Comp = {LogInTO, button_LogIn, button_GoBack, button_ChangePassword, UsernameTF, PasswordTF};
 	int LocalTimer = 0;
 	
@@ -475,7 +502,7 @@ class LogInScreen{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				String String_Username = UsernameTF.getText();
-				String String_Password = PasswordTF.getText();
+				String String_Password = PasswordTF.getPassword();
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					//BACK END TEAM
 					/* Just change this if(error) to however
@@ -549,8 +576,8 @@ class LogInScreen{
 class ChangePasswordScreen{
 	JLabel TitleTO = new AbsoluteLabel("Change Password", 345,-5,355,130, 32);
 	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
-	JTextField OldPasswordTF = new AbsoluteTextField("Old Password", 360,200, 240,30);
-	JTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
+	AbsoluteTextField OldPasswordTF = new AbsoluteTextField("Old Password", 360,200, 240,30);
+	AbsoluteTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, 2, 1);
 	JButton button_GoBack = new AbsoluteTextButton("Go Back", 440,370, 85,25, 2, 2);
 	Component[] Comp = {TitleTO, UsernameTF, OldPasswordTF, NewPasswordTF, button_ChangePassword, button_GoBack};
@@ -574,8 +601,8 @@ class ChangePasswordScreen{
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
 					System.out.println("Change Password Successful");
 					String String_Username = UsernameTF.getText();
-					String String_OldPassword = OldPasswordTF.getText();
-					String String_NewPassword = NewPasswordTF.getText();
+					String String_OldPassword = OldPasswordTF.getPassword();
+					String String_NewPassword = NewPasswordTF.getPassword();
 					//BACK END TEAM
 					/*
 					if(String_OldPassword.equals(getPassword(String_Username)))
