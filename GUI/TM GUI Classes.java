@@ -14,12 +14,6 @@ import javax.imageio.*;
 
 class TM_Frame extends JFrame{
 	public TM_Frame(String title){
-		//if(Test.MenuVar == 0){
-		/*dispose(); //CTRL-C
-		setUndecorated(true);
-		setOpacity(0.5f);
-		setVisible(true);*/
-		
 		setTitle(title);
 		setVisible(true);
 		//ImageIcon icon_corner = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
@@ -28,11 +22,10 @@ class TM_Frame extends JFrame{
 		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(117,132,178)));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize(); //pulled from https://stackoverflow.com/questions/11232131/centering-a-jframe
-		int x = (int)((screen.getWidth() - 960) / 2);
-		int y = (int)((screen.getHeight() - 540) / 2);
+		//pulled from https://stackoverflow.com/questions/11232131/centering-a-jframe
+		int x = (int)((Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 960) / 2);
+		int y = (int)((Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 540) / 2);
 		setLocation(x, y);
-		
 	}
 }
 
@@ -428,7 +421,7 @@ class RegisterScreen{
 
 class LogInScreen{
 	JLabel LogInTO = new AbsoluteLabel("Log In", 430,-5,195,130, 32);
-	JLabel ErrorTO = new AbsoluteLabel("Error: Wrong Username/Password combo", 330,210,440,130, 16, true);
+	JLabel ErrorTO = new AbsoluteLabel("Error: Wrong Username/Password Combo", 330,210,440,130, 16, true);
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, 2, 1);
 	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, 2, 2);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, 2, 3);
@@ -437,7 +430,7 @@ class LogInScreen{
 	Component[] Comp = {LogInTO, button_LogIn, button_GoBack, button_ChangePassword, UsernameTF, PasswordTF};
 	int LocalTimer = 0;
 	
-	public LogInScreen(JPanel frame){
+	public LogInScreen(JPanel frame, JFrame window){
 		frame.setBackground(new java.awt.Color(59,68,91));
 		new AddToFrame(frame, Comp);
 		frame.setLayout(null);
@@ -460,6 +453,7 @@ class LogInScreen{
 								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 70));
 								UsernameTF.setBackground(new java.awt.Color(70,81,108, 70));
 								PasswordTF.setBackground(new java.awt.Color(70,81,108, 70));
+								window.setTitle("TM              L");
 								break;
 					case 2: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 130));
 								button_LogIn.setBackground(new java.awt.Color(70,81,108, 130));
@@ -467,6 +461,7 @@ class LogInScreen{
 								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 130));
 								UsernameTF.setBackground(new java.awt.Color(70,81,108, 130));
 								PasswordTF.setBackground(new java.awt.Color(70,81,108, 130));
+								window.setTitle("TM              LO");
 								break;
 					case 3: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 170));
 								button_LogIn.setBackground(new java.awt.Color(70,81,108, 170));
@@ -474,6 +469,7 @@ class LogInScreen{
 								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 170));
 								UsernameTF.setBackground(new java.awt.Color(70,81,108, 170));
 								PasswordTF.setBackground(new java.awt.Color(70,81,108, 170));
+								window.setTitle("TM              LOG");
 								break;
 					case 4: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 200));
 								button_LogIn.setBackground(new java.awt.Color(70,81,108, 200));
@@ -481,6 +477,7 @@ class LogInScreen{
 								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 200));
 								UsernameTF.setBackground(new java.awt.Color(70,81,108, 200));
 								PasswordTF.setBackground(new java.awt.Color(70,81,108, 200));
+								window.setTitle("TM              LOGI");
 								break;
 					case 5: 	LogInTO.setForeground(new java.awt.Color(73,210,146, 255));
 								button_LogIn.setBackground(new java.awt.Color(70,81,108, 255));
@@ -488,18 +485,30 @@ class LogInScreen{
 								button_ChangePassword.setBackground(new java.awt.Color(70,81,108, 255));
 								UsernameTF.setBackground(new java.awt.Color(70,81,108, 255));
 								PasswordTF.setBackground(new java.awt.Color(70,81,108, 255));
+								window.setTitle("TM              LOGIN");
 								break;
-					case 20: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 220));
+					case 6:		window.setTitle("TM              LOGIN S");
 								break;
-					case 21: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 200));
+					case 7:		window.setTitle("TM              LOGIN SC");
 								break;
-					case 22: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 170));
+					case 8:		window.setTitle("TM              LOGIN SCRE");
 								break;
-					case 23: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 130));
+					case 9:		window.setTitle("TM              LOGIN SCREE");
 								break;
-					case 24: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 70));
+					case 10:	window.setTitle("TM              LOGIN SCREEN");
+								LocalTimer = 501;
 								break;
-					case 25: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 255));
+					case 25: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 220));
+								break;
+					case 26: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 200));
+								break;
+					case 27: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 170));
+								break;
+					case 28: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 130));
+								break;
+					case 29: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 70));
+								break;
+					case 30: 	ErrorTO.setForeground(new java.awt.Color(194,56,61, 255));
 								frame.remove(ErrorTO); LocalTimer = 500;
 								break;
 					default:	break;
@@ -520,10 +529,10 @@ class LogInScreen{
 						String_Username & String_Password*/
 					if(String_Username.equals("Error")){
 						frame.add(ErrorTO);
-						LocalTimer = 6;
+						LocalTimer = 11;
 					}
 					else{
-						RemoveEverything(frame);
+						RemoveEverything(frame, window);
 						RepaintTimer.stop();
 						/* EXAMPLE 3=developer dash, 4= manager dash*/
 						if(String_Username.equals("Dev")){
@@ -556,18 +565,18 @@ class LogInScreen{
 							//Test.MenuVar = 1;
 							//Display "Bad Username/Password"
 							frame.add(ErrorTO); //Comment out if(String_Username.equals("Error")){
-							LocalTimer = 6; //Idk if this will work.
+							LocalTimer = 11; //Idk if this will work.
 						}
 						*/
 					}
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
-					RemoveEverything(frame);
+					RemoveEverything(frame, window);
 					RepaintTimer.stop();
 					Test.MenuVar = 2; //Register
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
-					RemoveEverything(frame);
+					RemoveEverything(frame, window);
 					RepaintTimer.stop();
 					Test.MenuVar = 5; //Change Password
 				}
@@ -578,7 +587,8 @@ class LogInScreen{
 		button_ChangePassword.addActionListener(action);
 		frame.setOpaque(true);
 	}
-	private void RemoveEverything(JPanel frame){
+	private void RemoveEverything(JPanel frame, JFrame window){
+		window.setTitle("TM");
 		frame.setBackground(new java.awt.Color(59,68,91));
 		frame.removeAll();
 		frame.revalidate();

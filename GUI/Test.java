@@ -16,7 +16,6 @@ public class Test{
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
 		
-		
 		//Screens
 		JPanel Intro = new CPanel();
 		JPanel RegisterScreen = new CPanel();
@@ -41,7 +40,7 @@ public class Test{
 							contentpan.add(Intro);
 							break;
 					case 1: System.out.println("In case " + MenuVar);
-							new LogInScreen(LogInScreen);
+							new LogInScreen(LogInScreen, home);
 							contentpan.add(LogInScreen);
 							contentpan.revalidate();
 							break;
