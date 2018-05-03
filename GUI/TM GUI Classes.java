@@ -527,14 +527,14 @@ class LogInScreen{
 					/* Just change this if(error) to however
 						an error is detected in the username/password combo
 						String_Username & String_Password*/
-					if(String_Username.equals("Error")){
+					if(String_Username.equals("Error")){ //if(newLogin.authenticateUser(newLogin) == false) {
 						frame.add(ErrorTO);
 						LocalTimer = 11;
 					}
 					else{
 						RemoveEverything(frame, window);
 						RepaintTimer.stop();
-						/* EXAMPLE 3=developer dash, 4= manager dash*/
+						/* EXAMPLE(ERASE THIS) 3=developer dash, 4= manager dash*/
 						if(String_Username.equals("Dev")){
 							Test.MenuVar = 3; 
 						}
@@ -546,7 +546,12 @@ class LogInScreen{
 						//log in code
 						/*
 						Login newLogin = new Login(String_Username, String_Password);
-						if (newLogin.authenticateUser(newLogin) == true) {
+						//// I don't think we can do this here cuz of 
+						//// RemoveEverything(frame, window);
+						//// RepaintTimer.stop();
+						//// need to do if(newLogin.authenticateUser(newLogin) == false)) where "Error" is
+						//// and then this stuff in this else case
+						if (newLogin.authenticateUser(newLogin) == true) { 
 							Test.userID = newLogin.queryForId(String_Username);
 							Test.login = true;
 							String role = newLogin.getUserRole(Test.userID);
@@ -564,8 +569,6 @@ class LogInScreen{
 							Test.login = false;
 							//Test.MenuVar = 1;
 							//Display "Bad Username/Password"
-							frame.add(ErrorTO); //Comment out if(String_Username.equals("Error")){
-							LocalTimer = 11; //Idk if this will work.
 						}
 						*/
 					}
