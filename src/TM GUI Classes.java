@@ -1129,11 +1129,6 @@ class AddProjectManager extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					//   BACK END TEAM
-					//Add Project Code goes here
-					//Project(String projName, int budgetHours, int mgrID, String dev)
-					//check if projectName already exists
-					//if it does assignProject to developers
-					//if not add project to db, then assign to selected developer
 					String String_ProjectName = ProjectName.getText();
 					int budgetHours = Integer.parseInt(BudgetHours.getText());
 					int devNo = PeopleOnProject.getSelectedIndex();
