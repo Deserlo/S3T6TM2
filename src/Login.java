@@ -44,7 +44,7 @@ public class Login {
 		if (q.checkIfExists(id, devQuery)==true)
 			role = "developer";
 		else {
-			q.tableName = "manager";
+			q.tableName = "Manager";
 			String mgrQuery = q.generateQueryString(q);
 			if (q.checkIfExists(id, mgrQuery)==true)
 				role = "manager";
