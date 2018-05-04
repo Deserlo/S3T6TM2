@@ -542,15 +542,17 @@ class LogInScreen{
 							System.out.println("Logged in as "+role);
 							switch (role) {
 								case "developer":
+									RemoveEverything(frame, window);
+									RepaintTimer.stop();
 									Test.MenuVar = 3; 
 									break;
 								case "manager":
+									RemoveEverything(frame, window);
+									RepaintTimer.stop();
 									Test.MenuVar = 4; 
 									break;		
 							}
 						}
-						RemoveEverything(frame, window);
-						RepaintTimer.stop();
 					}
 				  }
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
