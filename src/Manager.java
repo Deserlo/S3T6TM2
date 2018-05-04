@@ -11,12 +11,7 @@ public class Manager {
 	 
 	 
 	 public String[][] getMgrHours(int mgrID){
-			String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}};
+			String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "}};
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
@@ -151,7 +146,7 @@ public class Manager {
 	
 	//returns list of tasks for a selected project by taskName
 	public String[][] TasksForProjName(String projName){
-		  String[][] noTasks = {{}}; 
+		  String[][] noTasks = {{"No tasks to display."," "," "}}; 
 	        Connection conn = null; 
 	        PreparedStatement stmt = null;
 	        ResultSet rs = null;   
@@ -199,7 +194,7 @@ public class Manager {
 	
 	//returns list of completed tasks for a selected developer
 	public String[][] TasksForDeveloper(String devName)  { 
-        String[][] noTasks = {{}}; 
+        String[][] noTasks = {{"No tasks to display."," "," "}}; 
         Connection conn = null; 
         PreparedStatement stmt = null;
         ResultSet rs = null;   
