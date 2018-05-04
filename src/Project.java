@@ -16,26 +16,28 @@ public class Project {
 		this.dev = dev;
 	}
 	
-	public boolean createProject(Project P) {
-		 PreparedStatement addProject = null;
-		 String addStmt = "INSERT INTO Project (projName, mgrID, timeBudget) VALUES (?,?,?);";
-		 DBConnection db = new DBConnection();
-		 db.conn = db.ConnectDB();
-		 try {
-		        addProject = db.conn.prepareStatement(addStmt);
-		        addProject.setString(1, P.projName);
-		        addProject.setInt(2, P.mgrID);
-		        addProject.setInt(3, P.budgetHours);
-		        addProject.execute();        
-		 } catch (SQLException e ) {
-			 e.printStackTrace();		        
-		 } finally {
-			 if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
-			 if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
-			 if (db.conn != null) try {db.conn.close();} catch (SQLException ignore) {}
+	public void createProject(Project P) {
+		 if (checkIfNameExists(P.projName)==false) {
+			 PreparedStatement addProject = null;
+			 String addStmt = "INSERT INTO Project (projName, mgrID, timeBudget) VALUES (?,?,?);";
+			 DBConnection db = new DBConnection();
+			 db.conn = db.ConnectDB();
+			 try {
+			        addProject = db.conn.prepareStatement(addStmt);
+			        addProject.setString(1, P.projName);
+			        addProject.setInt(2, P.mgrID);
+			        addProject.setInt(3, P.budgetHours);
+			        addProject.execute();        
+			 } catch (SQLException e ) {
+				 e.printStackTrace();		        
+			 } finally {
+				 if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+				 if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+				 if (db.conn != null) try {db.conn.close();} catch (SQLException ignore) {}
+			 }
 		 }
-		 return true;
-		
+		 assignProject(P.dev, P.projName);
+
 	}
 	
 	public boolean checkIfNameExists(String projName) {
@@ -54,28 +56,28 @@ public class Project {
 		 PreparedStatement getDevID = null;
 		 String assignStmt = "INSERT INTO Works_on (projNo, devID) VALUES (?,?);";
 		 String idQuery = "SELECT projNo from Project WHERE projName = ?;";
-		 String devIDQuery = "SELECT id from Developer WHERE userName = ?;";
+		 String devIDQuery = "SELECT id from User WHERE fname = ?;";
 		 DBConnection db = new DBConnection();
 		 db.conn = db.ConnectDB();
 		 try {
 		        db.conn.setAutoCommit(false);
 		        getID = db.conn.prepareStatement(idQuery);
+		        getID.setString(1, projName);
 		        assignProject = db.conn.prepareStatement(assignStmt);
-		        getDevID = db.conn.prepareStatement(devIDQuery);
-		        assignProject.execute();		        
-		        getID.setString(1,  projName);
+		        getDevID = db.conn.prepareStatement(devIDQuery);	           
 		        db.rs = getID.executeQuery();
 		        if (db.rs.next()){
 		        	int projNo = db.rs.getInt(1);
 		        	assignProject.setInt(1, projNo);
+		        	getDevID.setString(1, devName);
+		        	db.rs = getDevID.executeQuery();
+			        if (db.rs.next()) {
+			        	int devID = db.rs.getInt(1);	
+			        	assignProject.setInt(2, devID);
+			        	assignProject.execute();
+			        } 	
 		        }
-		        getDevID.setString(1, devName);
-		        db.rs = getDevID.executeQuery();
-		        if (db.rs.next()) {
-		        	int devID = db.rs.getInt(1);
-		        	assignProject.setInt(2, devID);
-		        }
-			        assignProject.execute(); // inserts new row in works_on table with projNo and devID assigned to work on it	
+			    // inserts new row in works_on table with projNo and devID assigned to work on it	
 		        db.conn.commit();
 		 } catch (SQLException e ) {
 			 e.printStackTrace();
@@ -86,8 +88,7 @@ public class Project {
 		            } catch(SQLException excep) {
 		                excep.printStackTrace();
 		            }
-		        }
-		        
+		        }        
 		 } finally {
 			 if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
 			 if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
