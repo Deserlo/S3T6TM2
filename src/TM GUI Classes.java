@@ -553,6 +553,7 @@ class LogInScreen{
 									break;		
 							}
 						}
+
 					}
 				  }
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
@@ -1129,14 +1130,15 @@ class AddProjectManager extends JPanel{
 				if(((Integer)((JButton)e.getSource()).getClientProperty("ExtraValue")) == 1){
 					//   BACK END TEAM
 					//Add Project Code goes here
-					//Project(String projName, int budgetHours, int mgrID, Set<String> Devs)
+					//Project(String projName, int budgetHours, int mgrID, String dev)
+					//check if projectName already exists
+					//if it does assignProject to developers
+					//if not add project to db, then assign to selected developer
 					String String_ProjectName = ProjectName.getText();
-					String String_BudgetHours = BudgetHours.getText();
-					
-					Set<String> Devs = new HashSet<String>();
+					int budgetHours = Integer.parseInt(BudgetHours.getText());
 					int devNo = PeopleOnProject.getSelectedIndex();
-					Devs.add(DevList[devNo]);
-					
+					Project P = new Project(String_ProjectName, budgetHours, Test.userID, DevList[devNo]);
+					P.createProject(P);
 				}
 			}
 		};
