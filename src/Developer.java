@@ -182,10 +182,10 @@ public class Developer {
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
-						String pName = rs.getString(1);
-						float pBudget = rs.getFloat(2);
-						String pLastTask = rs.getString(3);				
-						results[i] = new String[] {pName, String.valueOf(pBudget), pLastTask};
+						String tName = rs.getString(1);
+						float tDuration = rs.getFloat(2);
+						String tDescription = rs.getString(3);				
+						results[i] = new String[] {tName, String.valueOf(tDuration), tDescription};
 						i++;
 					}
 					return results;
