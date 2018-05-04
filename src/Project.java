@@ -3,18 +3,17 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Project {
 	String projName;
 	int budgetHours;
 	int mgrID;
-	Set<String>Devs; 
+	String dev; 
 	
-	public Project(String projName, int budgetHours, int mgrID, Set<String> Devs) {
+	public Project(String projName, int budgetHours, int mgrID, String dev) {
 		this.projName = projName;
 		this.budgetHours = budgetHours;
 		this.mgrID = mgrID;
-		this.Devs = Devs;
+		this.dev = dev;
 	}
 	
 	public boolean createProject(Project P) {
@@ -37,6 +36,16 @@ public class Project {
 		 }
 		 return true;
 		
+	}
+	
+	public boolean checkIfNameExists(String projName) {
+		boolean exists = false;
+		Query checkName = new Query();
+		String query = "SELECT projNo FROM Project P WHERE P.projName = ?;";
+		if (checkName.checkIfNameExists(projName, query)==true) {
+			exists = true;
+		}
+		return exists;	
 	}
 	
 	public boolean assignProject(String devName, String projNme) {
@@ -87,18 +96,5 @@ public class Project {
 		 return true;	
 	}
 		
-
-	public static void main(String args[]) {
-		//Project(String projName, int budgetHours, int mgrID, Set<String> Devs)
-		String devUsername = "nec@enimnonnisi.com";
-		String devUsernamee = "tellus@ultrices.com";
-		Set<String> devNames = new HashSet<String>();
-		devNames.add(devUsernamee);
-		devNames.add(devUsername);
-		Project newProject = new Project("testNewProject", 80, 27, devNames);
-		newProject.createProject(newProject);
-		
-		
-	}
 	
 }
