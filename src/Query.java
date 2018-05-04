@@ -11,6 +11,7 @@ public class Query {
 		this.colName1 = colName1;
 		this.name = name;
 	}
+	public Query() {}
 
 	public String generateQueryString(Query q) {
 		String select = "SELECT " + q.colName;
@@ -68,6 +69,28 @@ public class Query {
 		try { 
 	    	   db.stmt = db.conn.prepareStatement(query);
 	           db.stmt.setInt(1, id);
+			   db.rs = db.stmt.executeQuery();
+			   while(db.rs.next()) {
+				   exists = true;
+			   }	
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+				if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+				if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+			}     
+		return exists;
+	}
+	
+	
+	public boolean checkIfNameExists(String name, String query) {
+		boolean exists = false;
+		DBConnection db = new DBConnection();
+		db.conn = db.ConnectDB();
+		try { 
+	    	   db.stmt = db.conn.prepareStatement(query);
+	           db.stmt.setString(1, name);
 			   db.rs = db.stmt.executeQuery();
 			   while(db.rs.next()) {
 				   exists = true;
