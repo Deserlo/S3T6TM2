@@ -45,16 +45,15 @@ We will be implementing a two-tier client/server architecture for the TM project
 |   REQ3           |  The program shall find the time elapsed between the time a task was started and stopped                |
 |   REQ4           |  The program shall describe what a task is about with a description given by the user                   |
 |   REQ5           |  Users shall be able to view a summary of the tasks created by them, and be able to create and download a clean spreadsheet of the summary data    |
-|   REQ6           |   Developers shall be able to easily pause a task that is currently running                             |
-|   REQ7           |  Managers shall be able to set notes on tasks developers are working on                                 |
-|   REQ8           | Both managers and developers shall be able to set a time budget for each task                           |             
-|   REQ9           | Managers shall be able to set a due date for a task                                                     |
-|   REQ10          | Managers shall be able to assign a task to a particular developer                                       |
-|   REQ11          | The program shall notify the user of the upcoming due date or budget limit                              |
-|   REQ12          | Each task shall be categorized under a project, thus to organize the workflow                           |
-|   REQ13          | A user shall be able to log on as a manager or developer, allowing different functions                  |
-|   REQ14          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
-|   REQ15          | A user shall be able to change the password associated with their username                              |
+|   REQ6           |  Managers shall be able to set notes on tasks developers are working on                                 |
+|   REQ7           | Both managers and developers shall be able to set a time budget for each task                           |          
+|   REQ8           | Managers shall be able to set a due date for a task                                                     |
+|   REQ9          | Managers shall be able to assign a task to a particular developer                                       |
+|   REQ10          | The program shall notify the user of the upcoming due date or budget limit                              |
+|   REQ11          | Each task shall be categorized under a project, thus to organize the workflow                           |
+|   REQ12          | A user shall be able to log on as a manager or developer, allowing different functions                  |
+|   REQ13          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
+|   REQ14          | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
 
@@ -173,53 +172,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-6***             | Name: Pause Task                                            |
-|---------------------------|-------------------------------------------------------------|
-| Related requirements      | REQ6                                                        |
-| Initiating actor          | Developer                                                   |
-| Actor's goal              | To start a task at the current time                         |
-| Participating actors      | System, File Writer                                         |
-| Preconditions             | The task is named. The task has started, and has not stopped|
-| Postconditions            | The task is paused                                          |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                       |
-|--------|--------------------------------------------------------------------------------------|
-| 1  ->  | **Developer** names the task to be paused                                            |
-| 2  ->  | **Developer** then selects the option "Pause Task"                                   |
-| 3  <-  | **System** signals that there is a task name, and the "Pause Task" option was chosen |
-| 4  <-  | **File Writer** then writes the time paused to a file                                |
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-| Use case ***UC-7***             | Name: Unpause Task                                           |
-|---------------------------|--------------------------------------------------------------|
-| Related requirements      | REQ6                                                         |
-| Initiating actor          | Developer                                                    |
-| Actor's goal              | To start a task at the current time                          |
-| Participating actors      | System, File Writer                                          |
-| Preconditions             | The task is named. The task has started, and has not stopped |
-| Postconditions            | The task is unpaused                                         |
-
-#### Flow of events for main success scenario:
-
-| Number |    Description                                                                         |
-|--------|----------------------------------------------------------------------------------------|
-| 1  ->  | **Developer** names the task to be unpaused                                            |
-| 2  ->  | **Developer** then selects the option "Unpause Task"                                   |
-| 3  <-  | **System** signals that there is a task name, and the "Unpause Task" option was chosen |
-| 4  <-  | **File Writer** then writes the time that the task is unpaused to a file               |
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-| Use case ***UC-8***             | Name: Set Notes                                                           |
+| Use case ***UC-6***             | Name: Set Notes                                                           |
 |---------------------------|---------------------------------------------------------------------------|
-| Related requirements      | REQ7                                                                      |
+| Related requirements      | REQ6                                                                      |
 | Initiating actor          | Manager                                                                   |
 | Actor's goal              | Set notes on a task developer(s) are working on                           |
 | Participating actors      | System, File Writer                                                       |
@@ -240,9 +195,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-9***                | Name: Due Date                                                         |
+| Use case ***UC-7***                | Name: Due Date                                                         |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 9                                                                  |
+| Related requirements         | REQ 8                                                                  |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | A due date is made for a particular task                               |
 | Participating actors         | System, File Writer                                                    |
@@ -262,9 +217,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-10***               | Name: Notifications                                                      |
+| Use case ***UC-8***               | Name: Notifications                                                      |
 |------------------------------|--------------------------------------------------------------------------|
-| Related requirements         | REQ 11                                                                   |
+| Related requirements         | REQ 10                                                                   |
 | Initiating actor             | Developer                                                                |
 | Actor's goal                 | To have a reminder for the user of upcoming due dates or budget limits   |
 | Participating actors         | System, File Writer                                                      |
@@ -283,9 +238,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-11***               | Name: Budget                                                           |
+| Use case ***UC-9***               | Name: Budget                                                           |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 8                                                                  |
+| Related requirements         | REQ 7                                                                  |
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Set time budget for a task                                             |
 | Participating actors         | System, File Writer                                                    |
@@ -306,9 +261,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-12***               | Name: Create Account                                                   |
+| Use case ***UC-10***               | Name: Create Account                                                   |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 14                                                                 |
+| Related requirements         | REQ 13                                                                 |
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Create an account with their log in credentials                        |
 | Participating actors         | System, File Writer                                                    |
@@ -329,9 +284,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-13***               | Name: Changing Password                                                |
+| Use case ***UC-11***               | Name: Changing Password                                                |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 15                                                                 |
+| Related requirements         | REQ 14                                                                 |
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Change password associated with a specific username                    |
 | Participating actors         | System, File Writer                                                    |
@@ -351,9 +306,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-14***            | Name: Assign Task                                                      |
+| Use case  ***UC-12***            | Name: Assign Task                                                      |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 10                                                                 |
+| Related requirements         | REQ 9                                                                 |
 | Initiating actor             | Manager                                                                |
 | Actor's goal                 | Assign a task to a specific developer                                  |
 | Participating actors         | System, File Writer                                                    |
@@ -373,9 +328,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-15***            | Name: Assign Project                                                   |
+| Use case  ***UC-13***            | Name: Assign Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 12                                                                 |
+| Related requirements         | REQ 11                                                                 |
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Assign Task to be associated with a project                            |
 | Participating actors         | System, File Writer                                                    |
@@ -395,9 +350,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-16***            | Name: Create Project                                                   |
+| Use case  ***UC-14***            | Name: Create Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
-| Related requirements         | REQ 12                                                                 |
+| Related requirements         | REQ 11                                                                 |
 | Initiating actor             | User                                                                   |
 | Actor's goal                 | Create a project to subdivide tasks                                    |
 | Participating actors         | System, File Writer                                                    |
@@ -417,25 +372,24 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 
 ## Traceability Matrix
-| REQ | PW | UC1| UC2| UC3 |UC4 |UC5 |UC6 |UC7 |UC8 |UC9|UC10|UC11|UC12|UC13|UC14|UC15|UC16|
-|-----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-|REQ1 | 5  | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ2 | 5  |   | x | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ3 | 5  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ4 | 4  |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ5 | 1  |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ6 | 3  |   |   |   |   |   | x | x |   |   |   |   |   |   |   |   |   |   |  |
-|REQ7 | 3  |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |   |  |
-|REQ8 | 2  |   |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |  |
-|REQ9 | 4  |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |   |  |
-|REQ10| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   | x |   |   |   |  |
-|REQ11| 1  |   |   |   |   |   |   |   |   |   | x |   |   |   |   |   |   |   |  |
-|REQ12| 2  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |  x| x |   |  |
-|REQ13| 5  |   |   |   |   | x |   |   |   |   |   |   |   |   |   |   |   |   |  |
-|REQ14| 5  |   |   |   |   | x |   |   |   |   |   |   | x |   |   |   |   |   |  |
-|REQ15| 1  |   |   |   |   | x |   |   |   |   |   |   |   |  x|   |   |   |   |  |
-|Max |PW   | 5 | 5 | 5 | 4 | 5 | 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 |   |  |
-|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 3 | 3 | 4 | 1 | 2 | 5 | 1 | 2 | 2 | 2 |   |  |
+| REQ | PW |UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|UC12|UC13|UC14|
+|-----|----|---|---|---|---|---|---|---|---|---|----|----|----|----|----|
+|REQ1 | 5  | x |   |   |   |   |   |   |   |   |    |    |    |    |    |  
+|REQ2 | 5  |   | x | x |   |   |   |   |   |   |    |    |    |    |    |  
+|REQ3 | 5  |   |   | x |   |   |   |   |   |   |    |    |    |    |    | 
+|REQ4 | 4  |   |   |   | x |   |   |   |   |   |    |    |    |    |    | 
+|REQ5 | 1  |   |   | x |   |   |   |   |   |   |    |    |    |    |    | 
+|REQ6 | 3  |   |   |   |   |   | x |   |   |   |    |    |    |    |    | 
+|REQ7 | 2  |   |   |   |   |   |   |   |   | x |    |    |    |    |    |  
+|REQ8 | 4  |   |   |   |   |   |   | x |   |   |    |    |    |    |    |  
+|REQ9 | 2  |   |   |   |   |   |   |   |   |   |    |    | x  |    |    |
+|REQ10| 1  |   |   |   |   |   |   |   | x |   |    |    |    |    |    | 
+|REQ11| 2  |   |   |   |   |   |   |   |   |   |    |    |    | x  | x  | 
+|REQ12| 5  |   |   |   |   | x |   |   |   |   |    |    |    |    |    |  
+|REQ13| 5  |   |   |   |   | x |   |   |   |   | x  |    |    |    |    | 
+|REQ14| 1  |   |   |   |   | x |   |   |   |   |    | x  |    |    |    | 
+|Max  | PW | 5 | 5 | 5 | 4 | 5 | 3 | 4 | 1 | 2 | 5  | 1  | 2  | 2  | 2  | 
+|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 4 | 1 | 2 | 5  | 1  | 2  | 2  | 2  |  
 
 
 ## Domain Model 
