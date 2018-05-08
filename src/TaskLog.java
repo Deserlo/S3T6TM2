@@ -50,7 +50,7 @@ public class TaskLog {
 		}
 		else {
 			t.projNo = getProjID(t.projectName);	
-			String sql = insertSqlTask();
+			String sql = "INSERT INTO Task (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";
 			DBConnection db = new DBConnection();
 			db.conn = db.ConnectDB();
 			try {
@@ -82,7 +82,7 @@ public class TaskLog {
 			DBConnection db = new DBConnection();
 			db.conn = db.ConnectDB();
 			try {
-				db.stmt = db.conn.prepareStatement(stopSqlTask());
+				db.stmt = db.conn.prepareStatement("UPDATE Task SET end = ? , description = ? WHERE taskID = ? and projNo = ? and duration is null;");
 				db.stmt.setString(1, Stop());
 				db.stmt.setString(2, updatedDescription);
 				db.stmt.setInt(3, taskID);
@@ -101,16 +101,18 @@ public class TaskLog {
 		Query q = new Query("Task", "taskID","taskName",taskName);
 		String t = q.generateQueryString(q);
 	    int id = q.getID(q.name, t);
-	    return id;		}
+	    return id;		
+	}
 	
 	private int getProjID(String projName) {
 		Query queryForProjNo = new Query("Project", "ProjNo", "ProjName", projectName);
 		String t = queryForProjNo.generateQueryString(queryForProjNo);
 		int pNo = queryForProjNo.getID(queryForProjNo.name, t);
-		return pNo;}
+		return pNo;
+	}
 	
 	private String getDescription(int taskID) {
-		String sql = getDesc();
+		String sql = "SELECT description from Task where taskID=?;";	
 		String description = "";
 		DBConnection db = new DBConnection();
     	db.conn = db.ConnectDB();   
@@ -152,12 +154,11 @@ public class TaskLog {
 		double duration = calcDuration(taskname);
 		double durationInHours = duration / ((double) 1000 * 60 * 60);
 		try {
-			db.stmt = db.conn.prepareStatement(updateSqlDuration());
+			db.stmt = db.conn.prepareStatement("UPDATE Task SET duration = ? WHERE taskID = ?;");
 			db.stmt.setDouble(1, durationInHours);
 			db.stmt.setInt(2, taskID);
 			db.stmt.execute();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}				
 	}
@@ -172,7 +173,6 @@ public class TaskLog {
 			date1 = formatter.parse(start);
 			date2 = formatter.parse(end);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return date2.getTime() - date1.getTime();}
@@ -180,7 +180,7 @@ public class TaskLog {
 	//checks that a task entered by is for an assigned project by getting projNo and checking works_on table
 	private boolean checkIfAssigned(int devID, String projName) {
 			boolean isAssigned = false;
-			String sql = checkSqlProject();
+			String sql = "SELECT P.ProjName FROM Project P, Works_on W WHERE P.projNo = W.projNo and W.devID = ?";	;
 			DBConnection db = new DBConnection();
 	    	db.conn = db.ConnectDB();   
 	       try { 
@@ -221,31 +221,5 @@ public class TaskLog {
 			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
 		}   	
        return true;		
-	}
-	
-	public static String insertSqlTask() {
-		return "INSERT INTO Task (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";	}
-		
-	public static String updateSqlDuration() {
-		return  "UPDATE Task SET duration = ? WHERE taskID = ?;";	}
-		
-	public static String stopSqlTask() {
-		return  "UPDATE Task SET end = ? , description = ? WHERE taskID = ? and projNo = ? and duration is null;";	}
-	
-	public static String checkSqlProject() {
-		return "SELECT P.ProjName FROM Project P, Works_on W WHERE P.projNo = W.projNo and W.devID = ?";	}
-	
-	public static String getDesc() {
-		return "SELECT description from Task where taskID=?;";	}
-	
-	public static void main(String[] args) {	
-		TaskLog newtask1 = new TaskLog();
-		float diff = newtask1.calcDuration("nametask");
-	    double diffInHours = diff / ((double) 1000 * 60 * 60);
-	    System.out.println(diffInHours);
-	    System.out.println("Hours " + (int)diffInHours);
-	    System.out.println("Minutes " + (diffInHours - (int)diffInHours)*60 );
-
-	}
-
+	}			
 }
