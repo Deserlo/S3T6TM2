@@ -59,12 +59,7 @@ public class Developer {
 	
 	
 	public String[][] getDevProjects(int devID){
-			String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}, {" ", " ", " "},{" ", " ", " "}, {" ", " ", " "},
-													{" ", " ", " "}};
+			String[][] noProjects = {{"No projects to display!"," "," "}};
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
