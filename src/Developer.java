@@ -62,18 +62,17 @@ public class Developer {
 			String[][] noProjects = {{"No projects to display!"," "," "}};
 			Connection conn = null;
 			PreparedStatement stmt = null;
+			PreparedStatement getTasks = null;
 			ResultSet rs = null;
 			 try { 
 				   DBConnection db = new DBConnection();
 		    	   conn = db.ConnectDB();
 		    	   // # of ? in query indicates #of parameters to set in stmt.setInt(1, devID)
 		    	   // if 2 ? then stmt.setInt (2, someIntVar) would be next line or stmt.setString (2, someStringVar) if parameter was string
-		    	   String query =  "SELECT P.ProjName, P.timeBudget, T.taskName " + 
-		    	   		"FROM Project P, Task T, Works_on W " + 
-		    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = T.devID " + 
-		    	   		"and T.devID = ?  and T.duration is not null " + 
-		    	   		"GROUP BY P.ProjName " + 
-		    	   		"HAVING MAX(T.end);";
+		    	   String query =  "SELECT P.projNo, P.projName, P.timeBudget " + 
+		    	   		"FROM Project P, Works_on W " + 
+		    	   		"WHERE  P.projNo = W.projNo and " + 
+		    	   		"W.devID = ?; ";
 		           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		           stmt.setInt(1, devID);
 				   rs = stmt.executeQuery();
@@ -85,15 +84,35 @@ public class Developer {
 					    // Move to beginning
 					    rs.beforeFirst();
 					    while  (rs.next()) {
-							String pName = rs.getString(1);
-							float pBudget = rs.getFloat(2);
-							String pLastTask = rs.getString(3);
-											
-							results[i] = new String[] {pName, String.valueOf(pBudget), pLastTask};
+					    	int projNo = rs.getInt(1);
+							String pName = rs.getString(2);
+							float pBudget = rs.getFloat(3);	
+							getTasks = conn.prepareStatement("Select T.taskName "+
+															" FROM  Task T "+	
+															"WHERE T.projNo = ? and T.devID=? and T.duration is not null;");
+							getTasks.setInt(1, projNo);
+							getTasks.setInt(2, devID);
+							db.rs = getTasks.executeQuery();
+							String allTasks = "";
+							int x = 0;
+							if (db.rs.last()) {
+								int numTasks = db.rs.getRow();	
+								System.out.println("num Tasks:"+numTasks);
+								db.rs.beforeFirst();
+								while (db.rs.next()){
+									String task = db.rs.getString(1);
+									if (x!=numTasks-1)
+										allTasks += task + ", ";
+									else
+										allTasks += task;
+									x++;
+								}
+							results[i] = new String[] {pName, String.valueOf(pBudget),allTasks};
 							i++;
-						}
-						return results;
-					}
+							}		
+					    }
+					 return results;
+				   }
 				   	  
 				} catch (SQLException e) {
 					e.printStackTrace();
