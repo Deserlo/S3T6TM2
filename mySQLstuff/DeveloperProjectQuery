@@ -1,7 +1,14 @@
 
-SELECT P.ProjName, T.taskName, T.duration 
-FROM Project P, Task T, Works_on W
-WHERE  P.ProjNo = W.ProjNo and W.devID = T.devID 
-and T.devID = ?  and T.duration is not null 
-GROUP BY P.ProjName 
-HAVING MAX(T.end);
+SELECT 
+    P.projName, T.taskName, T.duration
+FROM
+    Project P,
+    Task T,
+    Works_on W
+WHERE
+	P.projNo = W.projNo AND
+	T.duration IS NOT NULL AND
+    W.devID = T.devID
+	AND T.end = (SELECT MAX(T.end)
+					FROM Task T, Works_on W
+					WHERE T.devID = ?);
