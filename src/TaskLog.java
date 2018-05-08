@@ -43,13 +43,12 @@ public class TaskLog {
 	}
 	
 	public boolean insertTask(TaskLog t) {
-		int taskID = getTaskID(taskName);
+		int taskID = getTaskID(t.taskName, t.devID);
 		if (checkIfAssigned(t.devID,  t.projectName)==false || taskID!=0)  {
-			System.out.println("checkIfAssigned/project name false or task already started");
 			return false;
 		}
 		else {
-			t.projNo = getProjID(t.projectName);	
+			t.projNo = getProjID(t.projectName, t.devID);	
 			String sql = "INSERT INTO Task (taskName, projNo, devID, start, description) VALUES (?, ? ,?,?,?);";
 			DBConnection db = new DBConnection();
 			db.conn = db.ConnectDB();
@@ -71,9 +70,9 @@ public class TaskLog {
 			
 	public boolean stopTask(int devID, String taskName, String projName, String moreDescription) {
 		boolean taskStopped = true;
-		int taskID = getTaskID(taskName);
+		int taskID = getTaskID(taskName, devID);
 		if (checkIfAssigned(devID,  projName)==false || taskID==0 || checkIfTaskComplete(taskID)==true)  {
-			System.out.println("stop fail, checkIfAssigned or taskName false or task already completed");	
+			System.out.println("stop fail, either you are trying to log a task under an unassigned project, stopping a task which does not exist, or task has already been completed");	
 			taskStopped = false;
 		}
 		else {
@@ -86,7 +85,7 @@ public class TaskLog {
 				db.stmt.setString(1, Stop());
 				db.stmt.setString(2, updatedDescription);
 				db.stmt.setInt(3, taskID);
-				db.stmt.setInt(4, getProjID(projName));
+				db.stmt.setInt(4, getProjID(projName, devID));
 				db.stmt.execute();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -97,17 +96,50 @@ public class TaskLog {
 		return taskStopped;
 	}
 	
-	private int getTaskID(String taskName) {
-		Query q = new Query("Task", "taskID","taskName",taskName);
-		String t = q.generateQueryString(q);
-	    int id = q.getID(q.name, t);
+	//returns id of task that has been started but not finished
+	private int getTaskID(String taskName, int devID) {
+		String sql = "select T.taskID from Task T where T.taskName = ? and T.devID=? and T.duration is null";
+		DBConnection db = new DBConnection();
+		db.conn = db.ConnectDB();
+		int id = 0;
+		try {
+			 db.stmt = db.conn.prepareStatement(sql);
+	         db.stmt.setString(1, taskName);
+	         db.stmt.setInt(2, devID);
+			 db.rs = db.stmt.executeQuery();
+			 while(db.rs.next()) {
+				  id = db.rs.getInt(1);
+			 }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+		}
 	    return id;		
 	}
-	
-	private int getProjID(String projName) {
-		Query queryForProjNo = new Query("Project", "ProjNo", "ProjName", projectName);
-		String t = queryForProjNo.generateQueryString(queryForProjNo);
-		int pNo = queryForProjNo.getID(queryForProjNo.name, t);
+	//returns id of project given a project name and unique dev ID
+	private int getProjID(String projName, int devID) {
+		String sql = "select P.projNo from Project P, Works_on W where P.projName = ? and W.projNo = P.projNo and W.devID = ?;";
+		DBConnection db = new DBConnection();
+		db.conn = db.ConnectDB();
+		int pNo = 0;
+		try {
+			 db.stmt = db.conn.prepareStatement(sql);
+	         db.stmt.setString(1, projName);
+	         db.stmt.setInt(2, devID);
+			 db.rs = db.stmt.executeQuery();
+			 while(db.rs.next()) {
+				  pNo = db.rs.getInt(1);
+			 }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+		}
 		return pNo;
 	}
 	
