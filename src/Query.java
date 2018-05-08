@@ -104,23 +104,5 @@ public class Query {
 			}     
 		return exists;
 	}
-	
-	
-
-	public static void main(String[] args) {
-		//eg.
-		//select id from user where userName = "email@example.com"
-		Query q = new Query("User", "id","userName","email@example.com");
-		String t = q.generateQueryString(q);
-	    int id = q.getID(q.name, t);
-	    System.out.println(id);
-	    //eg.
-	    //select userName from user where id = 1
-	    Query qa = new Query("User", "userName","id","1");
-		String ta = qa.generateQueryString(qa);
-	    String a = qa.getName(qa.name, ta);
-	    System.out.println(a);
-
-	}
 
 }
