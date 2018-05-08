@@ -1150,7 +1150,9 @@ class ProjectsManager extends JPanel{
 	JButton log = new CButton("<html><font face = helvetica size = 4>Add Project</font></html>",false,1);
 	
 	public ProjectsManager(Container f, JPanel main, JPanel[] s, String[][] Data){
-		table = new JTable(Data, Cnames);
+		Manager mgr = new Manager();
+		String projects[][] = mgr.getProjectsMgr(Test.userID);
+		table = new JTable(projects, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
