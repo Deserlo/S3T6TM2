@@ -10,11 +10,8 @@ public class Developer {
 	//user session info
 	int devID = Test.userID;
 	boolean loggedIn = Test.login; //check logged in status	
-	//int screen = 1;
-	//int screen = Test.MenuVar;
 	int columns = 3;
 	public Developer() {}
-	//project: list of projects with project name, time budget, last logged task
 	
 	public String[][] getDevHours(int devID){
 		String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "},
