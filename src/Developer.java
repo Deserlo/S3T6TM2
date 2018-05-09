@@ -14,27 +14,30 @@ public class Developer {
 	public Developer() {}
 	
 	public String[][] getDevHours(int devID){
-		String[][] noProjects = {{"No projects to display!"," "," "}};
+		String[][] noProjects = {{"No projects to display."," "," "}};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		 try { 
 			   DBConnection db = new DBConnection();
 	    	   conn = db.ConnectDB();
-	    	   String query =  "SELECT P.ProjName, T.taskName, T.duration " + 
+	    	   String query =  "SELECT P.projName, T.taskName, T.duration " + 
 	    	   		"FROM Project P, Task T, Works_on W " + 
-	    	   		"WHERE  P.ProjNo = W.ProjNo and  W.devID = T.devID " + 
-	    	   		"and T.devID = ?  and T.duration is not null " + 
-	    	   		"GROUP BY P.ProjName " + 
-	    	   		"HAVING MAX(T.end);" ;
+	    	   		"WHERE P.projNo = W.projNo AND  W.devID = T.devID AND T.devID = ? " + 
+	    	   		"AND T.end = (SELECT MAX(T.end) " + 
+	    	   		"FROM Task T, Works_on W, Project P " + 
+	    	   		"WHERE P.projNo = W.projNo and " + 
+	    	   		"W.devID = T.devID " + 
+	    	   		"AND T.devID = ? AND " + 
+	    	   		"T.duration IS NOT NULL);";
 	           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	           stmt.setInt(1, devID);
+	           stmt.setInt(2, devID);
 			   rs = stmt.executeQuery();
 			   int i=0;
 			   if (rs.last()) {
 				    int rows = rs.getRow();
 				    String [][] results =new String[rows][columns];
-				    System.out.println("number of results: " + rows);
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
@@ -59,7 +62,7 @@ public class Developer {
 	
 	
 	public String[][] getDevProjects(int devID){
-			String[][] noProjects = {{"No projects to display!"," "," "}};
+			String[][] noProjects = {{"No projects to display."," "," "}};
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			PreparedStatement getTasks = null;
@@ -80,7 +83,6 @@ public class Developer {
 				   if (rs.last()) {
 					    int rows = rs.getRow();
 					    String [][] results =new String[rows][columns];
-					    System.out.println("number of results: " + rows);
 					    // Move to beginning
 					    rs.beforeFirst();
 					    while  (rs.next()) {
@@ -97,7 +99,6 @@ public class Developer {
 							int x = 0;
 							if (db.rs.last()) {
 								int numTasks = db.rs.getRow();	
-								System.out.println("num Tasks:"+numTasks);
 								db.rs.beforeFirst();
 								while (db.rs.next()){
 									String task = db.rs.getString(1);
@@ -143,7 +144,6 @@ public class Developer {
 			   if (rs.last()) {
 				    int rows = rs.getRow();
 				    String [] results =new String[rows];
-				    System.out.println("number of results: " + rows);
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
@@ -165,7 +165,7 @@ public class Developer {
 	}	
 	//task, time, description for a selected projectName
 	public String[][] getDevReport(int devID, String projName){
-		String[][] noReportInfoToDisplay ={{}};
+		String[][] noReportInfoToDisplay ={{"","",""}};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -184,7 +184,6 @@ public class Developer {
 			   if (rs.last()) {
 				    int rows = rs.getRow();
 				    String [][] results = new String[rows][columns];
-				    System.out.println("number of results: " + rows);
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
