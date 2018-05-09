@@ -14,7 +14,7 @@ public class Developer {
 	public Developer() {}
 	
 	public String[][] getDevHours(int devID){
-		String[][] noProjects = {{"No projects to display."," "," "}};
+		String[][] noProjects = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -62,7 +62,7 @@ public class Developer {
 	
 	
 	public String[][] getDevProjects(int devID){
-			String[][] noProjects = {{"No projects to display."," "," "}};
+			String[][] noProjects = null;
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			PreparedStatement getTasks = null;
@@ -165,7 +165,7 @@ public class Developer {
 	}	
 	//task, time, description for a selected projectName
 	public String[][] getDevReport(int devID, String projName){
-		String[][] noReportInfoToDisplay ={{"","",""}};
+		String[][] noReportInfoToDisplay = {{"No report info to display.", "", ""}};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;

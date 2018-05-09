@@ -18,6 +18,10 @@ public class UserAccount  {
 		this.password = password;
 		this.team = team;
 	}
+	public UserAccount(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 	
 	public boolean createAccount(UserAccount newAccount) {	
 		boolean accountCreated = false;
@@ -174,6 +178,30 @@ public class UserAccount  {
 	}   
 		System.out.println("new manager added..");
 	}
+	
+	public boolean updatePassword(String userName, String oldPass, String newPass) {
+		boolean b = false;
+		Login auth = new Login(userName, oldPass);
+		if (auth.authenticateUser(auth)==true) {
+			DBConnection update = new DBConnection();
+			update.conn = update.ConnectDB();	
+			try {
+				update.stmt = update.conn.prepareStatement("UPDATE User SET pwd = ? WHERE userName=?;");
+				update.stmt.setString(1, newPass);
+				update.stmt.setString(2, userName);
+				update.stmt.execute();
+				b = true;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+		} finally {
+			if (update.rs != null) try {update.rs.close(); } catch (SQLException ignore) {}
+			if (update.stmt != null) try {update.stmt.close(); } catch (SQLException ignore) {}
+			if (update.conn != null) try {update.conn.close(); } catch (SQLException ignore) {}
+		}   
+		}
+		return b;
+	}
+	
 	
 	public static String insertSqlUser(String userRole) {
 		String sql="";

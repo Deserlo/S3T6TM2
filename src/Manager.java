@@ -11,7 +11,7 @@ public class Manager {
 	 
 	 
 	 public String[][] getMgrHours(int mgrID){
-			String[][] noProjects = {{"No projects to display!"," "," "}, {" ", " ", " "}, {" ", " ", " "}};
+			String[][] noProjects = null;
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
@@ -21,9 +21,7 @@ public class Manager {
 		    	   String query =  "SELECT P.projName, T.taskName as LastTask, P.progress as Progress " + 
 		    	   		"FROM Project P, Task T " + 
 		    	   		"WHERE  P.projNo = T.projNo and P.mgrID = ? " + 
-		    	   		"and T.duration is not null " + 
-		    	   		"GROUP BY P.ProjName " + 
-		    	   		"HAVING MAX(T.end);" ;
+		    	   		"GROUP BY P.ProjName; ";
 		           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		           stmt.setInt(1, mgrID);
 				   rs = stmt.executeQuery();
@@ -55,7 +53,7 @@ public class Manager {
 		
 	//returns list of manager's developers by fname
 	public String[] getMgrDevNames(int mgrID){
-		String[] emptySet = {"", "", ""};
+		String[] emptySet = {};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -95,7 +93,7 @@ public class Manager {
 	//returns list of projects manager is leading by projName
 	public String[] getMgrProjects(int mgrID)
     { 
-        String[] emptyProjects = {"No Projects to display.","",""}; 
+        String[] emptyProjects = {}; 
         Connection conn = null; 
         PreparedStatement stmt = null;
         ResultSet rs = null;   
@@ -140,7 +138,7 @@ public class Manager {
 	
 	//returns list of tasks for a selected project by taskName
 	public String[][] TasksForProjName(String projName){
-		  String[][] noTasks = {{"No tasks to display."," "," "}}; 
+		  String[][] noTasks = {{"No tasks completed yet.", "", ""}}; 
 	        Connection conn = null; 
 	        PreparedStatement stmt = null;
 	        ResultSet rs = null;   
@@ -187,7 +185,7 @@ public class Manager {
 	
 	//returns list of completed tasks for a selected developer
 	public String[][] TasksForDeveloper(String devName)  { 
-        String[][] noTasks = {{"No tasks to display."," "," "}}; 
+        String[][] noTasks = {{"No tasks completed yet.", "", ""}}; 
         Connection conn = null; 
         PreparedStatement stmt = null;
         ResultSet rs = null;   
@@ -206,7 +204,7 @@ public class Manager {
             {
                 int rows = rs.getRow();
                 String [][] results =new String[rows][3];
-                System.out.println("Number of results: " + rows);
+
                 // Move to beginning
                 rs.beforeFirst();
                 while(rs.next())
@@ -238,7 +236,7 @@ public class Manager {
 	
 	//{"Project","Budget","People"}
 	public String[][] getProjectsMgr(int mgrID)  { 
-        String[][] noProjects = {{"No projects to display."," "," "}};
+        String[][] noProjects = null;
 		PreparedStatement getPeople = null;
         Connection conn = null; 
         PreparedStatement stmt = null;
@@ -258,7 +256,6 @@ public class Manager {
             {
                 int rows = rs.getRow();
                 String [][] results =new String[rows][3];
-                System.out.println("Number of results: " + rows);
                 // Move to beginning
                 rs.beforeFirst();
                 while(rs.next()){

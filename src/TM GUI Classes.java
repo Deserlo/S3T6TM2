@@ -2,10 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.imageio.*;
+
 
 /*
 ************************************************************************************
@@ -608,15 +610,14 @@ class ChangePasswordScreen{
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
-					System.out.println("Change Password Successful");
 					String String_Username = UsernameTF.getText();
 					String String_OldPassword = OldPasswordTF.getPassword();
 					String String_NewPassword = NewPasswordTF.getPassword();
 					//BACK END TEAM
-					/*
-					if(String_OldPassword.equals(getPassword(String_Username)))
-						setPassword(String_Username, String_NewPassword);
-					*/
+					UserAccount ua = new UserAccount(String_Username, String_OldPassword);
+					if (ua.updatePassword(String_Username, String_OldPassword, String_NewPassword)==true) {
+						System.out.println("Change Password Successful");
+					}
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					frame.setBackground(new java.awt.Color(59,68,91));
@@ -759,9 +760,14 @@ class HoursDev extends JPanel{
 		//backend code
 		Developer dev = new Developer();
 		String hours[][] = dev.getDevHours(Test.userID);
-		table = new JTable(hours, Cnames);
+		if (hours ==null) {
+			table = new JTable(Data, Cnames);
+		}
+		else {
+			table = new JTable(hours, Cnames);
+		}
 		//end be code
-		//table = new JTable(Data, Cnames);
+		//
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -890,9 +896,12 @@ class ProjectsDev extends JPanel{
 		//be code
 		Developer dev = new Developer();
 		String DevProjects[][] = dev.getDevProjects(Test.userID);
-		table = new JTable(DevProjects, Cnames);
-		//end be code
-		//table = new JTable(Data, Cnames);
+		if (DevProjects==null) {
+			table = new JTable(Data, Cnames);
+		}
+		else {
+			table = new JTable(DevProjects, Cnames);
+		}
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1022,8 +1031,8 @@ class ProjectReportDev extends JPanel{
 		Developer dev = new Developer();
 		String ProjectReport[][] = dev.getDevReport(Test.userID, Project);
 		table = new JTable(ProjectReport, Cnames);
+
 		//end be code
-		//table = new JTable(Data, Cnames);
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1065,7 +1074,13 @@ class HoursManager extends JPanel{
 	public HoursManager(Container f, JPanel main, JPanel[] s, String[][] Data){
 		Manager mgr = new Manager();
 		String[][] hours= mgr.getMgrHours(Test.userID);
-		table = new JTable(hours, Cnames);
+		if (hours == null) {
+			table = new JTable(Data, Cnames);		
+		}
+		else {
+			table = new JTable(hours, Cnames);
+		}
+
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1152,7 +1167,12 @@ class ProjectsManager extends JPanel{
 	public ProjectsManager(Container f, JPanel main, JPanel[] s, String[][] Data){
 		Manager mgr = new Manager();
 		String projects[][] = mgr.getProjectsMgr(Test.userID);
-		table = new JTable(projects, Cnames);
+		if (projects==null) {
+			table = new JTable(Data, Cnames);
+		}
+		else {
+			table = new JTable(projects, Cnames);
+		}
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1274,7 +1294,7 @@ class ReportsManager extends JPanel{
 		cs2.insets = new Insets(20,20,0,0);
 		Main2.setLayout(new GridLayout(1,2,30,10));
 		Main2.add(Columns2);
-		count = 0;
+
 		for(int x = 0; x < Buttons_Developers.length; x++){
 				Columns2.add(Buttons_Developers[x],cs2);
 				cs2.gridy++;
@@ -1344,7 +1364,6 @@ class ManagerReports_ByProject extends JPanel{
 		Manager mgr = new Manager();
 		String projReport[][] = mgr.TasksForProjName(project);
 		table = new JTable(projReport, Cnames);
-
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -1374,3 +1393,4 @@ class ManagerReports_ByProject extends JPanel{
 		log.addActionListener(action);
 	}
 }
+
