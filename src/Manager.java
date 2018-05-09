@@ -31,7 +31,6 @@ public class Manager {
 				   if (rs.last()) {
 					    int rows = rs.getRow();
 					    String [][] results =new String[rows][3];
-					    System.out.println("number of results: " + rows);
 					    // Move to beginning
 					    rs.beforeFirst();
 					    while  (rs.next()) {
@@ -54,12 +53,9 @@ public class Manager {
 			return noProjects; 
 		}	
 		
-	 
-	 
-
 	//returns list of manager's developers by fname
 	public String[] getMgrDevNames(int mgrID){
-		String[] emptySet = {};
+		String[] emptySet = {"", "", ""};
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -76,7 +72,6 @@ public class Manager {
 			   if (rs.last()) {
 				    int rows = rs.getRow();
 				    String [] results =new String[rows];
-				    System.out.println("number of results: " + rows);
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
@@ -100,7 +95,7 @@ public class Manager {
 	//returns list of projects manager is leading by projName
 	public String[] getMgrProjects(int mgrID)
     { 
-        String[] emptyProjects = {"No Projects to display!"}; 
+        String[] emptyProjects = {"No Projects to display.","",""}; 
         Connection conn = null; 
         PreparedStatement stmt = null;
         ResultSet rs = null;   
@@ -119,7 +114,6 @@ public class Manager {
             {
                 int rows = rs.getRow();
                 String[] results = new String[rows]; 
-                System.out.println("Number of results: " + rows);
                 // Move to beginning
                 rs.beforeFirst();
                 while(rs.next())
@@ -165,7 +159,6 @@ public class Manager {
 	            {
 	                int rows = rs.getRow();
 	                String [][] results =new String[rows][3];
-	                System.out.println("Number of results: " + rows);
 	                // Move to beginning
 	                rs.beforeFirst();
 	                while(rs.next())
@@ -278,17 +271,21 @@ public class Manager {
 					getPeople.setInt(1, projNo);
 					db.rs = getPeople.executeQuery();
 					String people = "";
+					int x = 0;
 					if (db.rs.last()) {
-						int x = db.rs.getRow();		
-					}
-					db.rs.beforeFirst();
-					while (db.rs.next()){
-						String person = db.rs.getString(1);
-						people += person;
-						people += person + ",";
-					}
-					results[i] = new String[] {projName, String.valueOf(timeBudget), people};
-					i++;
+						int numPeople = db.rs.getRow();	
+						db.rs.beforeFirst();
+						while (db.rs.next()){
+							String person = db.rs.getString(1);
+							if (x!=numPeople-1)
+								people += person + ", ";
+							else
+								people += person;
+							x++;
+						}
+						results[i] = new String[] {projName, String.valueOf(timeBudget), people};
+						i++;
+					}		
                 }
                 return results;
             }
@@ -304,16 +301,5 @@ public class Manager {
             if(conn != null) try {conn.close();} catch (SQLException ignore){}
         }
         return noProjects;
-    }
-	
-	public static void main(String args[] ){
-		Manager man = new Manager();
-		String [][]projs = man.getProjectsMgr(15);
-		System.out.println(projs[0][0]);
-		System.out.println(projs[0][1]);
-		System.out.println(projs[0][2]);
-	}
-	
-	
-	
+    }	
 }
