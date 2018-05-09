@@ -71,6 +71,7 @@ public class TaskLog {
 	public boolean stopTask(int devID, String taskName, String projName, String moreDescription) {
 		boolean taskStopped = true;
 		int taskID = getTaskID(taskName, devID);
+		int projID = getProjID(projName, devID);
 		if (checkIfAssigned(devID,  projName)==false || taskID==0 || checkIfTaskComplete(taskID)==true)  {
 			System.out.println("stop fail, either you are trying to log a task under an unassigned project, stopping a task which does not exist, or task has already been completed");	
 			taskStopped = false;
@@ -85,13 +86,14 @@ public class TaskLog {
 				db.stmt.setString(1, Stop());
 				db.stmt.setString(2, updatedDescription);
 				db.stmt.setInt(3, taskID);
-				db.stmt.setInt(4, getProjID(projName, devID));
+				db.stmt.setInt(4, projID);
 				db.stmt.execute();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			inputDuration(taskName, taskID);
+			updateProjectProgress(projID);
 		}
 		return taskStopped;
 	}
@@ -167,17 +169,50 @@ public class TaskLog {
 	}
 	
 	
-	private String getStart(String taskname) {
-		Query queryStart = new Query("Task", "start", "taskName", taskname);
-		String query = queryStart.generateQueryString(queryStart);
-	    String start = queryStart.getName(queryStart.name, query);
-		return start ;}
+	private String getStart(int taskID) {
+		String sql = "SELECT T.start from Task T where T.taskID = ?;";
+		DBConnection db = new DBConnection();
+    	db.conn = db.ConnectDB();
+    	String start = "";
+       try { 
+    	   db.stmt = db.conn.prepareStatement(sql);
+           db.stmt.setInt(1, taskID);
+		   db.rs = db.stmt.executeQuery();
+		   while(db.rs.next()) {
+			   start = db.rs.getString(1);
+			   return start;
+		   }	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+		}  	
+		return start ;
+	}
 	
-	private String getStop(String taskname) {
-		Query queryEnd = new Query("Task", "end", "taskName", taskname);
-		String query = queryEnd.generateQueryString(queryEnd);
-	    String end = queryEnd.getName(queryEnd.name, query);
-		return end ;	
+	private String getStop(int taskID) {
+		String sql = "SELECT T.end from Task T where T.taskID = ?;";
+		DBConnection db = new DBConnection();
+    	db.conn = db.ConnectDB();
+    	String end = "";
+       try { 
+    	   db.stmt = db.conn.prepareStatement(sql);
+           db.stmt.setInt(1, taskID);
+		   db.rs = db.stmt.executeQuery();
+		   while(db.rs.next()) {
+			   end = db.rs.getString(1);
+			   return end;
+		   }	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+		}  	
+		return end ;
 	}
 	
 	public void inputDuration(String taskname, int taskID) {
@@ -192,12 +227,14 @@ public class TaskLog {
 			db.stmt.execute();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}				
+		}	
 	}
 	
-	private float calcDuration(String taskname) {
-		start = getStart(taskname);
-		end = getStop(taskname);
+	private double calcDuration(String taskname) {
+		String start = getStart(getTaskID(taskname, devID));
+		System.out.println(start);
+		String end = getStop(getTaskID(taskname, devID));
+		System.out.println(end);
 		Date date1 = null;
 		Date date2 = null;
 		try {
@@ -253,5 +290,70 @@ public class TaskLog {
 			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
 		}   	
        return true;		
-	}			
+	}	
+	
+	private void updateProjectProgress(int projNo) {
+		String sql = "UPDATE Project SET progress = ? WHERE projNo = ? ";
+		double totalDuration = getTotalDuration(projNo);
+		double progress = (totalDuration/getBudgetHours(projNo));
+		System.out.print("progress: "+ progress);
+		DBConnection db = new DBConnection();
+    	db.conn = db.ConnectDB(); 
+		try {
+			db.stmt = db.conn.prepareStatement(sql);
+			db.stmt.setDouble(1, progress);
+			db.stmt.setInt(2, projNo);
+			db.stmt.execute();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}   			
+	}
+	
+	private double getBudgetHours(int projNo) {
+		String sql = "SELECT P.timeBudget from Project P WHERE P.projNo = ?;";
+		DBConnection db = new DBConnection();
+    	db.conn = db.ConnectDB(); 
+    	double budgetHours = 0.0;
+    	  try { 
+       	   db.stmt = db.conn.prepareStatement(sql);
+              db.stmt.setInt(1, projNo);
+   		   db.rs = db.stmt.executeQuery();
+   		   while (db.rs.next()) {
+   			   budgetHours += db.rs.getFloat(1);
+   		   }	
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		} finally {
+   			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+   			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+   			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+   		}
+    	  System.out.println("budgetHours: "+ budgetHours);
+   		return budgetHours;	 	
+	}
+	
+	
+	private double getTotalDuration(int projNo) {
+		String sql = "SELECT T.duration from Task T WHERE T.projNo = ?";
+		DBConnection db = new DBConnection();
+    	db.conn = db.ConnectDB(); 
+		double totalDuration = 0.0;
+       try { 
+    	   db.stmt = db.conn.prepareStatement(sql);
+           db.stmt.setInt(1, projNo);
+		   db.rs = db.stmt.executeQuery();
+		   while (db.rs.next()) {
+			   totalDuration += db.rs.getDouble(1);
+		   }	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (db.rs != null) try {db.rs.close(); } catch (SQLException ignore) {}
+			if (db.stmt != null) try {db.stmt.close(); } catch (SQLException ignore) {}
+			if (db.conn != null) try {db.conn.close(); } catch (SQLException ignore) {}
+		}  
+        System.out.println("totalDuration: "+ totalDuration);
+		return totalDuration;	
+	}
+	
 }
