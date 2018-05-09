@@ -16,7 +16,7 @@ The **Timely** application is a simple application that helps track time, profit
 * Organizing tasks through multiple projects
 
 **Ideas of ours influenced by GetHarvest:**
-* Easy to use pause buttons
+* ~~Easy to use pause buttons~~
 * Spreadsheets that show time
 
 
@@ -49,11 +49,10 @@ We will be implementing a two-tier client/server architecture for the TM project
 |   REQ7           | Both managers and developers shall be able to set a time budget for each task                           |          
 |   REQ8           | Managers shall be able to set a due date for a task                                                     |
 |   REQ9          | Managers shall be able to assign a task to a particular developer                                       |
-|   REQ10          | The program shall notify the user of the upcoming due date or budget limit                              |
-|   REQ11          | Each task shall be categorized under a project, thus to organize the workflow                           |
-|   REQ12          | A user shall be able to log on as a manager or developer, allowing different functions                  |
-|   REQ13          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
-|   REQ14          | A user shall be able to change the password associated with their username                              |
+|   REQ10         | Each task shall be categorized under a project, thus to organize the workflow                           |
+|   REQ11          | A user shall be able to log on as a manager or developer, allowing different functions                  |
+|   REQ12          | A user shall be able to create an account with their own username, password, and user type (manager or developer) |
+|   REQ13          | A user shall be able to change the password associated with their username                              |
 
 ## Use cases
 
@@ -217,28 +216,9 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-8***               | Name: Notifications                                                      |
-|------------------------------|--------------------------------------------------------------------------|
-| Related requirements         | REQ 10                                                                   |
-| Initiating actor             | Developer                                                                |
-| Actor's goal                 | To have a reminder for the user of upcoming due dates or budget limits   |
-| Participating actors         | System, File Writer                                                      |
-| Preconditions                | Task is already created                                                  |
-| Postconditions               | User has been notified                                                   |
 
-#### Flow of events for main success scenario:
 
-| Number |    Description                                                                   |
-|--------|----------------------------------------------------------------------------------|
-| 1  ->  | **Developer** sets a time for user to be notified                                |
-| 2  <-  | **System** signals that the timer is done                                        |
-| 3  <-  | **File Writer** then displays the upcoming dates                                 |
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-| Use case ***UC-9***               | Name: Budget                                                           |
+| Use case ***UC-8***               | Name: Budget                                                           |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 7                                                                  |
 | Initiating actor             | User                                                                   |
@@ -261,7 +241,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-10***               | Name: Create Account                                                   |
+| Use case ***UC-9***               | Name: Create Account                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 13                                                                 |
 | Initiating actor             | User                                                                   |
@@ -284,7 +264,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case ***UC-11***               | Name: Changing Password                                                |
+| Use case ***UC-10***               | Name: Changing Password                                                |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 14                                                                 |
 | Initiating actor             | User                                                                   |
@@ -306,7 +286,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-12***            | Name: Assign Task                                                      |
+| Use case  ***UC-11***            | Name: Assign Task                                                      |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 9                                                                 |
 | Initiating actor             | Manager                                                                |
@@ -328,7 +308,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-13***            | Name: Assign Project                                                   |
+| Use case  ***UC-12***            | Name: Assign Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 11                                                                 |
 | Initiating actor             | User                                                                   |
@@ -350,7 +330,7 @@ We will be implementing a two-tier client/server architecture for the TM project
 &nbsp;
 &nbsp;
 
-| Use case  ***UC-14***            | Name: Create Project                                                   |
+| Use case  ***UC-13***            | Name: Create Project                                                   |
 |------------------------------|------------------------------------------------------------------------|
 | Related requirements         | REQ 11                                                                 |
 | Initiating actor             | User                                                                   |
@@ -372,24 +352,23 @@ We will be implementing a two-tier client/server architecture for the TM project
 
 
 ## Traceability Matrix
-| REQ | PW |UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|UC12|UC13|UC14|
-|-----|----|---|---|---|---|---|---|---|---|---|----|----|----|----|----|
-|REQ1 | 5  | x |   |   |   |   |   |   |   |   |    |    |    |    |    |  
-|REQ2 | 5  |   | x | x |   |   |   |   |   |   |    |    |    |    |    |  
-|REQ3 | 5  |   |   | x |   |   |   |   |   |   |    |    |    |    |    | 
-|REQ4 | 4  |   |   |   | x |   |   |   |   |   |    |    |    |    |    | 
-|REQ5 | 1  |   |   | x |   |   |   |   |   |   |    |    |    |    |    | 
-|REQ6 | 3  |   |   |   |   |   | x |   |   |   |    |    |    |    |    | 
-|REQ7 | 2  |   |   |   |   |   |   |   |   | x |    |    |    |    |    |  
-|REQ8 | 4  |   |   |   |   |   |   | x |   |   |    |    |    |    |    |  
-|REQ9 | 2  |   |   |   |   |   |   |   |   |   |    |    | x  |    |    |
-|REQ10| 1  |   |   |   |   |   |   |   | x |   |    |    |    |    |    | 
-|REQ11| 2  |   |   |   |   |   |   |   |   |   |    |    |    | x  | x  | 
-|REQ12| 5  |   |   |   |   | x |   |   |   |   |    |    |    |    |    |  
-|REQ13| 5  |   |   |   |   | x |   |   |   |   | x  |    |    |    |    | 
-|REQ14| 1  |   |   |   |   | x |   |   |   |   |    | x  |    |    |    | 
-|Max  | PW | 5 | 5 | 5 | 4 | 5 | 3 | 4 | 1 | 2 | 5  | 1  | 2  | 2  | 2  | 
-|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 4 | 1 | 2 | 5  | 1  | 2  | 2  | 2  |  
+| REQ | PW |UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|UC12|UC13|
+|-----|----|---|---|---|---|---|---|---|---|---|----|----|----|----|
+|REQ1 | 5  | x |   |   |   |   |   |   |   |   |    |    |    |    |  
+|REQ2 | 5  |   | x | x |   |   |   |   |   |   |    |    |    |    |  
+|REQ3 | 5  |   |   | x |   |   |   |   |   |   |    |    |    |    | 
+|REQ4 | 4  |   |   |   | x |   |   |   |   |   |    |    |    |    | 
+|REQ5 | 1  |   |   | x |   |   |   |   |   |   |    |    |    |    | 
+|REQ6 | 3  |   |   |   |   |   | x |   |   |   |    |    |    |    | 
+|REQ7 | 2  |   |   |   |   |   |   |   | x |   |    |    |    |    |  
+|REQ8 | 4  |   |   |   |   |   |   | x |   |   |    |    |    |    |  
+|REQ9 | 2  |   |   |   |   |   |   |   |   |   |    | x  |    |    |
+|REQ10| 2  |   |   |   |   |   |   |   |   |   |    |    | x  | x  | 
+|REQ11| 5  |   |   |   |   | x |   |   |   |   |    |    |    |    |  
+|REQ12| 5  |   |   |   |   | x |   |   |   | x |    |    |    |    | 
+|REQ13| 1  |   |   |   |   | x |   |   |   |   | x  |    |    |    | 
+|Max  | PW | 5 | 5 | 5 | 4 | 5 | 3 | 4 | 2 | 5 | 1  | 2  | 2  | 2  | 
+|Total| PW | 5 | 5 | 11| 4 | 11| 3 | 4 | 2 | 5 | 1  | 2  | 2  | 2  |  
 
 
 ## Domain Model 
