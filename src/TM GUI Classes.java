@@ -428,7 +428,7 @@ class LogInScreen{
 	JButton button_LogIn = new AbsoluteTextButton("Log In", 400,300, 160,45, 2, 1);
 	JButton button_GoBack = new AbsoluteTextButton("Register", 412,360, 138,25, 2, 2);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 412,400, 138,25, 2, 3);
-	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
+	JTextField UsernameTF = new AbsoluteTextField("Email",360,150, 240,30);
 	AbsoluteTextField PasswordTF = new AbsoluteTextField("Password", 360,200, 240,30);
 	Component[] Comp = {LogInTO, button_LogIn, button_GoBack, button_ChangePassword, UsernameTF, PasswordTF};
 	int LocalTimer = 0;
@@ -584,7 +584,7 @@ class LogInScreen{
 
 class ChangePasswordScreen{
 	JLabel TitleTO = new AbsoluteLabel("Change Password", 345,-5,355,130, 32);
-	JTextField UsernameTF = new AbsoluteTextField("Name",360,150, 240,30);
+	JTextField UsernameTF = new AbsoluteTextField("Email",360,150, 240,30);
 	AbsoluteTextField OldPasswordTF = new AbsoluteTextField("Old Password", 360,200, 240,30);
 	AbsoluteTextField NewPasswordTF = new AbsoluteTextField("New Password", 360,250, 240,30);
 	JButton button_ChangePassword = new AbsoluteTextButton("Change Password", 400,300, 160,45, 2, 1);
@@ -1259,13 +1259,10 @@ class ReportsManager extends JPanel{
 		cs1.insets = new Insets(20,20,0,0);
 		Main.setLayout(new GridLayout(1,2,30,10));
 		Main.add(Columns);
-		count = 0;
+		
 		for(int x = 0; x < Buttons_Projects.length; x++){
-			if(count%2==0){
 				Columns.add(Buttons_Projects[x],cs1);
 				cs1.gridy++;
-			}
-			count++;
 		}
 		temp = new JScrollPane(Main);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
@@ -1279,11 +1276,8 @@ class ReportsManager extends JPanel{
 		Main2.add(Columns2);
 		count = 0;
 		for(int x = 0; x < Buttons_Developers.length; x++){
-			if(count%2==0){
 				Columns2.add(Buttons_Developers[x],cs2);
 				cs2.gridy++;
-			}
-			count++;
 		}
 		temp = new JScrollPane(Main2);
 		temp.getViewport().setBackground(new java.awt.Color(59,68,91));
