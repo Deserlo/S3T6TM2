@@ -1225,9 +1225,8 @@ class ReportsManager extends JPanel{
 			});
 		}
 		int boxSizes = Buttons_Projects.length / 2 + 1;
-		 
-		 String [] developerName = mgr.getMgrDevNames(Test.userID);
-		
+		Manager man = new Manager();
+		String [] developerName = man.getMgrDevNames(Test.userID);
 		Buttons_Developers = new CButton[developerName.length];
 		for(int x = 0 ; x < Buttons_Developers.length ; x++){
 			Buttons_Developers[x] = new CButton(developerName[x],false, 50);//<html><font face = helvetica size = 4> </font></html>
