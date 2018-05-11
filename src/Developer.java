@@ -17,22 +17,17 @@ public class Developer {
 		String[][] noProjects = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		PreparedStatement getLastTask = null;
 		ResultSet rs = null;
 		 try { 
 			   DBConnection db = new DBConnection();
 	    	   conn = db.ConnectDB();
-	    	   String query =  "SELECT P.projName, T.taskName, T.duration " + 
-	    	   		"FROM Project P, Task T, Works_on W " + 
-	    	   		"WHERE P.projNo = W.projNo AND  W.devID = T.devID AND T.devID = ? " + 
-	    	   		"AND T.end = (SELECT MAX(T.end) " + 
-	    	   		"FROM Task T, Works_on W, Project P " + 
-	    	   		"WHERE P.projNo = W.projNo and " + 
-	    	   		"W.devID = T.devID " + 
-	    	   		"AND T.devID = ? AND " + 
-	    	   		"T.duration IS NOT NULL);";
+	    	   String query = "SELECT P.projNo, P.projName " + 
+		    	   		"FROM Project P, Works_on W " + 
+		    	   		"WHERE  P.projNo = W.projNo and " + 
+		    	   		"W.devID = ?; ";
 	           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	           stmt.setInt(1, devID);
-	           stmt.setInt(2, devID);
 			   rs = stmt.executeQuery();
 			   int i=0;
 			   if (rs.last()) {
@@ -41,15 +36,26 @@ public class Developer {
 				    // Move to beginning
 				    rs.beforeFirst();
 				    while  (rs.next()) {
-						String name = rs.getString(1);
-						String taskName = rs.getString(2);
-						float duration = rs.getFloat(3);				
-						results[i] = new String[] {name, taskName,String.valueOf(duration)};
+				    	int projNo = rs.getInt(1);
+						String pName = rs.getString(2);
+						getLastTask = conn.prepareStatement("Select T.taskName, T.duration "+
+								" FROM  Task T "+	
+								"WHERE T.projNo = ? and T.devID=? and T.duration is not null HAVING max(T.end);");
+						getLastTask.setInt(1, projNo);
+						getLastTask.setInt(2, devID);
+						db.rs = getLastTask.executeQuery();
+						if (db.rs.last()) {
+							String lastTask = db.rs.getString(1);
+							String lastTaskDuration = db.rs.getString(2);
+							results[i] = new String[]{pName, lastTask, lastTaskDuration}; 
+						}
+						else {
+							results[i] = new String[] {pName, "", "0.0"};
+						}
 						i++;
 					}
 					return results;
-				}
-			   	  
+				}			   	  
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -100,7 +106,7 @@ public class Developer {
 							if (db.rs.last()) {
 								int numTasks = db.rs.getRow();	
 								db.rs.beforeFirst();
-								while (db.rs.next()){
+								while (db.rs.next()){//while there are tasks in the result set from getTasks query
 									String task = db.rs.getString(1);
 									if (x!=numTasks-1)
 										allTasks += task + ", ";
@@ -109,11 +115,15 @@ public class Developer {
 									x++;
 								}
 							results[i] = new String[] {pName, String.valueOf(pBudget),allTasks};
+							}	
+							else { //if there are no tasks completed for a project
+								results[i] = new String[] {pName, String.valueOf(pBudget), ""};
+							  }
 							i++;
-							}		
 					    }
 					 return results;
 				   }
+			   	  
 				   	  
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -174,8 +184,8 @@ public class Developer {
 	    	   conn = db.ConnectDB();
 	    	   String query =  "SELECT T.taskName, T.duration, T.description " + 
 	    	   		"FROM Task T, Works_on W, Project P " + 
-	    	   		"WHERE  P.ProjNo = W.ProjNo and W.devID = T.devID " + 
-	    	   		"and T.devID = ? and T.duration is not null and P.projName = ?;"; 
+	    	   		"WHERE  P.ProjNo = W.ProjNo and W.devID = T.devID AND W.projNo = T.projNo " + 
+	    	   		"and T.devID = ? and P.projName = ?;"; 
 	           stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	           stmt.setInt(1, devID);
 	           stmt.setString(2, projName);
