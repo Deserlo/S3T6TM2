@@ -119,14 +119,13 @@ public class UserAccount  {
 	
 	private void createNewTeam(String username, String team) {
 		int mgrID = queryForId(username);
-		String sql = insertSqlTeam();
 		DBConnection newTeam = new DBConnection();
 		newTeam.conn = newTeam.ConnectDB();
 		System.out.println("creating new team with manager'S ID into Team table..");
 		try {
-			newTeam.stmt = newTeam.conn.prepareStatement(sql);
-			newTeam.stmt.setInt(1, mgrID);
-			newTeam.stmt.setString(2, team);
+			newTeam.stmt = newTeam.conn.prepareStatement("INSERT INTO Team (teamName, mgrID) VALUES (?,?);");
+			newTeam.stmt.setString(1, team);
+			newTeam.stmt.setInt(2, mgrID);
 			newTeam.stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,8 +213,6 @@ public class UserAccount  {
 	public static String insertSqlRole(String table) {
 		return "INSERT INTO "+ table +" (userName, id) VALUES (?,?);"; }
 	
-	public static String insertSqlTeam() {
-		return "INSERT INTO Team (mgrID, teamName) VALUES (?,?);"; }
 	
 }
 	
