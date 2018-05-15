@@ -111,5 +111,9 @@ public class TestManager
     
     public String[] getManDevsNames(int mgrID)
     {
+        String[] emptySet = {};
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
     }
 }
