@@ -131,12 +131,20 @@ public class TestManager
             {
                 int rows = rs.getRow();
                 String[] results = new String[rows];
+                rs.beforeFirst();
                 while(rs.next())
                 {
-                    
+                    String devName = rs.getString(1);
+                    results[i] = devName;
+                    i++;
                 }
+                return results;
             }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            
         }
-        return null;
+        return emptySet;
     }
 }
