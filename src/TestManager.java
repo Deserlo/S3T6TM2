@@ -115,5 +115,15 @@ public class TestManager
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        
+        try
+        { 
+            DBConnection db = new DBConnection();
+            conn = db.ConnectDB();
+            String query = "SELECT U.Fname " +
+                           "FROM User U +
+                           "WHERE U.mgrID = ?; ";
+        }
+        return null;
     }
 }
