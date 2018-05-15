@@ -108,4 +108,8 @@ public class TestManager
         }
         return emptyProjects;
     }
+    
+    public String[] getManDevsNames(int mgrID)
+    {
+    }
 }
