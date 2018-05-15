@@ -143,7 +143,7 @@ public class TestManager
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
-            
+            if(rs != null) try {rs.close()} catch (SQLException ignore) {}
         }
         return emptySet;
     }
