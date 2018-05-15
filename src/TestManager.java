@@ -129,8 +129,11 @@ public class TestManager
             int i = 0;
             if(rs.last())
             {
-                while()
+                int rows = rs.getRow();
+                String[] results = new String[rows];
+                while(rs.next())
                 {
+                    
                 }
             }
         }
