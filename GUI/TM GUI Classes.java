@@ -16,13 +16,12 @@ class TM_Frame extends JFrame{
 	public TM_Frame(String title){
 		setTitle(title);
 		setVisible(true);
-		//ImageIcon icon_corner = new ImageIcon(Test.class.getResource("art/IntroAnimation/1.png"));
-		//setIconImage(icon_corner.getImage()); //can probably easily animate on first Login
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(117,132,178)));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//pulled from https://stackoverflow.com/questions/11232131/centering-a-jframe
+		
+		//Centering the Screen - pulled from https://stackoverflow.com/questions/11232131/centering-a-jframe
 		int x = (int)((Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 960) / 2);
 		int y = (int)((Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 540) / 2);
 		setLocation(x, y);
@@ -54,7 +53,7 @@ class PComboBox<String> extends JComboBox<String>{
 	}
 }
 
-class PTextField extends JTextField{ //pulled from stack overflow 
+class PTextField extends JTextField{ //pulled and edited from stack overflow( https://stackoverflow.com/questions/11200585/adding-a-prompt-text-property-to-jtextfield )
 	public PTextField(final String promptText){
 		/*This class creates a text field that has a default string in the text field.
 		  If the user clicks on that text field then the string disappears.
@@ -92,7 +91,7 @@ class CScrollPane extends JScrollPane{
 	}
 }
 
-class PTextArea extends JTextArea{ // pulled from stack overflow
+class PTextArea extends JTextArea{ //pulled and edited from stack overflow( https://stackoverflow.com/questions/11200585/adding-a-prompt-text-property-to-jtextfield )
 	/*This class is similar to "PTextField".
 	  This class creates a text area that has a default string in the area.
 	  If the user clicks on that text field then the string disappears.
@@ -138,7 +137,7 @@ class CButton extends JButton{
 	}
 }
 
-class Header extends JLabel{
+class Header extends JLabel{ //Specific neon green label for the developer and manager screens.
 	public Header(String s){
 		setText(s);
 		setFont(new Font("Helvetica", Font.BOLD, 30));
@@ -167,12 +166,10 @@ class SetGrid{
 	}
 }
 
-//Absolute = Absolute Positioning on the screen. These require setLayout(null) for these 3 classes to work.
+//Absolute = Absolute Positioning on the screen. These require setLayout(null) and setOpaque(true) for these 3 classes to work.
 class AbsoluteTextButton extends JButton{ 
 	public AbsoluteTextButton(String Words, int x, int y, int width, int height, int MenuSwitch, int ButtonNum){
 		setText(Words);
-		//if(!ToolTipWords.equals("blank"))
-			//setToolTipText(ToolTipWords);
 		setBorderPainted(false);
 		setForeground(new java.awt.Color(117,132,178));
 		setBackground(new java.awt.Color(70,81,108));
@@ -270,10 +267,6 @@ class TM_GUI_Intro{
 				LocalTimer++;
 				switch(LocalTimer){
 					case 4: TitleTO.setBounds(390, -10, 500, 500);
-							/*window.dispose(); //CTRL-C
-							window.setUndecorated(true);
-							window.setBackground(new java.awt.Color(0,0,0,0));//window.setOpacity(0.5f);
-							window.setVisible(true);*/
 							break;
 					case 8: //From 8-12 we are fading in the description
 							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 30));
@@ -293,7 +286,7 @@ class TM_GUI_Intro{
 					case 16:DescriptionTO.setForeground(new java.awt.Color(255,255,255, 140));
 							TitleTO.setForeground(new java.awt.Color(255,255,255, 140));
 							break;
-					case 17: //From 22-27 we are transitioning into the register screen so it's not an abrupt transition
+					case 17: //From 17-22 we are transitioning into the register screen so it's not an abrupt transition
 							frame.setBackground(new java.awt.Color(10,10,10));
 							DescriptionTO.setForeground(new java.awt.Color(255,255,255, 70));
 							TitleTO.setForeground(new java.awt.Color(255,255,255, 70));
@@ -523,10 +516,6 @@ class LogInScreen{
 				String String_Username = UsernameTF.getText();
 				String String_Password = PasswordTF.getPassword();
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
-					//BACK END TEAM
-					/* Just change this if(error) to however
-						an error is detected in the username/password combo
-						String_Username & String_Password*/
 					if(String_Username.equals("Error")){ //if(newLogin.authenticateUser(newLogin) == false) {
 						frame.add(ErrorTO);
 						LocalTimer = 11;
@@ -535,53 +524,27 @@ class LogInScreen{
 						RemoveEverything(frame, window);
 						RepaintTimer.stop();
 						/* EXAMPLE(ERASE THIS) 3=developer dash, 4= manager dash*/
-						if(String_Username.equals("Dev")){
+						if(String_Username.equals("Dev"))
 							Test.MenuVar = 3; 
-						}
 						else if(String_Username.equals("Man"))
 							Test.MenuVar = 4; 
 						else
 							Test.MenuVar = 3;
 
-						//log in code
 						/*
-						Login newLogin = new Login(String_Username, String_Password);
-						//// I don't think we can do this here cuz of 
-						//// RemoveEverything(frame, window);
-						//// RepaintTimer.stop();
-						//// need to do if(newLogin.authenticateUser(newLogin) == false)) where "Error" is
-						//// and then this stuff in this else case
-						if (newLogin.authenticateUser(newLogin) == true) { 
-							Test.userID = newLogin.queryForId(String_Username);
-							Test.login = true;
-							String role = newLogin.getUserRole(Test.userID);
-							System.out.println("Logged in as "+role);
-							switch (role) {
-								case "developer":
-									Test.MenuVar = 3; 
-									break;
-								case "manager":
-									Test.MenuVar = 4; 
-									break;		
-							}
-						}
-						else {
-							Test.login = false;
-							//Test.MenuVar = 1;
-							//Display "Bad Username/Password"
-						}
+						//Back End Code to login
 						*/
 					}
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 2){
 					RemoveEverything(frame, window);
 					RepaintTimer.stop();
-					Test.MenuVar = 2; //Register
+					Test.MenuVar = 2; //Register Screen = 2
 				}
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 3){
 					RemoveEverything(frame, window);
 					RepaintTimer.stop();
-					Test.MenuVar = 5; //Change Password
+					Test.MenuVar = 5; //Change Password Screen = 5
 				}
 			}
 		};
@@ -612,7 +575,6 @@ class ChangePasswordScreen{
 		frame.setBackground(new java.awt.Color(59,68,91));
 		new AddToFrame(frame, Comp);
 		frame.setLayout(null);
-		
 		ActionListener RepaintScreen = new ActionListener(){ 
 			public void actionPerformed(ActionEvent event){
 				frame.repaint(500);
@@ -621,7 +583,6 @@ class ChangePasswordScreen{
 		};
 		Timer RepaintTimer = new Timer(100, RepaintScreen); //100 milliseconds
 		RepaintTimer.start();
-		
 		ActionListener action = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e){
 				if((Integer)((JButton)e.getSource()).getClientProperty("ButtonNum") == 1){
@@ -641,7 +602,7 @@ class ChangePasswordScreen{
 					frame.revalidate();
 					frame.repaint();
 					RepaintTimer.stop();
-					Test.MenuVar = 1; //Login Screen
+					Test.MenuVar = 1; //Login Screen = 1
 				}
 			}
 		};
@@ -706,11 +667,6 @@ class SidePanel extends JPanel{ //SidePanel works for both Developer and Manager
 					if(Test.MenuVar == 3){
 						//BACK END TEAM
 						//Add code to update Data[][] content here for developer hours table
-						//Developer dev = new Developer();
-						//s[0] = new HoursDev(f, main, s, dev.getDevHours(Test.userID));
-						//s[0] = new HoursDev(f, main, s, dev.getDevProjects(Test.userID));
-						//s[1] = new ProjectsDev(f, main, s, dev.getDevReports(Test.userID));
-						//Data = GetDataForHours();
 						s[0] = new HoursDev(f, main, s, Data);
 						//Add code to update Data[][] content here for developer project table
 						s[1] = new ProjectsDev(f, main, s, Data); 
@@ -953,16 +909,7 @@ class ReportsDev extends JPanel{
 	public ReportsDev(Container f, JPanel main, JPanel[] s, String[][] Data){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		//Filling Buttons
-		
-		//back end code
-		//Developer dev = new Developer();
-		//String ProjectName[]=dev.getAllDevReports(Test.userID);
-		//Buttons = new CButton[ProjectName.length];
-		//for(int x = 0 ; x < Buttons.length ; x++){
-		//	Buttons[x] = new CButton(ProjectName[x],false, 50);
-		//
-		
+		//Filling Buttons		
 		Buttons = new CButton[40];
 		for(int x = 0 ; x < Buttons.length ; x++){
 			Buttons[x] = new CButton(/*BACK END TEAM: "" + ProjectName[x]*/"Some Project",false, 50);
@@ -981,7 +928,6 @@ class ReportsDev extends JPanel{
 		}
 		int boxSizes = Buttons.length / 2 + 1;
 		
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		new SetGrid(1.0,1.0,c);
 		new SetGrid(0,0,100,20,c,ReportsLabel,this);
 
@@ -1232,8 +1178,6 @@ class ReportsManager extends JPanel{
 				}
 			});
 		}
-		int boxSizes = Buttons_Projects.length / 2 + 1;
-		
 		Buttons_Developers = new CButton[40];
 		for(int x = 0 ; x < Buttons_Developers.length ; x++){
 			Buttons_Developers[x] = new CButton(/*BACK END TEAM: "" + DeveloperName[x]*/"Developer Name",false, 50);//<html><font face = helvetica size = 4> </font></html>
@@ -1248,9 +1192,7 @@ class ReportsManager extends JPanel{
 					main.repaint();
 				}
 			});
-		}
-		int boxSizes2 = Buttons_Developers.length / 2 + 1;
-		
+		}	
 		new SetGrid(1.0,1.0,c);
 		new SetGrid(0,0,100,20,c,ProjectsLabel,this);
 		new SetGrid(1,0,100,20,c,new CPanel(),this);

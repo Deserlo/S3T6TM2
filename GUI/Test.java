@@ -7,11 +7,8 @@ public class Test{
 	public static int MenuVar = 0;
 	public static int userID = -1;
 	public static boolean login = false;
-	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}};
+	static String Data[][] = {{"a","b","c"},{"a","b","c"},{"a","b","c"}}; //default data for tables
 	static JPanel main;	
-	static JPanel devPR;
-	static int counter; // counter = # of projects
-	static JButton[] ButtonActual = new CButton[counter];
 	
 	public static void main(String[] args){
 		JFrame home = new TM_Frame("TM");
