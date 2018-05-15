@@ -123,6 +123,16 @@ public class TestManager
             String query = "SELECT U.Fname " +
                            "FROM User U +
                            "WHERE U.mgrID = ?; ";
+            stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt = setInt(1, mgrID);
+            rs = stmt.executeQuery();
+            int i = 0;
+            if(rs.last())
+            {
+                while()
+                {
+                }
+            }
         }
         return null;
     }
